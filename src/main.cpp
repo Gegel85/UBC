@@ -1,9 +1,6 @@
-/*
-** EPITECH PROJECT, 2020
-** UBC
-** File description:
-** main.cpp
-*/
+//
+// Created by andgel on 06/10/2020.
+//
 
 #include <iostream>
 
