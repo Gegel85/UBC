@@ -1,0 +1,62 @@
+cmake_minimum_required(VERSION 3.10)
+project(UBC)
+
+set(CMAKE_CXX_STANDARD 17)
+
+if ("${CMAKE_BUILD_TYPE}" STREQUAL Debug)
+	if (CMAKE_COMPILER_IS_GNUCC)
+		add_compile_options(-Wall -Wextra -W -g -D_DEBUG)
+	endif (CMAKE_COMPILER_IS_GNUCC)
+endif ()
+if ("${CMAKE_BUILD_TYPE}" STREQUAL Release)
+	if (CMAKE_COMPILER_IS_GNUCC)
+		if (WIN32)
+			add_link_options(-mwindows)
+		endif (WIN32)
+	endif (CMAKE_COMPILER_IS_GNUCC)
+endif ()
+if (WIN32)
+	set(ICON icon.rc)
+endif (WIN32)
+
+include_directories(nlohmann)
+
+add_executable(
+	UBC
+	src/main.cpp
+	src/Logger.cpp
+	src/Logger.hpp
+	src/Exceptions.cpp
+	src/Exceptions.hpp
+	src/Menu/Exceptions.hpp
+	src/Menu/Menu.cpp
+	src/Menu/Menu.hpp
+	src/Menu/MenuMgr.cpp
+	src/Menu/MenuMgr.hpp
+	src/Input/Input.cpp
+	src/Input/Input.hpp
+	src/Input/SFMLJoypad.cpp
+	src/Input/SFMLJoypad.hpp
+	src/Input/SFMLKeyboard.cpp
+	src/Input/SFMLKeyboard.hpp
+)
+
+if (WIN32)
+	target_link_libraries(
+		UBC
+		sfml-window
+		sfml-system
+		sfml-graphics
+		sfml-audio
+		tgui
+	)
+else (WIN32)
+	target_link_libraries(
+		UBC
+		sfml-window
+		sfml-system
+		sfml-graphics
+		sfml-audio
+		tgui
+	)
+endif (WIN32)
