@@ -46,8 +46,6 @@ namespace UntilBeingCrowned
 			this->pt4 += dir;
 			return *this;
 		}
-
-		~Rect() override = default;
 	};
 
 	typedef Rect<int> IntRect;

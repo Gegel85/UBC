@@ -23,6 +23,8 @@ include_directories(nlohmann)
 
 set(
 	UBC_SRC
+	src/Utils.cpp
+	src/Utils.hpp
 	src/main.cpp
 	src/Logger.cpp
 	src/Logger.hpp

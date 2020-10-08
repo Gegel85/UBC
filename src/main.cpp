@@ -6,9 +6,14 @@
 #include "Resources/version.hpp"
 #include "Rendering/Screen.hpp"
 #include "Resources/Logger.hpp"
+#include "Exceptions.hpp"
+#include "Utils.hpp"
 
 int main()
 {
+#ifndef _DEBUG
+	try {
+#endif
 	sf::Image logo;
 	UntilBeingCrowned::Rendering::Screen screen{
 		"Until Being Crowned " UBC_VERSION_STRING, 640, 480
@@ -28,5 +33,17 @@ int main()
 		}
 		screen.display();
 	}
+#ifndef _DEBUG
+	} catch (std::exception &e) {
+		UntilBeingCrowned::logger.fatal(getLastExceptionName() + ": " + e.what());
+		UntilBeingCrowned::Utils::dispMsg(
+			"Fatal Error",
+			"An unrecoverable error occurred\n\n" +
+			getLastExceptionName() + ":\n" + e.what() + "\n\n"
+			"Click OK to close the application",
+			MB_ICONERROR
+		);
+	}
+#endif
 	return EXIT_SUCCESS;
 }
