@@ -3,9 +3,22 @@
 //
 
 #include <iostream>
+#include "Rendering/Screen.hpp"
 
 int main()
 {
-	std::cout << "Hello, world !" << std::endl;
+	UntilBeingCrowned::Rendering::Screen screen{
+		"", 640, 480
+	};
+	sf::Event event;
+
+	while (screen.isOpen()) {
+		while (screen.pollEvent(event)) {
+			if (event.type == sf::Event::Closed) {
+				screen.close();
+			}
+		}
+		screen.display();
+	}
 	return EXIT_SUCCESS;
 }

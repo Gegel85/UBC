@@ -39,7 +39,12 @@ add_executable(
 	src/Input/SFMLJoypad.hpp
 	src/Input/SFMLKeyboard.cpp
 	src/Input/SFMLKeyboard.hpp
-)
+	src/Rendering/Screen.cpp
+	src/Rendering/Screen.hpp
+	src/Resources/Logger.hpp
+	src/DataType/Rect.hpp
+	src/DataType/Vector.hpp
+	src/Resources/Logger.cpp)
 
 if (WIN32)
 	target_link_libraries(

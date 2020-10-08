@@ -2,8 +2,8 @@
 // Created by Gegel85 on 26/09/2019.
 //
 
-#ifndef THFGAME_EXCEPTIONS_HPP
-#define THFGAME_EXCEPTIONS_HPP
+#ifndef UBC_EXCEPTIONS_HPP
+#define UBC_EXCEPTIONS_HPP
 
 #include <string>
 
@@ -202,4 +202,4 @@ namespace UntilBeingCrowned
 
 std::string getLastExceptionName();
 
-#endif //THFGAME_EXCEPTIONS_HPP
+#endif //UBC_EXCEPTIONS_HPP

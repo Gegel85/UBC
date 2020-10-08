@@ -2,8 +2,8 @@
 // Created by Gegel85 on 22/12/2019.
 //
 
-#ifndef THFGAME_MENU_HPP
-#define THFGAME_MENU_HPP
+#ifndef UBC_MENU_HPP
+#define UBC_MENU_HPP
 
 
 #include "../Input/Input.hpp"
@@ -19,4 +19,4 @@ namespace UntilBeingCrowned
 }
 
 
-#endif //THFGAME_MENU_HPP
+#endif //UBC_MENU_HPP

@@ -2,8 +2,8 @@
 // Created by Gegel85 on 15/01/2019.
 //
 
-#ifndef THFGAME_LOGGER_HPP
-#define THFGAME_LOGGER_HPP
+#ifndef UBC_LOGGER_HPP
+#define UBC_LOGGER_HPP
 
 
 #include <fstream>
@@ -64,4 +64,4 @@ namespace UntilBeingCrowned
 }
 
 
-#endif //THFGAME_LOGGER_HPP
+#endif //UBC_LOGGER_HPP

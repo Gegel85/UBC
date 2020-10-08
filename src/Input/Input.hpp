@@ -2,8 +2,8 @@
 // Created by Gegel85 on 28/09/2019.
 //
 
-#ifndef THFGAME_INPUT_HPP
-#define THFGAME_INPUT_HPP
+#ifndef UBC_INPUT_HPP
+#define UBC_INPUT_HPP
 
 #include <optional>
 #include <vector>
@@ -89,4 +89,4 @@ namespace UntilBeingCrowned
 }
 
 
-#endif //THFGAME_INPUT_HPP
+#endif //UBC_INPUT_HPP

@@ -2,8 +2,8 @@
 // Created by Gegel85 on 28/09/2019.
 //
 
-#ifndef THFGAME_SFMLKEYBOARD_HPP
-#define THFGAME_SFMLKEYBOARD_HPP
+#ifndef UBC_SFMLKEYBOARD_HPP
+#define UBC_SFMLKEYBOARD_HPP
 
 
 #include <map>
@@ -59,4 +59,4 @@ namespace UntilBeingCrowned::Inputs
 }
 
 
-#endif //THFGAME_SFMLKEYBOARD_HPP
+#endif //UBC_SFMLKEYBOARD_HPP

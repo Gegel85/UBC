@@ -2,8 +2,8 @@
 // Created by Gegel85 on 19/01/2020.
 //
 
-#ifndef THFGAME_SFMLJOYPAD_HPP
-#define THFGAME_SFMLJOYPAD_HPP
+#ifndef UBC_SFMLJOYPAD_HPP
+#define UBC_SFMLJOYPAD_HPP
 
 #define ACTIVATION_THRESHOLD 20
 
@@ -61,4 +61,4 @@ namespace UntilBeingCrowned::Inputs
 }
 
 
-#endif //THFGAME_SFMLJOYPAD_HPP
+#endif //UBC_SFMLJOYPAD_HPP

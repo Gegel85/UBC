@@ -2,8 +2,8 @@
 // Created by Gegel85 on 25/09/2019.
 //
 
-#ifndef THFGAME_MENUMGR_HPP
-#define THFGAME_MENUMGR_HPP
+#ifndef UBC_MENUMGR_HPP
+#define UBC_MENUMGR_HPP
 
 
 #include <map>
@@ -44,4 +44,4 @@ namespace UntilBeingCrowned
 }
 
 
-#endif //THFGAME_MENUMGR_HPP
+#endif //UBC_MENUMGR_HPP
