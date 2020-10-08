@@ -5,6 +5,7 @@
 #include <iostream>
 #include "Resources/version.hpp"
 #include "Rendering/Screen.hpp"
+#include "Resources/Logger.hpp"
 
 int main()
 {
@@ -14,8 +15,10 @@ int main()
 	};
 	sf::Event event;
 
-	if (logo.loadFromFile("assets/icon.png"))
+	if (logo.loadFromFile("assets/icon.png")) {
+		UntilBeingCrowned::logger.error("Cannot open file assets/icon.png");
 		screen.setIcon(logo.getSize().x, logo.getSize().y, logo.getPixelsPtr());
+	}
 	while (screen.isOpen()) {
 		while (screen.pollEvent(event)) {
 			if (event.type == sf::Event::Closed) {
