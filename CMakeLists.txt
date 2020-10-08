@@ -21,8 +21,8 @@ endif (WIN32)
 
 include_directories(nlohmann)
 
-add_executable(
-	UBC
+set(
+	UBC_SRC
 	src/main.cpp
 	src/Logger.cpp
 	src/Logger.hpp
@@ -44,9 +44,12 @@ add_executable(
 	src/Resources/Logger.hpp
 	src/DataType/Rect.hpp
 	src/DataType/Vector.hpp
-	src/Resources/Logger.cpp)
+	src/Resources/Logger.cpp
+	src/Resources/version.hpp
+)
 
 if (WIN32)
+	add_executable(UBC ${UBC_SRC} icon.rc)
 	target_link_libraries(
 		UBC
 		sfml-window
@@ -56,6 +59,7 @@ if (WIN32)
 		tgui
 	)
 else (WIN32)
+	add_executable(UBC ${UBC_SRC})
 	target_link_libraries(
 		UBC
 		sfml-window
