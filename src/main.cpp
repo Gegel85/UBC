@@ -15,10 +15,11 @@ int main()
 	};
 	sf::Event event;
 
-	if (logo.loadFromFile("assets/icon.png")) {
-		UntilBeingCrowned::logger.error("Cannot open file assets/icon.png");
+	if (logo.loadFromFile("assets/icon.png"))
 		screen.setIcon(logo.getSize().x, logo.getSize().y, logo.getPixelsPtr());
-	}
+	else
+		UntilBeingCrowned::logger.error("Cannot open file assets/icon.png");
+
 	while (screen.isOpen()) {
 		while (screen.pollEvent(event)) {
 			if (event.type == sf::Event::Closed) {
