@@ -3,6 +3,8 @@ project(UBC)
 
 set(CMAKE_CXX_STANDARD 17)
 
+include_directories(nlohmann)
+
 if ("${CMAKE_BUILD_TYPE}" STREQUAL Debug)
 	if (CMAKE_COMPILER_IS_GNUCC)
 		add_compile_options(-Wall -Wextra -W -g -D_DEBUG)
@@ -48,7 +50,13 @@ set(
 	src/DataType/Vector.hpp
 	src/Resources/Logger.cpp
 	src/Resources/version.hpp
-)
+	src/Resources/Game.hpp
+	src/Resources/State.hpp
+	src/Resources/Resources.cpp
+	src/Resources/Resources.hpp
+	src/Loader.cpp
+	src/Logger.hpp
+	src/Resources/Settings.hpp)
 
 if (WIN32)
 	add_executable(UBC ${UBC_SRC} icon.rc)

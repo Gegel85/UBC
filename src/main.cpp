@@ -8,30 +8,25 @@
 #include "Resources/Logger.hpp"
 #include "Exceptions.hpp"
 #include "Utils.hpp"
+#include "Resources/Game.hpp"
+#include "Loader.hpp"
 
 int main()
 {
 #ifndef _DEBUG
 	try {
 #endif
-	sf::Image logo;
-	UntilBeingCrowned::Rendering::Screen screen{
-		"Until Being Crowned " UBC_VERSION_STRING, 640, 480
-	};
 	sf::Event event;
+	UntilBeingCrowned::Game game;
 
-	if (logo.loadFromFile("assets/icon.png"))
-		screen.setIcon(logo.getSize().x, logo.getSize().y, logo.getPixelsPtr());
-	else
-		UntilBeingCrowned::logger.error("Cannot open file assets/icon.png");
-
-	while (screen.isOpen()) {
-		while (screen.pollEvent(event)) {
+	UntilBeingCrowned::Loader::loadAssets(game);
+	while (game.resources.screen.isOpen()) {
+		while (game.resources.screen.pollEvent(event)) {
 			if (event.type == sf::Event::Closed) {
-				screen.close();
+				game.resources.screen.close();
 			}
 		}
-		screen.display();
+		game.resources.screen.display();
 	}
 #ifndef _DEBUG
 	} catch (std::exception &e) {
