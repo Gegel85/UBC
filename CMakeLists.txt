@@ -56,7 +56,10 @@ set(
 	src/Resources/Resources.hpp
 	src/Loader.cpp
 	src/Logger.hpp
-	src/Resources/Settings.hpp)
+	src/Resources/Settings.hpp
+	src/Menu/InGameMenu.cpp
+	src/Menu/InGameMenu.hpp
+)
 
 if (WIN32)
 	add_executable(UBC ${UBC_SRC} icon.rc)

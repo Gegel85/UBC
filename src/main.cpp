@@ -2,14 +2,25 @@
 // Created by andgel on 06/10/2020.
 //
 
-#include <iostream>
-#include "Resources/version.hpp"
+#include "Resources/Game.hpp"
 #include "Rendering/Screen.hpp"
 #include "Resources/Logger.hpp"
 #include "Exceptions.hpp"
 #include "Utils.hpp"
-#include "Resources/Game.hpp"
 #include "Loader.hpp"
+#include "Menu/InGameMenu.hpp"
+
+namespace UntilBeingCrowned
+{
+	void init(Game &game)
+	{
+		UntilBeingCrowned::Loader::loadAssets(game);
+
+		game.state.gui.setTarget(game.resources.screen);
+		game.state.menuMgr.addMenu<InGameMenu>("in_game", game.state.gui, game.resources);
+		game.state.menuMgr.changeMenu("in_game");
+	}
+}
 
 int main()
 {
@@ -19,13 +30,14 @@ int main()
 	sf::Event event;
 	UntilBeingCrowned::Game game;
 
-	UntilBeingCrowned::Loader::loadAssets(game);
+	UntilBeingCrowned::init(game);
 	while (game.resources.screen.isOpen()) {
 		while (game.resources.screen.pollEvent(event)) {
-			if (event.type == sf::Event::Closed) {
+			if (event.type == sf::Event::Closed)
 				game.resources.screen.close();
-			}
+			game.state.gui.handleEvent(event);
 		}
+		game.state.gui.draw();
 		game.resources.screen.display();
 	}
 #ifndef _DEBUG
