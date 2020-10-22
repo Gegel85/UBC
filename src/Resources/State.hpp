@@ -7,6 +7,7 @@
 
 
 #include <TGUI/TGUI.hpp>
+#include "../DialogMgr.hpp"
 #include "../Menu/MenuMgr.hpp"
 #include "Settings.hpp"
 
@@ -16,6 +17,7 @@ namespace UntilBeingCrowned
 		tgui::Gui gui;
 		MenuMgr menuMgr;
 		Settings settings;
+		DialogMgr dialogs;
 	};
 }
 

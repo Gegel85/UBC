@@ -111,5 +111,8 @@ namespace UntilBeingCrowned
 		} catch (nlohmann::detail::type_error &e) {
 			throw CorruptedAssetsListException("The JSON values are invalid: " + std::string(e.what()));
 		}
+
+		logger.debug("Loading dialog");
+		game.state.dialogs.loadFile("assets/dialogs.json", game.resources);
 	}
 }

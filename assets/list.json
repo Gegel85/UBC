@@ -2,7 +2,8 @@
 	"musics": {},
 	"sfx": {},
 	"sprites": {
-		"igproto": "in_game_proto.jpg"
+		"igproto": "in_game_proto.jpg",
+		"icon": "icon.png"
 	},
 	"icon": "icon.png"
 }

@@ -17,7 +17,7 @@ namespace UntilBeingCrowned
 		UntilBeingCrowned::Loader::loadAssets(game);
 
 		game.state.gui.setTarget(game.resources.screen);
-		game.state.menuMgr.addMenu<InGameMenu>("in_game", game.state.gui, game.resources);
+		game.state.menuMgr.addMenu<InGameMenu>("in_game", game.state.gui, game.resources, game.state.dialogs);
 		game.state.menuMgr.changeMenu("in_game");
 	}
 }
