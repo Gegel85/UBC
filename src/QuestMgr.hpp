@@ -2,8 +2,8 @@
 // Created by andgel on 20/10/2020.
 //
 
-#ifndef UBC_DIALOGMGR_HPP
-#define UBC_DIALOGMGR_HPP
+#ifndef UBC_QUESTMGR_HPP
+#define UBC_QUESTMGR_HPP
 
 
 #include <map>
@@ -15,9 +15,8 @@
 
 namespace UntilBeingCrowned
 {
-	class DialogMgr {
+	class QuestMgr {
 	private:
-		unsigned pos = 0;
 		std::pair<std::string, unsigned> _selected;
 		tgui::ScrollablePanel::Ptr _panel;
 		std::map<std::string, tgui::Picture::Ptr> _pictures;
@@ -25,7 +24,7 @@ namespace UntilBeingCrowned
 		std::function<void (nlohmann::json dialog, unsigned buttonId, const std::string &file, unsigned id)> _onClickButton;
 
 	public:
-		DialogMgr();
+		QuestMgr();
 		void onClick(const std::function<void (nlohmann::json dialog, unsigned buttonId, const std::string &file, unsigned id)> &handler);
 		void loadFile(const std::string &path, Resources &resources);
 		void update(Resources &);
@@ -34,4 +33,4 @@ namespace UntilBeingCrowned
 }
 
 
-#endif //UBC_DIALOGMGR_HPP
+#endif //UBC_QUESTMGR_HPP

@@ -4,21 +4,25 @@
 
 #include <fstream>
 #include <filesystem>
-#include "DialogMgr.hpp"
+#include "QuestMgr.hpp"
 #include "Exceptions.hpp"
 
 namespace UntilBeingCrowned
 {
-	DialogMgr::DialogMgr()
+	QuestMgr::QuestMgr()
 	{
 		this->_panel = tgui::ScrollablePanel::create({600, 700});
 		this->_panel->setPosition("&.w / 2 - w / 2", "&.h / 2 - h / 2");
-		this->_panel->loadWidgetsFromFile("gui/dialog.gui");
+		this->_panel->loadWidgetsFromFile("gui/quest.gui");
 	}
 
-	void DialogMgr::loadFile(const std::string &path, Resources &resources)
+	void QuestMgr::loadFile(const std::string &path, Resources &resources)
 	{
 		std::ifstream stream{path};
+
+		if (!stream)
+			throw InvalidDialogFileException("Cannot open " + path + ": " + strerror(errno));
+
 		nlohmann::json val;
 		std::string name = std::filesystem::path(path).filename().string();
 
@@ -57,11 +61,11 @@ namespace UntilBeingCrowned
 		stream.close();
 	}
 
-	void DialogMgr::update(Resources &)
+	void QuestMgr::update(Resources &)
 	{
 	}
 
-	void DialogMgr::showDialog(const std::string &file, unsigned int id, tgui::Gui &gui)
+	void QuestMgr::showDialog(const std::string &file, unsigned int id, tgui::Gui &gui)
 	{
 		unsigned y = 0;
 		auto val = this->_dialogs.at(file).at(id);
@@ -105,7 +109,7 @@ namespace UntilBeingCrowned
 		gui.add(this->_panel);
 	}
 
-	void DialogMgr::onClick(const std::function<void(nlohmann::json, unsigned, const std::string &, unsigned int)> &handler)
+	void QuestMgr::onClick(const std::function<void(nlohmann::json, unsigned, const std::string &, unsigned int)> &handler)
 	{
 		this->_onClickButton = handler;
 	}

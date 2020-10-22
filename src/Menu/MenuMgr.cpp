@@ -22,11 +22,10 @@ namespace UntilBeingCrowned
 
 	void MenuMgr::changeMenu(const std::string &newMenu)
 	{
-		try {
-			this->_menus.at(newMenu)->switched(true);
-		} catch (std::out_of_range &) {
+		if (this->_menus.find(newMenu) == this->_menus.end())
 			throw InvalidMenuException("No menu is named " + newMenu);
-		}
+
+		this->_menus[newMenu]->switched(true);
 
 		if (!this->_currentMenu.empty())
 			this->_menus.at(this->_currentMenu)->switched(false);

@@ -6,7 +6,7 @@
 
 namespace UntilBeingCrowned
 {
-	InGameMenu::InGameMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, DialogMgr &dialogs) :
+	InGameMenu::InGameMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, QuestMgr &dialogs) :
 		_res(res),
 		_gui(gui),
 		_mgr(mgr),
@@ -26,7 +26,7 @@ namespace UntilBeingCrowned
 		pic->setSize("&.w", "&.h");
 		pic->setPosition(0, 0);
 		this->_gui.add(pic, "base");
-		this->_dialogs.showDialog("dialogs.json", 0, this->_gui);
+		this->_dialogs.showDialog("quests.json", 0, this->_gui);
 	}
 
 	void InGameMenu::render()

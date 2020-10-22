@@ -59,8 +59,8 @@ set(
 	src/Resources/Settings.hpp
 	src/Menu/InGameMenu.cpp
 	src/Menu/InGameMenu.hpp
-	src/DialogMgr.cpp
-	src/DialogMgr.hpp
+        src/QuestMgr.cpp
+        src/QuestMgr.hpp
 )
 
 if (WIN32)
