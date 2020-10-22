@@ -12,7 +12,7 @@ TextBox.TextBox1 {
     MaximumCharacters = 0;
     Position = (30, 220);
     ReadOnly = true;
-    Size = (540, 370);
+    Size = (540, 360);
     Text = "Description of the quest\n\nIt can be very long\nblablabla\n\n\n\n\n\n                                                                                    Someone";
     TextSize = 20;
 
@@ -38,96 +38,6 @@ TextBox.TextBox1 {
             thumbcolorhover = #E6E6E6;
             trackcolor = #F5F5F5;
         }
-    }
-}
-
-Button.yes {
-    Position = (30, 590);
-    Size = (170, 62);
-    Text = Accept;
-    TextSize = 16;
-
-    Renderer {
-        backgroundcolor = transparent;
-        backgroundcolordisabled = transparent;
-        backgroundcolordown = #FFFFFF2E;
-        backgroundcolorhover = #FFFFFF1E;
-        bordercolor = #3C3C3C;
-        bordercolordisabled = #7D7D7D;
-        bordercolordown = black;
-        bordercolorfocused = #1E1EB4;
-        bordercolorhover = black;
-        borders = (0, 0, 0, 0);
-        font = "assets/kenpixel.ttf";
-        textcolor = #3C3C3C;
-        textcolordisabled = #7D7D7D;
-        textcolordown = black;
-        textcolorhover = black;
-        texture = None;
-        texturedisabled = None;
-        texturedown = None;
-        texturefocused = None;
-        texturehover = None;
-    }
-}
-
-Button.no {
-    Position = (210, 590);
-    Size = (170, 62);
-    Text = Decline;
-    TextSize = 16;
-
-    Renderer {
-        backgroundcolor = transparent;
-        backgroundcolordisabled = transparent;
-        backgroundcolordown = #FFFFFF2E;
-        backgroundcolorhover = #FFFFFF1E;
-        bordercolor = #3C3C3C;
-        bordercolordisabled = #7D7D7D;
-        bordercolordown = black;
-        bordercolorfocused = #1E1EB4;
-        bordercolorhover = black;
-        borders = (0, 0, 0, 0);
-        font = "assets/kenpixel.ttf";
-        textcolor = #3C3C3C;
-        textcolordisabled = #7D7D7D;
-        textcolordown = black;
-        textcolorhover = black;
-        texture = None;
-        texturedisabled = None;
-        texturedown = None;
-        texturefocused = None;
-        texturehover = None;
-    }
-}
-
-Button.post {
-    Position = (390, 590);
-    Size = (170, 62);
-    Text = Postpone;
-    TextSize = 16;
-
-    Renderer {
-        backgroundcolor = transparent;
-        backgroundcolordisabled = transparent;
-        backgroundcolordown = #FFFFFF2E;
-        backgroundcolorhover = #FFFFFF1E;
-        bordercolor = #3C3C3C;
-        bordercolordisabled = #7D7D7D;
-        bordercolordown = black;
-        bordercolorfocused = #1E1EB4;
-        bordercolorhover = black;
-        borders = (0, 0, 0, 0);
-        font = "assets/kenpixel.ttf";
-        textcolor = #3C3C3C;
-        textcolordisabled = #7D7D7D;
-        textcolordown = black;
-        textcolorhover = black;
-        texture = None;
-        texturedisabled = None;
-        texturedown = None;
-        texturefocused = None;
-        texturehover = None;
     }
 }
 

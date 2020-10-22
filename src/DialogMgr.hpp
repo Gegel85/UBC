@@ -17,12 +17,16 @@ namespace UntilBeingCrowned
 {
 	class DialogMgr {
 	private:
+		unsigned pos = 0;
+		std::pair<std::string, unsigned> _selected;
+		tgui::ScrollablePanel::Ptr _panel;
 		std::map<std::string, tgui::Picture::Ptr> _pictures;
 		std::map<std::string, std::vector<nlohmann::json>> _dialogs;
+		std::function<void (nlohmann::json dialog, unsigned buttonId, const std::string &file, unsigned id)> _onClickButton;
 
-		tgui::Panel::Ptr _makePanel(const std::string &file, unsigned id);
 	public:
-		DialogMgr() = default;
+		DialogMgr();
+		void onClick(const std::function<void (nlohmann::json dialog, unsigned buttonId, const std::string &file, unsigned id)> &handler);
 		void loadFile(const std::string &path, Resources &resources);
 		void update(Resources &);
 		void showDialog(const std::string &file, unsigned id, tgui::Gui &gui);
