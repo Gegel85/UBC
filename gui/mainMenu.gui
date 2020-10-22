@@ -1,0 +1,86 @@
+Renderer.1 {
+    borders = (1, 1, 1, 1);
+    font = "themes/fonts/kenpixel.ttf";
+    textcolor = white;
+    textcolordisabled = #7D7D7D;
+    textcolordown = black;
+    textcolorhover = black;
+    textoutlinecolor = black;
+    textoutlinethickness = 1;
+    texture = "themes/RPG_GUI/RPG_GUI_v1.png" Part(15, 128, 285, 55);
+    texturedisabled = "themes/RPG_GUI/RPG_GUI_v1.png" Part(15, 360, 285, 55);
+    texturedown = "themes/RPG_GUI/RPG_GUI_v1.png" Part(15, 204, 285, 55);
+    texturefocused = "themes/RPG_GUI/RPG_GUI_v1.png" Part(15, 283, 285, 55);
+    texturehover = "themes/RPG_GUI/RPG_GUI_v1.png" Part(15, 283, 285, 55);
+}
+
+Label.title {
+    HorizontalAlignment = Center;
+    Position = (10, 40);
+    ScrollbarPolicy = Never;
+    Size = (1347.2, 80);
+    Text = "Until Being Crowned";
+    TextSize = 55;
+    VerticalAlignment = Center;
+
+    Renderer {
+        backgroundcolor = transparent;
+        bordercolor = #3C3C3C;
+        borders = (0, 0, 0, 0);
+        font = "themes/fonts/kenpixel.ttf";
+        textcolor = #3C3C3C;
+        textoutlinecolor = #ffffff;
+        textoutlinethickness = 2;
+        texturebackground = None;
+
+        scrollbar {
+            arrowbackgroundcolor = #F5F5F5;
+            arrowbackgroundcolorhover = white;
+            arrowcolor = #3C3C3C;
+            arrowcolorhover = black;
+            thumbcolor = #DCDCDC;
+            thumbcolorhover = #E6E6E6;
+            trackcolor = #F5F5F5;
+        }
+    }
+}
+
+Group.butonGroup {
+    Position = (410, 100);
+    Size = (550, 650);
+
+    Renderer {
+    }
+
+    Button.newGame {
+        Position = (170, 70);
+        Size = (196, 66.6385);
+        Text = "New Game";
+        TextSize = 20;
+        renderer = &1;
+    }
+
+    Button.loadGame {
+        Position = (170, 200);
+        Size = (196, 66.6385);
+        Text = "Load Game";
+        TextSize = 20;
+        renderer = &1;
+    }
+
+    Button.options {
+        Position = (170, 330);
+        Size = (196, 66.6385);
+        Text = Options;
+        TextSize = 20;
+        renderer = &1;
+    }
+
+    Button.exit {
+        Position = (170, 460);
+        Size = (196, 66.6385);
+        Text = exit;
+        TextSize = 20;
+        renderer = &1;
+    }
+}

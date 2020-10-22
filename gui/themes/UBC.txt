@@ -1,0 +1,66 @@
+Button {
+	borders = (1, 1, 1, 1);
+	font = "fonts/kenpixel.ttf";
+	textcolor = white;
+	textcolordisabled = #7D7D7D;
+	textcolordown = black;
+	textcolorhover = black;
+	textoutlinecolor = black;
+	textoutlinethickness = 1;
+	texture = "RPG_GUI/RPG_GUI_v1.png" Part(15, 128, 285, 55);
+	texturedisabled = "RPG_GUI/RPG_GUI_v1.png" Part(15, 360, 285, 55);
+	texturedown = "RPG_GUI/RPG_GUI_v1.png" Part(15, 204, 285, 55);
+	texturefocused = "RPG_GUI/RPG_GUI_v1.png" Part(15, 283, 285, 55);
+	texturehover = "RPG_GUI/RPG_GUI_v1.png" Part(15, 283, 285, 55);
+}
+
+Label {
+	backgroundcolor = transparent;
+	bordercolor = #3C3C3C;
+	borders = (0, 0, 0, 0);
+	font = "fonts/kenpixel.ttf";
+	textcolor = #3C3C3C;
+	textoutlinecolor = #ffffff;
+	textoutlinethickness = 2;
+}
+
+Slider {
+	bordercolor = #3C3C3C;
+	bordercolorhover = black;
+	borders = (1, 1, 1, 1);
+	texturethumb = "RPG_GUI/RPG_GUI_v1.png" Part(812, 20, 20, 40);
+	texturethumbhover = "RPG_GUI/RPG_GUI_v1.png" Part(812, 20, 20, 40);
+	texturetrack = "RPG_GUI/RPG_GUI_v1.png" Part(795, 74, 210, 20);
+	texturetrackhover = "RPG_GUI/RPG_GUI_v1.png" Part(795, 74, 210, 20);
+	thumbcolor = #F5F5F5;
+	thumbcolorhover = white;
+	trackcolor = #F5F5F5;
+	trackcolorhover = white;
+	transparenttexture = false;
+}
+
+CheckBox {
+	backgroundcolor = #F5F5F5;
+	backgroundcolordisabled = #E6E6E6;
+	backgroundcolorhover = white;
+	bordercolor = #3C3C3C;
+	bordercolordisabled = #7D7D7D;
+	bordercolorfocused = #1E1EB4;
+	bordercolorhover = black;
+	borders = (1, 1, 1, 1);
+	checkcolor = #3C3C3C;
+	checkcolordisabled = #7D7D7D;
+	checkcolorhover = black;
+	textcolor = #3C3C3C;
+	textcolordisabled = #7D7D7D;
+	textcolorhover = black;
+	textdistanceratio = 0.2;
+	texturechecked = "RPG_GUI/RPG_GUI_v1.png" Part(150, 55, 25, 25);
+	texturecheckeddisabled = "RPG_GUI/RPG_GUI_v1.png" Part(150, 55, 25, 25);
+	texturecheckedfocused = "RPG_GUI/RPG_GUI_v1.png" Part(150, 55, 25, 25);
+	texturecheckedhover = "RPG_GUI/RPG_GUI_v1.png" Part(150, 55, 25, 25);
+	textureunchecked = "RPG_GUI/RPG_GUI_v1.png" Part(150, 15, 20, 20);
+	textureuncheckeddisabled = "RPG_GUI/RPG_GUI_v1.png" Part(150, 15, 20, 20);
+	textureuncheckedfocused = "RPG_GUI/RPG_GUI_v1.png" Part(150, 15, 20, 20);
+	textureuncheckedhover = "RPG_GUI/RPG_GUI_v1.png" Part(195, 15, 20, 20);
+}
