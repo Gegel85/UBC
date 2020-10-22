@@ -1,0 +1,153 @@
+Renderer.1 {
+}
+
+Renderer.2 {
+    backgroundcolor = transparent;
+    bordercolor = #3C3C3C;
+    borders = (0, 0, 0, 0);
+    font = "themes/fonts/kenpixel.ttf";
+    textcolor = #3C3C3C;
+    textoutlinecolor = #ffffff;
+    textoutlinethickness = 2;
+    texturebackground = None;
+}
+
+Renderer.3 {
+    borders = (1, 1, 1, 1);
+    font = "themes/fonts/kenpixel.ttf";
+    textcolor = white;
+    textcolordisabled = #7D7D7D;
+    textcolordown = black;
+    textcolorhover = black;
+    textoutlinecolor = black;
+    textoutlinethickness = 1;
+    texture = "themes/RPG_GUI/RPG_GUI_v1.png" Part(15, 128, 285, 55);
+    texturedisabled = "themes/RPG_GUI/RPG_GUI_v1.png" Part(15, 360, 285, 55);
+    texturedown = "themes/RPG_GUI/RPG_GUI_v1.png" Part(15, 204, 285, 55);
+    texturefocused = "themes/RPG_GUI/RPG_GUI_v1.png" Part(15, 283, 285, 55);
+    texturehover = "themes/RPG_GUI/RPG_GUI_v1.png" Part(15, 283, 285, 55);
+}
+
+Label.title {
+    HorizontalAlignment = Center;
+    Position = (0, 10);
+    ScrollbarPolicy = Never;
+    Size = (1357.2, 70);
+    Text = "Load a save";
+    TextSize = 55;
+    VerticalAlignment = Center;
+    renderer = &2;
+}
+
+Group.Group {
+    Position = (300, 150);
+    Size = (770, 510);
+    renderer = &1;
+
+    Group.save1 {
+        Position = (90, 0);
+        Size = (590, 150);
+        renderer = &1;
+
+        Label.name1 {
+            Position = (50, 30);
+            ScrollbarPolicy = Never;
+            Size = (107.2, 32.5161);
+            Text = "Save 1";
+            TextSize = 25;
+            renderer = &2;
+        }
+
+        Label.info1 {
+            AutoSize = true;
+            Position = (60, 60);
+            ScrollbarPolicy = Never;
+            Size = (101.6, 15);
+            Text = "date ../../.. ..:..";
+            TextSize = 13;
+            renderer = &2;
+        }
+
+        Button.load1 {
+            Position = (440, 30);
+            Size = (130, 47.6667);
+            Text = load;
+            TextSize = 18;
+            renderer = &3;
+        }
+    }
+
+    Group.save2 {
+        Position = (90, 170);
+        Size = (590, 150);
+        renderer = &1;
+
+        Label.name2 {
+            Position = (50, 30);
+            ScrollbarPolicy = Never;
+            Size = (107.2, 32.5161);
+            Text = "Save 2";
+            TextSize = 25;
+            renderer = &2;
+        }
+
+        Label.info2 {
+            AutoSize = true;
+            Position = (60, 60);
+            ScrollbarPolicy = Never;
+            Size = (101.6, 15);
+            Text = "date ../../.. ..:..";
+            TextSize = 13;
+            renderer = &2;
+        }
+
+        Button.load2 {
+            Position = (440, 30);
+            Size = (130, 47.6667);
+            Text = load;
+            TextSize = 18;
+            renderer = &3;
+        }
+    }
+
+    Group.save3 {
+        Position = (90, 340);
+        Size = (590, 150);
+        renderer = &1;
+
+        Label.name3 {
+            Position = (50, 30);
+            ScrollbarPolicy = Never;
+            Size = (97.2, 32.5161);
+            Text = "Save 3";
+            TextSize = 25;
+            renderer = &2;
+        }
+
+        Label.info3 {
+            AutoSize = true;
+            Position = (60, 60);
+            ScrollbarPolicy = Never;
+            Size = (101.6, 15);
+            Text = "date ../../.. ..:..";
+            TextSize = 13;
+            renderer = &2;
+        }
+
+        Button.load3 {
+            Position = (440, 30);
+            Size = (130, 47.6667);
+            Text = load;
+            TextSize = 18;
+            renderer = &3;
+        }
+    }
+}
+
+Button.back {
+    Position = (1160, 680);
+    Size = (170, 62.3333);
+    Text = Back;
+    TextSize = 20;
+    renderer = &3;
+}

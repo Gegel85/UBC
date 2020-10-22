@@ -1,0 +1,153 @@
+Renderer.1 {
+}
+
+Renderer.2 {
+    backgroundcolor = transparent;
+    bordercolor = #3C3C3C;
+    borders = (0, 0, 0, 0);
+    font = "themes/fonts/kenpixel.ttf";
+    textcolor = #3C3C3C;
+    textoutlinecolor = #ffffff;
+    textoutlinethickness = 2;
+    texturebackground = None;
+}
+
+Renderer.3 {
+    borders = (1, 1, 1, 1);
+    font = "themes/fonts/kenpixel.ttf";
+    textcolor = white;
+    textcolordisabled = #7D7D7D;
+    textcolordown = black;
+    textcolorhover = black;
+    textoutlinecolor = black;
+    textoutlinethickness = 1;
+    texture = "themes/RPG_GUI/RPG_GUI_v1.png" Part(15, 128, 285, 55);
+    texturedisabled = "themes/RPG_GUI/RPG_GUI_v1.png" Part(15, 360, 285, 55);
+    texturedown = "themes/RPG_GUI/RPG_GUI_v1.png" Part(15, 204, 285, 55);
+    texturefocused = "themes/RPG_GUI/RPG_GUI_v1.png" Part(15, 283, 285, 55);
+    texturehover = "themes/RPG_GUI/RPG_GUI_v1.png" Part(15, 283, 285, 55);
+}
+
+Label.title {
+    HorizontalAlignment = Center;
+    Position = (0, 30);
+    ScrollbarPolicy = Never;
+    Size = (1357.2, 70);
+    Text = Options;
+    TextSize = 55;
+    VerticalAlignment = Center;
+    renderer = &2;
+}
+
+Group.optionGroup {
+    Position = (380, 80);
+    Size = (610, 630);
+    renderer = &1;
+
+    Group.volumeGroup {
+        Position = (0, 130);
+        Size = (560, 70);
+        renderer = &1;
+
+        Label.volumeLabel {
+            AutoSize = true;
+            Position = (0, 20);
+            ScrollbarPolicy = Never;
+            Size = (121, 28);
+            Text = Volume;
+            TextSize = 25;
+            renderer = &2;
+        }
+
+        Slider.volumeSlider {
+            ChangeValueOnScroll = true;
+            InvertedDirection = false;
+            Maximum = 100;
+            Minimum = 0;
+            Position = (350, 20);
+            Size = (200, 16);
+            Step = 1;
+            UserData = "";
+            Value = 0;
+
+            Renderer {
+                bordercolor = #3C3C3C;
+                bordercolorhover = black;
+                borders = (1, 1, 1, 1);
+                texturethumb = "themes/RPG_GUI/RPG_GUI_v1.png" Part(812, 20, 20, 40);
+                texturethumbhover = "themes/RPG_GUI/RPG_GUI_v1.png" Part(812, 20, 20, 40);
+                texturetrack = "themes/RPG_GUI/RPG_GUI_v1.png" Part(795, 74, 210, 20);
+                texturetrackhover = "themes/RPG_GUI/RPG_GUI_v1.png" Part(795, 74, 210, 20);
+                thumbcolor = #F5F5F5;
+                thumbcolorhover = white;
+                trackcolor = #F5F5F5;
+                trackcolorhover = white;
+                transparenttexture = false;
+            }
+        }
+    }
+
+    Group.fullscreenGroup {
+        Position = (0, 290);
+        Size = (480, 70);
+        renderer = &1;
+
+        Label.fullscrenLabel {
+            AutoSize = true;
+            Position = (0, 20);
+            ScrollbarPolicy = Never;
+            Size = (187, 28);
+            Text = fullscreen;
+            TextSize = 25;
+            renderer = &2;
+        }
+
+        CheckBox.fullscreenCheckBox {
+            Position = (440, 20);
+            Size = (18, 18);
+            TextSize = 13;
+
+            Renderer {
+                backgroundcolor = #F5F5F5;
+                backgroundcolordisabled = #E6E6E6;
+                backgroundcolorhover = white;
+                bordercolor = #3C3C3C;
+                bordercolordisabled = #7D7D7D;
+                bordercolorfocused = #1E1EB4;
+                bordercolorhover = black;
+                borders = (1, 1, 1, 1);
+                checkcolor = #3C3C3C;
+                checkcolordisabled = #7D7D7D;
+                checkcolorhover = black;
+                textcolor = #3C3C3C;
+                textcolordisabled = #7D7D7D;
+                textcolorhover = black;
+                textdistanceratio = 0.2;
+                texturechecked = "themes/RPG_GUI/RPG_GUI_v1.png" Part(150, 55, 25, 25);
+                texturecheckeddisabled = "themes/RPG_GUI/RPG_GUI_v1.png" Part(150, 55, 25, 25);
+                texturecheckedfocused = "themes/RPG_GUI/RPG_GUI_v1.png" Part(150, 55, 25, 25);
+                texturecheckedhover = "themes/RPG_GUI/RPG_GUI_v1.png" Part(150, 55, 25, 25);
+                textureunchecked = "themes/RPG_GUI/RPG_GUI_v1.png" Part(150, 15, 20, 20);
+                textureuncheckeddisabled = "themes/RPG_GUI/RPG_GUI_v1.png" Part(150, 15, 20, 20);
+                textureuncheckedfocused = "themes/RPG_GUI/RPG_GUI_v1.png" Part(150, 15, 20, 20);
+                textureuncheckedhover = "themes/RPG_GUI/RPG_GUI_v1.png" Part(195, 15, 20, 20);
+            }
+        }
+    }
+
+    Button.save {
+        Position = (150, 480);
+        Size = (270, 62);
+        Text = Save;
+        TextSize = 25;
+        renderer = &3;
+    }
+}
+
+Button.back {
+    Position = (1120, 681.413);
+    Size = (162, 69.5544);
+    Text = Back;
+    TextSize = 25;
+    renderer = &3;
+}
