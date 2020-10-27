@@ -20,18 +20,16 @@ namespace UntilBeingCrowned
 			this->_gui.removeAllWidgets();
 			return;
 		}
-
-		auto pic = tgui::Picture::create(this->_res.textures["igproto"]);
-
-		pic->setSize("&.w", "&.h");
-		pic->setPosition(0, 0);
-		this->_gui.add(pic, "base");
 		this->_dialogs.showDialog("quests.json", 0, this->_gui);
 	}
 
 	void InGameMenu::render()
 	{
-
+		this->_res.screen.draw(
+			this->_res.textures["igproto"],
+			{0, 0},
+			this->_res.screen.getSize()
+		);
 	}
 
 	void InGameMenu::handleEvent(const Input::Event &)

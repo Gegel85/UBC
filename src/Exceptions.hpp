@@ -103,6 +103,12 @@ namespace UntilBeingCrowned
 		explicit InvalidDialogFileException(const std::string &&msg) :
 			BaseException(static_cast<const std::string &&>(msg))
 		{};
+
+		InvalidDialogFileException(size_t element, const std::string &&msg) :
+			BaseException(
+				"Invalid dialog #" + std::to_string(element) + ": " + msg
+			)
+		{};
 	};
 
 	//! @brief Dialog string is invalid.
