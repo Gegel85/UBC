@@ -22,73 +22,109 @@ namespace UntilBeingCrowned
 		std::ifstream stream{path};
 
 		if (!stream)
-			throw InvalidDialogFileException("Cannot open " + path + ": " + strerror(errno));
+			throw InvalidQuestFileException("Cannot open " + path + ": " + strerror(errno));
 
 		nlohmann::json val;
 		std::string name = std::filesystem::path(path).filename().string();
 
 		stream >> val;
-#ifdef _DEBUG
 		if (!val.is_array())
-			throw InvalidDialogFileException("File is expected to contain an array of objects");
+			throw InvalidQuestFileException("File is expected to contain an array of objects");
 		if (val.empty())
-			throw InvalidDialogFileException("Array is empty");
+			throw InvalidQuestFileException("Array is empty");
 		for (size_t i = 0; i < val.size(); i++) {
 			const auto &v = val[i];
 
 			if (!v.is_object())
-				throw InvalidDialogFileException(i, "Element in array is not an object");
-			if (!v.contains("expire_time") || !v["title"].is_string())
-				throw InvalidDialogFileException(i, "title field is not a string");
-			if (!v.contains("expire_time") || !v["description"].is_string())
-				throw InvalidDialogFileException(i, "description field is not a string");
-			if (!v.contains("expire_time") || !v["picture"].is_string())
-				throw InvalidDialogFileException(i, "picture field is not a string");
+				throw InvalidQuestFileException(i, "Element in array is not an object");
+			if (!v.contains("title") || !v["title"].is_string())
+				throw InvalidQuestFileException(i, "title field is not a string");
+			if (!v.contains("description") || !v["description"].is_string())
+				throw InvalidQuestFileException(i, "description field is not a string");
+			if (!v.contains("picture") || !v["picture"].is_string())
+				throw InvalidQuestFileException(i, "picture field is not a string");
 			if (!v.contains("buttons") || !v["buttons"].is_array())
-				throw InvalidDialogFileException(i, "button field is not an array");
+				throw InvalidQuestFileException(i, "button field is not an array");
 			for (const auto &k : v["buttons"])
 				if (!k.is_string())
-					throw InvalidDialogFileException(i, "button field contains a non string element");
+					throw InvalidQuestFileException(i, "button field contains a non string element");
 
 			if (!v.contains("requirements") || !v["requirements"].is_array())
-				throw InvalidDialogFileException(i, "requirements field is not an array");
+				throw InvalidQuestFileException(i, "requirements field is not an array");
 			for (const auto &k : v["requirements"])
 				if (!k.is_string())
-					throw InvalidDialogFileException(i, "requirements field contains a non string element");
-			if (!v.contains("expire_time") || !v["week_no"].is_number_unsigned())
-				throw InvalidDialogFileException(i, "week_no field is not an unsigned integer");
+					throw InvalidQuestFileException(i, "requirements field contains a non string element");
+			if (!v.contains("week_no") || !v["week_no"].is_number_unsigned())
+				throw InvalidQuestFileException(i, "week_no field is not an unsigned integer");
+			if (!v.contains("happiness_requirement") || !v["happiness_requirement"].is_object())
+				throw InvalidQuestFileException(i, "happiness_requirement field is not an object");
+			if (!v["happiness_requirement"].contains("traders") || !v["happiness_requirement"]["traders"].is_object())
+				throw InvalidQuestFileException(i, "happiness_requirement.traders field is not an object");
+			if (!v["happiness_requirement"].contains("nobility") || !v["happiness_requirement"]["nobility"].is_object())
+				throw InvalidQuestFileException(i, "happiness_requirement.nobility field is not an object");
+			if (!v["happiness_requirement"].contains("peasants") || !v["happiness_requirement"]["peasants"].is_object())
+				throw InvalidQuestFileException(i, "happiness_requirement.peasants field is not an object");
+
+			if (!v["happiness_requirement"]["traders" ].contains("min") || !v["happiness_requirement"]["traders"]["min"].is_number_integer())
+				throw InvalidQuestFileException(i, "happiness_requirement.traders.min field is not an integer");
+			if (!v["happiness_requirement"]["traders" ].contains("max") || !v["happiness_requirement"]["traders"]["max"].is_number_integer())
+				throw InvalidQuestFileException(i, "happiness_requirement.traders.max field is not an integer");
+			if (!v["happiness_requirement"]["nobility"].contains("min") || !v["happiness_requirement"]["nobility"]["min"].is_number_integer())
+				throw InvalidQuestFileException(i, "happiness_requirement.nobility.min field is not an integer");
+			if (!v["happiness_requirement"]["nobility"].contains("max") || !v["happiness_requirement"]["nobility"]["max"].is_number_integer())
+				throw InvalidQuestFileException(i, "happiness_requirement.nobility.max field is not an integer");
+			if (!v["happiness_requirement"]["peasants"].contains("min") || !v["happiness_requirement"]["peasants"]["min"].is_number_integer())
+				throw InvalidQuestFileException(i, "happiness_requirement.peasants.min field is not an integer");
+			if (!v["happiness_requirement"]["peasants"].contains("max") || !v["happiness_requirement"]["peasants"]["max"].is_number_integer())
+				throw InvalidQuestFileException(i, "happiness_requirement.peasants.max field is not an integer");
+
+			if (!v.contains("happiness_requirement") || !v["happiness_requirement"].is_object())
+				throw InvalidQuestFileException(i, "happiness_requirement field is not an object");
 			if (!v.contains("expire_time") || !v["expire_time"].is_number_integer())
-				throw InvalidDialogFileException(i, "expire_time field is not an integer");
+				throw InvalidQuestFileException(i, "expire_time field is not an integer");
 			if (!v.contains("buttons_effects") || !v["buttons_effects"].is_array())
-				throw InvalidDialogFileException(i, "requirements field is not an array");
-			for (const auto &k : v["buttons_effects"]) {
+				throw InvalidQuestFileException(i, "requirements field is not an array");
+			for (size_t j = 0; j < v["buttons_effects"].size(); j++) {
+				const auto &k = v["buttons_effects"][j];
+
 				if (!k.is_object())
-					throw InvalidDialogFileException(i, "buttons_effects field contains a non object element");
+					throw InvalidQuestFileException(i, "In effect #"+ std::to_string(j) +": buttons_effects field contains a non object element");
 				if (!k.contains("gold") || !k["gold"].is_number_integer())
-					throw InvalidDialogFileException(i, "gold field is not an integer");
+					throw InvalidQuestFileException(i, "In effect #"+ std::to_string(j) +": gold field is not an integer");
 				if (!k.contains("food") || !k["food"].is_number_integer())
-					throw InvalidDialogFileException(i, "gold field is not an integer");
+					throw InvalidQuestFileException(i, "In effect #"+ std::to_string(j) +": food field is not an integer");
 				if (!k.contains("army") || !k["army"].is_number_integer())
-					throw InvalidDialogFileException(i, "gold field is not an integer");
+					throw InvalidQuestFileException(i, "In effect #"+ std::to_string(j) +": army field is not an integer");
+				if (!k.contains("passive_gold") || !k["passive_gold"].is_number_integer())
+					throw InvalidQuestFileException(i, "In effect #"+ std::to_string(j) +": passive_gold field is not an integer");
+				if (!k.contains("passive_food") || !k["passive_food"].is_number_integer())
+					throw InvalidQuestFileException(i, "In effect #"+ std::to_string(j) +": passive_food field is not an integer");
+				if (!k.contains("passive_army") || !k["passive_army"].is_number_integer())
+					throw InvalidQuestFileException(i, "In effect #"+ std::to_string(j) +": passive_army field is not an integer");
+				if (!k.contains("peasants_happiness") || !k["peasants_happiness"].is_number_integer())
+					throw InvalidQuestFileException(i, "In effect #"+ std::to_string(j) +": peasants_happiness field is not an integer");
+				if (!k.contains("nobility_happiness") || !k["nobility_happiness"].is_number_integer())
+					throw InvalidQuestFileException(i, "In effect #"+ std::to_string(j) +": nobility_happiness field is not an integer");
+				if (!k.contains("traders_happiness") || !k["traders_happiness"].is_number_integer())
+					throw InvalidQuestFileException(i, "In effect #"+ std::to_string(j) +": traders_happiness field is not an integer");
 				if (!k.contains("set_flags") || !k["set_flags"].is_array())
-					throw InvalidDialogFileException(i, "set_flags field is not an array");
-				for (size_t j = 0; j < k["set_flags"].size(); j++)
-					if (!k["set_flags"][j].is_string())
-						throw InvalidDialogFileException(
+					throw InvalidQuestFileException(i, "In effect #"+ std::to_string(j) +": set_flags field is not an array");
+				for (auto &f : k["set_flags"])
+					if (!f.is_string())
+						throw InvalidQuestFileException(
 							i, "In effect #"+ std::to_string(j) +
 							": set_flags field contains a non string element"
 						);
 				if (!k.contains("unset_flags") || !k["unset_flags"].is_array())
-					throw InvalidDialogFileException(i, "unset_flags field is not an array");
-				for (size_t j = 0; j < k["unset_flags"].size(); j++)
-					if (!k["unset_flags"][j].is_string())
-						throw InvalidDialogFileException(
+					throw InvalidQuestFileException(i, "unset_flags field is not an array");
+				for (auto &f : k["unset_flags"])
+					if (!f.is_string())
+						throw InvalidQuestFileException(
 							i, "In effect #"+ std::to_string(j) +
 							   ": unset_flags field contains a non string element"
 						);
 			}
 		}
-#endif
 
 		for (const auto &v : val)
 			this->_dialogs[name].emplace_back(v, resources.textures);
@@ -155,7 +191,10 @@ namespace UntilBeingCrowned
 		buttons(json["buttons"]),
 		requirements(json["requirements"]),
 		weekRange(json["week_no"], json["expire_time"]),
-		buttons_effects(json["buttons_effects"].begin(), json["buttons_effects"].end())
+		buttons_effects(json["buttons_effects"].begin(), json["buttons_effects"].end()),
+		tradersHappinessRequirement(json["happiness_requirement"]["traders"]["min"], json["happiness_requirement"]["traders"]["max"]),
+		peasantsHappinessRequirement(json["happiness_requirement"]["peasants"]["min"], json["happiness_requirement"]["peasants"]["max"]),
+		nobilityHappinessRequirement(json["happiness_requirement"]["nobility"]["min"], json["happiness_requirement"]["nobility"]["max"])
 	{
 		this->weekRange.second += this->weekRange.first;
 		this->pic->setSize(150, 150);
@@ -167,7 +206,13 @@ namespace UntilBeingCrowned
 		unsetFlags(json["unset_flags"]),
 		goldChange(json["gold"]),
 		foodChange(json["food"]),
-		armyChange(json["army"])
+		armyChange(json["army"]),
+		passiveGoldChange(json["passive_gold"]),
+		passiveFoodChange(json["passive_food"]),
+		passiveArmyChange(json["passive_army"]),
+		peasantsHappiness(json["peasants_happiness"]),
+		tradersHappiness(json["traders_happiness"]),
+		nobilityHappiness(json["nobility_happiness"])
 	{
 	}
 }

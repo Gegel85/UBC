@@ -23,6 +23,12 @@ namespace UntilBeingCrowned
 			int goldChange;
 			int foodChange;
 			int armyChange;
+			int passiveGoldChange;
+			int passiveFoodChange;
+			int passiveArmyChange;
+			int peasantsHappiness;
+			int tradersHappiness;
+			int nobilityHappiness;
 
 			Effect(const nlohmann::json &json);
 		};
@@ -35,6 +41,9 @@ namespace UntilBeingCrowned
 			std::vector<std::string> requirements;
 			std::pair<unsigned, unsigned> weekRange;
 			std::vector<Effect> buttons_effects;
+			std::pair<unsigned, unsigned> tradersHappinessRequirement;
+			std::pair<unsigned, unsigned> peasantsHappinessRequirement;
+			std::pair<unsigned, unsigned> nobilityHappinessRequirement;
 
 			Quest(const nlohmann::json &json, std::map<std::string, sf::Texture> &textures);
 		};

@@ -6,6 +6,20 @@
     "week_no": 3,
     "requirements": [],
     "buttons_effects": [],
+    "happiness_requirement": {
+      "traders": {
+        "min": -2147483648,
+        "max": 2147483647
+      },
+      "peasants": {
+        "min": -2147483648,
+        "max": 2147483647
+      },
+      "nobility": {
+        "min": -2147483648,
+        "max": 2147483647
+      }
+    },
     "buttons": [
       "Button 1",
       "Button 2",
@@ -32,14 +46,26 @@
         "unset_flags": ["hydra"],
         "gold": 0,
         "food": 0,
-        "army": 0
+        "army": 0,
+        "passive_gold": 0,
+        "passive_food": 0,
+        "passive_army": 0,
+        "peasants_happiness": 0,
+        "traders_happiness": 0,
+        "nobility_happiness": 0
       },
       {
         "set_flags": ["keep_hydra_p"],
         "unset_flags": [],
         "gold": 0,
         "food": 0,
-        "army": 0
+        "army": 0,
+        "passive_gold": 0,
+        "passive_food": 0,
+        "passive_army": 0,
+        "peasants_happiness": 0,
+        "traders_happiness": 0,
+        "nobility_happiness": 0
       }
     ],
     "expire_time": 1
@@ -57,14 +83,26 @@
         "unset_flags": ["hydra"],
         "gold": 0,
         "food": 0,
-        "army": 0
+        "army": 0,
+        "passive_gold": 0,
+        "passive_food": 0,
+        "passive_army": 0,
+        "peasants_happiness": 0,
+        "traders_happiness": 0,
+        "nobility_happiness": 0
       },
       {
         "set_flags": ["keep_hydra_n"],
         "unset_flags": [],
         "gold": 0,
         "food": 0,
-        "army": 0
+        "army": 0,
+        "passive_gold": 0,
+        "passive_food": 0,
+        "passive_army": 0,
+        "peasants_happiness": 0,
+        "traders_happiness": 0,
+        "nobility_happiness": 0
       }
     ],
     "expire_time": 1
@@ -82,14 +120,26 @@
         "unset_flags": ["hydra"],
         "gold": 0,
         "food": 0,
-        "army": 0
+        "army": 0,
+        "passive_gold": 0,
+        "passive_food": 0,
+        "passive_army": 0,
+        "peasants_happiness": 0,
+        "traders_happiness": 0,
+        "nobility_happiness": 0
       },
       {
         "set_flags": ["keep_hydra_m"],
         "unset_flags": [],
         "gold": 0,
         "food": 0,
-        "army": 0
+        "army": 0,
+        "passive_gold": 0,
+        "passive_food": 0,
+        "passive_army": 0,
+        "peasants_happiness": 0,
+        "traders_happiness": 0,
+        "nobility_happiness": 0
       }
     ],
     "expire_time": 1

@@ -7,11 +7,11 @@
 #include <filesystem>
 #ifndef _WIN32
 #include <vector>
-#include <sys/stat.h>
-#include <SFML/Graphics.hpp>
+#include <iostream>
+#include <TGUI/TGUI.hpp>
 
 #define mkdir(path) mkdir(path, 0755)
-#define ICON_ERROR_PATH "assets/box/error.png"
+#define ICON_ERROR_PATH "assets/error.png"
 #else
 #include <io.h>
 #endif
@@ -27,75 +27,70 @@ namespace UntilBeingCrowned::Utils
 #ifdef _WIN32
 		return (MessageBox(nullptr, content.c_str(), title.c_str(), variate));
 #else
-		std::vector<std::string>buttons;
-		int			clicked = -1;
-		sf::Event		event;
-		sf::RectangleShape	rect;
-		sf::Font		font;
-		sf::Text		text;
-		int			buttonClicked = 0;
-		sf::Texture		texture;
-		sf::Sprite		sprite;
-		bool			hasIcon = false;
-		sf::RenderWindow	win{{700, 220}, title, sf::Style::Titlebar | sf::Style::Close};
+		auto button = tgui::Button::create("OK");
+		auto text = tgui::TextBox::create();
+		tgui::Gui gui;
+		auto font = tgui::getGlobalFont();
+		const auto startWidth = button->getSize().x + 102;
+		unsigned width = startWidth;
+		unsigned height = button->getSize().y + 60;
+		float currentWidth = startWidth;
+		auto size = text->getTextSize();
 
-		win.setPosition({
-			static_cast<int>(sf::VideoMode::getDesktopMode().width  / 2 - 350),
-			static_cast<int>(sf::VideoMode::getDesktopMode().height / 2 - 110),
+		std::cerr << title << std::endl << content << std::endl;
+		for (char c : content) {
+			currentWidth += font.getGlyph(c, size, false).advance;
+			width = std::max(static_cast<unsigned>(currentWidth), width);
+			if (c == '\n' || c == '\r')
+				currentWidth = startWidth;
+			if (c == '\n' || c == '\v')
+				height += size;
+			if (currentWidth >= 700) {
+				currentWidth = startWidth;
+				height += size;
+			}
+		}
+
+		sf::RenderWindow win{{std::min(700U, width), std::min(220U, height)}, title, sf::Style::Titlebar | sf::Style::Close};
+		sf::Event event;
+
+		try {
+			auto pic = tgui::Picture::create(ICON_ERROR_PATH);
+
+			if (variate & MB_ICONERROR)
+				gui.add(pic);
+			pic->setPosition(10, 10);
+			pic->setSize(32, 32);
+		} catch (tgui::Exception &) {}
+		gui.setTarget(win);
+		gui.add(button, "ok");
+		gui.add(text);
+
+		button->setPosition("&.w - w - 10", "&.h - h - 10");
+		button->connect("Pressed", [&win]{
+			win.close();
 		});
-		win.setFramerateLimit(10);
-		if (!font.loadFromFile("assets/arial.ttf")) {
-			logger.error("Cannot load default font !");
-			logger.error("Displaying the message in the console");
-			logger.error(title);
-			logger.error(content);
-		}
-		if (variate & MB_ICONERROR) {
-			hasIcon = true;
-			texture.loadFromFile(ICON_ERROR_PATH);
-			sprite.setTexture(texture, true);
-			sprite.setPosition(20, 30);
-		}
-		if (variate & MB_YESNO) {
-			buttons.emplace_back("Yes");
-			buttons.emplace_back("No");
-		} else
-			buttons.emplace_back("OK");
-		text.setFont(font);
-		text.setCharacterSize(15);
+
+		text->setText(content);
+		text->setPosition(52, 10);
+		text->setSize("ok.x - 62", "ok.y - 20");
+		text->setReadOnly();
+		text->getRenderer()->setBorderColor("transparent");
+		text->getRenderer()->setBackgroundColor("transparent");
+
 		while (win.isOpen()) {
 			while (win.pollEvent(event)) {
 				if (event.type == sf::Event::Closed)
 					win.close();
-				if (event.type == sf::Event::MouseButtonPressed) {
-					if (event.mouseButton.button == sf::Mouse::Left && event.mouseButton.y >= 150 && event.mouseButton.y <= 170) {
-						buttonClicked = (event.mouseButton.x - 400 + 70 * buttons.size()) / 70;
-						if (buttonClicked >= 0 && static_cast<unsigned>(buttonClicked) < buttons.size()) {
-							clicked = buttons.size() == 2 ? (buttonClicked == 0 ? 6 : 5) : 0;
-							win.close();
-						}
-					}
-				}
+				gui.handleEvent(event);
 			}
-			win.clear({200, 200, 200, 255});
-			rect.setFillColor({255, 255, 255, 255});
-			rect.setSize({60, 20});
-			text.setFillColor({0, 0, 0, 255});
-			text.setPosition(10 + 60 * hasIcon, 40);
-			text.setString(content);
-			win.draw(text);
-			if (hasIcon)
-				win.draw(sprite);
-			for (size_t i = 0; i < buttons.size(); i++) {
-				rect.setPosition(400 - 70 * (buttons.size() - i), 150);
-				win.draw(rect);
-				text.setString(buttons[i]);
-				text.setPosition(410 - 70 * (buttons.size() - i), 150);
-				win.draw(text);
-			}
+
+			win.clear({230, 230, 230, 255});
+			gui.draw();
 			win.display();
 		}
-		return (clicked);
+
+		return 0;
 #endif
 	}
 
