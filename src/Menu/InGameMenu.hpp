@@ -22,6 +22,15 @@ namespace UntilBeingCrowned
 		MenuMgr &_mgr;
 		QuestMgr &_dialogs;
 		GameState &_state;
+		tgui::Label::Ptr _goldsLabel;
+		tgui::Label::Ptr _armyLabel;
+		tgui::Label::Ptr _foodLabel;
+		tgui::Label::Ptr _passiveGoldsLabel;
+		tgui::Label::Ptr _passiveArmyLabel;
+		tgui::Label::Ptr _passiveFoodLabel;
+		tgui::Label::Ptr _nobilityHappinessLabel;
+		tgui::Label::Ptr _peasantsHappinessLabel;
+		tgui::Label::Ptr _tradersHappinessLabel;
 
 	public:
 		InGameMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, QuestMgr &dialogs, GameState &state);
