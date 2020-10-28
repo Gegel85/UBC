@@ -61,7 +61,7 @@ set(
 	src/Menu/InGameMenu.hpp
 	src/DialogMgr.cpp
 	src/DialogMgr.hpp
-)
+        src/Menu/MainMenu.cpp src/Menu/MainMenu.hpp)
 
 if (WIN32)
 	add_executable(UBC ${UBC_SRC} icon.rc)

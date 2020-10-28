@@ -5,7 +5,7 @@ Renderer.2 {
     backgroundcolor = transparent;
     bordercolor = #3C3C3C;
     borders = (0, 0, 0, 0);
-    font = "themes/fonts/kenpixel.ttf";
+    font = "assets/kenpixel.ttf";
     textcolor = #3C3C3C;
     textoutlinecolor = #ffffff;
     textoutlinethickness = 2;
@@ -14,18 +14,18 @@ Renderer.2 {
 
 Renderer.3 {
     borders = (1, 1, 1, 1);
-    font = "themes/fonts/kenpixel.ttf";
+    font = "assets/kenpixel.ttf";
     textcolor = white;
     textcolordisabled = #7D7D7D;
     textcolordown = black;
     textcolorhover = black;
     textoutlinecolor = black;
     textoutlinethickness = 1;
-    texture = "themes/RPG_GUI/RPG_GUI_v1.png" Part(15, 128, 285, 55);
-    texturedisabled = "themes/RPG_GUI/RPG_GUI_v1.png" Part(15, 360, 285, 55);
-    texturedown = "themes/RPG_GUI/RPG_GUI_v1.png" Part(15, 204, 285, 55);
-    texturefocused = "themes/RPG_GUI/RPG_GUI_v1.png" Part(15, 283, 285, 55);
-    texturehover = "themes/RPG_GUI/RPG_GUI_v1.png" Part(15, 283, 285, 55);
+    texture = "assets/RPG_GUI_v1.png" Part(15, 128, 285, 55);
+    texturedisabled = "assets/RPG_GUI_v1.png" Part(15, 360, 285, 55);
+    texturedown = "assets/RPG_GUI_v1.png" Part(15, 204, 285, 55);
+    texturefocused = "assets/RPG_GUI_v1.png" Part(15, 283, 285, 55);
+    texturehover = "assets/RPG_GUI_v1.png" Part(15, 283, 285, 55);
 }
 
 Label.title {
