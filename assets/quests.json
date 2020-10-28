@@ -1,0 +1,203 @@
+[
+  {
+    "title": "Debug dialog",
+    "picture": "icon",
+    "description": "This is just a debug dialog.\nIt is used to check if this feature is working or not.\n\nI think it is working right ?.\nYes it is.\nThe text is very long for testing purpose.\nLike\nVery\nVery\nVery\nVery\nLong text\n\n\n                           UntilBeingCrowned dev team",
+    "week_no": 3,
+    "requirements": [],
+    "buttons_effects": [
+      {
+        "set_flags": ["debug1"],
+        "unset_flags": [],
+        "gold": -10,
+        "food": 0,
+        "army": 0,
+        "passive_gold": 0,
+        "passive_food": 0,
+        "passive_army": 0,
+        "peasants_happiness": 0,
+        "traders_happiness": 0,
+        "nobility_happiness": 0
+      }
+    ],
+    "happiness_requirement": {
+      "traders": {
+        "min": -2147483648,
+        "max": 2147483647
+      },
+      "peasants": {
+        "min": -2147483648,
+        "max": 2147483647
+      },
+      "nobility": {
+        "min": -2147483648,
+        "max": 2147483647
+      }
+    },
+    "buttons": [
+      "Button 1",
+      "Button 2",
+      "Button 3",
+      "Button 4",
+      "Button 5",
+      "Button 6",
+      "Button 7",
+      "Button 8",
+      "Button 9"
+    ],
+    "expire_time": 2
+  },
+  {
+    "title": "Hydra - Victory",
+    "description": "We successfully killed the Hydra your Highness! Your people seem quite pleased by the new. How about hosting a feast to celebrate this victory? We could eat the hydra at the occasion.",
+    "picture": "icon",
+    "buttons": ["Agree", "Disagree"],
+    "requirements": ["hydra"],
+    "week_no": 0,
+    "happiness_requirement": {
+      "traders": {
+        "min": -2147483648,
+        "max": 2147483647
+      },
+      "peasants": {
+        "min": -2147483648,
+        "max": 2147483647
+      },
+      "nobility": {
+        "min": -2147483648,
+        "max": 2147483647
+      }
+    },
+    "buttons_effects": [
+      {
+        "set_flags": [],
+        "unset_flags": ["hydra"],
+        "gold": 0,
+        "food": 0,
+        "army": 0,
+        "passive_gold": 0,
+        "passive_food": 0,
+        "passive_army": 0,
+        "peasants_happiness": 0,
+        "traders_happiness": 0,
+        "nobility_happiness": 0
+      },
+      {
+        "set_flags": ["keep_hydra_p"],
+        "unset_flags": [],
+        "gold": 0,
+        "food": 0,
+        "army": 0,
+        "passive_gold": 0,
+        "passive_food": 0,
+        "passive_army": 0,
+        "peasants_happiness": 0,
+        "traders_happiness": 0,
+        "nobility_happiness": 0
+      }
+    ],
+    "expire_time": 1
+  },
+  {
+    "title": "Hydra - trophy",
+    "description": "Your Highness, I heard you killed a Hydra recently. I would love to have it to expose it in my hall. Of course, I will give you some gold in exchange of such a lovely trophy. Best regard, Lord Loniriss",
+    "picture": "icon",
+    "buttons": ["Agree", "Disagree"],
+    "requirements": ["hydra"],
+    "week_no": 0,
+    "happiness_requirement": {
+      "traders": {
+        "min": -2147483648,
+        "max": 2147483647
+      },
+      "peasants": {
+        "min": -2147483648,
+        "max": 2147483647
+      },
+      "nobility": {
+        "min": -2147483648,
+        "max": 2147483647
+      }
+    },
+    "buttons_effects": [
+      {
+        "set_flags": [],
+        "unset_flags": ["hydra"],
+        "gold": 0,
+        "food": 0,
+        "army": 0,
+        "passive_gold": 0,
+        "passive_food": 0,
+        "passive_army": 0,
+        "peasants_happiness": 0,
+        "traders_happiness": 0,
+        "nobility_happiness": 0
+      },
+      {
+        "set_flags": ["keep_hydra_n"],
+        "unset_flags": [],
+        "gold": 0,
+        "food": 0,
+        "army": 0,
+        "passive_gold": 0,
+        "passive_food": 0,
+        "passive_army": 0,
+        "peasants_happiness": 0,
+        "traders_happiness": 0,
+        "nobility_happiness": 0
+      }
+    ],
+    "expire_time": 1
+  },
+  {
+    "title": "Hydra - to sell",
+    "description": "My salutations your Highness, I hope this letter find you well. The word about you killing a hydra reach my ears. For a mutual profit, I offer to you to give me the body, I will sell it and, of course, we will share the money I could get from it.",
+    "picture": "icon",
+    "buttons": ["Agree", "Disagree"],
+    "requirements": ["hydra"],
+    "week_no": 0,
+    "happiness_requirement": {
+      "traders": {
+        "min": -2147483648,
+        "max": 2147483647
+      },
+      "peasants": {
+        "min": -2147483648,
+        "max": 2147483647
+      },
+      "nobility": {
+        "min": -2147483648,
+        "max": 2147483647
+      }
+    },
+    "buttons_effects": [
+      {
+        "set_flags": [],
+        "unset_flags": ["hydra"],
+        "gold": 0,
+        "food": 0,
+        "army": 0,
+        "passive_gold": 0,
+        "passive_food": 0,
+        "passive_army": 0,
+        "peasants_happiness": 0,
+        "traders_happiness": 0,
+        "nobility_happiness": 0
+      },
+      {
+        "set_flags": ["keep_hydra_m"],
+        "unset_flags": [],
+        "gold": 0,
+        "food": 0,
+        "army": 0,
+        "passive_gold": 0,
+        "passive_food": 0,
+        "passive_army": 0,
+        "peasants_happiness": 0,
+        "traders_happiness": 0,
+        "nobility_happiness": 0
+      }
+    ],
+    "expire_time": 1
+  }
+]

@@ -98,10 +98,16 @@ namespace UntilBeingCrowned
 	};
 
 	//! @brief Dialog file is invalid.
-	class InvalidDialogFileException : public BaseException {
+	class InvalidQuestFileException : public BaseException {
 	public:
-		explicit InvalidDialogFileException(const std::string &&msg) :
+		explicit InvalidQuestFileException(const std::string &&msg) :
 			BaseException(static_cast<const std::string &&>(msg))
+		{};
+
+		InvalidQuestFileException(size_t element, const std::string &&msg) :
+			BaseException(
+				"Invalid dialog #" + std::to_string(element) + ": " + msg
+			)
 		{};
 	};
 

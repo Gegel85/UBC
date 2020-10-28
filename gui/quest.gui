@@ -2,7 +2,7 @@ Picture.Background {
     Size = (600, 700);
 
     Renderer {
-        texture = "assets/dialog_bg.jpg";
+        texture = "assets/quest_bg.jpg";
         transparenttexture = false;
     }
 }

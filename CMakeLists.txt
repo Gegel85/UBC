@@ -59,9 +59,13 @@ set(
 	src/Resources/Settings.hpp
 	src/Menu/InGameMenu.cpp
 	src/Menu/InGameMenu.hpp
-	src/DialogMgr.cpp
-	src/DialogMgr.hpp
-        src/Menu/MainMenu.cpp src/Menu/MainMenu.hpp)
+	#src/DialogMgr.cpp
+	#src/DialogMgr.hpp
+	src/Menu/MainMenu.cpp
+	src/Menu/MainMenu.hpp
+	src/QuestMgr.cpp
+	src/QuestMgr.hpp
+	src/Resources/GameState.hpp)
 
 if (WIN32)
 	add_executable(UBC ${UBC_SRC} icon.rc)

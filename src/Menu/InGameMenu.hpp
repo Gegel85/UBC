@@ -10,7 +10,8 @@
 #include "Menu.hpp"
 #include "MenuMgr.hpp"
 #include "../Resources/Resources.hpp"
-#include "../DialogMgr.hpp"
+#include "../QuestMgr.hpp"
+#include "../Resources/GameState.hpp"
 
 namespace UntilBeingCrowned
 {
@@ -19,10 +20,20 @@ namespace UntilBeingCrowned
 		Resources &_res;
 		tgui::Gui &_gui;
 		MenuMgr &_mgr;
-		DialogMgr &_dialogs;
+		QuestMgr &_dialogs;
+		GameState &_state;
+		tgui::Label::Ptr _goldsLabel;
+		tgui::Label::Ptr _armyLabel;
+		tgui::Label::Ptr _foodLabel;
+		tgui::Label::Ptr _passiveGoldsLabel;
+		tgui::Label::Ptr _passiveArmyLabel;
+		tgui::Label::Ptr _passiveFoodLabel;
+		tgui::Label::Ptr _nobilityHappinessLabel;
+		tgui::Label::Ptr _peasantsHappinessLabel;
+		tgui::Label::Ptr _tradersHappinessLabel;
 
 	public:
-		InGameMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, DialogMgr &dialogs);
+		InGameMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, QuestMgr &dialogs, GameState &state);
 		void switched(bool isActive) override;
 		void render() override;
 		void handleEvent(const Input::Event &event) override;
