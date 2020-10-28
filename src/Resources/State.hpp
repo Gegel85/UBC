@@ -10,6 +10,7 @@
 #include "../QuestMgr.hpp"
 #include "../Menu/MenuMgr.hpp"
 #include "Settings.hpp"
+#include "GameState.hpp"
 
 namespace UntilBeingCrowned
 {
@@ -18,6 +19,7 @@ namespace UntilBeingCrowned
 		MenuMgr menuMgr;
 		Settings settings;
 		QuestMgr questMgr;
+		GameState game;
 	};
 }
 

@@ -12,6 +12,7 @@
 #include <TGUI/TGUI.hpp>
 #include <json.hpp>
 #include "Resources/Resources.hpp"
+#include "Resources/GameState.hpp"
 
 namespace UntilBeingCrowned
 {
@@ -45,6 +46,7 @@ namespace UntilBeingCrowned
 			std::pair<unsigned, unsigned> peasantsHappinessRequirement;
 			std::pair<unsigned, unsigned> nobilityHappinessRequirement;
 
+			bool isUnlocked(const GameState &state) const;
 			Quest(const nlohmann::json &json, std::map<std::string, sf::Texture> &textures);
 		};
 
@@ -65,8 +67,10 @@ namespace UntilBeingCrowned
 		QuestMgr();
 		void onClick(const std::function<void (const ClickEvent &event)> &handler);
 		void loadFile(const std::string &path, Resources &resources);
-		void update(Resources &);
-		void showDialog(const std::string &file, unsigned id, tgui::Gui &gui);
+		std::vector<Quest> getUnlockedQuests(GameState &state);
+		std::vector<Quest> getNewQuests(GameState &state);
+		void nextWeek(GameState &state);
+		void showDialog(const std::string &file, unsigned id, GameState &state, tgui::Gui &gui);
 	};
 }
 

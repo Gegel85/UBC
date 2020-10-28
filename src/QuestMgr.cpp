@@ -2,11 +2,11 @@
 // Created by andgel on 20/10/2020.
 //
 
-#include <fstream>
 #include <filesystem>
 #include <iostream>
 #include "QuestMgr.hpp"
 #include "Exceptions.hpp"
+#include "Resources/Game.hpp"
 
 namespace UntilBeingCrowned
 {
@@ -131,11 +131,7 @@ namespace UntilBeingCrowned
 		stream.close();
 	}
 
-	void QuestMgr::update(Resources &)
-	{
-	}
-
-	void QuestMgr::showDialog(const std::string &file, unsigned int id, tgui::Gui &gui)
+	void QuestMgr::showDialog(const std::string &file, unsigned int id, GameState &state, tgui::Gui &gui)
 	{
 		auto panel = tgui::Panel::create({"100%", "100%"});
 		unsigned y = 0;
@@ -188,6 +184,25 @@ namespace UntilBeingCrowned
 		this->_onClickButton = handler;
 	}
 
+	std::vector<QuestMgr::Quest> QuestMgr::getUnlockedQuests(GameState &state)
+	{
+		std::vector<Quest> result;
+
+		return result;
+	}
+
+	std::vector<QuestMgr::Quest> QuestMgr::getNewQuests(GameState &state)
+	{
+		std::vector<Quest> result;
+
+		return result;
+	}
+
+	void QuestMgr::nextWeek(GameState &state)
+	{
+
+	}
+
 	QuestMgr::Quest::Quest(const nlohmann::json &json, std::map<std::string, sf::Texture> &textures) :
 		pic(tgui::Picture::create(textures[json["picture"]])),
 		title(json["title"]),
@@ -203,6 +218,11 @@ namespace UntilBeingCrowned
 		this->weekRange.second += this->weekRange.first;
 		this->pic->setSize(150, 150);
 		this->pic->setPosition(390, 50);
+	}
+
+	bool QuestMgr::Quest::isUnlocked(const GameState &state) const
+	{
+		return this->weekRange.first <= state.week && state.week < this->weekRange.second;
 	}
 
 	QuestMgr::Effect::Effect(const nlohmann::json &json) :

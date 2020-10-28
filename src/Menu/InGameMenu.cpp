@@ -6,11 +6,12 @@
 
 namespace UntilBeingCrowned
 {
-	InGameMenu::InGameMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, QuestMgr &dialogs) :
+	InGameMenu::InGameMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, QuestMgr &dialogs, GameState &state) :
 		_res(res),
 		_gui(gui),
 		_mgr(mgr),
-		_dialogs(dialogs)
+		_dialogs(dialogs),
+		_state(state)
 	{
 	}
 
@@ -21,7 +22,7 @@ namespace UntilBeingCrowned
 			return;
 		}
 		this->_gui.loadWidgetsFromFile("gui/igmenu.gui");
-		this->_dialogs.showDialog("quests.json", 0, this->_gui);
+		this->_dialogs.showDialog("quests.json", 0, this->_state, this->_gui);
 	}
 
 	void InGameMenu::render()

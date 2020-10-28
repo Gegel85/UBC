@@ -61,7 +61,7 @@ set(
 	src/Menu/InGameMenu.hpp
         src/QuestMgr.cpp
         src/QuestMgr.hpp
-)
+	src/Resources/GameState.hpp)
 
 if (WIN32)
 	add_executable(UBC ${UBC_SRC} icon.rc)

@@ -36,6 +36,14 @@ Renderer.3 {
     texturebackground = None;
 }
 
+Renderer.4 {
+    backgroundcolor = transparent;
+    bordercolor = #3C3C3C;
+    borders = (0, 0, 0, 0);
+    textcolor = #3C3C3C;
+    texturebackground = None;
+}
+
 Picture.Picture1 {
     Position = (10, 80);
     Size = (64, 64);
@@ -72,14 +80,7 @@ Label.Gold {
     Size = (70, 27);
     Text = 300;
     TextSize = 20;
-
-    Renderer {
-        backgroundcolor = transparent;
-        bordercolor = #3C3C3C;
-        borders = (0, 0, 0, 0);
-        textcolor = #3C3C3C;
-        texturebackground = None;
-    }
+    renderer = &2;
 }
 
 Label.Army {
@@ -182,4 +183,61 @@ Button.Next {
     Text = "Go to next week";
     TextSize = 13;
     renderer = &1;
+}
+
+Label.NobilityHappiness {
+    Position = (220, 100);
+    ScrollbarPolicy = Never;
+    Size = (70, 27);
+    Text = 300;
+    TextSize = 20;
+    renderer = &4;
+}
+
+Picture.Picture4 {
+    Position = (160, 10);
+    Size = (64, 64);
+
+    Renderer {
+        texture = "assets/gold.png";
+        transparenttexture = false;
+    }
+}
+
+Label.PeasantsHappiness {
+    Position = (220, 170);
+    ScrollbarPolicy = Never;
+    Size = (70, 27);
+    Text = 300;
+    TextSize = 20;
+    renderer = &4;
+}
+
+Picture.Picture6 {
+    Position = (160, 150);
+    Size = (64, 64);
+
+    Renderer {
+        texture = "assets/food.png";
+        transparenttexture = false;
+    }
+}
+
+Picture.Picture5 {
+    Position = (160, 80);
+    Size = (64, 64);
+
+    Renderer {
+        texture = "assets/army.png";
+        transparenttexture = false;
+    }
+}
+
+Label.TradersHappiness {
+    Position = (220, 30);
+    ScrollbarPolicy = Never;
+    Size = (70, 27);
+    Text = 300;
+    TextSize = 20;
+    renderer = &4;
 }
