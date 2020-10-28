@@ -10,7 +10,7 @@
 #include "Menu.hpp"
 #include "MenuMgr.hpp"
 #include "../Resources/Resources.hpp"
-#include "../DialogMgr.hpp"
+#include "../QuestMgr.hpp"
 
 namespace UntilBeingCrowned
 {
@@ -19,18 +19,24 @@ namespace UntilBeingCrowned
         Resources &_res;
         tgui::Gui &_gui;
         MenuMgr &_mgr;
-        DialogMgr &_dialogs;
+        QuestMgr &_dialogs;
 
     public:
-        MainMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, DialogMgr &dialogs);
+        MainMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, QuestMgr &dialogs);
         void switched(bool isActive) override;
         void render() override;
         void handleEvent(const Input::Event &event) override;
 
-        void newGameButtonHandler(tgui::Widget::Ptr widget, const std::string& signalName);
-        void loadGameButtonHandler(tgui::Widget::Ptr widget, const std::string& signalName);
-        void optionsButtonHandler(tgui::Widget::Ptr widget, const std::string& signalName);
-        static void exitButtonHandler(tgui::Widget::Ptr widget, const std::string& signalName);
+        void newGameButton();
+        void loadGameButton();
+        void optionsButton();
+        void exitButton();
+
+    private:
+        static void newGameButtonHandler(MainMenu &m);
+        static void loadGameButtonHandler(MainMenu &m);
+        static void optionsButtonHandler(MainMenu &m);
+        static void exitButtonHandler(MainMenu &m);
 
     };
 }

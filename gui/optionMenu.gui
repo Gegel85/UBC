@@ -74,10 +74,10 @@ Group.optionGroup {
                 bordercolor = #3C3C3C;
                 bordercolorhover = black;
                 borders = (1, 1, 1, 1);
-                texturethumb = "themes/RPG_GUI/RPG_GUI_v1.png" Part(812, 20, 20, 40);
-                texturethumbhover = "themes/RPG_GUI/RPG_GUI_v1.png" Part(812, 20, 20, 40);
-                texturetrack = "themes/RPG_GUI/RPG_GUI_v1.png" Part(795, 74, 210, 20);
-                texturetrackhover = "themes/RPG_GUI/RPG_GUI_v1.png" Part(795, 74, 210, 20);
+                texturethumb = "assets/RPG_GUI_v1.png" Part(812, 20, 20, 40);
+                texturethumbhover = "assets/RPG_GUI_v1.png" Part(812, 20, 20, 40);
+                texturetrack = "assets/RPG_GUI_v1.png" Part(795, 74, 210, 20);
+                texturetrackhover = "assets/RPG_GUI_v1.png" Part(795, 74, 210, 20);
                 thumbcolor = #F5F5F5;
                 thumbcolorhover = white;
                 trackcolor = #F5F5F5;
@@ -123,14 +123,14 @@ Group.optionGroup {
                 textcolordisabled = #7D7D7D;
                 textcolorhover = black;
                 textdistanceratio = 0.2;
-                texturechecked = "themes/RPG_GUI/RPG_GUI_v1.png" Part(150, 55, 25, 25);
-                texturecheckeddisabled = "themes/RPG_GUI/RPG_GUI_v1.png" Part(150, 55, 25, 25);
-                texturecheckedfocused = "themes/RPG_GUI/RPG_GUI_v1.png" Part(150, 55, 25, 25);
-                texturecheckedhover = "themes/RPG_GUI/RPG_GUI_v1.png" Part(150, 55, 25, 25);
-                textureunchecked = "themes/RPG_GUI/RPG_GUI_v1.png" Part(150, 15, 20, 20);
-                textureuncheckeddisabled = "themes/RPG_GUI/RPG_GUI_v1.png" Part(150, 15, 20, 20);
-                textureuncheckedfocused = "themes/RPG_GUI/RPG_GUI_v1.png" Part(150, 15, 20, 20);
-                textureuncheckedhover = "themes/RPG_GUI/RPG_GUI_v1.png" Part(195, 15, 20, 20);
+                texturechecked = "assets/RPG_GUI_v1.png" Part(150, 55, 25, 25);
+                texturecheckeddisabled = "assets/RPG_GUI_v1.png" Part(150, 55, 25, 25);
+                texturecheckedfocused = "assets/RPG_GUI_v1.png" Part(150, 55, 25, 25);
+                texturecheckedhover = "assets/RPG_GUI_v1.png" Part(150, 55, 25, 25);
+                textureunchecked = "assets/RPG_GUI_v1.png" Part(150, 15, 20, 20);
+                textureuncheckeddisabled = "assets/RPG_GUI_v1.png" Part(150, 15, 20, 20);
+                textureuncheckedfocused = "assets/RPG_GUI_v1.png" Part(150, 15, 20, 20);
+                textureuncheckedhover = "assets/RPG_GUI_v1.png" Part(195, 15, 20, 20);
             }
         }
     }

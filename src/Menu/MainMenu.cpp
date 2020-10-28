@@ -3,10 +3,9 @@
 //
 
 #include "MainMenu.hpp"
-#include <iostream>
 
 namespace UntilBeingCrowned {
-    MainMenu::MainMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, DialogMgr &dialogs) :
+    MainMenu::MainMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, QuestMgr &dialogs) :
             _res(res),
             _gui(gui),
             _mgr(mgr),
@@ -22,10 +21,10 @@ namespace UntilBeingCrowned {
         }
 
         this->_gui.loadWidgetsFromFile("gui/mainMenu.gui");
-        this->_gui.get("newGame")->cast<tgui::Button>()->connect(tgui::Signals::Button::Pressed, newGameButtonHandler);
-        this->_gui.get("loadGame")->cast<tgui::Button>()->connect(tgui::Signals::Button::Pressed, MainMenu::loadGameButtonHandler);
-        this->_gui.get("options")->cast<tgui::Button>()->connect(tgui::Signals::Button::Pressed, MainMenu::optionsButtonHandler);
-        this->_gui.get("exit")->cast<tgui::Button>()->connect(tgui::Signals::Button::Pressed, MainMenu::exitButtonHandler);
+        this->_gui.get("newGame")->cast<tgui::Button>()->connect(tgui::Signals::Button::Pressed, MainMenu::newGameButtonHandler, std::ref(*this));
+        this->_gui.get("loadGame")->cast<tgui::Button>()->connect(tgui::Signals::Button::Pressed, MainMenu::loadGameButtonHandler, std::ref(*this));
+        this->_gui.get("options")->cast<tgui::Button>()->connect(tgui::Signals::Button::Pressed, MainMenu::optionsButtonHandler, std::ref(*this));
+        this->_gui.get("exit")->cast<tgui::Button>()->connect(tgui::Signals::Button::Pressed, MainMenu::exitButtonHandler, std::ref(*this));
 
     }
 
@@ -39,20 +38,35 @@ namespace UntilBeingCrowned {
 
     }
 
-    void MainMenu::newGameButtonHandler(tgui::Widget::Ptr widget, const std::string &signalName) {
-
+    void MainMenu::newGameButton() {
+        this->_mgr.changeMenu("new_game");
     }
 
-    void MainMenu::loadGameButtonHandler(tgui::Widget::Ptr widget, const std::string &signalName) {
-        std::cout << "load" << std::endl;
+    void MainMenu::newGameButtonHandler(MainMenu &m) {
+        m.newGameButton();
     }
 
-    void MainMenu::optionsButtonHandler(tgui::Widget::Ptr widget, const std::string &signalName) {
-        std::cout << "option" << std::endl;
+    void MainMenu::loadGameButton() {
+        this->_mgr.changeMenu("load");
     }
 
-    void MainMenu::exitButtonHandler(tgui::Widget::Ptr widget, const std::string &signalName) {
-        std::cout << "exit" << std::endl;
+    void MainMenu::loadGameButtonHandler(MainMenu &m) {
+        m.loadGameButton();
+    }
+
+    void MainMenu::optionsButton() {
+        this->_mgr.changeMenu("option");
+    }
+
+    void MainMenu::optionsButtonHandler(MainMenu &m) {
+        m.optionsButton();
+    }
+    void MainMenu::exitButton() {
+        this->_res.screen.close();
+    }
+
+    void MainMenu::exitButtonHandler(MainMenu &m) {
+        m.exitButton();
     }
 }
 
