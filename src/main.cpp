@@ -9,6 +9,7 @@
 #include "Utils.hpp"
 #include "Loader.hpp"
 #include "Menu/InGameMenu.hpp"
+#include "Menu/MainMenu.hpp"
 
 namespace UntilBeingCrowned
 {
@@ -18,7 +19,8 @@ namespace UntilBeingCrowned
 
 		game.state.gui.setTarget(game.resources.screen);
 		game.state.menuMgr.addMenu<InGameMenu>("in_game", game.state.gui, game.resources, game.state.dialogs);
-		game.state.menuMgr.changeMenu("in_game");
+        game.state.menuMgr.addMenu<MainMenu>("main", game.state.gui, game.resources, game.state.dialogs);
+        game.state.menuMgr.changeMenu("main");
 	}
 }
 
