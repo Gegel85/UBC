@@ -31,6 +31,8 @@ namespace UntilBeingCrowned
 			int tradersHappiness;
 			int nobilityHappiness;
 
+			bool canApply(const GameState &state) const;
+			void apply(GameState &state) const;
 			Effect(const nlohmann::json &json);
 		};
 
@@ -42,9 +44,9 @@ namespace UntilBeingCrowned
 			std::vector<std::string> requirements;
 			std::pair<unsigned, unsigned> weekRange;
 			std::vector<Effect> buttons_effects;
-			std::pair<unsigned, unsigned> tradersHappinessRequirement;
-			std::pair<unsigned, unsigned> peasantsHappinessRequirement;
-			std::pair<unsigned, unsigned> nobilityHappinessRequirement;
+			std::pair<int, int> tradersHappinessRequirement;
+			std::pair<int, int> peasantsHappinessRequirement;
+			std::pair<int, int> nobilityHappinessRequirement;
 
 			bool isUnlocked(const GameState &state) const;
 			Quest(const nlohmann::json &json, std::map<std::string, sf::Texture> &textures);
@@ -58,6 +60,8 @@ namespace UntilBeingCrowned
 		};
 
 	private:
+		std::vector<Quest> _newQuests;
+		std::vector<Quest> _unlockedQuests;
 		std::pair<std::string, unsigned> _selected;
 		tgui::ScrollablePanel::Ptr _panel;
 		std::map<std::string, std::vector<Quest>> _dialogs;
@@ -67,8 +71,8 @@ namespace UntilBeingCrowned
 		QuestMgr();
 		void onClick(const std::function<void (const ClickEvent &event)> &handler);
 		void loadFile(const std::string &path, Resources &resources);
-		std::vector<Quest> getUnlockedQuests(GameState &state);
-		std::vector<Quest> getNewQuests(GameState &state);
+		std::vector<Quest> getUnlockedQuests();
+		std::vector<Quest> getNewQuests();
 		void nextWeek(GameState &state);
 		void showDialog(const std::string &file, unsigned id, GameState &state, tgui::Gui &gui);
 	};

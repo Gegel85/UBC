@@ -18,6 +18,7 @@ namespace UntilBeingCrowned
 		int peasantsHappiness;
 		int tradersHappiness;
 		int nobilityHappiness;
+		std::vector<std::string> flags;
 		unsigned week;
 	};
 }

@@ -184,23 +184,19 @@ namespace UntilBeingCrowned
 		this->_onClickButton = handler;
 	}
 
-	std::vector<QuestMgr::Quest> QuestMgr::getUnlockedQuests(GameState &state)
+	std::vector<QuestMgr::Quest> QuestMgr::getUnlockedQuests()
 	{
-		std::vector<Quest> result;
-
-		return result;
+		return this->_unlockedQuests;
 	}
 
-	std::vector<QuestMgr::Quest> QuestMgr::getNewQuests(GameState &state)
+	std::vector<QuestMgr::Quest> QuestMgr::getNewQuests()
 	{
-		std::vector<Quest> result;
-
-		return result;
+		return this->_newQuests;
 	}
 
 	void QuestMgr::nextWeek(GameState &state)
 	{
-
+		this->_newQuests.clear();
 	}
 
 	QuestMgr::Quest::Quest(const nlohmann::json &json, std::map<std::string, sf::Texture> &textures) :
@@ -222,7 +218,21 @@ namespace UntilBeingCrowned
 
 	bool QuestMgr::Quest::isUnlocked(const GameState &state) const
 	{
-		return this->weekRange.first <= state.week && state.week < this->weekRange.second;
+		for (const auto &elem : this->requirements)
+			if (std::find(state.flags.begin(), state.flags.end(), elem) == state.flags.end())
+				return false;
+
+		return this->weekRange.first <= state.week &&
+		       state.week < this->weekRange.second &&
+
+		       this->nobilityHappinessRequirement.first <= state.nobilityHappiness &&
+		       state.nobilityHappiness <= this->nobilityHappinessRequirement.second &&
+
+		       this->peasantsHappinessRequirement.first <= state.peasantsHappiness &&
+		       state.peasantsHappiness <= this->peasantsHappinessRequirement.second &&
+
+		       this->tradersHappinessRequirement.first <= state.tradersHappiness &&
+		       state.tradersHappiness <= this->tradersHappinessRequirement.second;
 	}
 
 	QuestMgr::Effect::Effect(const nlohmann::json &json) :
@@ -238,5 +248,28 @@ namespace UntilBeingCrowned
 		tradersHappiness(json["traders_happiness"]),
 		nobilityHappiness(json["nobility_happiness"])
 	{
+	}
+
+	bool QuestMgr::Effect::canApply(const GameState &state) const
+	{
+		return state.gold + this->goldChange > 0 &&
+			state.army + this->armyChange > 0 &&
+			state.food + this->foodChange > 0 &&
+			state.passiveGold + this->passiveGoldChange > 0 &&
+			state.passiveArmy + this->passiveArmyChange > 0 &&
+			state.passiveFood + this->passiveFoodChange > 0;
+	}
+
+	void QuestMgr::Effect::apply(GameState &state) const
+	{
+		state.gold              += this->goldChange;
+		state.army              += this->armyChange;
+		state.food              += this->foodChange;
+		state.passiveGold       += this->passiveGoldChange;
+		state.passiveArmy       += this->passiveArmyChange;
+		state.passiveFood       += this->passiveFoodChange;
+		state.peasantsHappiness += this->peasantsHappiness;
+		state.tradersHappiness  += this->tradersHappiness;
+		state.nobilityHappiness += this->nobilityHappiness;
 	}
 }
