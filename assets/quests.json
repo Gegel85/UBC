@@ -40,6 +40,20 @@
     "buttons": ["Agree", "Disagree"],
     "requirements": ["hydra"],
     "week_no": 0,
+    "happiness_requirement": {
+      "traders": {
+        "min": -2147483648,
+        "max": 2147483647
+      },
+      "peasants": {
+        "min": -2147483648,
+        "max": 2147483647
+      },
+      "nobility": {
+        "min": -2147483648,
+        "max": 2147483647
+      }
+    },
     "buttons_effects": [
       {
         "set_flags": [],
@@ -77,6 +91,20 @@
     "buttons": ["Agree", "Disagree"],
     "requirements": ["hydra"],
     "week_no": 0,
+    "happiness_requirement": {
+      "traders": {
+        "min": -2147483648,
+        "max": 2147483647
+      },
+      "peasants": {
+        "min": -2147483648,
+        "max": 2147483647
+      },
+      "nobility": {
+        "min": -2147483648,
+        "max": 2147483647
+      }
+    },
     "buttons_effects": [
       {
         "set_flags": [],
@@ -114,6 +142,20 @@
     "buttons": ["Agree", "Disagree"],
     "requirements": ["hydra"],
     "week_no": 0,
+    "happiness_requirement": {
+      "traders": {
+        "min": -2147483648,
+        "max": 2147483647
+      },
+      "peasants": {
+        "min": -2147483648,
+        "max": 2147483647
+      },
+      "nobility": {
+        "min": -2147483648,
+        "max": 2147483647
+      }
+    },
     "buttons_effects": [
       {
         "set_flags": [],
