@@ -20,6 +20,7 @@ namespace UntilBeingCrowned
 			this->_gui.removeAllWidgets();
 			return;
 		}
+		this->_gui.loadWidgetsFromFile("gui/igmenu.gui");
 		this->_dialogs.showDialog("quests.json", 0, this->_gui);
 	}
 

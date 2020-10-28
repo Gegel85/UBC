@@ -137,16 +137,18 @@ namespace UntilBeingCrowned
 
 	void QuestMgr::showDialog(const std::string &file, unsigned int id, tgui::Gui &gui)
 	{
+		auto panel = tgui::Panel::create({"100%", "100%"});
 		unsigned y = 0;
 		auto &val = this->_dialogs.at(file).at(id);
 		int size = val.buttons.size();
 		double ysize = (60 - (size - 1) / 3 * 10) / ((size - 1) / 3 + 1.);
 		auto title = this->_panel->get<tgui::Label>("Title");
 		auto desc = this->_panel->get<tgui::TextBox>("TextBox1");
-		auto fct = [this, &val, id, file, &gui](unsigned butId) {
+		auto fct = [this, &val, id, file, &gui, panel](unsigned butId) {
 			if (this->_onClickButton)
 				this->_onClickButton({val, butId, file, id});
 			gui.remove(this->_panel);
+			gui.remove(panel);
 		};
 
 		this->_selected = {file, id};
@@ -176,6 +178,8 @@ namespace UntilBeingCrowned
 				this->_panel->add(but);
 			}
 		}
+		panel->getRenderer()->setBackgroundColor({0, 0, 0, 175});
+		gui.add(panel);
 		gui.add(this->_panel);
 	}
 
