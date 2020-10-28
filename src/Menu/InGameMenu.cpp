@@ -22,7 +22,7 @@ namespace UntilBeingCrowned
 			return;
 		}
 		this->_gui.loadWidgetsFromFile("gui/igmenu.gui");
-		this->_dialogs.showDialog("quests.json", 0, this->_state, this->_gui);
+		this->_dialogs.showDialog(0, this->_state, this->_gui);
 	}
 
 	void InGameMenu::render()

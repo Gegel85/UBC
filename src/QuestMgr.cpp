@@ -20,12 +20,10 @@ namespace UntilBeingCrowned
 	void QuestMgr::loadFile(const std::string &path, Resources &resources)
 	{
 		std::ifstream stream{path};
+		nlohmann::json val;
 
 		if (!stream)
 			throw InvalidQuestFileException("Cannot open " + path + ": " + strerror(errno));
-
-		nlohmann::json val;
-		std::string name = std::filesystem::path(path).filename().string();
 
 		stream >> val;
 		if (!val.is_array())
@@ -127,38 +125,42 @@ namespace UntilBeingCrowned
 		}
 
 		for (const auto &v : val)
-			this->_dialogs[name].emplace_back(v, resources.textures);
+			this->_quests.emplace_back(v, resources.textures);
 		stream.close();
 	}
 
-	void QuestMgr::showDialog(const std::string &file, unsigned int id, GameState &state, tgui::Gui &gui)
+	void QuestMgr::showDialog(unsigned int id, GameState &state, tgui::Gui &gui)
 	{
 		auto panel = tgui::Panel::create({"100%", "100%"});
 		unsigned y = 0;
-		auto &val = this->_dialogs.at(file).at(id);
+		unsigned index = 0;
+		auto &val = this->_quests.at(id);
 		int size = val.buttons.size();
 		double ysize = (60 - (size - 1) / 3 * 10) / ((size - 1) / 3 + 1.);
 		auto title = this->_panel->get<tgui::Label>("Title");
 		auto desc = this->_panel->get<tgui::TextBox>("TextBox1");
-		auto fct = [this, &val, id, file, &gui, panel](unsigned butId) {
+		auto fct = [this, &val, id, &gui, panel](unsigned butId) {
 			if (this->_onClickButton)
-				this->_onClickButton({val, butId, file, id});
+				this->_onClickButton({val, butId, id});
 			gui.remove(this->_panel);
 			gui.remove(panel);
 		};
 
-		this->_selected = {file, id};
+		this->_selected = id;
 		title->setText(val.title);
 		desc->setText(val.description);
 		desc->setVerticalScrollbarValue(0);
 		this->_panel->add(val.pic);
-		for (int left = size, index = 0; left > 0; left -= 3, y++) {
+		for (int left = size; left > 0; left -= 3, y++) {
 			auto start = left > 3 ? 3 : left;
 			auto xsize = (500 - (start - 1) * 10.) / start;
 
-			for (int i = start; i; i--) {
+			for (unsigned i = start; i; i--) {
 				auto but = tgui::Button::create(val.buttons[index]);
 				auto *renderer = but->getRenderer();
+
+				if (index < val.buttons_effects.size() && !val.buttons_effects[index].canApply(state))
+					but->setEnabled(false);
 
 				renderer->setBorders({0, 0, 0, 0});
 				renderer->setBackgroundColor("transparent");
@@ -252,12 +254,12 @@ namespace UntilBeingCrowned
 
 	bool QuestMgr::Effect::canApply(const GameState &state) const
 	{
-		return state.gold + this->goldChange > 0 &&
-			state.army + this->armyChange > 0 &&
-			state.food + this->foodChange > 0 &&
-			state.passiveGold + this->passiveGoldChange > 0 &&
-			state.passiveArmy + this->passiveArmyChange > 0 &&
-			state.passiveFood + this->passiveFoodChange > 0;
+		return state.gold + this->goldChange >= 0 &&
+		       state.army + this->armyChange >= 0 &&
+		       state.food + this->foodChange >= 0 &&
+		       state.passiveGold + this->passiveGoldChange >= 0 &&
+		       state.passiveArmy + this->passiveArmyChange >= 0 &&
+		       state.passiveFood + this->passiveFoodChange >= 0;
 	}
 
 	void QuestMgr::Effect::apply(GameState &state) const
@@ -271,5 +273,10 @@ namespace UntilBeingCrowned
 		state.peasantsHappiness += this->peasantsHappiness;
 		state.tradersHappiness  += this->tradersHappiness;
 		state.nobilityHappiness += this->nobilityHappiness;
+
+		for (auto &flag : this->setFlags)
+			state.flags.push_back(flag);
+		for (auto &flag : this->unsetFlags)
+			state.flags.erase(std::remove(state.flags.begin(), state.flags.end(), flag), state.flags.end());
 	}
 }

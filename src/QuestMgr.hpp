@@ -55,16 +55,15 @@ namespace UntilBeingCrowned
 		struct ClickEvent {
 			const Quest &quest;
 			unsigned buttonId;
-			const std::string &file;
 			unsigned id;
 		};
 
 	private:
 		std::vector<Quest> _newQuests;
 		std::vector<Quest> _unlockedQuests;
-		std::pair<std::string, unsigned> _selected;
+		unsigned _selected;
 		tgui::ScrollablePanel::Ptr _panel;
-		std::map<std::string, std::vector<Quest>> _dialogs;
+		std::vector<Quest> _quests;
 		std::function<void (const ClickEvent &event)> _onClickButton;
 
 	public:
@@ -74,7 +73,7 @@ namespace UntilBeingCrowned
 		std::vector<Quest> getUnlockedQuests();
 		std::vector<Quest> getNewQuests();
 		void nextWeek(GameState &state);
-		void showDialog(const std::string &file, unsigned id, GameState &state, tgui::Gui &gui);
+		void showDialog(unsigned id, GameState &state, tgui::Gui &gui);
 	};
 }
 
