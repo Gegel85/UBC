@@ -20,11 +20,11 @@ namespace UntilBeingCrowned
 		UntilBeingCrowned::Loader::loadAssets(game);
 
 		game.state.gui.setTarget(game.resources.screen);
-		//game.state.menuMgr.addMenu<InGameMenu>("in_game", game.state.gui, game.resources, game.state.questMgr);
-        game.state.menuMgr.addMenu<MainMenu>("main", game.state.gui, game.resources, game.state.questMgr);
-        game.state.menuMgr.addMenu<OptionMenu>("option", game.state.gui, game.resources, game.state.questMgr);
-        game.state.menuMgr.addMenu<LoadMenu>("load", game.state.gui, game.resources, game.state.questMgr);
-        game.state.menuMgr.changeMenu("main");
+		game.state.menuMgr.addMenu<InGameMenu>("in_game", game.state.gui, game.resources, game.state.questMgr, game.state.game);
+		game.state.menuMgr.addMenu<MainMenu>("main", game.state.gui, game.resources, game.state.questMgr);
+		game.state.menuMgr.addMenu<OptionMenu>("option", game.state.gui, game.resources, game.state.questMgr);
+		game.state.menuMgr.addMenu<LoadMenu>("load", game.state.gui, game.resources, game.state.questMgr);
+		game.state.menuMgr.changeMenu("main");
 	}
 }
 
