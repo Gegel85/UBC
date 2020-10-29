@@ -60,9 +60,13 @@ set(
 	src/Resources/Settings.hpp
 	src/Menu/InGameMenu.cpp
 	src/Menu/InGameMenu.hpp
-        src/QuestMgr.cpp
-        src/QuestMgr.hpp
-	src/Resources/GameState.hpp)
+	#src/DialogMgr.cpp
+	#src/DialogMgr.hpp
+	src/Menu/MainMenu.cpp
+	src/Menu/MainMenu.hpp
+	src/QuestMgr.cpp
+	src/QuestMgr.hpp
+	src/Resources/GameState.hpp src/Menu/OptionMenu.cpp src/Menu/OptionMenu.hpp src/Menu/LoadMenu.cpp src/Menu/LoadMenu.hpp)
 
 if (MSVC)
 	add_executable(UBC ${UBC_SRC} icon.rc)
