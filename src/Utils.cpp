@@ -5,9 +5,10 @@
 
 #include <algorithm>
 #include <filesystem>
+#include <iostream>
+#include <sstream>
 #ifndef _WIN32
 #include <vector>
-#include <iostream>
 #include <TGUI/TGUI.hpp>
 
 #define mkdir(path) mkdir(path, 0755)
@@ -102,7 +103,7 @@ namespace UntilBeingCrowned::Utils
 		return stream.str();
 	}
 
-	double min(double v)
+	/*double min(double v)
 	{
 		return v;
 	}
@@ -120,7 +121,7 @@ namespace UntilBeingCrowned::Utils
 	double max(double v1, double args...)
 	{
 		return std::fmax(v1, max(args));
-	}
+	}*/
 
 	void rename(const std::string &oldName, const std::string &newName)
 	{

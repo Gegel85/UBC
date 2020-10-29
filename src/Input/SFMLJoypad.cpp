@@ -2,6 +2,7 @@
 // Created by Gegel85 on 19/01/2020.
 //
 
+#define _USE_MATH_DEFINES
 #include <cmath>
 #include "SFMLJoypad.hpp"
 

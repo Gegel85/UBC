@@ -58,20 +58,20 @@ namespace UntilBeingCrowned::Utils
 	std::string floatToString(float nb);
 
 	//! @brief Simply return the number given as parameter.
-	double min(double v1);
+	//double min(double v1);
 
 	//! @brief Return the lowest number given as an argument.
 	//! @param Numbers to process.
 	//! @return The minimum of the args.
-	double min(double v1, double args...);
+	//double min(double v1, double args...);
 
 	//! @brief Simply return the number given as parameter.
-	double max(double v1);
+	//double max(double v1);
 
 	//! @brief Return the higher number given as an argument.
 	//! @param Numbers to process.
 	//! @return The maximum of the args.
-	double max(double v1, double args...);
+	//double max(double v1, double args...);
 
 	void rename(const std::string &oldName, const std::string &newName);
 }

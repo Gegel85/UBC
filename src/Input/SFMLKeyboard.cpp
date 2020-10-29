@@ -2,6 +2,7 @@
 // Created by Gegel85 on 28/09/2019.
 //
 
+#define _USE_MATH_DEFINES
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <cmath>
 #include <iostream>

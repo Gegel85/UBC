@@ -3,7 +3,8 @@ project(UBC)
 
 set(CMAKE_CXX_STANDARD 17)
 
-include_directories(nlohmann)
+include_directories(nlohmann "C:/Users/q/Desktop/TGUI-0.9-dev/include" "C:/Users/q/Desktop/SFML-2.5.1/include")
+
 
 if ("${CMAKE_BUILD_TYPE}" STREQUAL Debug)
 	if (CMAKE_COMPILER_IS_GNUCC)
@@ -63,24 +64,36 @@ set(
         src/QuestMgr.hpp
 	src/Resources/GameState.hpp)
 
-if (WIN32)
+if (MSVC)
 	add_executable(UBC ${UBC_SRC} icon.rc)
 	target_link_libraries(
 		UBC
-		sfml-window
-		sfml-system
-		sfml-graphics
-		sfml-audio
-		tgui
+		"C:/Users/q/Desktop/SFML-2.5.1/lib/sfml-window.lib"
+		"C:/Users/q/Desktop/SFML-2.5.1/lib/sfml-system.lib"
+		"C:/Users/q/Desktop/SFML-2.5.1/lib/sfml-graphics.lib"
+		"C:/Users/q/Desktop/SFML-2.5.1/lib/sfml-audio.lib"
+		"C:/Users/q/Desktop/TGUI-0.9-dev/lib/tgui.lib"
 	)
-else (WIN32)
-	add_executable(UBC ${UBC_SRC})
-	target_link_libraries(
-		UBC
-		sfml-window
-		sfml-system
-		sfml-graphics
-		sfml-audio
-		tgui
-	)
-endif (WIN32)
+else (MSVC)
+	if (WIN32)
+		add_executable(UBC ${UBC_SRC} icon.rc)
+		target_link_libraries(
+			UBC
+			sfml-window
+			sfml-system
+			sfml-graphics
+			sfml-audio
+			tgui
+		)
+	else (WIN32)
+		add_executable(UBC ${UBC_SRC})
+		target_link_libraries(
+			UBC
+			sfml-window
+			sfml-system
+			sfml-graphics
+			sfml-audio
+			tgui
+		)
+	endif (WIN32)
+endif (MSVC)

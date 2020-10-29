@@ -37,6 +37,7 @@ int main()
 				game.resources.screen.close();
 			game.state.gui.handleEvent(event);
 		}
+		game.resources.screen.clear();
 		game.state.menuMgr.renderMenu();
 		game.state.gui.draw();
 		game.resources.screen.display();

@@ -9,15 +9,15 @@
 namespace UntilBeingCrowned
 {
 	struct GameState {
-		int gold;
-		int army;
-		int food;
-		int passiveGold;
-		int passiveArmy;
-		int passiveFood;
-		int peasantsHappiness;
-		int tradersHappiness;
-		int nobilityHappiness;
+		int gold = 0;
+		int army = 0;
+		int food = 0;
+		int passiveGold = 0;
+		int passiveArmy = 0;
+		int passiveFood = 0;
+		int peasantsHappiness = 0;
+		int tradersHappiness = 0;
+		int nobilityHappiness = 0;
 		std::vector<std::string> flags;
 		unsigned week;
 	};

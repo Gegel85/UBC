@@ -4,12 +4,26 @@
 
 #include <filesystem>
 #include <iostream>
+#include <TGUI/Widgets/TextBox.hpp>
 #include "QuestMgr.hpp"
 #include "Exceptions.hpp"
 #include "Resources/Game.hpp"
 
 namespace UntilBeingCrowned
 {
+	std::string jsonToString(const nlohmann::json& val, const std::string& index)
+	{
+		std::stringstream s;
+
+		if (val.contains(index)) {
+			s << val[index].dump();
+		} else {
+			s << '"' << index << "\" not found !";
+		}
+		s << " in value " << val.dump();
+		return s.str();
+	}
+
 	QuestMgr::QuestMgr()
 	{
 		this->_panel = tgui::ScrollablePanel::create({600, 700});
@@ -27,99 +41,97 @@ namespace UntilBeingCrowned
 
 		stream >> val;
 		if (!val.is_array())
-			throw InvalidQuestFileException("File is expected to contain an array of objects");
+			throw InvalidQuestFileException("File is expected to contain an array of objects (Value " + val.dump() + " is not an array)");
 		if (val.empty())
 			throw InvalidQuestFileException("Array is empty");
 		for (size_t i = 0; i < val.size(); i++) {
 			const auto &v = val[i];
 
 			if (!v.is_object())
-				throw InvalidQuestFileException(i, "Element in array is not an object");
+				throw InvalidQuestFileException(i, "Element in array is not an object (Value " + v.dump() + " is not an array)");
 			if (!v.contains("title") || !v["title"].is_string())
-				throw InvalidQuestFileException(i, "title field is not a string");
+				throw InvalidQuestFileException(i, "title field is not a string (Value " + jsonToString(v, "title") + " is not a string)");
 			if (!v.contains("description") || !v["description"].is_string())
-				throw InvalidQuestFileException(i, "description field is not a string");
+				throw InvalidQuestFileException(i, "description field is not a string (Value " + jsonToString(v, "description") + " is not a string)");
 			if (!v.contains("picture") || !v["picture"].is_string())
-				throw InvalidQuestFileException(i, "picture field is not a string");
+				throw InvalidQuestFileException(i, "picture field is not a string (Value " + jsonToString(v, "picture") + " is not a string)");
 			if (!v.contains("buttons") || !v["buttons"].is_array())
-				throw InvalidQuestFileException(i, "button field is not an array");
+				throw InvalidQuestFileException(i, "button field is not an array (Value " + jsonToString(v, "buttons") + " is not an array)");
 			for (const auto &k : v["buttons"])
 				if (!k.is_string())
-					throw InvalidQuestFileException(i, "button field contains a non string element");
+					throw InvalidQuestFileException(i, "button field contains a non string element (Value " + k.dump() + " is not a string)");
 
 			if (!v.contains("requirements") || !v["requirements"].is_array())
-				throw InvalidQuestFileException(i, "requirements field is not an array");
+				throw InvalidQuestFileException(i, "requirements field is not an array (Value " + jsonToString(v, "requirement") + " is not an arra)y");
 			for (const auto &k : v["requirements"])
 				if (!k.is_string())
-					throw InvalidQuestFileException(i, "requirements field contains a non string element");
+					throw InvalidQuestFileException(i, "requirements field contains a non string element (Value " + k.dump() + " is not a string)");
 			if (!v.contains("week_no") || !v["week_no"].is_number_unsigned())
 				throw InvalidQuestFileException(i, "week_no field is not an unsigned integer");
 			if (!v.contains("happiness_requirement") || !v["happiness_requirement"].is_object())
-				throw InvalidQuestFileException(i, "happiness_requirement field is not an object");
+				throw InvalidQuestFileException(i, "happiness_requirement field is not an object (Value " + jsonToString(v, "happiness_requirement") + " is not an object)");
 			if (!v["happiness_requirement"].contains("traders") || !v["happiness_requirement"]["traders"].is_object())
-				throw InvalidQuestFileException(i, "happiness_requirement.traders field is not an object");
+				throw InvalidQuestFileException(i, "happiness_requirement.traders field is not an object (Value " + jsonToString(v["happiness_requirement"], "traders") + " is not an object)");
 			if (!v["happiness_requirement"].contains("nobility") || !v["happiness_requirement"]["nobility"].is_object())
-				throw InvalidQuestFileException(i, "happiness_requirement.nobility field is not an object");
+				throw InvalidQuestFileException(i, "happiness_requirement.nobility field is not an object (Value " + jsonToString(v["happiness_requirement"], "nobility") + " is not an object)");
 			if (!v["happiness_requirement"].contains("peasants") || !v["happiness_requirement"]["peasants"].is_object())
-				throw InvalidQuestFileException(i, "happiness_requirement.peasants field is not an object");
+				throw InvalidQuestFileException(i, "happiness_requirement.peasants field is not an object (Value " + jsonToString(v["happiness_requirement"], "peasants") + " is not an object)");
 
 			if (!v["happiness_requirement"]["traders" ].contains("min") || !v["happiness_requirement"]["traders"]["min"].is_number_integer())
-				throw InvalidQuestFileException(i, "happiness_requirement.traders.min field is not an integer");
+				throw InvalidQuestFileException(i, "happiness_requirement.traders.min field is not an integer (Value " + jsonToString(v["happiness_requirement"]["traders"], "min") + " is not an integer)");
 			if (!v["happiness_requirement"]["traders" ].contains("max") || !v["happiness_requirement"]["traders"]["max"].is_number_integer())
-				throw InvalidQuestFileException(i, "happiness_requirement.traders.max field is not an integer");
+				throw InvalidQuestFileException(i, "happiness_requirement.traders.max field is not an integer (Value " + jsonToString(v["happiness_requirement"]["traders"], "max") + " is not an integer)");
 			if (!v["happiness_requirement"]["nobility"].contains("min") || !v["happiness_requirement"]["nobility"]["min"].is_number_integer())
-				throw InvalidQuestFileException(i, "happiness_requirement.nobility.min field is not an integer");
+				throw InvalidQuestFileException(i, "happiness_requirement.nobility.min field is not an integer (Value " + jsonToString(v["happiness_requirement"]["nobility"], "min") + " is not an integer)");
 			if (!v["happiness_requirement"]["nobility"].contains("max") || !v["happiness_requirement"]["nobility"]["max"].is_number_integer())
-				throw InvalidQuestFileException(i, "happiness_requirement.nobility.max field is not an integer");
+				throw InvalidQuestFileException(i, "happiness_requirement.nobility.max field is not an integer (Value " + jsonToString(v["happiness_requirement"]["nobility"], "max") + " is not an integer)");
 			if (!v["happiness_requirement"]["peasants"].contains("min") || !v["happiness_requirement"]["peasants"]["min"].is_number_integer())
-				throw InvalidQuestFileException(i, "happiness_requirement.peasants.min field is not an integer");
+				throw InvalidQuestFileException(i, "happiness_requirement.peasants.min field is not an integer (Value " + jsonToString(v["happiness_requirement"]["peasants"], "min") + " is not an integer)");
 			if (!v["happiness_requirement"]["peasants"].contains("max") || !v["happiness_requirement"]["peasants"]["max"].is_number_integer())
-				throw InvalidQuestFileException(i, "happiness_requirement.peasants.max field is not an integer");
+				throw InvalidQuestFileException(i, "happiness_requirement.peasants.max field is not an integer (Value " + jsonToString(v["happiness_requirement"]["peasants"], "max") + " is not an integer)");
 
-			if (!v.contains("happiness_requirement") || !v["happiness_requirement"].is_object())
-				throw InvalidQuestFileException(i, "happiness_requirement field is not an object");
 			if (!v.contains("expire_time") || !v["expire_time"].is_number_integer())
-				throw InvalidQuestFileException(i, "expire_time field is not an integer");
+				throw InvalidQuestFileException(i, "expire_time field is not an integer (Value " + jsonToString(v, "expire_time") + " is not an integer)");
 			if (!v.contains("buttons_effects") || !v["buttons_effects"].is_array())
-				throw InvalidQuestFileException(i, "requirements field is not an array");
+				throw InvalidQuestFileException(i, "buttons_effects field is not an array (Value " + jsonToString(v, "buttons_effects") + " is not an array)");
 			for (size_t j = 0; j < v["buttons_effects"].size(); j++) {
 				const auto &k = v["buttons_effects"][j];
 
 				if (!k.is_object())
-					throw InvalidQuestFileException(i, "In effect #"+ std::to_string(j) +": buttons_effects field contains a non object element");
+					throw InvalidQuestFileException(i, "In effect #"+ std::to_string(j) +": buttons_effects field contains a non object element (Value " + k.dump() + " is not an object)");
 				if (!k.contains("gold") || !k["gold"].is_number_integer())
-					throw InvalidQuestFileException(i, "In effect #"+ std::to_string(j) +": gold field is not an integer");
+					throw InvalidQuestFileException(i, "In effect #"+ std::to_string(j) +": gold field is not an integer (Value " + jsonToString(k, "gold") + " is not an integer)");
 				if (!k.contains("food") || !k["food"].is_number_integer())
-					throw InvalidQuestFileException(i, "In effect #"+ std::to_string(j) +": food field is not an integer");
+					throw InvalidQuestFileException(i, "In effect #"+ std::to_string(j) +": food field is not an integer (Value " + jsonToString(k, "food") + " is not an integer)");
 				if (!k.contains("army") || !k["army"].is_number_integer())
-					throw InvalidQuestFileException(i, "In effect #"+ std::to_string(j) +": army field is not an integer");
+					throw InvalidQuestFileException(i, "In effect #"+ std::to_string(j) +": army field is not an integer (Value " + jsonToString(k, "army") + " is not an integer)");
 				if (!k.contains("passive_gold") || !k["passive_gold"].is_number_integer())
-					throw InvalidQuestFileException(i, "In effect #"+ std::to_string(j) +": passive_gold field is not an integer");
+					throw InvalidQuestFileException(i, "In effect #"+ std::to_string(j) +": passive_gold field is not an integer (Value " + jsonToString(k, "passive_gold") + " is not an integer)");
 				if (!k.contains("passive_food") || !k["passive_food"].is_number_integer())
-					throw InvalidQuestFileException(i, "In effect #"+ std::to_string(j) +": passive_food field is not an integer");
+					throw InvalidQuestFileException(i, "In effect #"+ std::to_string(j) +": passive_food field is not an integer (Value " + jsonToString(k, "passive_food") + " is not an integer)");
 				if (!k.contains("passive_army") || !k["passive_army"].is_number_integer())
-					throw InvalidQuestFileException(i, "In effect #"+ std::to_string(j) +": passive_army field is not an integer");
+					throw InvalidQuestFileException(i, "In effect #"+ std::to_string(j) +": passive_army field is not an integer (Value " + jsonToString(k, "passive_army") + " is not an integer)");
 				if (!k.contains("peasants_happiness") || !k["peasants_happiness"].is_number_integer())
-					throw InvalidQuestFileException(i, "In effect #"+ std::to_string(j) +": peasants_happiness field is not an integer");
+					throw InvalidQuestFileException(i, "In effect #"+ std::to_string(j) +": peasants_happiness field is not an integer (Value " + jsonToString(k, "peasants_happiness") + " is not an integer)");
 				if (!k.contains("nobility_happiness") || !k["nobility_happiness"].is_number_integer())
-					throw InvalidQuestFileException(i, "In effect #"+ std::to_string(j) +": nobility_happiness field is not an integer");
+					throw InvalidQuestFileException(i, "In effect #"+ std::to_string(j) +": nobility_happiness field is not an integer (Value " + jsonToString(k, "nobility_happiness") + " is not an integer)");
 				if (!k.contains("traders_happiness") || !k["traders_happiness"].is_number_integer())
-					throw InvalidQuestFileException(i, "In effect #"+ std::to_string(j) +": traders_happiness field is not an integer");
+					throw InvalidQuestFileException(i, "In effect #"+ std::to_string(j) +": traders_happiness field is not an integer (Value " + jsonToString(k, "traders_happiness") + " is not an integer)");
 				if (!k.contains("set_flags") || !k["set_flags"].is_array())
-					throw InvalidQuestFileException(i, "In effect #"+ std::to_string(j) +": set_flags field is not an array");
+					throw InvalidQuestFileException(i, "In effect #"+ std::to_string(j) +": set_flags field is not an array (Value " + jsonToString(k, "set_flags") + " is not an array)");
 				for (auto &f : k["set_flags"])
 					if (!f.is_string())
 						throw InvalidQuestFileException(
 							i, "In effect #"+ std::to_string(j) +
-							": set_flags field contains a non string element"
+							": set_flags field contains a non string element (Value " + f.dump() + " is not a string)"
 						);
 				if (!k.contains("unset_flags") || !k["unset_flags"].is_array())
-					throw InvalidQuestFileException(i, "unset_flags field is not an array");
+					throw InvalidQuestFileException(i, "unset_flags field is not an array (Value " + jsonToString(k, "unset_flags") + " is not an array)");
 				for (auto &f : k["unset_flags"])
 					if (!f.is_string())
 						throw InvalidQuestFileException(
 							i, "In effect #"+ std::to_string(j) +
-							   ": unset_flags field contains a non string element"
+							   ": unset_flags field contains a non string element (Value " + f.dump() + " is not a string)"
 						);
 			}
 		}
@@ -225,8 +237,8 @@ namespace UntilBeingCrowned
 		pic(tgui::Picture::create(textures[json["picture"]])),
 		title(json["title"]),
 		description(json["description"]),
-		buttons(json["buttons"]),
-		requirements(json["requirements"]),
+		buttons(json["buttons"].get<std::vector<std::string>>()),
+		requirements(json["requirements"].get<std::vector<std::string>>()),
 		weekRange(json["week_no"], json["expire_time"]),
 		buttons_effects(json["buttons_effects"].begin(), json["buttons_effects"].end()),
 		tradersHappinessRequirement(json["happiness_requirement"]["traders"]["min"], json["happiness_requirement"]["traders"]["max"]),
@@ -263,8 +275,8 @@ namespace UntilBeingCrowned
 	}
 
 	QuestMgr::Effect::Effect(const nlohmann::json &json) :
-		setFlags(json["set_flags"]),
-		unsetFlags(json["unset_flags"]),
+		setFlags(json["set_flags"].get<std::vector<std::string>>()),
+		unsetFlags(json["unset_flags"].get<std::vector<std::string>>()),
 		goldChange(json["gold"]),
 		foodChange(json["food"]),
 		armyChange(json["army"]),

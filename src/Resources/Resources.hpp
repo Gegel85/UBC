@@ -6,6 +6,7 @@
 #define UBC_RESOURCES_HPP
 
 
+#include <array>
 #include <random>
 #include <SFML/Audio.hpp>
 #include "version.hpp"

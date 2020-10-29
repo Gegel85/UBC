@@ -11,7 +11,7 @@ namespace UntilBeingCrowned
 	#ifdef _DEBUG
 		Logger::LOG_DEBUG
 	#else
-		Logger::LOG_INFO
+		Logger::LOG_DEBUG
 	#endif
 	};
 }
