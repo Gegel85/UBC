@@ -37,6 +37,10 @@ namespace UntilBeingCrowned
 		};
 
 		struct Quest {
+		private:
+			unsigned _id;
+
+		public:
 			tgui::Picture::Ptr pic;
 			std::string title;
 			std::string description;
@@ -49,7 +53,8 @@ namespace UntilBeingCrowned
 			std::pair<int, int> nobilityHappinessRequirement;
 
 			bool isUnlocked(const GameState &state) const;
-			Quest(const nlohmann::json &json, std::map<std::string, sf::Texture> &textures);
+			bool operator==(const Quest &other) const;
+			Quest(unsigned id, const nlohmann::json &json, std::map<std::string, sf::Texture> &textures);
 		};
 
 		struct ClickEvent {

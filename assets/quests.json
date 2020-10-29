@@ -18,6 +18,45 @@
         "peasants_happiness": 0,
         "traders_happiness": 0,
         "nobility_happiness": 0
+      },
+      {
+        "set_flags": ["debug2"],
+        "unset_flags": [],
+        "gold": 10,
+        "food": 0,
+        "army": 0,
+        "passive_gold": 0,
+        "passive_food": 0,
+        "passive_army": 0,
+        "peasants_happiness": 0,
+        "traders_happiness": 0,
+        "nobility_happiness": 0
+      },
+      {
+        "set_flags": ["debug3"],
+        "unset_flags": [],
+        "gold": 0,
+        "food": 0,
+        "army": 0,
+        "passive_gold": 10,
+        "passive_food": 0,
+        "passive_army": 0,
+        "peasants_happiness": 0,
+        "traders_happiness": 0,
+        "nobility_happiness": 0
+      },
+      {
+        "set_flags": ["debug4"],
+        "unset_flags": [],
+        "gold": 10,
+        "food": 10,
+        "army": 10,
+        "passive_gold": 10,
+        "passive_food": 10,
+        "passive_army": 10,
+        "peasants_happiness": 10,
+        "traders_happiness": 10,
+        "nobility_happiness": 10
       }
     ],
     "happiness_requirement": {

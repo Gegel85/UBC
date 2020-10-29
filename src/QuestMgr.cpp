@@ -125,7 +125,7 @@ namespace UntilBeingCrowned
 		}
 
 		for (const auto &v : val)
-			this->_quests.emplace_back(v, resources.textures);
+			this->_quests.emplace_back(this->_quests.size(), v, resources.textures);
 		stream.close();
 	}
 
@@ -139,9 +139,28 @@ namespace UntilBeingCrowned
 		double ysize = (60 - (size - 1) / 3 * 10) / ((size - 1) / 3 + 1.);
 		auto title = this->_panel->get<tgui::Label>("Title");
 		auto desc = this->_panel->get<tgui::TextBox>("TextBox1");
-		auto fct = [this, &val, id, &gui, panel](unsigned butId) {
+		auto fct = [this, &val, id, &gui, panel, &state](unsigned butId) {
 			if (this->_onClickButton)
 				this->_onClickButton({val, butId, id});
+			if (butId < val.buttons_effects.size()) {
+				val.buttons_effects[butId].apply(state);
+				this->_unlockedQuests.erase(
+					std::find(
+						this->_unlockedQuests.begin(),
+						this->_unlockedQuests.end(),
+						val
+					),
+					this->_unlockedQuests.end()
+				);
+				this->_newQuests.erase(
+					std::find(
+						this->_newQuests.begin(),
+						this->_newQuests.end(),
+						val
+					),
+					this->_newQuests.end()
+				);
+			}
 			gui.remove(this->_panel);
 			gui.remove(panel);
 		};
@@ -201,7 +220,8 @@ namespace UntilBeingCrowned
 		this->_newQuests.clear();
 	}
 
-	QuestMgr::Quest::Quest(const nlohmann::json &json, std::map<std::string, sf::Texture> &textures) :
+	QuestMgr::Quest::Quest(unsigned id, const nlohmann::json &json, std::map<std::string, sf::Texture> &textures) :
+		_id(id),
 		pic(tgui::Picture::create(textures[json["picture"]])),
 		title(json["title"]),
 		description(json["description"]),
@@ -235,6 +255,11 @@ namespace UntilBeingCrowned
 
 		       this->tradersHappinessRequirement.first <= state.tradersHappiness &&
 		       state.tradersHappiness <= this->tradersHappinessRequirement.second;
+	}
+
+	bool QuestMgr::Quest::operator==(const QuestMgr::Quest &other) const
+	{
+		return this->_id == other._id;
 	}
 
 	QuestMgr::Effect::Effect(const nlohmann::json &json) :
