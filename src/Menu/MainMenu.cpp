@@ -69,5 +69,6 @@ namespace UntilBeingCrowned {
 	void MainMenu::exitButtonHandler(MainMenu &m) {
 		m.exitButton();
 	}
+>>>>>>> 122b4a137aa6463fcff58442e86c0b9ffd4d51ed
 }
 

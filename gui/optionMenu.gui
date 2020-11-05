@@ -44,22 +44,22 @@ Group.optionGroup {
     Size = (610, 630);
     renderer = &1;
 
-    Group.volumeGroup {
+    Group.volumeMusicGroup {
         Position = (0, 130);
         Size = (560, 70);
         renderer = &1;
 
-        Label.volumeLabel {
+        Label.volumeLabel1 {
             AutoSize = true;
             Position = (0, 20);
             ScrollbarPolicy = Never;
-            Size = (121, 28);
-            Text = Volume;
+            Size = (200, 28);
+            Text = Music Volume;
             TextSize = 25;
             renderer = &2;
         }
 
-        Slider.volumeSlider {
+        Slider.volumeMusicSlider {
             ChangeValueOnScroll = true;
             InvertedDirection = false;
             Maximum = 100;
@@ -85,10 +85,55 @@ Group.optionGroup {
                 transparenttexture = false;
             }
         }
+
+    }
+
+    Group.volumeSoundGroup {
+        Position = (0, 240);
+        Size = (560, 70);
+        renderer = &1;
+
+        Label.volumeLabel2 {
+            AutoSize = true;
+            Position = (0, 20);
+            ScrollbarPolicy = Never;
+            Size = (200, 28);
+            Text = Sound Volume;
+            TextSize = 25;
+            renderer = &2;
+        }
+
+        Slider.volumeSoundSlider {
+            ChangeValueOnScroll = true;
+            InvertedDirection = false;
+            Maximum = 100;
+            Minimum = 0;
+            Position = (350, 20);
+            Size = (200, 16);
+            Step = 1;
+            UserData = "";
+            Value = 0;
+
+            Renderer {
+                bordercolor = #3C3C3C;
+                bordercolorhover = black;
+                borders = (1, 1, 1, 1);
+                texturethumb = "assets/RPG_GUI_v1.png" Part(812, 20, 20, 40);
+                texturethumbhover = "assets/RPG_GUI_v1.png" Part(812, 20, 20, 40);
+                texturetrack = "assets/RPG_GUI_v1.png" Part(795, 74, 210, 20);
+                texturetrackhover = "assets/RPG_GUI_v1.png" Part(795, 74, 210, 20);
+                thumbcolor = #F5F5F5;
+                thumbcolorhover = white;
+                trackcolor = #F5F5F5;
+                trackcolorhover = white;
+                transparenttexture = false;
+            }
+        }
+
     }
 
     Group.fullscreenGroup {
-        Position = (0, 290);
+        Position = (0, 350);
         Size = (480, 70);
         renderer = &1;
 

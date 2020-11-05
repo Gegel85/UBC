@@ -12,6 +12,7 @@
 #include "../Resources/Resources.hpp"
 #include "../QuestMgr.hpp"
 #include "../Resources/GameState.hpp"
+#include "../Resources/State.hpp"
 
 namespace UntilBeingCrowned
 {
