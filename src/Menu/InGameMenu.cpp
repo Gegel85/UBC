@@ -22,8 +22,7 @@
 
 namespace UntilBeingCrowned
 {
-	InGameMenu::InGameMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, QuestMgr &dialogs, GameState &state,
-						   UntilBeingCrowned::State state1) :
+	InGameMenu::InGameMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, QuestMgr &dialogs, GameState &state) :
 		_res(res),
 		_gui(gui),
 		_mgr(mgr),
