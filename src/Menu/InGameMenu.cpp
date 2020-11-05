@@ -43,6 +43,9 @@ namespace UntilBeingCrowned
 
 	void InGameMenu::render()
 	{
+		auto newQuestsList = this->_gui.get<tgui::Button>("NewQuests");
+
+		newQuestsList->setEnabled(!this->_questsMgr.getNewQuests().empty());
 		this->_goldsLabel->setText(std::to_string(this->_state.gold));
 		this->_armyLabel->setText(std::to_string(this->_state.army));
 		this->_foodLabel->setText(std::to_string(this->_state.food));
