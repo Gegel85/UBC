@@ -43,9 +43,17 @@ namespace UntilBeingCrowned
 			music.second.first.setVolume(newVolume);
 	}
 
+	float Resources::getMusicVolume() const{
+		return this->musics.begin()->second.first.getVolume();
+	}
+
 	void Resources::setSoundVolume(float newVolume)
 	{
 		for (auto &sound : this->sounds)
 			sound.setVolume(newVolume);
+	}
+
+	float Resources::getSoundVolume() const {
+		return this->sounds.begin()->getVolume();
 	}
 }

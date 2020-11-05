@@ -41,12 +41,15 @@ namespace UntilBeingCrowned::Rendering
 		//! @brief The current fps.
 		double _fps;
 
+		//! @brief Is the screen is in fullscreen mode.
+		bool _isFullscreen;
+
 	public:
 		//! @brief Constructor.
 		//! @param title The title for the window.
 		//! @param width The width of the window.
 		//! @param height The height of the window.
-		Screen(const std::string &title, unsigned int width = 640, unsigned int height = 480);
+		Screen(const std::string &title, unsigned int width = 640, unsigned int height = 480, bool fullscreen=false);
 
 		//! @brief Destructor. Only log that the windows has been destroyed.
 		~Screen() override;
@@ -107,6 +110,11 @@ namespace UntilBeingCrowned::Rendering
 		//! @brief Gets the width in pixels a text would be.
 		//! @return The width of the text.
 		float getTextWidth(const std::string &text);
+
+		//! @brief Gets if the window is fullscreen or not.
+		bool isFullscreen() const;
+
+		void reOpen(const std::string &title, unsigned int width = 640, unsigned int height = 480, bool fullscreen=false);
 	};
 }
 

@@ -3,10 +3,12 @@
 //
 
 #include "InGameMenu.hpp"
+#include "../Resources/State.hpp"
 
 namespace UntilBeingCrowned
 {
-	InGameMenu::InGameMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, QuestMgr &dialogs, GameState &state) :
+	InGameMenu::InGameMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, QuestMgr &dialogs, GameState &state,
+						   UntilBeingCrowned::State state1) :
 		_res(res),
 		_gui(gui),
 		_mgr(mgr),

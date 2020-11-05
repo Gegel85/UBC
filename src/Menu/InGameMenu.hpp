@@ -12,6 +12,7 @@
 #include "../Resources/Resources.hpp"
 #include "../QuestMgr.hpp"
 #include "../Resources/GameState.hpp"
+#include "../Resources/State.hpp"
 
 namespace UntilBeingCrowned
 {
@@ -33,7 +34,8 @@ namespace UntilBeingCrowned
 		tgui::Label::Ptr _tradersHappinessLabel;
 
 	public:
-		InGameMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, QuestMgr &dialogs, GameState &state);
+		InGameMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, QuestMgr &dialogs, GameState &state,
+				   UntilBeingCrowned::State state1);
 		void switched(bool isActive) override;
 		void render() override;
 		void handleEvent(const Input::Event &event) override;

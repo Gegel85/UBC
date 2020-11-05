@@ -65,9 +65,15 @@ namespace UntilBeingCrowned
 		//! @param newVolume New volume.
 		void setMusicVolume(float newVolume);
 
+		//! @brief get the volume of all the musics.
+		float getMusicVolume() const;
+
 		//! @brief Changes the volume of all the sounds.
 		//! @param newVolume New volume.
 		void setSoundVolume(float newVolume);
+
+		//! @brief get the volume of all the sounds.
+		float getSoundVolume() const;
 	};
 }
 

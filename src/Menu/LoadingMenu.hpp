@@ -2,8 +2,8 @@
 // Created by timcav on 28/10/2020.
 //
 
-#ifndef UBC_LOADMENU_HPP
-#define UBC_LOADMENU_HPP
+#ifndef UBC_LOADINGMENU_HPP
+#define UBC_LOADINGMENU_HPP
 
 
 
@@ -15,7 +15,7 @@
 
 namespace UntilBeingCrowned
 {
-    class LoadMenu : public Menu {
+    class LoadingMenu : public Menu {
     private:
         Resources &_res;
         tgui::Gui &_gui;
@@ -23,7 +23,7 @@ namespace UntilBeingCrowned
         QuestMgr &_dialogs;
 
     public:
-        LoadMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, QuestMgr &dialogs);
+        LoadingMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, QuestMgr &dialogs);
         void switched(bool isActive) override;
         void render() override;
         void handleEvent(const Input::Event &event) override;
@@ -31,10 +31,10 @@ namespace UntilBeingCrowned
         void backButton();
 
     private:
-        static void backButtonHandler(LoadMenu &);
+        static void backButtonHandler(LoadingMenu &);
 
     };
 }
 
 
-#endif //UBC_LOADMENU_HPP
+#endif //UBC_LOADINGMENU_HPP

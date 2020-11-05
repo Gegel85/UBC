@@ -21,7 +21,7 @@ namespace UntilBeingCrowned {
         }
 
         this->_gui.loadWidgetsFromFile("gui/mainMenu.gui");
-        this->_gui.get("newGame")->cast<tgui::Button>()->connect(tgui::Signals::Button::Pressed, MainMenu::newGameButtonHandler, std::ref(*this));
+        //this->_gui.get("newGame")->cast<tgui::Button>()->connect(tgui::Signals::Button::Pressed, MainMenu::newGameButtonHandler, std::ref(*this));
         this->_gui.get("loadGame")->cast<tgui::Button>()->connect(tgui::Signals::Button::Pressed, MainMenu::loadGameButtonHandler, std::ref(*this));
         this->_gui.get("options")->cast<tgui::Button>()->connect(tgui::Signals::Button::Pressed, MainMenu::optionsButtonHandler, std::ref(*this));
         this->_gui.get("exit")->cast<tgui::Button>()->connect(tgui::Signals::Button::Pressed, MainMenu::exitButtonHandler, std::ref(*this));
