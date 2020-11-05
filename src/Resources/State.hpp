@@ -20,6 +20,8 @@ namespace UntilBeingCrowned
 		Settings settings;
 		QuestMgr questMgr;
 		GameState game;
+
+		State() : questMgr(this->game) {};
 	};
 }
 

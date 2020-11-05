@@ -20,7 +20,7 @@ namespace UntilBeingCrowned
 		Resources &_res;
 		tgui::Gui &_gui;
 		MenuMgr &_mgr;
-		QuestMgr &_dialogs;
+		QuestMgr &_questsMgr;
 		GameState &_state;
 		tgui::Label::Ptr _goldsLabel;
 		tgui::Label::Ptr _armyLabel;
@@ -32,8 +32,12 @@ namespace UntilBeingCrowned
 		tgui::Label::Ptr _peasantsHappinessLabel;
 		tgui::Label::Ptr _tradersHappinessLabel;
 
+		void _hookHandlers();
+		void _showQuestList(const std::vector<QuestMgr::Quest> &quests, const std::string &name);
+
 	public:
 		InGameMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, QuestMgr &dialogs, GameState &state);
+		~InGameMenu() override;
 		void switched(bool isActive) override;
 		void render() override;
 		void handleEvent(const Input::Event &event) override;
