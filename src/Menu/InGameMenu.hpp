@@ -32,6 +32,7 @@ namespace UntilBeingCrowned
 		tgui::Label::Ptr _peasantsHappinessLabel;
 		tgui::Label::Ptr _tradersHappinessLabel;
 
+		void _nextWeek();
 		void _hookHandlers();
 		void _showQuestList(const std::vector<QuestMgr::Quest> &quests, const std::string &name);
 

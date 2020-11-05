@@ -4,6 +4,21 @@
 
 #include "InGameMenu.hpp"
 
+#define INCREMENT_VAR(var)                                      \
+        if (                                                    \
+        	std::find(                                      \
+        		this->_state.flags.begin(),             \
+        		this->_state.flags.end(),               \
+        		"no_"#var                               \
+		) == this->_state.flags.end()                   \
+	)                                                       \
+                this->_state.var += this->_state.var##Passive;  \
+	this->_state.flags.erase(std::remove(                   \
+		this->_state.flags.begin(),                     \
+		this->_state.flags.end(),                       \
+		"no_"#var), this->_state.flags.end()            \
+	)
+
 namespace UntilBeingCrowned
 {
 	InGameMenu::InGameMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, QuestMgr &dialogs, GameState &state) :
@@ -49,9 +64,9 @@ namespace UntilBeingCrowned
 		this->_goldsLabel->setText(std::to_string(this->_state.gold));
 		this->_armyLabel->setText(std::to_string(this->_state.army));
 		this->_foodLabel->setText(std::to_string(this->_state.food));
-		this->_passiveGoldsLabel->setText("+" + std::to_string(this->_state.passiveGold));
-		this->_passiveArmyLabel->setText("+" + std::to_string(this->_state.passiveArmy));
-		this->_passiveFoodLabel->setText("+" + std::to_string(this->_state.passiveFood));
+		this->_passiveGoldsLabel->setText("+" + std::to_string(this->_state.goldPassive));
+		this->_passiveArmyLabel->setText("+" + std::to_string(this->_state.armyPassive));
+		this->_passiveFoodLabel->setText("+" + std::to_string(this->_state.foodPassive));
 		this->_nobilityHappinessLabel->setText(std::to_string(this->_state.nobilityHappiness));
 		this->_peasantsHappinessLabel->setText(std::to_string(this->_state.peasantsHappiness));
 		this->_tradersHappinessLabel->setText(std::to_string(this->_state.tradersHappiness));
@@ -120,8 +135,7 @@ namespace UntilBeingCrowned
 		auto nextWeek = this->_gui.get<tgui::Button>("Next");
 
 		nextWeek->onClick.connect([this]{
-			this->_state.week++;
-			this->_questsMgr.nextWeek();
+			this->_nextWeek();
 		});
 		newQuestsList->onClick.connect([this]{
 			this->_showQuestList(this->_questsMgr.getNewQuests(), "New quests");
@@ -129,5 +143,14 @@ namespace UntilBeingCrowned
 		unlockedQuestsList->onClick.connect([this]{
 			this->_showQuestList(this->_questsMgr.getUnlockedQuests(), "Unlocked Quests");
 		});
+	}
+
+	void InGameMenu::_nextWeek()
+	{
+		INCREMENT_VAR(gold);
+		INCREMENT_VAR(army);
+		INCREMENT_VAR(food);
+		this->_state.week++;
+		this->_questsMgr.nextWeek();
 	}
 }

@@ -57,6 +57,19 @@
         "peasants_happiness": 10,
         "traders_happiness": 10,
         "nobility_happiness": 10
+      },
+      {
+        "set_flags": ["debug5", "no_gold", "no_army", "no_food"],
+        "unset_flags": [],
+        "gold": 10,
+        "food": 10,
+        "army": 10,
+        "passive_gold": 10,
+        "passive_food": 10,
+        "passive_army": 10,
+        "peasants_happiness": 10,
+        "traders_happiness": 10,
+        "nobility_happiness": 10
       }
     ],
     "happiness_requirement": {

@@ -337,9 +337,9 @@ namespace UntilBeingCrowned
 		return state.gold + this->goldChange >= 0 &&
 		       state.army + this->armyChange >= 0 &&
 		       state.food + this->foodChange >= 0 &&
-		       state.passiveGold + this->passiveGoldChange >= 0 &&
-		       state.passiveArmy + this->passiveArmyChange >= 0 &&
-		       state.passiveFood + this->passiveFoodChange >= 0;
+		       state.goldPassive + this->passiveGoldChange >= 0 &&
+		       state.armyPassive + this->passiveArmyChange >= 0 &&
+		       state.foodPassive + this->passiveFoodChange >= 0;
 	}
 
 	void QuestMgr::Effect::apply(GameState &state) const
@@ -347,9 +347,9 @@ namespace UntilBeingCrowned
 		state.gold              += this->goldChange;
 		state.army              += this->armyChange;
 		state.food              += this->foodChange;
-		state.passiveGold       += this->passiveGoldChange;
-		state.passiveArmy       += this->passiveArmyChange;
-		state.passiveFood       += this->passiveFoodChange;
+		state.goldPassive       += this->passiveGoldChange;
+		state.armyPassive       += this->passiveArmyChange;
+		state.foodPassive       += this->passiveFoodChange;
 		state.peasantsHappiness += this->peasantsHappiness;
 		state.tradersHappiness  += this->tradersHappiness;
 		state.nobilityHappiness += this->nobilityHappiness;
