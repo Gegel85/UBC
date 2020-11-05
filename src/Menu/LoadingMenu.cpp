@@ -42,7 +42,5 @@ namespace UntilBeingCrowned {
     void LoadingMenu::backButtonHandler(LoadingMenu &m) {
         m.backButton();
     }
-
-
 }
 

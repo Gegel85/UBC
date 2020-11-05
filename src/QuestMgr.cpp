@@ -24,7 +24,8 @@ namespace UntilBeingCrowned
 		return s.str();
 	}
 
-	QuestMgr::QuestMgr()
+	QuestMgr::QuestMgr(GameState &state) :
+		_state(state)
 	{
 		this->_panel = tgui::ScrollablePanel::create({600, 700});
 		this->_panel->setPosition("&.w / 2 - w / 2", "&.h / 2 - h / 2");
@@ -40,6 +41,119 @@ namespace UntilBeingCrowned
 			throw InvalidQuestFileException("Cannot open " + path + ": " + strerror(errno));
 
 		stream >> val;
+		this->_checkJsonValidity(val);
+		for (const auto &v : val)
+			this->_quests.emplace_back(this->_quests.size(), v, resources.textures);
+		stream.close();
+		this->_usedQuests.resize(this->_quests.size(), false);
+		this->_addNewUnlockedQuests();
+	}
+
+	void QuestMgr::showDialog(unsigned int id, tgui::Gui &gui)
+	{
+		auto panel = tgui::Panel::create({"100%", "100%"});
+		unsigned y = 0;
+		unsigned index = 0;
+		auto &val = this->_quests.at(id);
+		int size = val.buttons.size();
+		double ysize = (60 - (size - 1) / 3 * 10) / ((size - 1) / 3 + 1.);
+		auto title = this->_panel->get<tgui::Label>("Title");
+		auto desc = this->_panel->get<tgui::TextBox>("TextBox1");
+		auto fct = [this, &val, id, &gui, panel](unsigned butId) {
+			if (this->_onClickButton)
+				this->_onClickButton({val, butId, id});
+			if (butId < val.buttons_effects.size()) {
+				val.buttons_effects[butId].apply(this->_state);
+				this->_unlockedQuests.erase(
+					std::find(
+						this->_unlockedQuests.begin(),
+						this->_unlockedQuests.end(),
+						val
+					),
+					this->_unlockedQuests.end()
+				);
+				this->_newQuests.erase(
+					std::find(
+						this->_newQuests.begin(),
+						this->_newQuests.end(),
+						val
+					),
+					this->_newQuests.end()
+				);
+				this->_usedQuests[val.getId()] = true;
+			}
+			gui.remove(this->_panel);
+			gui.remove(panel);
+		};
+
+		this->_selected = id;
+		title->setText(val.title);
+		desc->setText(val.description);
+		desc->setVerticalScrollbarValue(0);
+		this->_panel->add(val.pic);
+		for (int left = size; left > 0; left -= 3, y++) {
+			auto start = left > 3 ? 3 : left;
+			auto xsize = (500 - (start - 1) * 10.) / start;
+
+			for (unsigned i = start; i; i--) {
+				auto but = tgui::Button::create(val.buttons[index]);
+				auto *renderer = but->getRenderer();
+
+				if (index < val.buttons_effects.size() && !val.buttons_effects[index].canApply(this->_state))
+					but->setEnabled(false);
+
+				renderer->setBorders({0, 0, 0, 0});
+				renderer->setBackgroundColor("transparent");
+				renderer->setBackgroundColorDisabled("transparent");
+				renderer->setBackgroundColorHover("#FFFFFF1F");
+				renderer->setBackgroundColorDown("#FFFFFF2E");
+				renderer->setFont("assets/kenpixel.ttf");
+				but->setTextSize(16);
+				but->setSize(xsize, ysize);
+				but->setPosition(index % 3 * (xsize + 10) + 50, index / 3 * (ysize + 10) + 580);
+				but->connect("clicked", fct, index);
+				index++;
+				this->_panel->add(but);
+			}
+		}
+		panel->getRenderer()->setBackgroundColor({0, 0, 0, 175});
+		gui.add(panel);
+		gui.add(this->_panel);
+	}
+
+	void QuestMgr::onClick(const std::function<void(const ClickEvent &event)> &handler)
+	{
+		this->_onClickButton = handler;
+	}
+
+	std::vector<QuestMgr::Quest> QuestMgr::getUnlockedQuests()
+	{
+		return this->_unlockedQuests;
+	}
+
+	std::vector<QuestMgr::Quest> QuestMgr::getNewQuests()
+	{
+		return this->_newQuests;
+	}
+
+	void QuestMgr::nextWeek()
+	{
+		this->_newQuests.clear();
+		this->_unlockedQuests.erase(
+			std::remove_if(
+				this->_unlockedQuests.begin(),
+				this->_unlockedQuests.end(),
+				[this](const Quest &quest) {
+					return !quest.isUnlocked(this->_state);
+				}
+			),
+			this->_unlockedQuests.end()
+		);
+		this->_addNewUnlockedQuests();
+	}
+
+	void QuestMgr::_checkJsonValidity(const nlohmann::json &val)
+	{
 		if (!val.is_array())
 			throw InvalidQuestFileException("File is expected to contain an array of objects (Value " + val.dump() + " is not an array)");
 		if (val.empty())
@@ -123,7 +237,7 @@ namespace UntilBeingCrowned
 					if (!f.is_string())
 						throw InvalidQuestFileException(
 							i, "In effect #"+ std::to_string(j) +
-							": set_flags field contains a non string element (Value " + f.dump() + " is not a string)"
+							   ": set_flags field contains a non string element (Value " + f.dump() + " is not a string)"
 						);
 				if (!k.contains("unset_flags") || !k["unset_flags"].is_array())
 					throw InvalidQuestFileException(i, "unset_flags field is not an array (Value " + jsonToString(k, "unset_flags") + " is not an array)");
@@ -135,101 +249,25 @@ namespace UntilBeingCrowned
 						);
 			}
 		}
-
-		for (const auto &v : val)
-			this->_quests.emplace_back(this->_quests.size(), v, resources.textures);
-		stream.close();
 	}
 
-	void QuestMgr::showDialog(unsigned int id, GameState &state, tgui::Gui &gui)
+	void QuestMgr::_addNewUnlockedQuests()
 	{
-		auto panel = tgui::Panel::create({"100%", "100%"});
-		unsigned y = 0;
-		unsigned index = 0;
-		auto &val = this->_quests.at(id);
-		int size = val.buttons.size();
-		double ysize = (60 - (size - 1) / 3 * 10) / ((size - 1) / 3 + 1.);
-		auto title = this->_panel->get<tgui::Label>("Title");
-		auto desc = this->_panel->get<tgui::TextBox>("TextBox1");
-		auto fct = [this, &val, id, &gui, panel, &state](unsigned butId) {
-			if (this->_onClickButton)
-				this->_onClickButton({val, butId, id});
-			if (butId < val.buttons_effects.size()) {
-				val.buttons_effects[butId].apply(state);
-				this->_unlockedQuests.erase(
-					std::find(
-						this->_unlockedQuests.begin(),
-						this->_unlockedQuests.end(),
-						val
-					),
-					this->_unlockedQuests.end()
-				);
-				this->_newQuests.erase(
-					std::find(
-						this->_newQuests.begin(),
-						this->_newQuests.end(),
-						val
-					),
-					this->_newQuests.end()
-				);
-			}
-			gui.remove(this->_panel);
-			gui.remove(panel);
-		};
-
-		this->_selected = id;
-		title->setText(val.title);
-		desc->setText(val.description);
-		desc->setVerticalScrollbarValue(0);
-		this->_panel->add(val.pic);
-		for (int left = size; left > 0; left -= 3, y++) {
-			auto start = left > 3 ? 3 : left;
-			auto xsize = (500 - (start - 1) * 10.) / start;
-
-			for (unsigned i = start; i; i--) {
-				auto but = tgui::Button::create(val.buttons[index]);
-				auto *renderer = but->getRenderer();
-
-				if (index < val.buttons_effects.size() && !val.buttons_effects[index].canApply(state))
-					but->setEnabled(false);
-
-				renderer->setBorders({0, 0, 0, 0});
-				renderer->setBackgroundColor("transparent");
-				renderer->setBackgroundColorDisabled("transparent");
-				renderer->setBackgroundColorHover("#FFFFFF1F");
-				renderer->setBackgroundColorDown("#FFFFFF2E");
-				renderer->setFont("assets/kenpixel.ttf");
-				but->setTextSize(16);
-				but->setSize(xsize, ysize);
-				but->setPosition(index % 3 * (xsize + 10) + 50, index / 3 * (ysize + 10) + 580);
-				but->connect("clicked", fct, index);
-				index++;
-				this->_panel->add(but);
+		for (auto &quest : this->_quests) {
+			if (
+				quest.isUnlocked(this->_state) &&
+				!this->_usedQuests[quest.getId()] &&
+				std::find(this->_unlockedQuests.begin(), this->_unlockedQuests.end(), quest) == this->_unlockedQuests.end()
+			) {
+				this->_unlockedQuests.push_back(quest);
+				this->_newQuests.push_back(quest);
 			}
 		}
-		panel->getRenderer()->setBackgroundColor({0, 0, 0, 175});
-		gui.add(panel);
-		gui.add(this->_panel);
 	}
 
-	void QuestMgr::onClick(const std::function<void(const ClickEvent &event)> &handler)
+	void QuestMgr::reset()
 	{
-		this->_onClickButton = handler;
-	}
-
-	std::vector<QuestMgr::Quest> QuestMgr::getUnlockedQuests()
-	{
-		return this->_unlockedQuests;
-	}
-
-	std::vector<QuestMgr::Quest> QuestMgr::getNewQuests()
-	{
-		return this->_newQuests;
-	}
-
-	void QuestMgr::nextWeek(GameState &state)
-	{
-		this->_newQuests.clear();
+		std::fill(this->_usedQuests.begin(), this->_usedQuests.end(), false);
 	}
 
 	QuestMgr::Quest::Quest(unsigned id, const nlohmann::json &json, std::map<std::string, sf::Texture> &textures) :
@@ -272,6 +310,11 @@ namespace UntilBeingCrowned
 	bool QuestMgr::Quest::operator==(const QuestMgr::Quest &other) const
 	{
 		return this->_id == other._id;
+	}
+
+	unsigned int QuestMgr::Quest::getId() const
+	{
+		return this->_id;
 	}
 
 	QuestMgr::Effect::Effect(const nlohmann::json &json) :

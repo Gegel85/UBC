@@ -52,6 +52,7 @@ namespace UntilBeingCrowned
 			std::pair<int, int> peasantsHappinessRequirement;
 			std::pair<int, int> nobilityHappinessRequirement;
 
+			unsigned int getId() const;
 			bool isUnlocked(const GameState &state) const;
 			bool operator==(const Quest &other) const;
 			Quest(unsigned id, const nlohmann::json &json, std::map<std::string, sf::Texture> &textures);
@@ -68,17 +69,23 @@ namespace UntilBeingCrowned
 		std::vector<Quest> _unlockedQuests;
 		unsigned _selected;
 		tgui::ScrollablePanel::Ptr _panel;
+		std::vector<bool> _usedQuests;
 		std::vector<Quest> _quests;
 		std::function<void (const ClickEvent &event)> _onClickButton;
+		GameState &_state;
+
+		void _addNewUnlockedQuests();
+		void _checkJsonValidity(const nlohmann::json &json);
 
 	public:
-		QuestMgr();
+		QuestMgr(GameState &state);
 		void onClick(const std::function<void (const ClickEvent &event)> &handler);
 		void loadFile(const std::string &path, Resources &resources);
 		std::vector<Quest> getUnlockedQuests();
 		std::vector<Quest> getNewQuests();
-		void nextWeek(GameState &state);
-		void showDialog(unsigned id, GameState &state, tgui::Gui &gui);
+		void nextWeek();
+		void reset();
+		void showDialog(unsigned id, tgui::Gui &gui);
 	};
 }
 

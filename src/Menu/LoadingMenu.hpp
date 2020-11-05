@@ -27,13 +27,11 @@ namespace UntilBeingCrowned
         void switched(bool isActive) override;
         void render() override;
         void handleEvent(const Input::Event &event) override;
-
-        void backButton();
+		void backButton();
 
     private:
         static void backButtonHandler(LoadingMenu &);
-
-    };
+	};
 }
 
 

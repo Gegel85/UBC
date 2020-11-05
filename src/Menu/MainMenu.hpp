@@ -14,31 +14,31 @@
 
 namespace UntilBeingCrowned
 {
-    class MainMenu : public Menu {
-    private:
-        Resources &_res;
-        tgui::Gui &_gui;
-        MenuMgr &_mgr;
-        QuestMgr &_dialogs;
+	class MainMenu : public Menu {
+	private:
+		Resources &_res;
+		tgui::Gui &_gui;
+		MenuMgr &_mgr;
+		QuestMgr &_dialogs;
 
-    public:
-        MainMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, QuestMgr &dialogs);
-        void switched(bool isActive) override;
-        void render() override;
-        void handleEvent(const Input::Event &event) override;
+	public:
+		MainMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, QuestMgr &dialogs);
+		void switched(bool isActive) override;
+		void render() override;
+		void handleEvent(const Input::Event &event) override;
 
-        void newGameButton();
-        void loadGameButton();
-        void optionsButton();
-        void exitButton();
+		void newGameButton();
+		void loadGameButton();
+		void optionsButton();
+		void exitButton();
 
-    private:
-        static void newGameButtonHandler(MainMenu &m);
-        static void loadGameButtonHandler(MainMenu &m);
-        static void optionsButtonHandler(MainMenu &m);
-        static void exitButtonHandler(MainMenu &m);
+	private:
+		static void newGameButtonHandler(MainMenu &m);
+		static void loadGameButtonHandler(MainMenu &m);
+		static void optionsButtonHandler(MainMenu &m);
+		static void exitButtonHandler(MainMenu &m);
 
-    };
+	};
 }
 
 

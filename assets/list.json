@@ -3,6 +3,7 @@
 	"sfx": {},
 	"sprites": {
 		"igproto": "in_game_proto.jpg",
+		"list_bg": "list_bg.jpg",
 		"icon": "icon.png"
 	},
 	"icon": "icon.png"

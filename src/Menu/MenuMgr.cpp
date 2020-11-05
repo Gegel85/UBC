@@ -27,7 +27,7 @@ namespace UntilBeingCrowned
 
 		if (!this->_currentMenu.empty())
 			this->_menus.at(this->_currentMenu)->switched(false);
-        this->_menus[newMenu]->switched(true);
-        this->_currentMenu = newMenu;
+		this->_menus[newMenu]->switched(true);
+		this->_currentMenu = newMenu;
 	}
 }
