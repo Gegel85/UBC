@@ -50,9 +50,6 @@ namespace UntilBeingCrowned
 		this->_passiveGoldsLabel = this->_gui.get<tgui::Label>("PassiveGold");
 		this->_passiveArmyLabel = this->_gui.get<tgui::Label>("PassiveArmy");
 		this->_passiveFoodLabel = this->_gui.get<tgui::Label>("PassiveFood");
-		this->_nobilityHappinessLabel = this->_gui.get<tgui::Label>("NobilityHappiness");
-		this->_peasantsHappinessLabel = this->_gui.get<tgui::Label>("PeasantsHappiness");
-		this->_tradersHappinessLabel = this->_gui.get<tgui::Label>("TradersHappiness");
 		this->_questsMgr.showDialog(0, this->_gui);
 		this->_hookHandlers();
 	}
@@ -61,21 +58,13 @@ namespace UntilBeingCrowned
 	{
 		auto newQuestsList = this->_gui.get<tgui::Button>("NewQuests");
 
-		newQuestsList->setEnabled(!this->_questsMgr.getNewQuests().empty());
+		newQuestsList->setVisible(!this->_questsMgr.getNewQuests().empty());
 		this->_goldsLabel->setText(std::to_string(this->_state.gold));
 		this->_armyLabel->setText(std::to_string(this->_state.army));
 		this->_foodLabel->setText(std::to_string(this->_state.food));
 		this->_passiveGoldsLabel->setText("+" + std::to_string(this->_state.goldPassive));
 		this->_passiveArmyLabel->setText("+" + std::to_string(this->_state.armyPassive));
 		this->_passiveFoodLabel->setText("+" + std::to_string(this->_state.foodPassive));
-		this->_nobilityHappinessLabel->setText(std::to_string(this->_state.nobilityHappiness));
-		this->_peasantsHappinessLabel->setText(std::to_string(this->_state.peasantsHappiness));
-		this->_tradersHappinessLabel->setText(std::to_string(this->_state.tradersHappiness));
-		this->_res.screen.draw(
-			this->_res.textures["igproto"],
-			{0, 0},
-			this->_res.screen.getSize()
-		);
 	}
 
 	void InGameMenu::handleEvent(const Input::Event &)

@@ -29,9 +29,6 @@ namespace UntilBeingCrowned
 		tgui::Label::Ptr _passiveGoldsLabel;
 		tgui::Label::Ptr _passiveArmyLabel;
 		tgui::Label::Ptr _passiveFoodLabel;
-		tgui::Label::Ptr _nobilityHappinessLabel;
-		tgui::Label::Ptr _peasantsHappinessLabel;
-		tgui::Label::Ptr _tradersHappinessLabel;
 
 		void _nextWeek();
 		void _hookHandlers();
