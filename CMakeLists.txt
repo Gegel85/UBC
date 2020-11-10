@@ -66,7 +66,7 @@ set(
 	src/Menu/MainMenu.hpp
 	src/QuestMgr.cpp
 	src/QuestMgr.hpp
-	src/Resources/GameState.hpp src/Menu/OptionMenu.cpp src/Menu/OptionMenu.hpp src/Menu/LoadingMenu.cpp src/Menu/LoadingMenu.hpp)
+	src/Resources/GameState.hpp src/Menu/OptionMenu.cpp src/Menu/OptionMenu.hpp src/Menu/LoadingMenu.cpp src/Menu/LoadingMenu.hpp src/Menu/GenderMenu.cpp src/Menu/GenderMenu.hpp)
 
 if (MSVC)
 	add_executable(UBC ${UBC_SRC} icon.rc)

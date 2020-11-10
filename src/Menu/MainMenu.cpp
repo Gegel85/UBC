@@ -40,7 +40,7 @@ namespace UntilBeingCrowned {
 
 	void MainMenu::newGameButton() {
 		//TODO: Put real new menu
-		this->_mgr.changeMenu("in_game");
+		this->_mgr.changeMenu("gender");
 	}
 
 	void MainMenu::newGameButtonHandler(MainMenu &m) {
