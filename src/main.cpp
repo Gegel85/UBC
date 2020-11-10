@@ -12,6 +12,7 @@
 #include "Menu/MainMenu.hpp"
 #include "Menu/OptionMenu.hpp"
 #include "Menu/LoadingMenu.hpp"
+#include "Menu/GenderMenu.hpp"
 
 namespace UntilBeingCrowned
 {
@@ -24,6 +25,7 @@ namespace UntilBeingCrowned
 		game.state.menuMgr.addMenu<MainMenu>("main", game.state.gui, game.resources, game.state.questMgr);
 		game.state.menuMgr.addMenu<OptionMenu>("option", game.state.gui, game.resources, game.state.questMgr);
 		game.state.menuMgr.addMenu<LoadingMenu>("load", game.state.gui, game.resources, game.state.questMgr);
+		game.state.menuMgr.addMenu<GenderMenu>("gender", game.state.gui, game.resources, game.state.questMgr);
 		game.state.menuMgr.changeMenu("main");
 	}
 }
