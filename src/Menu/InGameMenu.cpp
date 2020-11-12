@@ -124,9 +124,7 @@ namespace UntilBeingCrowned
 		auto unlockedQuestsList = this->_gui.get<tgui::Button>("Quests");
 		auto nextWeek = this->_gui.get<tgui::Button>("Next");
 
-		nextWeek->onClick.connect([this]{
-			this->_nextWeek();
-		});
+		nextWeek->connect("Clicked", &InGameMenu::_nextWeek, this);
 		newQuestsList->onClick.connect([this]{
 			this->_showQuestList(this->_questsMgr.getNewQuests(), "New quests");
 		});

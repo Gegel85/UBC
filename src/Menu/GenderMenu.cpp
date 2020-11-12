@@ -5,13 +5,14 @@
 #include "GenderMenu.hpp"
 
 
-namespace UntilBeingCrowned {
-	GenderMenu::GenderMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, QuestMgr &dialogs) :
-			_res(res),
-			_gui(gui),
-			_mgr(mgr),
-			_dialogs(dialogs),
-			_nexLevel("in_game")
+namespace UntilBeingCrowned
+{
+	GenderMenu::GenderMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, GameState &state) :
+		_res(res),
+		_gui(gui),
+		_mgr(mgr),
+		_state(state),
+		_nexLevel("in_game")
 	{
 	}
 
@@ -23,8 +24,8 @@ namespace UntilBeingCrowned {
 
 		this->_gui.loadWidgetsFromFile("gui/genderMenu.gui");
 		//TODO :  set real picture for the buttons
-		this->_gui.get<tgui::Button>("femaleButton")->connect(tgui::Signals::Button::Pressed, GenderMenu::girlButtonHandler, std::ref(*this));
-		this->_gui.get<tgui::Button>("maleButton")->connect(tgui::Signals::Button::Pressed, GenderMenu::boyButtonHandler, std::ref(*this));
+		this->_gui.get<tgui::Button>("femaleButton")->connect(tgui::Signals::Button::Pressed, &GenderMenu::_runGame, this, "player_f");
+		this->_gui.get<tgui::Button>("maleButton")->connect(tgui::Signals::Button::Pressed, &GenderMenu::_runGame, this, "player_m");
 
 	}
 
@@ -35,22 +36,9 @@ namespace UntilBeingCrowned {
 	void GenderMenu::handleEvent(const Input::Event &) {
 
 	}
-
-	void GenderMenu::launchAsGirl() {
-		// TODO : set as girl
+	void GenderMenu::_runGame(const std::string &flag)
+	{
+		this->_state.flags.push_back(flag);
 		this->_mgr.changeMenu(_nexLevel);
-	}
-
-	void GenderMenu::launchAsBoy() {
-		// TODO : set as a boy
-		this->_mgr.changeMenu(_nexLevel);
-	}
-
-	void GenderMenu::girlButtonHandler(GenderMenu &m) {
-		m.launchAsGirl();
-	}
-
-	void GenderMenu::boyButtonHandler(GenderMenu &m) {
-		m.launchAsBoy();
 	}
 }

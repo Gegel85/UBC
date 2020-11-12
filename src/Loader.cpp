@@ -8,6 +8,7 @@
 #include "Input/SFMLKeyboard.hpp"
 #include "Input/SFMLJoypad.hpp"
 #include "Utils.hpp"
+#include <iostream>
 
 namespace UntilBeingCrowned
 {
