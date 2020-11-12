@@ -5,14 +5,16 @@
 #include "OptionMenu.hpp"
 #include "../DataType/Vector.hpp"
 #include "../Rendering//Screen.hpp"
+#include "../Loader.hpp"
 #include <iostream>
 
 namespace UntilBeingCrowned {
-	OptionMenu::OptionMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, QuestMgr &dialogs) :
+	OptionMenu::OptionMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, QuestMgr &dialogs, Game &game) :
 			_res(res),
 			_gui(gui),
 			_mgr(mgr),
 			_dialogs(dialogs),
+			_game(game),
 			_initMusicVolume(100),
 			_newMusicVolume(100),
 			_initSoundVolume(100),
@@ -32,7 +34,7 @@ namespace UntilBeingCrowned {
 													  std::ref(*this));
 		this->_gui.get<tgui::Button>("save")->connect(tgui::Signals::Button::Pressed, OptionMenu::saveButtonHandler,
 													  std::ref(*this));
-
+		Loader::loadSettings(_game);
 		_sM = this->_gui.get<tgui::Slider>("volumeMusicSlider");
 		_sM->connect(tgui::Signals::Slider::ValueChanged, OptionMenu::musicVolumSlider, std::ref(*this), std::ref(_sM));
 		_sS = this->_gui.get<tgui::Slider>("volumeSoundSlider");
@@ -118,6 +120,12 @@ namespace UntilBeingCrowned {
 		_initMusicVolume = _newMusicVolume;
 		_initSoundVolume = _newSoundVolume;
 		_initFullscreen = _newFullScreen;
+		Settings s;
+		s.musicVolume = _initMusicVolume;
+		s.sfxVolume = _initSoundVolume;
+		s.input = nullptr;
+		Loader::saveSettings(s);
+
 	}
 
 	void OptionMenu::saveButtonHandler(OptionMenu &m) {

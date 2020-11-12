@@ -43,7 +43,9 @@ namespace UntilBeingCrowned
 
 		std::ofstream stream("saves/settings.sav");
 
-		settings.input->serialize(stream);
+		if (settings.input) {
+			settings.input->serialize(stream);
+		}
 		stream << std::endl << settings.musicVolume << std::endl << settings.sfxVolume;
 		stream.close();
 	}

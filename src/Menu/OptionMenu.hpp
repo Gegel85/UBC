@@ -20,6 +20,7 @@ namespace UntilBeingCrowned
 		tgui::Gui &_gui;
 		MenuMgr &_mgr;
 		QuestMgr &_dialogs;
+		Game &_game;
 
 		float _initMusicVolume;
 		float _newMusicVolume;
@@ -32,7 +33,7 @@ namespace UntilBeingCrowned
 		std::shared_ptr<tgui::Slider> _sS;
 
 	public:
-		OptionMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, QuestMgr &dialogs);
+		OptionMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, QuestMgr &dialogs, Game &game);
 		void switched(bool isActive) override;
 		void render() override;
 		void handleEvent(const Input::Event &event) override;
