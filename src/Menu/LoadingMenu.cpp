@@ -5,12 +5,11 @@
 #include "LoadingMenu.hpp"
 
 
-namespace UntilBeingCrowned {
-    LoadingMenu::LoadingMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, QuestMgr &dialogs) :
-            _res(res),
-            _gui(gui),
-            _mgr(mgr),
-            _dialogs(dialogs)
+namespace UntilBeingCrowned
+{
+    LoadingMenu::LoadingMenu(MenuMgr &mgr, tgui::Gui &gui) :
+        _gui(gui),
+        _mgr(mgr)
     {
     }
 
@@ -22,7 +21,7 @@ namespace UntilBeingCrowned {
         }
 
         this->_gui.loadWidgetsFromFile("gui/loadMenu.gui");
-        this->_gui.get("back")->cast<tgui::Button>()->connect(tgui::Signals::Button::Pressed, LoadingMenu::backButtonHandler, std::ref(*this));
+        this->_gui.get("back")->cast<tgui::Button>()->connect(tgui::Signals::Button::Pressed, &LoadingMenu::_backButton, this);
     }
 
     void LoadingMenu::render()
@@ -35,12 +34,8 @@ namespace UntilBeingCrowned {
 
     }
 
-    void LoadingMenu::backButton() {
+    void LoadingMenu::_backButton() {
         this->_mgr.changeMenu("main");
-    }
-
-    void LoadingMenu::backButtonHandler(LoadingMenu &m) {
-        m.backButton();
     }
 }
 

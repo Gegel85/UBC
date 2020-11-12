@@ -15,22 +15,18 @@
 
 namespace UntilBeingCrowned
 {
-    class LoadingMenu : public Menu {
-    private:
-        Resources &_res;
-        tgui::Gui &_gui;
-        MenuMgr &_mgr;
-        QuestMgr &_dialogs;
+	class LoadingMenu : public Menu {
+	private:
+		tgui::Gui &_gui;
+		MenuMgr &_mgr;
 
-    public:
-        LoadingMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, QuestMgr &dialogs);
-        void switched(bool isActive) override;
-        void render() override;
-        void handleEvent(const Input::Event &event) override;
-		void backButton();
+		void _backButton();
 
-    private:
-        static void backButtonHandler(LoadingMenu &);
+	public:
+		LoadingMenu(MenuMgr &mgr, tgui::Gui &gui);
+		void switched(bool isActive) override;
+		void render() override;
+		void handleEvent(const Input::Event &event) override;
 	};
 }
 
