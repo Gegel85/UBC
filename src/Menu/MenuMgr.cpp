@@ -5,6 +5,7 @@
 #include <iostream>
 #include "MenuMgr.hpp"
 #include "Exceptions.hpp"
+#include "../Resources/Logger.hpp"
 
 namespace UntilBeingCrowned
 {
@@ -22,6 +23,7 @@ namespace UntilBeingCrowned
 
 	void MenuMgr::changeMenu(const std::string &newMenu)
 	{
+		logger.debug("Loading new menu " + newMenu);
 		if (this->_menus.find(newMenu) == this->_menus.end())
 			throw InvalidMenuException("No menu is named " + newMenu);
 
