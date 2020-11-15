@@ -60,13 +60,20 @@ set(
 	src/Resources/Settings.hpp
 	src/Menu/InGameMenu.cpp
 	src/Menu/InGameMenu.hpp
-	#src/DialogMgr.cpp
-	#src/DialogMgr.hpp
 	src/Menu/MainMenu.cpp
 	src/Menu/MainMenu.hpp
 	src/QuestMgr.cpp
 	src/QuestMgr.hpp
-	src/Resources/GameState.hpp src/Menu/OptionMenu.cpp src/Menu/OptionMenu.hpp src/Menu/LoadingMenu.cpp src/Menu/LoadingMenu.hpp src/Menu/GenderMenu.cpp src/Menu/GenderMenu.hpp)
+	src/Resources/GameState.hpp
+	src/Menu/OptionMenu.cpp
+	src/Menu/OptionMenu.hpp
+	src/Menu/LoadingMenu.cpp
+	src/Menu/LoadingMenu.hpp
+	src/Menu/GenderMenu.cpp
+	src/Menu/GenderMenu.hpp
+	src/DialogMgr.cpp
+	src/DialogMgr.hpp
+)
 
 if (MSVC)
 	add_executable(UBC ${UBC_SRC} icon.rc)
