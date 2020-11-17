@@ -12,7 +12,7 @@ namespace UntilBeingCrowned
 		_gui(gui),
 		_mgr(mgr),
 		_state(state),
-		_nexLevel("in_game")
+		_nexLevel("dialog")
 	{
 	}
 

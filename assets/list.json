@@ -3,6 +3,9 @@
 	"sfx": {},
 	"sprites": {
 		"list_bg": "list_bg.jpg",
+		"idle_prince": "Idle_prince.png",
+		"idle_princess": "princess_idle.png",
+		"guard": "Captain_guard_idle.png",
 		"icon": "icon.png"
 	},
 	"icon": "icon.png"

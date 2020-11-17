@@ -14,6 +14,8 @@ namespace UntilBeingCrowned
 	struct Game {
 		State state;
 		Resources resources;
+
+		Game() : state(this->resources) {};
 	};
 }
 

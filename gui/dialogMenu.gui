@@ -4,28 +4,6 @@ Renderer.1 {
     texturebackground = "assets/dialogue_text_box.png" Part(27, 27, 397, 97);
 }
 
-Renderer.2 {
-    backgroundcolor = #F5F5F5;
-    backgroundcolordisabled = #E6E6E6;
-    backgroundcolordown = #EBEBEB;
-    backgroundcolorhover = white;
-    bordercolor = #3C3C3C;
-    bordercolordisabled = #7D7D7D;
-    bordercolordown = black;
-    bordercolorfocused = #1E1EB4;
-    bordercolorhover = black;
-    borders = (0, 0, 0, 0);
-    textcolor = #3C3C3C;
-    textcolordisabled = #7D7D7D;
-    textcolordown = black;
-    textcolorhover = black;
-    texture = "assets/answer_text_box.png";
-    texturedisabled = None;
-    texturedown = None;
-    texturefocused = None;
-    texturehover = None;
-}
-
 Picture.Picture1 {
     Size = (1360, 768);
 
@@ -40,7 +18,7 @@ Picture.Picture2 {
     Size = (242, 484);
 
     Renderer {
-        texture = "assets/Idle_prince.png" Part(16, 0, 32, 64);
+        texture = "assets/Idle_prince.png" Part(16, 0, 1, 1);
         transparenttexture = false;
     }
 }
@@ -50,7 +28,7 @@ Picture.Picture3 {
     Size = (242, 484);
 
     Renderer {
-        texture = "assets/Captain_guard_idle.png" Part(20, 0, 32, 64);
+        texture = "assets/Captain_guard_idle.png" Part(20, 0, 1, 64);
         transparenttexture = false;
     }
 }
@@ -145,46 +123,151 @@ Button.Next {
 }
 
 Button.Button0 {
-    Position = (790, 320);
-    Size = (128, 34.1379);
+    Position = (660, 300);
+    Size = (628, 34.1379);
     Text = Button;
     TextSize = 13;
-    Visible = false;
-    renderer = &2;
+
+    Renderer {
+        backgroundcolor = #F5F5F5;
+        backgroundcolordisabled = #E6E6E6;
+        backgroundcolordown = #EBEBEB;
+        backgroundcolorhover = white;
+        bordercolor = #3C3C3C;
+        bordercolordisabled = #7D7D7D;
+        bordercolordown = black;
+        bordercolorfocused = #1E1EB4;
+        bordercolorhover = black;
+        borders = (0, 0, 0, 0);
+        font = "assets/kenpixel.ttf";
+        textcolor = #3C3C3C;
+        textcolordisabled = #7D7D7D;
+        textcolordown = black;
+        textcolorhover = black;
+        texture = "assets/answer_text_box.png";
+        texturedisabled = None;
+        texturedown = None;
+        texturefocused = None;
+        texturehover = None;
+    }
 }
 
 Button.Button1 {
-    Position = (790, 360);
-    Size = (128, 34.1379);
+    Position = (button0.x, button0.y + 40);
+    Size = (button0.w, 34.1379);
     Text = Button;
     TextSize = 13;
-    Visible = false;
-    renderer = &2;
+
+    Renderer {
+        backgroundcolor = #F5F5F5;
+        backgroundcolordisabled = #E6E6E6;
+        backgroundcolordown = #EBEBEB;
+        backgroundcolorhover = white;
+        bordercolor = #3C3C3C;
+        bordercolordisabled = #7D7D7D;
+        bordercolordown = black;
+        bordercolorfocused = #1E1EB4;
+        bordercolorhover = black;
+        borders = (0, 0, 0, 0);
+        font = "assets/kenpixel.ttf";
+        textcolor = #3C3C3C;
+        textcolordisabled = #7D7D7D;
+        textcolordown = black;
+        textcolorhover = black;
+        texture = "assets/answer_text_box.png";
+        texturedisabled = None;
+        texturedown = None;
+        texturefocused = None;
+        texturehover = None;
+    }
 }
 
 Button.Button2 {
-    Position = (790, 400);
-    Size = (128, 34.1379);
+    Position = (button0.x, button1.y + 40);
+    Size = (button0.w, 34.1379);
     Text = Button;
     TextSize = 13;
-    Visible = false;
-    renderer = &2;
+
+    Renderer {
+        backgroundcolor = #F5F5F5;
+        backgroundcolordisabled = #E6E6E6;
+        backgroundcolordown = #EBEBEB;
+        backgroundcolorhover = white;
+        bordercolor = #3C3C3C;
+        bordercolordisabled = #7D7D7D;
+        bordercolordown = black;
+        bordercolorfocused = #1E1EB4;
+        bordercolorhover = black;
+        borders = (0, 0, 0, 0);
+        font = "assets/kenpixel.ttf";
+        textcolor = #3C3C3C;
+        textcolordisabled = #7D7D7D;
+        textcolordown = black;
+        textcolorhover = black;
+        texture = "assets/answer_text_box.png";
+        texturedisabled = None;
+        texturedown = None;
+        texturefocused = None;
+        texturehover = None;
+    }
 }
 
 Button.Button3 {
-    Position = (790, 440);
-    Size = (128, 34.1379);
+    Position = (button0.x, button2.y + 40);
+    Size = (button0.w, 34.1379);
     Text = Button;
     TextSize = 13;
-    Visible = false;
-    renderer = &2;
+
+    Renderer {
+        backgroundcolor = #F5F5F5;
+        backgroundcolordisabled = #E6E6E6;
+        backgroundcolordown = #EBEBEB;
+        backgroundcolorhover = white;
+        bordercolor = #3C3C3C;
+        bordercolordisabled = #7D7D7D;
+        bordercolordown = black;
+        bordercolorfocused = #1E1EB4;
+        bordercolorhover = black;
+        borders = (0, 0, 0, 0);
+        font = "assets/kenpixel.ttf";
+        textcolor = #3C3C3C;
+        textcolordisabled = #7D7D7D;
+        textcolordown = black;
+        textcolorhover = black;
+        texture = "assets/answer_text_box.png";
+        texturedisabled = None;
+        texturedown = None;
+        texturefocused = None;
+        texturehover = None;
+    }
 }
 
 Button.Button4 {
-    Position = (790, 480);
-    Size = (128, 34.1379);
+    Position = (button0.x, button3.y + 40);
+    Size = (button0.w, 34.1379);
     Text = Button;
     TextSize = 13;
-    Visible = false;
-    renderer = &2;
+
+    Renderer {
+        backgroundcolor = #F5F5F5;
+        backgroundcolordisabled = #E6E6E6;
+        backgroundcolordown = #EBEBEB;
+        backgroundcolorhover = white;
+        bordercolor = #3C3C3C;
+        bordercolordisabled = #7D7D7D;
+        bordercolordown = black;
+        bordercolorfocused = #1E1EB4;
+        bordercolorhover = black;
+        borders = (0, 0, 0, 0);
+        font = "assets/kenpixel.ttf";
+        textcolor = #3C3C3C;
+        textcolordisabled = #7D7D7D;
+        textcolordown = black;
+        textcolorhover = black;
+        texture = "assets/answer_text_box.png";
+        texturedisabled = None;
+        texturedown = None;
+        texturefocused = None;
+        texturehover = None;
+    }
 }
