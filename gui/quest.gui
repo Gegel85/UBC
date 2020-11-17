@@ -15,6 +15,7 @@ TextBox.TextBox1 {
     Size = (540, 360);
     Text = "Description of the quest\n\nIt can be very long\nblablabla\n\n\n\n\n\n                                                                                    Someone";
     TextSize = 20;
+    VerticalScrollbarPolicy = Always;
 
     Renderer {
         backgroundcolor = transparent;
@@ -34,6 +35,14 @@ TextBox.TextBox1 {
             arrowbackgroundcolorhover = white;
             arrowcolor = #3C3C3C;
             arrowcolorhover = black;
+            texturearrowdown = "assets/scrollbar.png" Part(19, 6, 7, 5);
+            texturearrowdownhover = "assets/scrollbar.png" Part(19, 6, 7, 5);
+            texturearrowup = "assets/scrollbar.png" Part(19, 0, 7, 5);
+            texturearrowuphover = "assets/scrollbar.png" Part(19, 0, 7, 5);
+            texturethumb = "assets/scrollbar.png" Part(9, 0, 10, 26);
+            texturethumbhover = "assets/scrollbar.png" Part(9, 0, 10, 26);
+            texturetrack = "assets/scrollbar.png" Part(0, 0, 10, 47);
+            texturetrackhover = None;
             thumbcolor = #DCDCDC;
             thumbcolorhover = #E6E6E6;
             trackcolor = #F5F5F5;
