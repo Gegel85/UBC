@@ -8,9 +8,24 @@
 #include "DialogMgr.hpp"
 #include "Exceptions.hpp"
 
+#define INCREMENT_VAR(var)                                      \
+        if (                                                    \
+        	std::find(                                      \
+        		this->_state.flags.begin(),             \
+        		this->_state.flags.end(),               \
+        		"no_"#var                               \
+		) == this->_state.flags.end()                   \
+	)                                                       \
+                this->_state.var += this->_state.var##Passive;  \
+	this->_state.flags.erase(std::remove(                   \
+		this->_state.flags.begin(),                     \
+		this->_state.flags.end(),                       \
+		"no_"#var), this->_state.flags.end()            \
+	)
+
 namespace UntilBeingCrowned
 {
-	DialogMgr::DialogMgr(tgui::Gui &gui, const Resources &resources, const GameState &state) :
+	DialogMgr::DialogMgr(tgui::Gui &gui, const Resources &resources, GameState &state) :
 		_gui(gui),
 		_resources(resources),
 		_state(state)
@@ -23,15 +38,15 @@ namespace UntilBeingCrowned
 		{"setMusic",      &DialogMgr::_notImplemented},
 		{"playSfx",       &DialogMgr::_notImplemented},
 		{"setSprite",     &DialogMgr::_setSpriteCmd},
-		{"setSpriteRect", &DialogMgr::_notImplemented},
-		{"finish",        &DialogMgr::_notImplemented},
+		{"finish",        &DialogMgr::_finishCmd},
 		{"choices",       &DialogMgr::_choicesCmd},
-		{"setFlag",       &DialogMgr::_notImplemented},
-		{"unsetFlag",     &DialogMgr::_notImplemented},
+		{"setFlag",       &DialogMgr::_setFlagCmd},
+		{"unsetFlag",     &DialogMgr::_unsetFlagCmd},
 		{"wait",          &DialogMgr::_notImplemented},
 		{"hide",          &DialogMgr::_hideCmd},
 		{"unhide",        &DialogMgr::_unhideCmd},
-		{"buttons",       &DialogMgr::_notImplemented},
+		{"buttons",       &DialogMgr::_buttonsPlaceCmd},
+		{"skipWeek",      &DialogMgr::_skipWeekCmd},
 	};
 
 	void DialogMgr::update()
@@ -66,6 +81,7 @@ namespace UntilBeingCrowned
 		dialog = 0;
 		textPos = 1;
 		this->_text.clear();
+		this->_skippedWeek = false;
 		this->_left = this->_dialogsString[dialogMap][dialog][0] == 'l';
 		this->_onHold = false;
 		this->_lineEnded = this->_dialogsString[id][0].empty();
@@ -202,7 +218,7 @@ namespace UntilBeingCrowned
 	std::string DialogMgr::_skipCmd(const std::vector<std::string> &args)
 	{
 		if (!args.empty())
-			throw InvalidArgumentsException("Expected 0 argument.");
+			throw InvalidArgumentsException("Expected no argument.");
 		this->_nextLine();
 		std::get<2>(this->_currentDialog) = 0;
 		return {};
@@ -345,5 +361,51 @@ namespace UntilBeingCrowned
 			pan = this->_gui.get<tgui::Panel>("myPanel");
 		pan->setVisible(true);
 		return {};
+	}
+
+	std::string DialogMgr::_finishCmd(const std::vector<std::string> &args)
+	{
+		if (!args.empty())
+			throw InvalidArgumentsException("Expected no argument.");
+		this->_done = true;
+		return {};
+	}
+
+	std::string DialogMgr::_setFlagCmd(const std::vector<std::string> &args)
+	{
+		if (!args.empty())
+			throw InvalidArgumentsException("Expected a single argument.");
+		return {};
+	}
+
+	std::string DialogMgr::_unsetFlagCmd(const std::vector<std::string> &args)
+	{
+		if (!args.empty())
+			throw InvalidArgumentsException("Expected a single argument.");
+		return {};
+	}
+
+	std::string DialogMgr::_buttonsPlaceCmd(const std::vector<std::string> &args)
+	{
+		if (!args.empty())
+			throw InvalidArgumentsException("Expected a single argument.");
+		return {};
+	}
+
+	std::string DialogMgr::_skipWeekCmd(const std::vector<std::string> &args)
+	{
+		if (!args.empty())
+			throw InvalidArgumentsException("Expected no argument.");
+		INCREMENT_VAR(gold);
+		INCREMENT_VAR(army);
+		INCREMENT_VAR(food);
+		this->_state.week++;
+		this->_skippedWeek = true;
+		return {};
+	}
+
+	bool DialogMgr::hasSkippedWeek() const
+	{
+		return this->_skippedWeek;
 	}
 }

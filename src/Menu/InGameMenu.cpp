@@ -63,6 +63,7 @@ namespace UntilBeingCrowned
 		this->_passiveArmyLabel->setText("+" + std::to_string(this->_state.armyPassive));
 		this->_passiveFoodLabel->setText("+" + std::to_string(this->_state.foodPassive));
 		this->_hookHandlers();
+		this->_questsMgr.nextWeek();
 	}
 
 	void InGameMenu::render()
@@ -150,7 +151,6 @@ namespace UntilBeingCrowned
 		INCREMENT_VAR(army);
 		INCREMENT_VAR(food);
 		this->_state.week++;
-		this->_questsMgr.nextWeek();
 		this->_mgr.changeMenu("dialog");
 	}
 }

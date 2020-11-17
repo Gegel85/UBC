@@ -25,12 +25,18 @@ namespace UntilBeingCrowned
 		bool _left = false;
 		bool _onHold = false;
 		bool _done = true;
+		bool _skippedWeek = false;
 		bool _lineEnded = false;
 		std::string _text;
 		const Resources &_resources;
-		const GameState &_state;
+		GameState &_state;
 
 		void _processTextCharacter();
+		std::string _finishCmd(const std::vector<std::string> &args);
+		std::string _setFlagCmd(const std::vector<std::string> &args);
+		std::string _unsetFlagCmd(const std::vector<std::string> &args);
+		std::string _buttonsPlaceCmd(const std::vector<std::string> &args);
+		std::string _skipWeekCmd(const std::vector<std::string> &args);
 		std::string _hideCmd(const std::vector<std::string> &args);
 		std::string _unhideCmd(const std::vector<std::string> &args);
 		std::string _dispPercent(const std::vector<std::string> &);
@@ -42,9 +48,10 @@ namespace UntilBeingCrowned
 		static std::pair<std::string, std::vector<std::string>> _parseCommand(size_t &pos, const std::string &cmdStart);
 
 	public:
-		DialogMgr(tgui::Gui &gui, const Resources &resources, const GameState &state);
+		DialogMgr(tgui::Gui &gui, const Resources &resources, GameState &state);
 		void clicked();
 		bool isDone() const;
+		bool hasSkippedWeek() const;
 		bool hasDialog(const std::string &id);
 		void update();
 		void startDialog(const std::string &id);
