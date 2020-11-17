@@ -179,6 +179,9 @@ namespace UntilBeingCrowned
 			++pos;
 		}
 
+		if (!token.empty())
+			args.push_back(token);
+
 		if (sep)
 			throw UnfinishedStringLiteralException("Unfinished command in string '" + cmdStart.substr(strStart) + "'");
 
