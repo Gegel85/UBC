@@ -18,14 +18,14 @@ namespace UntilBeingCrowned
 	}
 
 	const std::map<std::string, std::string (DialogMgr::*)(const std::vector<std::string> &)> DialogMgr::_commands{
-		{"",              &DialogMgr::_notImplemented},
+		{"",              &DialogMgr::_dispPercent},
 		{"skip",          &DialogMgr::_skipCmd},
 		{"setMusic",      &DialogMgr::_notImplemented},
 		{"playSfx",       &DialogMgr::_notImplemented},
 		{"setSprite",     &DialogMgr::_setSpriteCmd},
 		{"setSpriteRect", &DialogMgr::_notImplemented},
 		{"finish",        &DialogMgr::_notImplemented},
-		{"choices",       &DialogMgr::_notImplemented},
+		{"choices",       &DialogMgr::_choicesCmd},
 		{"setFlag",       &DialogMgr::_notImplemented},
 		{"unsetFlag",     &DialogMgr::_notImplemented},
 		{"wait",          &DialogMgr::_notImplemented},
@@ -54,11 +54,15 @@ namespace UntilBeingCrowned
 
 		leftText->setText("");
 		rightText->setText("");
-		for (int i = 0; i < 5; i++)
-			this->_gui.get<tgui::Button>("Button" + std::to_string(i))->disconnectAll();
+		for (int i = 0; i < 5; i++) {
+			auto but = this->_gui.get<tgui::Button>("Button" + std::to_string(i));
+			but->disconnectAll();
+			but->setVisible(false);
+		}
 		dialogMap = id;
 		dialog = 0;
 		textPos = 1;
+		this->_text.clear();
 		this->_left = this->_dialogsString[dialogMap][dialog][0] == 'l';
 		this->_onHold = false;
 		this->_lineEnded = this->_dialogsString[id][0].empty();
@@ -79,13 +83,14 @@ namespace UntilBeingCrowned
 
 		logger.debug("Loading next line");
 		dialog++;
-		this->_text = "";
+		this->_text.clear();
 		this->_done = dialog >= this->_dialogsString[dialogMap].size();
 		if (!this->_done) {
 			this->_lineEnded = this->_dialogsString[dialogMap][dialog].size() == 1;
 			this->_left = this->_dialogsString[dialogMap][dialog][0] == 'l';
 			textPos = 1;
-		}
+		} else
+			logger.debug("Done !");
 	}
 
 	void DialogMgr::loadFile(const std::string &path)
@@ -177,6 +182,7 @@ namespace UntilBeingCrowned
 
 	void DialogMgr::clicked()
 	{
+		logger.debug("Skipping");
 		if (this->isDone() || this->_onHold)
 			return;
 		if (this->_lineEnded)
@@ -269,5 +275,44 @@ namespace UntilBeingCrowned
 		textPos++;
 		textBox->setText(this->_text);
 		this->_lineEnded = textPos >= this->_dialogsString[dialogMap][dialog].size();
+	}
+
+	std::string DialogMgr::_dispPercent(const std::vector<std::string> &)
+	{
+		return "%";
+	}
+
+	std::string DialogMgr::_choicesCmd(const std::vector<std::string> &args)
+	{
+		auto disableButtons = [this]{
+			for (int i = 0; i < 5; i++) {
+				auto but = this->_gui.get<tgui::Button>("Button" + std::to_string(i));
+				but->disconnectAll();
+				but->setVisible(false);
+			}
+		};
+
+		if (args.size() < 3 || args.size() > 10)
+			throw InvalidArgumentsException("Expected between 3 and 10 arguments");
+		for (size_t i = 0; i < args.size(); i += 2) {
+			auto button = this->_gui.get<tgui::Button>("Button" + std::to_string(i / 2));
+
+			button->setVisible(true);
+			button->setText(args[i]);
+			if (i + 1 < args.size()) {
+				button->connect("Clicked", [disableButtons, this](const std::string &warp){
+					this->_onHold = false;
+					disableButtons();
+					this->startDialog(warp);
+				}, args[i + 1]);
+			} else
+				button->connect("Clicked",[disableButtons, this]{
+					this->_onHold = false;
+					disableButtons();
+					this->_nextLine();
+				});
+		}
+		this->_onHold = true;
+		return {};
 	}
 }

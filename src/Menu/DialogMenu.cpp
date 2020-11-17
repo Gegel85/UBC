@@ -33,6 +33,8 @@ namespace UntilBeingCrowned
 	void DialogMenu::render()
 	{
 		this->_dialogMgr.update();
+		if (this->_dialogMgr.isDone())
+			this->_mgr.changeMenu("in_game");
 	}
 
 	void DialogMenu::handleEvent(const Input::Event &)
