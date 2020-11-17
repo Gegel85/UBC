@@ -28,6 +28,6 @@
     "lHave you thought about what they will think of you if you stay here?",
     "lBeing absent on the day of your father's funeral...",
     "l%hide l%%skip%",
-    "r%unhide r%(Choose your answer): %choices \"I don't care about what they think!\" wantToBeAlone \"I just need some time alone; I am sure they can understand\" wantToBeAlone \"Maybe I should go back then…\" goBackToTheFuneral%"
+    "r%unhide r%(Choose your answer): %choices \"I don't care about what they think!\" wantToBeAlone \"I just need some time alone; I am sure they can understand\" wantToBeAlone \"Maybe I should go back then...\" goBackToTheFuneral%"
   ]
 }

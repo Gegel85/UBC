@@ -161,7 +161,7 @@ namespace UntilBeingCrowned
 					strStart = pos;
 				} else if (cmdStart[pos] == sep)
 					sep = 0;
-			} else if (std::isspace(cmdStart[pos])) {
+			} else if (std::isspace(cmdStart[pos]) && !sep) {
 				if (!token.empty()) {
 					if (command.empty())
 						command = token;
