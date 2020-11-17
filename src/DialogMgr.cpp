@@ -10,8 +10,10 @@
 
 namespace UntilBeingCrowned
 {
-	DialogMgr::DialogMgr(tgui::Gui &gui) :
-		_gui(gui)
+	DialogMgr::DialogMgr(tgui::Gui &gui, const Resources &resources, const GameState &state) :
+		_gui(gui),
+		_resources(resources),
+		_state(state)
 	{
 	}
 
@@ -20,7 +22,7 @@ namespace UntilBeingCrowned
 		{"skip",          &DialogMgr::_skipCmd},
 		{"setMusic",      &DialogMgr::_notImplemented},
 		{"playSfx",       &DialogMgr::_notImplemented},
-		{"setSprite",     &DialogMgr::_notImplemented},
+		{"setSprite",     &DialogMgr::_setSpriteCmd},
 		{"setSpriteRect", &DialogMgr::_notImplemented},
 		{"finish",        &DialogMgr::_notImplemented},
 		{"choices",       &DialogMgr::_notImplemented},
@@ -214,9 +216,46 @@ namespace UntilBeingCrowned
 		return this->_dialogsString.find(id) != this->_dialogsString.end();
 	}
 
-	std::string DialogMgr::_skipCmd(const std::vector<std::string> &)
+	std::string DialogMgr::_skipCmd(const std::vector<std::string> &args)
 	{
+		if (!args.empty())
+			throw InvalidArgumentsException("Expected 0 argument.");
 		this->_nextLine();
-		return std::string();
+		return {};
 	}
+
+	std::string DialogMgr::_setSpriteCmd(const std::vector<std::string> &args)
+	{
+		tgui::Picture::Ptr pic;
+
+		if (args.size() != 1 && args.size() != 5)
+			throw InvalidArgumentsException("Expected a single argument or exactly 5 arguments");
+
+		std::string sprite = args[0];
+		std::string playerSprite =
+			std::find(this->_state.flags.begin(), this->_state.flags.end(), "player_f") != this->_state.flags.end() ?
+			"princess" : "prince";
+
+		for (size_t pos = sprite.find("player"); pos != std::string::npos; pos = sprite.find("player"))
+			sprite.replace(pos, 6, playerSprite);
+		if (this->_left)
+			pic = this->_gui.get<tgui::Picture>("Picture3");
+		else
+			pic = this->_gui.get<tgui::Picture>("Picture2");
+
+		if (args.size() == 1)
+			pic->getRenderer()->setTexture(this->_resources.textures.at(sprite));
+		else
+			pic->getRenderer()->setTexture(tgui::Texture(
+				this->_resources.textures.at(sprite),
+				{
+					std::stoi(args[1]),
+					std::stoi(args[2]),
+					std::stoi(args[3]),
+					std::stoi(args[4]),
+				}
+			));
+		return {};
+	}
+
 }

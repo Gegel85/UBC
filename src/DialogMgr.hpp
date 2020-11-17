@@ -10,6 +10,8 @@
 #include <tuple>
 #include <map>
 #include <TGUI/Gui.hpp>
+#include "Resources/GameState.hpp"
+#include "Resources/Resources.hpp"
 
 namespace UntilBeingCrowned
 {
@@ -25,14 +27,17 @@ namespace UntilBeingCrowned
 		bool _done = true;
 		bool _lineEnded = false;
 		std::string _text;
+		const Resources &_resources;
+		const GameState &_state;
 
-		std::string _skipCmd(const std::vector<std::string> &);
+		std::string _skipCmd(const std::vector<std::string> &args);
+		std::string _setSpriteCmd(const std::vector<std::string> &args);
 		std::string _notImplemented(const std::vector<std::string> &args);
 		void _nextLine();
 		static std::pair<std::string, std::vector<std::string>> _parseCommand(size_t &pos, const std::string &cmdStart);
 
 	public:
-		DialogMgr(tgui::Gui &gui);
+		DialogMgr(tgui::Gui &gui, const Resources &resources, const GameState &state);
 		void clicked();
 		bool isDone() const;
 		bool hasDialog(const std::string &id);
