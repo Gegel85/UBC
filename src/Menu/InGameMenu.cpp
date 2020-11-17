@@ -50,7 +50,18 @@ namespace UntilBeingCrowned
 		this->_passiveGoldsLabel = this->_gui.get<tgui::Label>("PassiveGold");
 		this->_passiveArmyLabel = this->_gui.get<tgui::Label>("PassiveArmy");
 		this->_passiveFoodLabel = this->_gui.get<tgui::Label>("PassiveFood");
-		this->_questsMgr.showDialog(0, this->_gui);
+		if (!this->_state.week)
+			this->_questsMgr.showDialog(0, this->_gui);
+
+		auto newQuestsList = this->_gui.get<tgui::Button>("NewQuests");
+
+		newQuestsList->setVisible(!this->_questsMgr.getNewQuests().empty());
+		this->_goldsLabel->setText(std::to_string(this->_state.gold));
+		this->_armyLabel->setText(std::to_string(this->_state.army));
+		this->_foodLabel->setText(std::to_string(this->_state.food));
+		this->_passiveGoldsLabel->setText("+" + std::to_string(this->_state.goldPassive));
+		this->_passiveArmyLabel->setText("+" + std::to_string(this->_state.armyPassive));
+		this->_passiveFoodLabel->setText("+" + std::to_string(this->_state.foodPassive));
 		this->_hookHandlers();
 	}
 
@@ -140,5 +151,6 @@ namespace UntilBeingCrowned
 		INCREMENT_VAR(food);
 		this->_state.week++;
 		this->_questsMgr.nextWeek();
+		this->_mgr.changeMenu("dialog");
 	}
 }
