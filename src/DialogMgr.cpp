@@ -36,39 +36,7 @@ namespace UntilBeingCrowned
 		if (this->isDone() || this->_lineEnded || this->_onHold)
 			return;
 
-		auto &dialogMap = std::get<0>(this->_currentDialog);
-		auto &dialog = std::get<1>(this->_currentDialog);
-		auto &textPos = std::get<2>(this->_currentDialog);
-		tgui::TextBox::Ptr textBox;
-
-		if (this->_left)
-			textBox = this->_gui.get<tgui::Panel>("otherPanel")->get<tgui::TextBox>("otherTextBox");
-		else
-			textBox = this->_gui.get<tgui::Panel>("myPanel")->get<tgui::TextBox>("myTextBox");
-
-		char c = this->_dialogsString[dialogMap][dialog][textPos];
-
-		if (c == '%') {
-			auto cmd = DialogMgr::_parseCommand(textPos, this->_dialogsString[dialogMap][dialog]);
-
-			try {
-				this->_text += (this->*DialogMgr::_commands.at(cmd.first))(cmd.second);
-			} catch (const std::exception &e) {
-				this->_text += "Exception '" + getLastExceptionName() + "' thrown when trying to run command '";
-				this->_text += cmd.first + "' (" + std::to_string(cmd.second.size()) + " argument(s)" + (cmd.second.empty() ? "" : ": ");
-				for (size_t i = 0; i < cmd.second.size(); i++) {
-					if (i)
-						this->_text += ", ";
-					this->_text += "'" + cmd.second[i] + "'";
-				}
-				this->_text += std::string(") : ") + e.what();
-				this->_onHold = true;
-			}
-		} else
-			this->_text += c;
-		textPos++;
-		textBox->setText(this->_text);
-		this->_lineEnded = textPos >= this->_dialogsString[dialogMap][dialog].size();
+		this->_processTextCharacter();
 	}
 
 	void DialogMgr::startDialog(const std::string &id)
@@ -109,11 +77,12 @@ namespace UntilBeingCrowned
 		auto &dialog = std::get<1>(this->_currentDialog);
 		auto &textPos = std::get<2>(this->_currentDialog);
 
+		logger.debug("Loading next line");
 		dialog++;
 		this->_text = "";
 		this->_done = dialog >= this->_dialogsString[dialogMap].size();
 		if (!this->_done) {
-			this->_lineEnded = this->_dialogsString[dialogMap][dialog].empty();
+			this->_lineEnded = this->_dialogsString[dialogMap][dialog].size() == 1;
 			this->_left = this->_dialogsString[dialogMap][dialog][0] == 'l';
 			textPos = 1;
 		}
@@ -181,8 +150,13 @@ namespace UntilBeingCrowned
 			++pos;
 		}
 
-		if (!token.empty())
-			args.push_back(token);
+		if (!token.empty()) {
+			if (command.empty())
+				command = token;
+			else
+				args.push_back(token);
+			token.clear();
+		}
 
 		if (sep)
 			throw UnfinishedStringLiteralException("Unfinished command in string '" + cmdStart.substr(strStart) + "'");
@@ -203,12 +177,12 @@ namespace UntilBeingCrowned
 
 	void DialogMgr::clicked()
 	{
-		if (this->isDone() || !this->_onHold)
+		if (this->isDone() || this->_onHold)
 			return;
 		if (this->_lineEnded)
 			this->_nextLine();
-		else
-			std::get<2>(this->_currentDialog) = this->_dialogsString[std::get<0>(this->_currentDialog)][std::get<1>(this->_currentDialog)].size();
+		else while (!this->_lineEnded)
+			this->_processTextCharacter();
 	}
 
 	bool DialogMgr::hasDialog(const std::string &id)
@@ -221,6 +195,7 @@ namespace UntilBeingCrowned
 		if (!args.empty())
 			throw InvalidArgumentsException("Expected 0 argument.");
 		this->_nextLine();
+		std::get<2>(this->_currentDialog) = 0;
 		return {};
 	}
 
@@ -258,4 +233,41 @@ namespace UntilBeingCrowned
 		return {};
 	}
 
+	void DialogMgr::_processTextCharacter()
+	{
+		auto &dialogMap = std::get<0>(this->_currentDialog);
+		auto &dialog = std::get<1>(this->_currentDialog);
+		auto &textPos = std::get<2>(this->_currentDialog);
+		tgui::TextBox::Ptr textBox;
+
+		if (this->_left)
+			textBox = this->_gui.get<tgui::Panel>("otherPanel")->get<tgui::TextBox>("otherTextBox");
+		else
+			textBox = this->_gui.get<tgui::Panel>("myPanel")->get<tgui::TextBox>("myTextBox");
+
+		char c = this->_dialogsString[dialogMap][dialog][textPos];
+
+		if (c == '%') {
+			auto cmd = DialogMgr::_parseCommand(textPos, this->_dialogsString[dialogMap][dialog]);
+
+			logger.debug("Execute command " + cmd.first);
+			try {
+				this->_text += (this->*DialogMgr::_commands.at(cmd.first))(cmd.second);
+			} catch (const std::exception &e) {
+				this->_text += "Exception '" + getLastExceptionName() + "' thrown when trying to run command '";
+				this->_text += cmd.first + "' (" + std::to_string(cmd.second.size()) + " argument(s)" + (cmd.second.empty() ? "" : ": ");
+				for (size_t i = 0; i < cmd.second.size(); i++) {
+					if (i)
+						this->_text += ", ";
+					this->_text += "'" + cmd.second[i] + "'";
+				}
+				this->_text += std::string(") : ") + e.what();
+				this->_onHold = true;
+			}
+		} else
+			this->_text += c;
+		textPos++;
+		textBox->setText(this->_text);
+		this->_lineEnded = textPos >= this->_dialogsString[dialogMap][dialog].size();
+	}
 }

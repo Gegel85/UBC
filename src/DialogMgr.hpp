@@ -30,6 +30,7 @@ namespace UntilBeingCrowned
 		const Resources &_resources;
 		const GameState &_state;
 
+		void _processTextCharacter();
 		std::string _skipCmd(const std::vector<std::string> &args);
 		std::string _setSpriteCmd(const std::vector<std::string> &args);
 		std::string _notImplemented(const std::vector<std::string> &args);
