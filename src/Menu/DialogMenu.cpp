@@ -22,8 +22,6 @@ namespace UntilBeingCrowned
 	void DialogMenu::switched(bool isActive)
 	{
 		if (isActive) {
-			if (!this->_dialogMgr.hasDialog("week" + std::to_string(this->_state.week)))
-				this->_mgr.changeMenu("in_game");
 			this->_gui.loadWidgetsFromFile("gui/dialogMenu.gui");
 			this->_dialogMgr.startDialog("week" + std::to_string(this->_state.week));
 		} else

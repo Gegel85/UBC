@@ -373,22 +373,28 @@ namespace UntilBeingCrowned
 
 	std::string DialogMgr::_setFlagCmd(const std::vector<std::string> &args)
 	{
-		if (!args.empty())
+		if (args.size() != 1)
 			throw InvalidArgumentsException("Expected a single argument.");
+		this->_state.flags.push_back(args[0]);
 		return {};
 	}
 
 	std::string DialogMgr::_unsetFlagCmd(const std::vector<std::string> &args)
 	{
-		if (!args.empty())
+		if (args.size() != 1)
 			throw InvalidArgumentsException("Expected a single argument.");
+		this->_state.flags.erase(std::remove(this->_state.flags.begin(), this->_state.flags.end(), args[0]), this->_state.flags.end());
 		return {};
 	}
 
 	std::string DialogMgr::_buttonsPlaceCmd(const std::vector<std::string> &args)
 	{
-		if (!args.empty())
+		if (args.size() != 1)
 			throw InvalidArgumentsException("Expected a single argument.");
+		if (args[0][0] == 'l')
+			this->_gui.get<tgui::Button>("Button0")->setPosition(10, 340);
+		else
+			this->_gui.get<tgui::Button>("Button0")->setPosition(660, 300);
 		return {};
 	}
 
