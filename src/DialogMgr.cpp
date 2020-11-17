@@ -29,8 +29,9 @@ namespace UntilBeingCrowned
 		{"setFlag",       &DialogMgr::_notImplemented},
 		{"unsetFlag",     &DialogMgr::_notImplemented},
 		{"wait",          &DialogMgr::_notImplemented},
-		{"hide",          &DialogMgr::_notImplemented},
-		{"unhide",        &DialogMgr::_notImplemented},
+		{"hide",          &DialogMgr::_hideCmd},
+		{"unhide",        &DialogMgr::_unhideCmd},
+		{"buttons",       &DialogMgr::_notImplemented},
 	};
 
 	void DialogMgr::update()
@@ -315,6 +316,34 @@ namespace UntilBeingCrowned
 				});
 		}
 		this->_onHold = true;
+		return {};
+	}
+
+	std::string DialogMgr::_hideCmd(const std::vector<std::string> &args)
+	{
+		tgui::Panel::Ptr pan;
+
+		if (args.size() != 1)
+			throw InvalidArgumentsException("Expected a single argument arguments");
+		if (args[0][0] == 'l')
+			pan = this->_gui.get<tgui::Panel>("otherPanel");
+		else
+			pan = this->_gui.get<tgui::Panel>("myPanel");
+		pan->setVisible(false);
+		return {};
+	}
+
+	std::string DialogMgr::_unhideCmd(const std::vector<std::string> &args)
+	{
+		tgui::Panel::Ptr pan;
+
+		if (args.size() != 1)
+			throw InvalidArgumentsException("Expected a single argument arguments");
+		if (args[0][0] == 'l')
+			pan = this->_gui.get<tgui::Panel>("otherPanel");
+		else
+			pan = this->_gui.get<tgui::Panel>("myPanel");
+		pan->setVisible(true);
 		return {};
 	}
 }
