@@ -16,7 +16,7 @@ Picture.Picture7 {
 }
 
 Label.Gold {
-    Position = (180, 380);
+    Position = (200, 384);
     ScrollbarPolicy = Never;
     Size = (150, 52.4286);
     Text = 300;
@@ -33,7 +33,7 @@ Label.Gold {
 }
 
 Label.Army {
-    Position = (605, 227);
+    Position = (635, 227);
     ScrollbarPolicy = Never;
     Size = (70, 27);
     Text = 500;
@@ -80,7 +80,7 @@ Label.PassiveGold {
 
 Label.PassiveArmy {
     AutoSize = true;
-    Position = (660, 230);
+    Position = (690, 230);
     ScrollbarPolicy = Never;
     Size = (21.2, 18);
     Text = "+1";
@@ -164,8 +164,8 @@ BitmapButton.NewQuests {
 }
 
 Button.Next {
-    Position = (1020, 390);
-    Size = (268.965, 274);
+    Position = (1020, 210);
+    Size = (268.965, 454);
     TextSize = 13;
 
     Renderer {
@@ -188,5 +188,23 @@ Button.Next {
         texturedown = "assets/nextWeekClick.png";
         texturefocused = None;
         texturehover = "assets/nextWeekHover.png";
+    }
+}
+
+Label.Month {
+    AutoSize = true;
+    Position = (50, 125);
+    ScrollbarPolicy = Never;
+    Size = (131, 28);
+    Text = January;
+    TextSize = 25;
+
+    Renderer {
+        backgroundcolor = transparent;
+        bordercolor = #3C3C3C;
+        borders = (0, 0, 0, 0);
+        font = "assets/kenpixel.ttf";
+        textcolor = #3C3C3C;
+        texturebackground = None;
     }
 }

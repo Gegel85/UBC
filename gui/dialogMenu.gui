@@ -44,7 +44,7 @@ Panel.otherPanel {
         Position = (12, 22);
         Size = (418, 115);
         Text = awdadwad;
-        TextSize = 13;
+        TextSize = 20;
 
         Renderer {
             backgroundcolor = transparent;
@@ -73,7 +73,7 @@ Panel.myPanel {
         Position = (12, 22);
         Size = (418, 115);
         Text = dawdawdwa;
-        TextSize = 13;
+        TextSize = 20;
 
         Renderer {
             backgroundcolor = transparent;
