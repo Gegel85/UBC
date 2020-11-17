@@ -1,13 +1,13 @@
 {
   "no": [
-    "Good to know"
+    "lGood to know"
   ],
   "week0": [
-    "%setSprite prince%%setSpriteRect 16 0 32 64%Testing dialogs feature.",
-    "%setSprite guard%%setSpriteRect 12 0 32 64%Good.",
-    "%skip%",
-    "Good ?%choices No no Yes%",
-    "100%% sure ?%choices No no Yes%",
-    "Ok"
+    "r%setSprite prince%%setSpriteRect 16 0 32 64%Testing dialogs feature.",
+    "l%setSprite guard%%setSpriteRect 12 0 32 64%Good.",
+    "r%skip%",
+    "lGood ?%choices No no Yes%",
+    "l100%% sure ?%choices No no Yes%",
+    "lOk"
   ]
 }

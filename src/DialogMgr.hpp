@@ -15,21 +15,29 @@ namespace UntilBeingCrowned
 {
 	class DialogMgr {
 	private:
+		tgui::Gui &_gui;
 		static const std::map<std::string, std::string (DialogMgr::*)(const std::vector<std::string> &)> _commands;
 		std::map<std::string, std::vector<std::string>> _dialogsString;
 		std::tuple<std::string, unsigned, size_t> _currentDialog = {"", 0, 0};
 		unsigned _waitingTime = 0;
+		bool _left = false;
+		bool _onHold = false;
 		bool _done = true;
 		bool _lineEnded = false;
+		std::string _text;
 
+		std::string _skipCmd(const std::vector<std::string> &);
 		std::string _notImplemented(const std::vector<std::string> &args);
 		void _nextLine();
-		std::pair<std::string, std::vector<std::string>> _parseCommand(size_t &pos, const std::string &cmdStart);
+		static std::pair<std::string, std::vector<std::string>> _parseCommand(size_t &pos, const std::string &cmdStart);
 
 	public:
+		DialogMgr(tgui::Gui &gui);
+		void clicked();
 		bool isDone() const;
-		void update(tgui::Gui &gui);
-		void startDialog(tgui::Gui &gui);
+		bool hasDialog(const std::string &id);
+		void update();
+		void startDialog(const std::string &id);
 		void loadFile(const std::string &path);
 	};
 }

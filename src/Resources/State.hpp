@@ -23,7 +23,7 @@ namespace UntilBeingCrowned
 		QuestMgr questMgr;
 		GameState game;
 
-		State() : questMgr(this->game) {};
+		State() : dialogMgr(this->gui), questMgr(this->game) {};
 	};
 }
 
