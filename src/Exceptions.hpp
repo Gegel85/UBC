@@ -97,7 +97,7 @@ namespace UntilBeingCrowned
 		{};
 	};
 
-	//! @brief Dialog file is invalid.
+	//! @brief Quest file is invalid.
 	class InvalidQuestFileException : public BaseException {
 	public:
 		explicit InvalidQuestFileException(const std::string &&msg) :
@@ -108,6 +108,14 @@ namespace UntilBeingCrowned
 			BaseException(
 				"Invalid dialog #" + std::to_string(element) + ": " + msg
 			)
+		{};
+	};
+
+	//! @brief Dialog file is invalid.
+	class InvalidDialogFileException : public BaseException {
+	public:
+		explicit InvalidDialogFileException(const std::string &&msg) :
+			BaseException(static_cast<const std::string &&>(msg))
 		{};
 	};
 
@@ -186,6 +194,10 @@ namespace UntilBeingCrowned
 	//! @brief The dynamic library wasn't valid.
 	class NotImplementedException : public BaseException {
 	public:
+		NotImplementedException() :
+			BaseException("not implemented")
+		{};
+
 		explicit NotImplementedException(const std::string &&msg) :
 			BaseException(static_cast<const std::string &&>(msg))
 		{};

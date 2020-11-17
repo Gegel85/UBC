@@ -116,6 +116,9 @@ namespace UntilBeingCrowned
 		}
 
 		logger.debug("Loading dialog");
+		game.state.dialogMgr.loadFile("assets/dialogs.json");
+
+		logger.debug("Loading quests");
 		game.state.questMgr.loadFile("assets/quests.json", game.resources);
 	}
 }

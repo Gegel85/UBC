@@ -11,6 +11,7 @@
 #include "../Menu/MenuMgr.hpp"
 #include "Settings.hpp"
 #include "GameState.hpp"
+#include "../DialogMgr.hpp"
 
 namespace UntilBeingCrowned
 {
@@ -18,6 +19,7 @@ namespace UntilBeingCrowned
 		tgui::Gui gui;
 		MenuMgr menuMgr;
 		Settings settings;
+		DialogMgr dialogMgr;
 		QuestMgr questMgr;
 		GameState game;
 

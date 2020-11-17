@@ -1,0 +1,190 @@
+Renderer.1 {
+    backgroundcolor = white;
+    bordercolor = black;
+    texturebackground = "assets/dialogue_text_box.png" Part(27, 27, 397, 97);
+}
+
+Renderer.2 {
+    backgroundcolor = #F5F5F5;
+    backgroundcolordisabled = #E6E6E6;
+    backgroundcolordown = #EBEBEB;
+    backgroundcolorhover = white;
+    bordercolor = #3C3C3C;
+    bordercolordisabled = #7D7D7D;
+    bordercolordown = black;
+    bordercolorfocused = #1E1EB4;
+    bordercolorhover = black;
+    borders = (0, 0, 0, 0);
+    textcolor = #3C3C3C;
+    textcolordisabled = #7D7D7D;
+    textcolordown = black;
+    textcolorhover = black;
+    texture = "assets/answer_text_box.png";
+    texturedisabled = None;
+    texturedown = None;
+    texturefocused = None;
+    texturehover = None;
+}
+
+Picture.Picture1 {
+    Size = (1360, 768);
+
+    Renderer {
+        texture = "assets/dialogScene.png";
+        transparenttexture = false;
+    }
+}
+
+Picture.Picture2 {
+    Position = (960, 220);
+    Size = (242, 484);
+
+    Renderer {
+        texture = "assets/Idle_prince.png" Part(16, 0, 32, 64);
+        transparenttexture = false;
+    }
+}
+
+Picture.Picture3 {
+    Position = (10, 240);
+    Size = (242, 484);
+
+    Renderer {
+        texture = "assets/Captain_guard_idle.png" Part(20, 0, 32, 64);
+        transparenttexture = false;
+    }
+}
+
+Panel.otherPanel {
+    Position = (0, 170);
+    Size = (440, 160);
+    renderer = &1;
+
+    TextBox.otherTextBox {
+        HorizontalScrollbarPolicy = Never;
+        MaximumCharacters = 0;
+        Position = (12, 22);
+        Size = (418, 115);
+        Text = awdadwad;
+        TextSize = 13;
+
+        Renderer {
+            backgroundcolor = transparent;
+            bordercolor = black;
+            borders = (0, 0, 0, 0);
+            caretcolor = black;
+            caretwidth = 1;
+            font = "assets/kenpixel.ttf";
+            padding = (0, 0, 0, 0);
+            selectedtextbackgroundcolor = #006EFF;
+            selectedtextcolor = white;
+            textcolor = #3C3C3C;
+            texturebackground = None;
+        }
+    }
+}
+
+Panel.myPanel {
+    Position = (760, 130);
+    Size = (440, 160);
+    renderer = &1;
+
+    TextBox.myTextBox {
+        HorizontalScrollbarPolicy = Never;
+        MaximumCharacters = 0;
+        Position = (12, 22);
+        Size = (418, 115);
+        Text = dawdawdwa;
+        TextSize = 13;
+
+        Renderer {
+            backgroundcolor = transparent;
+            bordercolor = black;
+            borders = (0, 0, 0, 0);
+            caretcolor = black;
+            caretwidth = 1;
+            font = "assets/kenpixel.ttf";
+            padding = (0, 0, 0, 0);
+            selectedtextbackgroundcolor = #006EFF;
+            selectedtextcolor = white;
+            textcolor = #3C3C3C;
+            texturebackground = None;
+        }
+    }
+}
+
+Button.Next {
+    Size = (1360, 768);
+    Text = Button;
+    TextSize = 13;
+
+    Renderer {
+        backgroundcolor = transparent;
+        backgroundcolordisabled = transparent;
+        backgroundcolordown = transparent;
+        backgroundcolorfocused = transparent;
+        backgroundcolorhover = transparent;
+        bordercolor = transparent;
+        bordercolordisabled = transparent;
+        bordercolordown = transparent;
+        bordercolorfocused = transparent;
+        bordercolorhover = transparent;
+        borders = (1, 1, 1, 1);
+        textcolor = transparent;
+        textcolordisabled = transparent;
+        textcolordown = transparent;
+        textcolorfocused = transparent;
+        textcolorhover = transparent;
+        textoutlinecolor = transparent;
+        texture = None;
+        texturedisabled = None;
+        texturedown = None;
+        texturefocused = None;
+        texturehover = None;
+    }
+}
+
+Button.Button0 {
+    Position = (790, 320);
+    Size = (128, 34.1379);
+    Text = Button;
+    TextSize = 13;
+    Visible = false;
+    renderer = &2;
+}
+
+Button.Button1 {
+    Position = (790, 360);
+    Size = (128, 34.1379);
+    Text = Button;
+    TextSize = 13;
+    Visible = false;
+    renderer = &2;
+}
+
+Button.Button2 {
+    Position = (790, 400);
+    Size = (128, 34.1379);
+    Text = Button;
+    TextSize = 13;
+    Visible = false;
+    renderer = &2;
+}
+
+Button.Button3 {
+    Position = (790, 440);
+    Size = (128, 34.1379);
+    Text = Button;
+    TextSize = 13;
+    Visible = false;
+    renderer = &2;
+}
+
+Button.Button4 {
+    Position = (790, 480);
+    Size = (128, 34.1379);
+    Text = Button;
+    TextSize = 13;
+    Visible = false;
+    renderer = &2;
+}
