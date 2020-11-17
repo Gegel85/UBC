@@ -192,12 +192,12 @@ Button.Next {
 }
 
 Label.Month {
-    AutoSize = true;
-    Position = (50, 125);
+    HorizontalAlignment = Center;
+    Position = (30, 125);
     ScrollbarPolicy = Never;
-    Size = (131, 28);
+    Size = (171, 28);
     Text = January;
-    TextSize = 25;
+    TextSize = 22;
 
     Renderer {
         backgroundcolor = transparent;

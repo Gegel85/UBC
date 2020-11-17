@@ -20,6 +20,21 @@
 		"no_"#var), this->_state.flags.end()            \
 	)
 
+static const std::array<std::string, 12> _monthsNames{
+	"January",
+	"February",
+	"March",
+	"April",
+	"May",
+	"June",
+	"July",
+	"August",
+	"September",
+	"October",
+	"November",
+	"December"
+};
+
 namespace UntilBeingCrowned
 {
 	InGameMenu::InGameMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, QuestMgr &dialogs, GameState &state) :
@@ -55,6 +70,7 @@ namespace UntilBeingCrowned
 
 		auto newQuestsList = this->_gui.get<tgui::Button>("NewQuests");
 
+		this->_gui.get<tgui::Label>("Month")->setText(_monthsNames[this->_state.week % 12]);
 		newQuestsList->setVisible(!this->_questsMgr.getNewQuests().empty());
 		this->_goldsLabel->setText(std::to_string(this->_state.gold));
 		this->_armyLabel->setText(std::to_string(this->_state.army));
