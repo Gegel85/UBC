@@ -29,6 +29,8 @@ namespace UntilBeingCrowned
 		{"setFlag",       &DialogMgr::_notImplemented},
 		{"unsetFlag",     &DialogMgr::_notImplemented},
 		{"wait",          &DialogMgr::_notImplemented},
+		{"hide",          &DialogMgr::_notImplemented},
+		{"unhide",        &DialogMgr::_notImplemented},
 	};
 
 	void DialogMgr::update()

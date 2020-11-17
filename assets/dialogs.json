@@ -9,5 +9,9 @@
     "lGood ?%choices No no Yes%",
     "l100%% sure ?%choices No no Yes%",
     "lOk"
+  ],
+  "week3": [
+    "l%setSprite idle_player 0 0 1 1%%skip%",
+    "r%setSprite idle_player 16 0 32 64%Week 3 !."
   ]
 }

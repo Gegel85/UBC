@@ -40,7 +40,7 @@ Picture.Picture2 {
     Size = (242, 484);
 
     Renderer {
-        texture = "assets/Idle_prince.png" Part(16, 0, 32, 64);
+        texture = "assets/Idle_prince.png" Part(16, 0, 1, 1);
         transparenttexture = false;
     }
 }
@@ -50,7 +50,7 @@ Picture.Picture3 {
     Size = (242, 484);
 
     Renderer {
-        texture = "assets/Captain_guard_idle.png" Part(20, 0, 32, 64);
+        texture = "assets/Captain_guard_idle.png" Part(20, 0, 1, 1);
         transparenttexture = false;
     }
 }
