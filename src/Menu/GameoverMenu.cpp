@@ -6,10 +6,11 @@
 
 namespace UntilBeingCrowned
 {
-	GameoverMenu::GameoverMenu(MenuMgr &mgr, tgui::Gui &gui, GameState &state) :
+	GameoverMenu::GameoverMenu(MenuMgr &mgr, Resources &res, tgui::Gui &gui, GameState &state) :
 		_mgr(mgr),
 		_gui(gui),
-		_state(state)
+		_state(state),
+		_res(res)
 	{
 	}
 
@@ -18,6 +19,7 @@ namespace UntilBeingCrowned
 		if (!isActive)
 			return;
 
+		this->_res.playMusic("game_over");
 		auto it = std::find_if(this->_state.flags.begin(), this->_state.flags.end(), [](const std::string &str){
 			return str.substr(0, strlen("killed_")) == "killed_";
 		});

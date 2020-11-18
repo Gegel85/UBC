@@ -20,9 +20,10 @@ namespace UntilBeingCrowned
 		tgui::Gui &_gui;
 		DialogMgr &_dialogMgr;
 		GameState &_state;
+		Resources &_res;
 
 	public:
-		DialogMenu(MenuMgr &mgr, tgui::Gui &gui, DialogMgr &dialogs, GameState &state);
+		DialogMenu(MenuMgr &mgr, Resources &res, tgui::Gui &gui, DialogMgr &dialogs, GameState &state);
 		~DialogMenu() override;
 		void switched(bool isActive) override;
 		void render() override;

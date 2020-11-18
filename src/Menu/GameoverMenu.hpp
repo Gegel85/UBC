@@ -10,6 +10,7 @@
 #include "Menu.hpp"
 #include "../Resources/GameState.hpp"
 #include "MenuMgr.hpp"
+#include "../Resources/Resources.hpp"
 
 namespace UntilBeingCrowned
 {
@@ -18,9 +19,10 @@ namespace UntilBeingCrowned
 		MenuMgr &_mgr;
 		tgui::Gui &_gui;
 		GameState &_state;
+		Resources &_res;
 
 	public:
-		GameoverMenu(MenuMgr &mgr, tgui::Gui &gui, GameState &state);
+		GameoverMenu(MenuMgr &mgr, Resources &res, tgui::Gui &gui, GameState &state);
 		void switched(bool isActive) override;
 		void render() override;
 		void handleEvent(const Input::Event &event) override;
