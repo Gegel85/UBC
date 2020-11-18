@@ -1,8 +1,40 @@
 {
-	"musics": {},
+	"musics": {
+		"main_menu" : {
+			"path": "musics/Clover.ogg",
+			"description": "Main menu Theme: Clover from Kingdom New Lands"
+		},
+		"in_game_0" : {
+			"path": "musics/Meadow.ogg",
+			"description": "In game theme: Maedown from Kingdom Classic"
+		},
+		"in_game_1" : {
+			"path": "musics/Cloud_Thoughts.ogg",
+			"description": "In game theme: Cloud Thoughts from Kingdom New Lands"
+		},
+		"in_game_2" : {
+			"path": "musics/Solace.ogg",
+			"description": "In game theme: Solace from Kingdom New Lands"
+		},
+		"game_over" : {
+			"path": "musics/Fallow.ogg",
+			"description": "Game over menu theme: Fallow from Kingdom Classic"
+		},
+		"win" : {
+			"path": "musics/Andromeda.ogg",
+			"description": "Win menu theme: Andromeda from Kingdom Classic"
+		},
+		"animation_new_game" : {
+			"path": "musics/Such_Is_Time.ogg",
+			"description": "Theme for the animation of a new game: Such Is Time from Kingdom Classic"
+		}
+	},
 	"sfx": {},
 	"sprites": {
 		"list_bg": "list_bg.jpg",
+		"idle_prince": "Idle_prince.png",
+		"idle_princess": "princess_idle.png",
+		"guard": "Captain_guard_idle.png",
 		"icon": "icon.png"
 	},
 	"icon": "icon.png"

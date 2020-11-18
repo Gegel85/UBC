@@ -1,13 +1,33 @@
 {
-  "no": [
-    "Good to know"
+  "wantToBeAlone": [
+    "r%hide r%%skip%",
+    "l%unhide l%*sigh* As you wish your Highness. You can still take a little time for yourself I am sure.",
+    "lIf you do not mind, there is a request on your desk which need to be treated by the end of the week.",
+    "l%hide l%%skip%",
+    "r%unhide r%Thank you Marlinse.",
+    "r%hide r%%skip%",
+    "l%unhide l%I am at your service your Highness, I hope to see you soon."
+  ],
+  "goBackToTheFuneral" : [
+    "r%skipWeek%"
   ],
   "week0": [
-    "%setSprite prince%%setSpriteRect 16 0 32 64%Testing dialogs feature.",
-    "%setSprite guard%%setSpriteRect 12 0 32 64%Good.",
-    "%skip%",
-    "Good ?%choices No no Yes%",
-    "100%% sure ?%choices No no Yes%",
-    "Ok"
+    "r%hide r%%setSprite idle_player 16 0 32 64%%skip%",
+    "l%setSprite guard 24 0 32 64%Your highness! You cannot flee the hall, all your guests wish to see you!",
+    "l%hide l%%skip%",
+    "r%unhide r%There are here to mourn my father, not to see me. Who care where I am?",
+    "r%hide r%%skip%",
+    "l%unhide l%You are the heir, of course they care!",
+    "l%hide l%%skip%",
+    "r%unhide r%They care because they want to be in my good grace.",
+    "rMy father died two days ago, and they're already plotting. I'm far better off from them.",
+    "r%hide r%%skip%",
+    "l%unhide l%You will be crowned in one year and will start taking decision for our country starting the next week.",
+    "lThey are the noblemen of your country, you need their support.",
+    "lPlease, your Highness, reconsider your decision.",
+    "lHave you thought about what they will think of you if you stay here?",
+    "lBeing absent on the day of your father's funeral...",
+    "l%hide l%%skip%",
+    "r%unhide r%(Choose your answer): %choices \"I don't care about what they think!\" wantToBeAlone \"I just need some time alone; I am sure they can understand\" wantToBeAlone \"Maybe I should go back then...\" goBackToTheFuneral%"
   ]
 }

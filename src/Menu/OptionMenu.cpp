@@ -96,8 +96,6 @@ namespace UntilBeingCrowned
 		this->_initMusicVolume = this->_newMusicVolume;
 		this->_initSoundVolume = this->_newSoundVolume;
 		this->_initFullscreen = this->_newFullScreen;
-		std::cout << _initSoundVolume << std::endl;
-		std::cout << _sliderSfx->getValue() << std::endl;
 		Settings s;
 		s.musicVolume = _initMusicVolume;
 		s.sfxVolume = _initSoundVolume;

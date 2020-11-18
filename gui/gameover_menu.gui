@@ -1,0 +1,63 @@
+Label.EndId {
+    HorizontalAlignment = Center;
+    Position = (0, 50);
+    ScrollbarPolicy = Never;
+    Size = (1360, 68);
+    Text = Label;
+    TextSize = 60;
+
+    Renderer {
+        backgroundcolor = transparent;
+        bordercolor = #3C3C3C;
+        borders = (0, 0, 0, 0);
+        font = "assets/kenpixel.ttf";
+        textcolor = white;
+        texturebackground = None;
+    }
+}
+
+Label.Label1 {
+    AutoSize = true;
+    Position = (480, 270);
+    ScrollbarPolicy = Never;
+    Size = (378, 34);
+    Text = "Thanks for playing";
+    TextSize = 30;
+
+    Renderer {
+        backgroundcolor = transparent;
+        bordercolor = #3C3C3C;
+        borders = (0, 0, 0, 0);
+        font = "assets/kenpixel.ttf";
+        textcolor = white;
+        texturebackground = None;
+    }
+}
+
+Button.menu {
+    Position = (440, 560);
+    Text = "Go back to main menu";
+    TextSize = 35;
+
+    Renderer {
+        backgroundcolor = black;
+        backgroundcolordisabled = #E6E6E6;
+        backgroundcolordown = #EBEBEB;
+        backgroundcolorhover = white;
+        bordercolor = #3C3C3C;
+        bordercolordisabled = #7D7D7D;
+        bordercolordown = black;
+        bordercolorfocused = #1E1EB4;
+        bordercolorhover = black;
+        borders = (1, 1, 1, 1);
+        textcolor = white;
+        textcolordisabled = #7D7D7D;
+        textcolordown = black;
+        textcolorhover = black;
+        texture = None;
+        texturedisabled = None;
+        texturedown = None;
+        texturefocused = None;
+        texturehover = None;
+    }
+}

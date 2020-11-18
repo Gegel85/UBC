@@ -4,40 +4,89 @@
 
 #include <json.hpp>
 #include <fstream>
+#include <TGUI/TGUI.hpp>
 #include "DialogMgr.hpp"
 #include "Exceptions.hpp"
 
+#define INCREMENT_VAR(var)                                      \
+        if (                                                    \
+        	std::find(                                      \
+        		this->_state.flags.begin(),             \
+        		this->_state.flags.end(),               \
+        		"no_"#var                               \
+		) == this->_state.flags.end()                   \
+	)                                                       \
+                this->_state.var += this->_state.var##Passive;  \
+	this->_state.flags.erase(std::remove(                   \
+		this->_state.flags.begin(),                     \
+		this->_state.flags.end(),                       \
+		"no_"#var), this->_state.flags.end()            \
+	)
+
 namespace UntilBeingCrowned
 {
+	DialogMgr::DialogMgr(tgui::Gui &gui, const Resources &resources, GameState &state) :
+		_gui(gui),
+		_resources(resources),
+		_state(state)
+	{
+	}
+
 	const std::map<std::string, std::string (DialogMgr::*)(const std::vector<std::string> &)> DialogMgr::_commands{
-		{"",              &DialogMgr::_notImplemented},
-		{"skip",          &DialogMgr::_notImplemented},
+		{"",              &DialogMgr::_dispPercent},
+		{"skip",          &DialogMgr::_skipCmd},
 		{"setMusic",      &DialogMgr::_notImplemented},
 		{"playSfx",       &DialogMgr::_notImplemented},
-		{"setSprite",     &DialogMgr::_notImplemented},
-		{"setSpriteRect", &DialogMgr::_notImplemented},
-		{"finish",        &DialogMgr::_notImplemented},
-		{"choices",       &DialogMgr::_notImplemented},
-		{"setFlag",       &DialogMgr::_notImplemented},
-		{"unsetFlag",     &DialogMgr::_notImplemented},
+		{"setSprite",     &DialogMgr::_setSpriteCmd},
+		{"finish",        &DialogMgr::_finishCmd},
+		{"choices",       &DialogMgr::_choicesCmd},
+		{"setFlag",       &DialogMgr::_setFlagCmd},
+		{"unsetFlag",     &DialogMgr::_unsetFlagCmd},
 		{"wait",          &DialogMgr::_notImplemented},
+		{"hide",          &DialogMgr::_hideCmd},
+		{"unhide",        &DialogMgr::_unhideCmd},
+		{"buttons",       &DialogMgr::_buttonsPlaceCmd},
+		{"skipWeek",      &DialogMgr::_skipWeekCmd},
 	};
 
-	void DialogMgr::update(tgui::Gui &gui)
+	void DialogMgr::update()
 	{
-		if (this->isDone())
+		if (this->isDone() || this->_lineEnded || this->_onHold)
 			return;
 
+		this->_processTextCharacter();
+	}
+
+	void DialogMgr::startDialog(const std::string &id)
+	{
+		this->_done = this->_dialogsString[id].empty();
+		if (this->_done)
+			return;
+
+		auto leftText = this->_gui.get<tgui::Panel>("otherPanel")->get<tgui::TextBox>("otherTextBox");
+		auto rightText = this->_gui.get<tgui::Panel>("myPanel")->get<tgui::TextBox>("myTextBox");
+		auto skipButton = this->_gui.get<tgui::Button>("Next");
 		auto &dialogMap = std::get<0>(this->_currentDialog);
 		auto &dialog = std::get<1>(this->_currentDialog);
 		auto &textPos = std::get<2>(this->_currentDialog);
 
-		textPos++;
-	}
-
-	void DialogMgr::startDialog(tgui::Gui &gui)
-	{
-
+		leftText->setText("");
+		rightText->setText("");
+		for (int i = 0; i < 5; i++) {
+			auto but = this->_gui.get<tgui::Button>("Button" + std::to_string(i));
+			but->disconnectAll();
+			but->setVisible(false);
+		}
+		dialogMap = id;
+		dialog = 0;
+		textPos = 1;
+		this->_text.clear();
+		this->_skippedWeek = false;
+		this->_left = this->_dialogsString[dialogMap][dialog][0] == 'l';
+		this->_onHold = false;
+		this->_lineEnded = this->_dialogsString[id][0].empty();
+		skipButton->disconnectAll();
+		skipButton->connect("Clicked", &DialogMgr::clicked, this);
 	}
 
 	bool DialogMgr::isDone() const
@@ -49,9 +98,18 @@ namespace UntilBeingCrowned
 	{
 		auto &dialogMap = std::get<0>(this->_currentDialog);
 		auto &dialog = std::get<1>(this->_currentDialog);
+		auto &textPos = std::get<2>(this->_currentDialog);
 
+		logger.debug("Loading next line");
 		dialog++;
+		this->_text.clear();
 		this->_done = dialog >= this->_dialogsString[dialogMap].size();
+		if (!this->_done) {
+			this->_lineEnded = this->_dialogsString[dialogMap][dialog].size() == 1;
+			this->_left = this->_dialogsString[dialogMap][dialog][0] == 'l';
+			textPos = 1;
+		} else
+			logger.debug("Done !");
 	}
 
 	void DialogMgr::loadFile(const std::string &path)
@@ -70,12 +128,16 @@ namespace UntilBeingCrowned
 		this->_dialogsString = json.get<std::map<std::string, std::vector<std::string>>>();
 		for (const auto &pair : this->_dialogsString) {
 			for (const auto &dialog : pair.second) {
-				for (size_t pos = 0; pos < dialog.size(); pos++) {
+				if (dialog.empty())
+					throw InvalidDialogStringException("In dialog chunk '" + pair.first + "': The side character is missing (Empty dialog)");
+				if (dialog[0] != 'l' && dialog[0] != 'r')
+					throw InvalidDialogStringException("In dialog chunk '" + pair.first + "': The side character is missing (" + dialog[0] + " is not a valid side)");
+				for (size_t pos = 1; pos < dialog.size(); pos++) {
 					if (dialog[pos] == '%') {
-						auto parsed  = this->_parseCommand(pos, dialog);
+						auto parsed  = DialogMgr::_parseCommand(pos, dialog);
 
 						if (DialogMgr::_commands.find(parsed.first) == DialogMgr::_commands.end())
-							throw InvalidDialogStringException("Command '" + parsed.first + "' doesn't exist.");
+							throw InvalidDialogStringException("In dialog chunk '" + pair.first + "': Command '" + parsed.first + "' doesn't exist.");
 					}
 				}
 			}
@@ -99,7 +161,7 @@ namespace UntilBeingCrowned
 					strStart = pos;
 				} else if (cmdStart[pos] == sep)
 					sep = 0;
-			} else if (std::isspace(cmdStart[pos])) {
+			} else if (std::isspace(cmdStart[pos]) && !sep) {
 				if (!token.empty()) {
 					if (command.empty())
 						command = token;
@@ -110,6 +172,14 @@ namespace UntilBeingCrowned
 			} else
 				token += cmdStart[pos];
 			++pos;
+		}
+
+		if (!token.empty()) {
+			if (command.empty())
+				command = token;
+			else
+				args.push_back(token);
+			token.clear();
 		}
 
 		if (sep)
@@ -127,5 +197,221 @@ namespace UntilBeingCrowned
 	std::string DialogMgr::_notImplemented(const std::vector<std::string> &)
 	{
 		throw NotImplementedException();
+	}
+
+	void DialogMgr::clicked()
+	{
+		logger.debug("Skipping");
+		if (this->isDone() || this->_onHold)
+			return;
+		if (this->_lineEnded)
+			this->_nextLine();
+		else while (!this->_lineEnded)
+			this->_processTextCharacter();
+	}
+
+	bool DialogMgr::hasDialog(const std::string &id)
+	{
+		return this->_dialogsString.find(id) != this->_dialogsString.end();
+	}
+
+	std::string DialogMgr::_skipCmd(const std::vector<std::string> &args)
+	{
+		if (!args.empty())
+			throw InvalidArgumentsException("Expected no argument.");
+		this->_nextLine();
+		std::get<2>(this->_currentDialog) = 0;
+		return {};
+	}
+
+	std::string DialogMgr::_setSpriteCmd(const std::vector<std::string> &args)
+	{
+		tgui::Picture::Ptr pic;
+
+		if (args.size() != 1 && args.size() != 5)
+			throw InvalidArgumentsException("Expected a single argument or exactly 5 arguments");
+
+		std::string sprite = args[0];
+		std::string playerSprite =
+			std::find(this->_state.flags.begin(), this->_state.flags.end(), "player_f") != this->_state.flags.end() ?
+			"princess" : "prince";
+
+		for (size_t pos = sprite.find("player"); pos != std::string::npos; pos = sprite.find("player"))
+			sprite.replace(pos, 6, playerSprite);
+		if (this->_left)
+			pic = this->_gui.get<tgui::Picture>("Picture3");
+		else
+			pic = this->_gui.get<tgui::Picture>("Picture2");
+
+		if (args.size() == 1)
+			pic->getRenderer()->setTexture(this->_resources.textures.at(sprite));
+		else
+			pic->getRenderer()->setTexture(tgui::Texture(
+				this->_resources.textures.at(sprite),
+				{
+					std::stoi(args[1]),
+					std::stoi(args[2]),
+					std::stoi(args[3]),
+					std::stoi(args[4]),
+				}
+			));
+		return {};
+	}
+
+	void DialogMgr::_processTextCharacter()
+	{
+		auto &dialogMap = std::get<0>(this->_currentDialog);
+		auto &dialog = std::get<1>(this->_currentDialog);
+		auto &textPos = std::get<2>(this->_currentDialog);
+		tgui::TextBox::Ptr textBox;
+
+		if (this->_left)
+			textBox = this->_gui.get<tgui::Panel>("otherPanel")->get<tgui::TextBox>("otherTextBox");
+		else
+			textBox = this->_gui.get<tgui::Panel>("myPanel")->get<tgui::TextBox>("myTextBox");
+
+		char c = this->_dialogsString[dialogMap][dialog][textPos];
+
+		if (c == '%') {
+			auto cmd = DialogMgr::_parseCommand(textPos, this->_dialogsString[dialogMap][dialog]);
+
+			logger.debug("Execute command " + cmd.first);
+			try {
+				this->_text += (this->*DialogMgr::_commands.at(cmd.first))(cmd.second);
+			} catch (const std::exception &e) {
+				this->_text += "Exception '" + getLastExceptionName() + "' thrown when trying to run command '";
+				this->_text += cmd.first + "' (" + std::to_string(cmd.second.size()) + " argument(s)" + (cmd.second.empty() ? "" : ": ");
+				for (size_t i = 0; i < cmd.second.size(); i++) {
+					if (i)
+						this->_text += ", ";
+					this->_text += "'" + cmd.second[i] + "'";
+				}
+				this->_text += std::string(") : ") + e.what();
+				this->_onHold = true;
+			}
+		} else
+			this->_text += c;
+		textPos++;
+		textBox->setText(this->_text);
+		this->_lineEnded = textPos >= this->_dialogsString[dialogMap][dialog].size();
+	}
+
+	std::string DialogMgr::_dispPercent(const std::vector<std::string> &)
+	{
+		return "%";
+	}
+
+	std::string DialogMgr::_choicesCmd(const std::vector<std::string> &args)
+	{
+		auto disableButtons = [this]{
+			for (int i = 0; i < 5; i++) {
+				auto but = this->_gui.get<tgui::Button>("Button" + std::to_string(i));
+				but->disconnectAll();
+				but->setVisible(false);
+			}
+		};
+
+		if (args.size() < 3 || args.size() > 10)
+			throw InvalidArgumentsException("Expected between 3 and 10 arguments");
+		for (size_t i = 0; i < args.size(); i += 2) {
+			auto button = this->_gui.get<tgui::Button>("Button" + std::to_string(i / 2));
+
+			button->setVisible(true);
+			button->setText(args[i]);
+			if (i + 1 < args.size()) {
+				button->connect("Clicked", [disableButtons, this](const std::string &warp){
+					this->_onHold = false;
+					disableButtons();
+					this->startDialog(warp);
+				}, args[i + 1]);
+			} else
+				button->connect("Clicked",[disableButtons, this]{
+					this->_onHold = false;
+					disableButtons();
+					this->_nextLine();
+				});
+		}
+		this->_onHold = true;
+		return {};
+	}
+
+	std::string DialogMgr::_hideCmd(const std::vector<std::string> &args)
+	{
+		tgui::Panel::Ptr pan;
+
+		if (args.size() != 1)
+			throw InvalidArgumentsException("Expected a single argument arguments");
+		if (args[0][0] == 'l')
+			pan = this->_gui.get<tgui::Panel>("otherPanel");
+		else
+			pan = this->_gui.get<tgui::Panel>("myPanel");
+		pan->setVisible(false);
+		return {};
+	}
+
+	std::string DialogMgr::_unhideCmd(const std::vector<std::string> &args)
+	{
+		tgui::Panel::Ptr pan;
+
+		if (args.size() != 1)
+			throw InvalidArgumentsException("Expected a single argument arguments");
+		if (args[0][0] == 'l')
+			pan = this->_gui.get<tgui::Panel>("otherPanel");
+		else
+			pan = this->_gui.get<tgui::Panel>("myPanel");
+		pan->setVisible(true);
+		return {};
+	}
+
+	std::string DialogMgr::_finishCmd(const std::vector<std::string> &args)
+	{
+		if (!args.empty())
+			throw InvalidArgumentsException("Expected no argument.");
+		this->_done = true;
+		return {};
+	}
+
+	std::string DialogMgr::_setFlagCmd(const std::vector<std::string> &args)
+	{
+		if (args.size() != 1)
+			throw InvalidArgumentsException("Expected a single argument.");
+		this->_state.flags.push_back(args[0]);
+		return {};
+	}
+
+	std::string DialogMgr::_unsetFlagCmd(const std::vector<std::string> &args)
+	{
+		if (args.size() != 1)
+			throw InvalidArgumentsException("Expected a single argument.");
+		this->_state.flags.erase(std::remove(this->_state.flags.begin(), this->_state.flags.end(), args[0]), this->_state.flags.end());
+		return {};
+	}
+
+	std::string DialogMgr::_buttonsPlaceCmd(const std::vector<std::string> &args)
+	{
+		if (args.size() != 1)
+			throw InvalidArgumentsException("Expected a single argument.");
+		if (args[0][0] == 'l')
+			this->_gui.get<tgui::Button>("Button0")->setPosition(10, 340);
+		else
+			this->_gui.get<tgui::Button>("Button0")->setPosition(660, 300);
+		return {};
+	}
+
+	std::string DialogMgr::_skipWeekCmd(const std::vector<std::string> &args)
+	{
+		if (!args.empty())
+			throw InvalidArgumentsException("Expected no argument.");
+		INCREMENT_VAR(gold);
+		INCREMENT_VAR(army);
+		INCREMENT_VAR(food);
+		this->_state.week++;
+		this->_skippedWeek = true;
+		return {};
+	}
+
+	bool DialogMgr::hasSkippedWeek() const
+	{
+		return this->_skippedWeek;
 	}
 }

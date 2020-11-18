@@ -20,6 +20,21 @@
 		"no_"#var), this->_state.flags.end()            \
 	)
 
+static const std::array<std::string, 12> _monthsNames{
+	"January",
+	"February",
+	"March",
+	"April",
+	"May",
+	"June",
+	"July",
+	"August",
+	"September",
+	"October",
+	"November",
+	"December"
+};
+
 namespace UntilBeingCrowned
 {
 	InGameMenu::InGameMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, QuestMgr &dialogs, GameState &state) :
@@ -50,14 +65,35 @@ namespace UntilBeingCrowned
 		this->_passiveGoldsLabel = this->_gui.get<tgui::Label>("PassiveGold");
 		this->_passiveArmyLabel = this->_gui.get<tgui::Label>("PassiveArmy");
 		this->_passiveFoodLabel = this->_gui.get<tgui::Label>("PassiveFood");
-		this->_questsMgr.showDialog(0, this->_gui);
+
+		auto newQuestsList = this->_gui.get<tgui::Button>("NewQuests");
+
+		this->_gui.get<tgui::Label>("Month")->setText(_monthsNames[this->_state.week % 12]);
+		newQuestsList->setVisible(!this->_questsMgr.getNewQuests().empty());
+		this->_goldsLabel->setText(std::to_string(this->_state.gold));
+		this->_armyLabel->setText(std::to_string(this->_state.army));
+		this->_foodLabel->setText(std::to_string(this->_state.food));
+		this->_passiveGoldsLabel->setText("+" + std::to_string(this->_state.goldPassive));
+		this->_passiveArmyLabel->setText("+" + std::to_string(this->_state.armyPassive));
+		this->_passiveFoodLabel->setText("+" + std::to_string(this->_state.foodPassive));
 		this->_hookHandlers();
+		this->_questsMgr.nextWeek();
 	}
 
 	void InGameMenu::render()
 	{
+		auto itv = std::find_if(this->_state.flags.begin(), this->_state.flags.end(), [](const std::string &str){
+			return str.substr(0, strlen("victory_")) == "victory_";
+		});
+		auto itgo = std::find_if(this->_state.flags.begin(), this->_state.flags.end(), [](const std::string &str){
+			return str.substr(0, strlen("killed_")) == "killed_";
+		});
 		auto newQuestsList = this->_gui.get<tgui::Button>("NewQuests");
 
+		if (itgo != this->_state.flags.end())
+			this->_mgr.changeMenu("game over");
+		if (itv != this->_state.flags.end())
+			this->_mgr.changeMenu("victory");
 		newQuestsList->setVisible(!this->_questsMgr.getNewQuests().empty());
 		this->_goldsLabel->setText(std::to_string(this->_state.gold));
 		this->_armyLabel->setText(std::to_string(this->_state.army));
@@ -139,6 +175,6 @@ namespace UntilBeingCrowned
 		INCREMENT_VAR(army);
 		INCREMENT_VAR(food);
 		this->_state.week++;
-		this->_questsMgr.nextWeek();
+		this->_mgr.changeMenu("dialog");
 	}
 }

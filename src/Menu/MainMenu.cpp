@@ -19,6 +19,8 @@ namespace UntilBeingCrowned {
 			return;
 		}
 
+		this->_res.playMusic("main_menu");
+
 		this->_gui.loadWidgetsFromFile("gui/mainMenu.gui");
 
 		this->_gui.get<tgui::Button>("newGame")->connect(
