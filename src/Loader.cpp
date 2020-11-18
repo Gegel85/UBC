@@ -69,6 +69,59 @@ namespace UntilBeingCrowned
 		game.resources.setSoundVolume(game.state.settings.sfxVolume);
 	}
 
+
+	void Loader::saveProgression(GameState &gs, const std::string &name)
+	{
+		std::filesystem::create_directories("saves");
+
+		std::ofstream stream("saves/" + name + ".sav");
+
+		stream << gs.gold << std::endl
+			<< gs.army << std::endl
+			<< gs.food << std::endl
+			<< gs.goldPassive << std::endl
+			<< gs.armyPassive << std::endl
+			<< gs.foodPassive << std::endl
+			<< gs.peasantsHappiness << std::endl
+			<< gs.tradersHappiness << std::endl
+			<< gs.nobilityHappiness << std::endl
+			<< gs.week << std::endl;
+		for (auto &flag : gs.flags) {
+			stream << flag << std::endl;
+		}
+		stream.close();
+	}
+
+	void Loader::loadProgression(Game &game, std::string const &name)
+	{
+		std::ifstream stream("saves/"+ name + ".sav");
+
+		logger.info("Loading save file :" + name);
+		if (stream.fail()) {
+			logger.error("Cannot open file save/saves/"+ name + ".sav" + std::string(strerror(errno)));
+			game.state.game = GameState{};
+		} else {
+			GameState tmp;
+			stream >> tmp.gold
+				>> tmp.army
+				>> tmp.food
+				>> tmp.goldPassive
+				>> tmp.armyPassive
+				>> tmp.foodPassive
+				>> tmp.peasantsHappiness
+				>> tmp.tradersHappiness
+				>> tmp.nobilityHappiness
+				>> tmp.week;
+			std::string str;
+			getline(stream,str);
+			while(getline(stream,str)) {
+				tmp.flags.push_back(str);
+			}
+
+			game.state.game = tmp;
+		}
+	}
+
 	void Loader::loadAssets(Game &game)
 	{
 		std::ifstream stream{"assets/list.json"};
