@@ -65,8 +65,6 @@ namespace UntilBeingCrowned
 		this->_passiveGoldsLabel = this->_gui.get<tgui::Label>("PassiveGold");
 		this->_passiveArmyLabel = this->_gui.get<tgui::Label>("PassiveArmy");
 		this->_passiveFoodLabel = this->_gui.get<tgui::Label>("PassiveFood");
-		if (!this->_state.week)
-			this->_questsMgr.showDialog(0, this->_gui);
 
 		auto newQuestsList = this->_gui.get<tgui::Button>("NewQuests");
 
@@ -84,8 +82,18 @@ namespace UntilBeingCrowned
 
 	void InGameMenu::render()
 	{
+		auto itv = std::find_if(this->_state.flags.begin(), this->_state.flags.end(), [](const std::string &str){
+			return str.substr(0, strlen("victory_")) == "victory_";
+		});
+		auto itgo = std::find_if(this->_state.flags.begin(), this->_state.flags.end(), [](const std::string &str){
+			return str.substr(0, strlen("killed_")) == "killed_";
+		});
 		auto newQuestsList = this->_gui.get<tgui::Button>("NewQuests");
 
+		if (itgo != this->_state.flags.end())
+			this->_mgr.changeMenu("game over");
+		if (itv != this->_state.flags.end())
+			this->_mgr.changeMenu("victory");
 		newQuestsList->setVisible(!this->_questsMgr.getNewQuests().empty());
 		this->_goldsLabel->setText(std::to_string(this->_state.gold));
 		this->_armyLabel->setText(std::to_string(this->_state.army));

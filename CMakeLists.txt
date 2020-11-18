@@ -73,7 +73,7 @@ set(
 	src/Menu/GenderMenu.hpp
 	src/DialogMgr.cpp
 	src/DialogMgr.hpp
-	src/Menu/DialogMenu.cpp src/Menu/DialogMenu.hpp)
+	src/Menu/DialogMenu.cpp src/Menu/DialogMenu.hpp src/Menu/VictoryMenu.cpp src/Menu/VictoryMenu.hpp src/Menu/GameoverMenu.cpp src/Menu/GameoverMenu.hpp)
 
 if (MSVC)
 	add_executable(UBC ${UBC_SRC} icon.rc)
