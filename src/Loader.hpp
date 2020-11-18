@@ -38,9 +38,19 @@ namespace UntilBeingCrowned
 		//! @param game Game state and resources.
 		static void loadSettings(Game &game);
 
+
 		//! @brief Save settings.
 		//! @param settings Settings to save.
 		static void saveSettings(Settings &settings);
+
+		//! @brief Load Progression.
+		//! @param game Game state and resources.
+		static void loadProgression(Game &game, std::string const &name);
+
+
+		//! @brief Save Progression.
+		//! @param Progression to save.
+		static void saveProgression(GameState &gs, std::string const &name);
 
 		//! @brief Load all game assets.
 		//! @param game Game state and resources.
