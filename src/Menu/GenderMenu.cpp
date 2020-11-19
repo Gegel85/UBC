@@ -7,11 +7,12 @@
 
 namespace UntilBeingCrowned
 {
-	GenderMenu::GenderMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, GameState &state) :
+	GenderMenu::GenderMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, GameState &state, QuestMgr &quests) :
 		_res(res),
 		_gui(gui),
 		_mgr(mgr),
 		_state(state),
+		_quests(quests),
 		_nexLevel("dialog")
 	{
 	}
@@ -50,6 +51,7 @@ namespace UntilBeingCrowned
 		this->_state.nobilityHappiness = 20;
 		this->_state.week = 0;
 		this->_state.flags.push_back(flag);
+		this->_quests.reset();
 		this->_mgr.changeMenu(_nexLevel);
 	}
 }

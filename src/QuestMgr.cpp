@@ -9,6 +9,8 @@
 #include "Exceptions.hpp"
 #include "Resources/Game.hpp"
 
+#define NB_BUTTONS 1
+
 namespace UntilBeingCrowned
 {
 	std::string jsonToString(const nlohmann::json& val, const std::string& index)
@@ -56,29 +58,30 @@ namespace UntilBeingCrowned
 		unsigned index = 0;
 		auto &val = this->_quests.at(id);
 		int size = val.buttons.size();
-		double ysize = (60 - (size - 1) / 3 * 10) / ((size - 1) / 3 + 1.);
+		double ysize = (60 - (size - 1) / NB_BUTTONS * 10) / ((size - 1) / NB_BUTTONS + 1.);
 		auto title = this->_panel->get<tgui::Label>("Title");
 		auto desc = this->_panel->get<tgui::TextBox>("TextBox1");
 		auto fct = [this, &val, id, &gui, panel](unsigned butId) {
 			if (this->_onClickButton)
 				this->_onClickButton({val, butId, id});
+
+			this->_newQuests.erase(
+				std::remove(
+					this->_newQuests.begin(),
+					this->_newQuests.end(),
+					val
+				),
+				this->_newQuests.end()
+			);
 			if (butId < val.buttons_effects.size()) {
 				val.buttons_effects[butId].apply(this->_state);
 				this->_unlockedQuests.erase(
-					std::find(
+					std::remove(
 						this->_unlockedQuests.begin(),
 						this->_unlockedQuests.end(),
 						val
 					),
 					this->_unlockedQuests.end()
-				);
-				this->_newQuests.erase(
-					std::find(
-						this->_newQuests.begin(),
-						this->_newQuests.end(),
-						val
-					),
-					this->_newQuests.end()
 				);
 				this->_usedQuests[val.getId()] = true;
 			}
@@ -94,8 +97,8 @@ namespace UntilBeingCrowned
 		desc->setText(val.description);
 		desc->setVerticalScrollbarValue(0);
 		this->_panel->add(val.pic);
-		for (int left = size; left > 0; left -= 3, y++) {
-			auto start = left > 3 ? 3 : left;
+		for (int left = size; left > 0; left -= NB_BUTTONS, y++) {
+			auto start = left > NB_BUTTONS ? NB_BUTTONS : left;
 			auto xsize = (500 - (start - 1) * 10.) / start;
 
 			for (unsigned i = start; i; i--) {
@@ -113,7 +116,7 @@ namespace UntilBeingCrowned
 				renderer->setFont("assets/kenpixel.ttf");
 				but->setTextSize(16);
 				but->setSize(xsize, ysize);
-				but->setPosition(index % 3 * (xsize + 10) + 50, index / 3 * (ysize + 10) + 580);
+				but->setPosition(index % NB_BUTTONS * (xsize + 10) + 50, index / NB_BUTTONS * (ysize + 10) + 580);
 				but->connect("clicked", fct, index);
 				index++;
 				this->_buttons.push_back(but);

@@ -19,13 +19,14 @@ namespace UntilBeingCrowned {
 		tgui::Gui &_gui;
 		MenuMgr &_mgr;
 		GameState &_state;
+		QuestMgr &_quests;
 
 		std::string _nexLevel;
 
 		void _runGame(const std::string &flag);
 
 	public:
-		GenderMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, GameState &state);
+		GenderMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, GameState &state, QuestMgr &quests);
 		void switched(bool isActive) override;
 		void render() override;
 		void handleEvent(const Input::Event &event) override;

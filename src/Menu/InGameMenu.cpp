@@ -89,11 +89,13 @@ namespace UntilBeingCrowned
 			return str.substr(0, strlen("killed_")) == "killed_";
 		});
 		auto newQuestsList = this->_gui.get<tgui::Button>("NewQuests");
+		auto nextWeek = this->_gui.get<tgui::Button>("Next");
 
 		if (itgo != this->_state.flags.end())
 			this->_mgr.changeMenu("game over");
 		if (itv != this->_state.flags.end())
 			this->_mgr.changeMenu("victory");
+		nextWeek->setVisible(this->_questsMgr.getNewQuests().empty());
 		newQuestsList->setVisible(!this->_questsMgr.getNewQuests().empty());
 		this->_goldsLabel->setText(std::to_string(this->_state.gold));
 		this->_armyLabel->setText(std::to_string(this->_state.army));
