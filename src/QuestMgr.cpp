@@ -82,10 +82,13 @@ namespace UntilBeingCrowned
 				);
 				this->_usedQuests[val.getId()] = true;
 			}
+			for (auto &but : this->_buttons)
+				this->_panel->remove(but);
 			gui.remove(this->_panel);
 			gui.remove(panel);
 		};
 
+		this->_buttons.clear();
 		this->_selected = id;
 		title->setText(val.title);
 		desc->setText(val.description);
@@ -113,6 +116,7 @@ namespace UntilBeingCrowned
 				but->setPosition(index % 3 * (xsize + 10) + 50, index / 3 * (ysize + 10) + 580);
 				but->connect("clicked", fct, index);
 				index++;
+				this->_buttons.push_back(but);
 				this->_panel->add(but);
 			}
 		}

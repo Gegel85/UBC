@@ -29,5 +29,30 @@
     "lBeing absent on the day of your father's funeral...",
     "l%hide l%%skip%",
     "r%unhide r%(Choose your answer): %choices \"I don't care about what they think!\" wantToBeAlone \"I just need some time alone; I am sure they can understand\" wantToBeAlone \"Maybe I should go back then...\" goBackToTheFuneral%"
+  ],
+  "week7": [
+    "r%hide r%%setSprite idle_player 16 0 32 64%%skip%",
+    "l%setSprite guard 24 0 32 64%Your Highness! It's an emergency!",
+    "l%hide l%%skip%",
+    "r%unhide r%*sigh* Have you never learned to knock at a door?",
+    "r%hide r%%skip%",
+    "l%unhide l%Knock a door? Of course I have! But it has nothing to do with our business.",
+    "l%hide l%%skip%",
+    "r%unhide r%Then why can't you...%skip%%hide r%",
+    "l%unhide l%There is a hydra in the port.",
+    "l%hide l%%skip%",
+    "r%unhide r%...",
+    "r%hide r%%skip%",
+    "l%unhide l%...",
+    "l%hide l%%skip%",
+    "r%unhide r%Say what?",
+    "r%hide r%%skip%",
+    "l%unhide l%There is a hydra in the port.",
+    "l%hide l%%skip%",
+    "r%unhide r%The hell? What is it doing here?",
+    "r%hide r%%skip%",
+    "l%unhide l%Dunno. It's hurt, I thought you would like to be informed. What should we do about it?",
+    "l%hide l%%skip%",
+    "r%setFlag victory_end_alpha%%finish%"
   ]
 }

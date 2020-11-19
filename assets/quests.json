@@ -4,7 +4,7 @@
     "description": "Hello your Highness,\nThis your captain guard speaking.\nWe have a thief in our jail for two weeks.\nIt would be great if you could state your judgment, should we hang him?\nOh, yes, I almost forgot.\nHe stole some food from a market stall\nsupposedly for his sick family.\nAh! He stole right in front of my guys! What an idiot!\nOh... well, my apologize for my vocabulary your Highness.\nWell then, hang or not hang?",
     "picture": "",
     "buttons": ["Hang him", "Release him", "Postpone"],
-    "requirements": ["first_request"],
+    "requirements": [],
     "happiness_requirement": {
       "traders": {
         "min": 0,
@@ -65,7 +65,7 @@
     "title": "A thief no more in jail",
     "description": "Hello ‘highness, remember the thief from last week? Well, we have another kind of problem with him. He kind of flee. I immediately send five men after him, but maybe I shouldn’t have.",
     "picture": "",
-    "buttons": ["Send more men (5), catch him, and kill him", "Send more men (5) and bring him back", "Call back your men and leave him be", "You did well"],
+    "buttons": ["Send more men (5) to kill him", "Send more men (5) to bring him back", "Call back your men", "You did well"],
     "requirements": ["thief_flee"],
     "happiness_requirement": {
       "traders": {
@@ -238,7 +238,7 @@
     "title": "No harvest this month",
     "description": "Your Highness, my most sincere condolence for your father death. I hope you are doing well. I send you this letter for an urgent matter. Last month, the cold destroyed our harvest. Your father promised us he will pay as if our harvest were done without a problem to allow us to have money to buy food for our family despite this unfortunate event. I am sure you share his values and would agree to fulfill his promise.",
     "picture": "",
-    "buttons": ["Pay for the destroyed harvest (5)", "Ignore the plea and ask to give food this month as always", "Ingore the plea"],
+    "buttons": ["Pay for the destroyed harvest (5)", "Ignore and ask to give food this month as always", "Ingore the plea"],
     "requirements": [],
     "happiness_requirement": {
       "traders": {
@@ -518,7 +518,7 @@
         "max": 40
       }
     },
-    "week_no": 5,
+    "week_no": 3,
     "buttons_effects": [{
       "set_flags": ["problem_eglise_half_solved"],
       "unset_flags": ["problem_eglise"],
@@ -564,7 +564,7 @@
     "title": "More roads!",
     "description": "Hello. I know you are a kind sovereign, and you wish the best for your people and the development of Arim. With this idea in mind, allow me to express an idea: what about construction a road to the little village of Nasir? They are so isolated, I am sure a road will benefit to everyone, faster development for them, more client for me, some gold for you.",
     "picture": "",
-    "buttons": ["Send men to construct the road (6)", "Give gold to construct the road (10)", "Refuse", "Postpone"],
+    "buttons": ["Send men to construct (6)", "Give gold to construct (10)", "Refuse", "Postpone"],
     "requirements": [""],
     "happiness_requirement": {
       "traders": {
@@ -717,7 +717,7 @@
         "max": 40
       }
     },
-    "week_no": 4,
+    "week_no": 5,
     "buttons_effects": [{
       "set_flags": ["ornamental_bones"],
       "unset_flags": [],

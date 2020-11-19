@@ -38,6 +38,17 @@ namespace UntilBeingCrowned
 	}
 	void GenderMenu::_runGame(const std::string &flag)
 	{
+		this->_state.flags.clear();
+		this->_state.gold = 20;
+		this->_state.army = 20;
+		this->_state.food = 20;
+		this->_state.goldPassive = 10;
+		this->_state.armyPassive = 10;
+		this->_state.foodPassive = 10;
+		this->_state.tradersHappiness = 20;
+		this->_state.peasantsHappiness = 20;
+		this->_state.nobilityHappiness = 20;
+		this->_state.week = 0;
 		this->_state.flags.push_back(flag);
 		this->_mgr.changeMenu(_nexLevel);
 	}

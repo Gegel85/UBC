@@ -5,6 +5,6 @@
 #ifndef UBC_VERSION_HPP
 #define UBC_VERSION_HPP
 
-#define UBC_VERSION_STRING "0.0.1"
+#define UBC_VERSION_STRING "0.1.0"
 
 #endif //UBC_VERSION_HPP
