@@ -1,0 +1,4 @@
+20 20 20 0 0 0 20 20 20 3
+random flag
+random flag 2
+victory_mdr

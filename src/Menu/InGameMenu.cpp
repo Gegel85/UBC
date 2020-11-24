@@ -5,19 +5,21 @@
 #include "InGameMenu.hpp"
 #include "../Resources/State.hpp"
 
-#define INCREMENT_VAR(var)                                      \
-        if (                                                    \
-        	std::find(                                      \
-        		this->_state.flags.begin(),             \
-        		this->_state.flags.end(),               \
-        		"no_"#var                               \
-		) == this->_state.flags.end()                   \
-	)                                                       \
-                this->_state.var += this->_state.var##Passive;  \
-	this->_state.flags.erase(std::remove(                   \
-		this->_state.flags.begin(),                     \
-		this->_state.flags.end(),                       \
-		"no_"#var), this->_state.flags.end()            \
+#define INCREMENT_VAR(var)                                                 \
+        if (                                                               \
+        	std::find(                                                 \
+        		this->_state.flags.begin(),                        \
+        		this->_state.flags.end(),                          \
+        		"no_"#var                                          \
+		) == this->_state.flags.end()                              \
+	) {                                                                \
+                this->_state.var += this->_state.var##Passive;             \
+                this->_state.var += (this->_state.var##Happiness + 1) / 2; \
+        }                                                                  \
+	this->_state.flags.erase(std::remove(                              \
+		this->_state.flags.begin(),                                \
+		this->_state.flags.end(),                                  \
+		"no_"#var), this->_state.flags.end()                       \
 	)
 
 static const std::array<std::string, 12> _monthsNames{

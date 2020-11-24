@@ -3,6 +3,7 @@
 //
 
 #include "GenderMenu.hpp"
+#include "../Exceptions.hpp"
 
 
 namespace UntilBeingCrowned
@@ -12,8 +13,7 @@ namespace UntilBeingCrowned
 		_gui(gui),
 		_mgr(mgr),
 		_state(state),
-		_quests(quests),
-		_nexLevel("dialog")
+		_quests(quests)
 	{
 	}
 
@@ -37,21 +37,50 @@ namespace UntilBeingCrowned
 	void GenderMenu::handleEvent(const Input::Event &) {
 
 	}
+
 	void GenderMenu::_runGame(const std::string &flag)
 	{
+		std::ifstream stream{"assets/baseValues.txt"};
+		size_t nb;
+		std::string token;
+
+		logger.debug("Loading state init file.");
+		if (stream.fail())
+			throw InvalidStateException("Cannot open the state init file: " + std::string(strerror(errno)) + ".");
 		this->_state.flags.clear();
-		this->_state.gold = 20;
-		this->_state.army = 20;
-		this->_state.food = 20;
-		this->_state.goldPassive = 10;
-		this->_state.armyPassive = 10;
-		this->_state.foodPassive = 10;
-		this->_state.tradersHappiness = 20;
-		this->_state.peasantsHappiness = 20;
-		this->_state.nobilityHappiness = 20;
-		this->_state.week = 0;
+		stream >> this->_state.gold;
+		stream >> this->_state.army;
+		stream >> this->_state.food;
+		stream >> this->_state.goldPassive;
+		stream >> this->_state.armyPassive;
+		stream >> this->_state.foodPassive;
+		stream >> this->_state.goldHappiness;
+		stream >> this->_state.foodHappiness;
+		stream >> this->_state.armyHappiness;
+		stream >> nb;
+		logger.debug(std::to_string(this->_state.gold) + " gold");
+		logger.debug(std::to_string(this->_state.army) + " army");
+		logger.debug(std::to_string(this->_state.food) + " food");
+		logger.debug(std::to_string(this->_state.goldPassive) + " goldPassive");
+		logger.debug(std::to_string(this->_state.armyPassive) + " armyPassive");
+		logger.debug(std::to_string(this->_state.foodPassive) + " foodPassive");
+		logger.debug(std::to_string(this->_state.goldHappiness) + " goldHappiness");
+		logger.debug(std::to_string(this->_state.foodHappiness) + " foodHappiness");
+		logger.debug(std::to_string(this->_state.armyHappiness) + " armyHappiness");
+		logger.debug(std::to_string(nb) + " base flags");
+		this->_state.flags.reserve(nb + 1);
+		std::getline(stream, token);
+		for (; nb; nb--) {
+			std::getline(stream, token);
+			logger.debug("Added flag '" + token + "'");
+			this->_state.flags.push_back(token);
+		}
+		if (stream.fail())
+			throw InvalidStateException("The state init file is invalid.");
+		stream.close();
 		this->_state.flags.push_back(flag);
+		this->_state.week = 0;
 		this->_quests.reset();
-		this->_mgr.changeMenu(_nexLevel);
+		this->_mgr.changeMenu("dialog");
 	}
 }
