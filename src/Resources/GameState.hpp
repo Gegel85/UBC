@@ -15,9 +15,9 @@ namespace UntilBeingCrowned
 		int goldPassive = 0;
 		int armyPassive = 0;
 		int foodPassive = 0;
-		int peasantsHappiness = 0;
-		int tradersHappiness = 0;
-		int nobilityHappiness = 0;
+		int foodHappiness = 0;
+		int goldHappiness = 0;
+		int armyHappiness = 0;
 		std::vector<std::string> flags;
 		unsigned week;
 	};

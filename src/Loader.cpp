@@ -77,14 +77,14 @@ namespace UntilBeingCrowned
 		std::ofstream stream("saves/" + name + ".sav");
 
 		stream << gs.gold << std::endl
-			<< gs.army << std::endl
-			<< gs.food << std::endl
-			<< gs.goldPassive << std::endl
-			<< gs.armyPassive << std::endl
-			<< gs.foodPassive << std::endl
-			<< gs.peasantsHappiness << std::endl
-			<< gs.tradersHappiness << std::endl
-			<< gs.nobilityHappiness << std::endl
+		       << gs.army << std::endl
+		       << gs.food << std::endl
+		       << gs.goldPassive << std::endl
+		       << gs.armyPassive << std::endl
+		       << gs.foodPassive << std::endl
+		       << gs.foodHappiness << std::endl
+		       << gs.goldHappiness << std::endl
+		       << gs.armyHappiness << std::endl
 			<< gs.week << std::endl;
 		for (auto &flag : gs.flags) {
 			stream << flag << std::endl;
@@ -108,9 +108,9 @@ namespace UntilBeingCrowned
 				>> tmp.goldPassive
 				>> tmp.armyPassive
 				>> tmp.foodPassive
-				>> tmp.peasantsHappiness
-				>> tmp.tradersHappiness
-				>> tmp.nobilityHappiness
+				>> tmp.foodHappiness
+				>> tmp.goldHappiness
+				>> tmp.armyHappiness
 				>> tmp.week;
 			std::string str;
 			getline(stream,str);

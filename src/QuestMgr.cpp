@@ -304,14 +304,14 @@ namespace UntilBeingCrowned
 		return this->weekRange.first <= state.week &&
 		       state.week < this->weekRange.second &&
 
-		       this->nobilityHappinessRequirement.first <= state.nobilityHappiness &&
-		       state.nobilityHappiness <= this->nobilityHappinessRequirement.second &&
+		       this->nobilityHappinessRequirement.first <= state.armyHappiness &&
+		       state.armyHappiness <= this->nobilityHappinessRequirement.second &&
 
-		       this->peasantsHappinessRequirement.first <= state.peasantsHappiness &&
-		       state.peasantsHappiness <= this->peasantsHappinessRequirement.second &&
+		       this->peasantsHappinessRequirement.first <= state.foodHappiness &&
+		       state.foodHappiness <= this->peasantsHappinessRequirement.second &&
 
-		       this->tradersHappinessRequirement.first <= state.tradersHappiness &&
-		       state.tradersHappiness <= this->tradersHappinessRequirement.second;
+		       this->tradersHappinessRequirement.first <= state.goldHappiness &&
+		       state.goldHappiness <= this->tradersHappinessRequirement.second;
 	}
 
 	bool QuestMgr::Quest::operator==(const QuestMgr::Quest &other) const
@@ -357,9 +357,9 @@ namespace UntilBeingCrowned
 		state.goldPassive       += this->passiveGoldChange;
 		state.armyPassive       += this->passiveArmyChange;
 		state.foodPassive       += this->passiveFoodChange;
-		state.peasantsHappiness += this->peasantsHappiness;
-		state.tradersHappiness  += this->tradersHappiness;
-		state.nobilityHappiness += this->nobilityHappiness;
+		state.foodHappiness += this->peasantsHappiness;
+		state.goldHappiness  += this->tradersHappiness;
+		state.armyHappiness += this->nobilityHappiness;
 
 		for (auto &flag : this->setFlags)
 			state.flags.push_back(flag);

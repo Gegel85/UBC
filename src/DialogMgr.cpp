@@ -8,19 +8,21 @@
 #include "DialogMgr.hpp"
 #include "Exceptions.hpp"
 
-#define INCREMENT_VAR(var)                                      \
-        if (                                                    \
-        	std::find(                                      \
-        		this->_state.flags.begin(),             \
-        		this->_state.flags.end(),               \
-        		"no_"#var                               \
-		) == this->_state.flags.end()                   \
-	)                                                       \
-                this->_state.var += this->_state.var##Passive;  \
-	this->_state.flags.erase(std::remove(                   \
-		this->_state.flags.begin(),                     \
-		this->_state.flags.end(),                       \
-		"no_"#var), this->_state.flags.end()            \
+#define INCREMENT_VAR(var)                                                 \
+        if (                                                               \
+        	std::find(                                                 \
+        		this->_state.flags.begin(),                        \
+        		this->_state.flags.end(),                          \
+        		"no_"#var                                          \
+		) == this->_state.flags.end()                              \
+	) {                                                                \
+                this->_state.var += this->_state.var##Passive;             \
+                this->_state.var += (this->_state.var##Happiness + 1) / 2; \
+        }                                                                  \
+	this->_state.flags.erase(std::remove(                              \
+		this->_state.flags.begin(),                                \
+		this->_state.flags.end(),                                  \
+		"no_"#var), this->_state.flags.end()                       \
 	)
 
 namespace UntilBeingCrowned
@@ -340,7 +342,7 @@ namespace UntilBeingCrowned
 		tgui::Panel::Ptr pan;
 
 		if (args.size() != 1)
-			throw InvalidArgumentsException("Expected a single argument arguments");
+			throw InvalidArgumentsException("Expected a single argument");
 		if (args[0][0] == 'l')
 			pan = this->_gui.get<tgui::Panel>("otherPanel");
 		else
@@ -354,7 +356,7 @@ namespace UntilBeingCrowned
 		tgui::Panel::Ptr pan;
 
 		if (args.size() != 1)
-			throw InvalidArgumentsException("Expected a single argument arguments");
+			throw InvalidArgumentsException("Expected a single argument");
 		if (args[0][0] == 'l')
 			pan = this->_gui.get<tgui::Panel>("otherPanel");
 		else

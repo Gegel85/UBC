@@ -21,8 +21,6 @@ namespace UntilBeingCrowned {
 		GameState &_state;
 		QuestMgr &_quests;
 
-		std::string _nexLevel;
-
 		void _runGame(const std::string &flag);
 
 	public:
