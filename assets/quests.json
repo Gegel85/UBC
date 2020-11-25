@@ -1,255 +1,2729 @@
 [
   {
-    "title": "Debug dialog",
-    "picture": "icon",
-    "description": "This is just a debug dialog.\nIt is used to check if this feature is working or not.\n\nI think it is working right ?.\nYes it is.\nThe text is very long for testing purpose.\nLike\nVery\nVery\nVery\nVery\nLong text\n\n\n                           UntilBeingCrowned dev team",
-    "week_no": 3,
+    "title": "A thief in jail",
+    "description": "Hello your Highness,\nThis your captain guard speaking.\nWe have a thief in our jail for two weeks.\nIt would be great if you could state your judgment, should we hang him?\nOh, yes, I almost forgot.\nHe stole some food from a market stall\nsupposedly for his sick family.\nAh! He stole right in front of my guys! What an idiot!\nOh... well, my apologize for my vocabulary your Highness.\nWell then, hang or not hang?",
+    "picture": "",
+    "buttons": ["Hang him", "Release him", "Postpone"],
     "requirements": [],
-    "buttons_effects": [
-      {
-        "set_flags": ["debug1"],
-        "unset_flags": [],
-        "gold": -10,
-        "food": 0,
-        "army": 0,
-        "passive_gold": 0,
-        "passive_food": 0,
-        "passive_army": 0,
-        "peasants_happiness": 0,
-        "traders_happiness": 0,
-        "nobility_happiness": 0
-      },
-      {
-        "set_flags": ["debug2"],
-        "unset_flags": [],
-        "gold": 10,
-        "food": 0,
-        "army": 0,
-        "passive_gold": 0,
-        "passive_food": 0,
-        "passive_army": 0,
-        "peasants_happiness": 0,
-        "traders_happiness": 0,
-        "nobility_happiness": 0
-      },
-      {
-        "set_flags": ["debug3"],
-        "unset_flags": [],
-        "gold": 0,
-        "food": 0,
-        "army": 0,
-        "passive_gold": 10,
-        "passive_food": 0,
-        "passive_army": 0,
-        "peasants_happiness": 0,
-        "traders_happiness": 0,
-        "nobility_happiness": 0
-      },
-      {
-        "set_flags": ["debug4"],
-        "unset_flags": [],
-        "gold": 10,
-        "food": 10,
-        "army": 10,
-        "passive_gold": 10,
-        "passive_food": 10,
-        "passive_army": 10,
-        "peasants_happiness": 10,
-        "traders_happiness": 10,
-        "nobility_happiness": 10
-      },
-      {
-        "set_flags": ["debug5", "no_gold", "no_army", "no_food"],
-        "unset_flags": [],
-        "gold": 10,
-        "food": 10,
-        "army": 10,
-        "passive_gold": 10,
-        "passive_food": 10,
-        "passive_army": 10,
-        "peasants_happiness": 10,
-        "traders_happiness": 10,
-        "nobility_happiness": 10
-      }
-    ],
     "happiness_requirement": {
       "traders": {
-        "min": -2147483648,
-        "max": 2147483647
+        "min": 0,
+        "max": 40
       },
       "peasants": {
-        "min": -2147483648,
-        "max": 2147483647
+        "min": 0,
+        "max": 40
       },
       "nobility": {
-        "min": -2147483648,
-        "max": 2147483647
+        "min": 0,
+        "max": 40
       }
     },
-    "buttons": [
-      "Button 1",
-      "Button 2",
-      "Button 3",
-      "Button 4",
-      "Button 5",
-      "Button 6",
-      "Button 7",
-      "Button 8",
-      "Button 9"
-    ],
+    "week_no": 0,
+    "buttons_effects": [{
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": -2,
+      "traders_happiness": 2,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 2,
+      "traders_happiness": -2,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": ["thief_flee"],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    }],
+    "expire_time": 1
+  },
+  {
+    "title": "A thief no more in jail",
+    "description": "Hello ‘highness, remember the thief from last week? Well, we have another kind of problem with him. He kind of flee. I immediately send five men after him, but maybe I shouldn’t have.",
+    "picture": "",
+    "buttons": ["Send more men (5) to kill him", "Send more men (5) to bring him back", "Call back your men", "You did well"],
+    "requirements": ["thief_flee"],
+    "happiness_requirement": {
+      "traders": {
+        "min": 0,
+        "max": 40
+      },
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 0,
+        "max": 40
+      }
+    },
+    "week_no": 1,
+    "buttons_effects": [{
+      "set_flags": ["thief_killed"],
+      "unset_flags": ["thief_flee"],
+      "gold": 0,
+      "food": 0,
+      "army": -10,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": -5,
+      "traders_happiness": 3,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": ["thief_catched"],
+      "unset_flags": ["thief_flee"],
+      "gold": 0,
+      "food": 0,
+      "army": -10,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 3,
+      "traders_happiness": -5,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": -5,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": -1,
+      "traders_happiness": 1,
+      "nobility_happiness": 0
+    }],
+    "expire_time": 1
+  },
+  {
+    "title": "Ball with Farstan son",
+    "description": "Hello your Highness.\nHere is your humble servant Farstan, let me express you all my condolence for your father.\nA ball will be hold next week between some of my friends.\nLet me offer to you to go to this ball with my dear son, without any thoughts of course, just to allow you to forget your sorrow for a couple of hours",
+    "picture": "",
+    "buttons": ["Agree to come", "Refuse to go"],
+    "requirements": ["player_f"],
+    "happiness_requirement": {
+      "traders": {
+        "min": 0,
+        "max": 40
+      },
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 0,
+        "max": 40
+      }
+    },
+    "week_no": 1,
+    "buttons_effects": [{
+      "set_flags": ["mariage_farstan_son"],
+      "unset_flags": ["mariage_none"],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 1,
+      "nobility_happiness": 4
+    },
+    {
+      "set_flags": ["no_farstan"],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": -1,
+      "nobility_happiness": 0
+    }],
+    "expire_time": 1
+  },
+  {
+    "title": "Hunt with Farstan",
+    "description": "Hello your Highness.\nHere is your humble servant Farstan, let me express you all my condolence for your father.\nLet me offer to you to go hunt with me, allowing you to forget your sorrow for a couple of hours",
+    "picture": "",
+    "buttons": ["Agree to come", "Refuse to go"],
+    "requirements": ["player_m"],
+    "happiness_requirement": {
+      "traders": {
+        "min": 0,
+        "max": 40
+      },
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 0,
+        "max": 40
+      }
+    },
+    "week_no": 1,
+    "buttons_effects": [{
+      "set_flags": ["mariage_farstan_daughter"],
+      "unset_flags": ["mariage_none"],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 1,
+      "nobility_happiness": 4
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": -1,
+      "nobility_happiness": 0
+    }],
+    "expire_time": 1
+  },
+  {
+    "title": "No harvest this month",
+    "description": "Your Highness, my most sincere condolence for your father death. I hope you are doing well. I send you this letter for an urgent matter. Last month, the cold destroyed our harvest. Your father promised us he will pay as if our harvest were done without a problem to allow us to have money to buy food for our family despite this unfortunate event. I am sure you share his values and would agree to fulfill his promise.",
+    "picture": "",
+    "buttons": ["Pay for the destroyed harvest (5)", "Ignore and ask to give food this month as always", "Ingore the plea"],
+    "requirements": [],
+    "happiness_requirement": {
+      "traders": {
+        "min": 0,
+        "max": 40
+      },
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 0,
+        "max": 40
+      }
+    },
+    "week_no": 2,
+    "buttons_effects": [{
+      "set_flags": ["no_food"],
+      "unset_flags": [],
+      "gold": -5,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 3,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 1,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": -5,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": ["no_food"],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": -2,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    }],
+    "expire_time": 1
+  },
+  {
+    "title": "My own cooker steals from me!",
+    "description": "Hello your Highness.\nI send you all my condolence for your lose.\nAnd I send you this letter about a crime of the most abject nature.\nNo later than yesterday, I saw one of my cooker steals my wife necklace.\nHe stole it just in front of chamberlain eyes!\nOf course, I execute him this morning.\nBut now his familly say it was a lie and claims compensation.\nWould you please provide me some soldier to teach them how to respect the noblemen from your country?",
+    "picture": "",
+    "buttons": ["Send men to submit the peasants (5)", "Send men to investigate the case (5)", "Ignore", "Postpone"],
+    "requirements": [],
+    "happiness_requirement": {
+      "traders": {
+        "min": 0,
+        "max": 40
+      },
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 0,
+        "max": 40
+      }
+    },
+    "week_no": 2,
+    "buttons_effects": [{
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": -5,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": -2,
+      "traders_happiness": 0,
+      "nobility_happiness": 4
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": -5,
+      "passive_gold": 2,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 2,
+      "traders_happiness": 0,
+      "nobility_happiness": -4
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": -2
+    }],
+    "expire_time": 1
+  },
+  {
+    "title": "Mage Circle Wish",
+    "description": "Hello, your Highness. I am the Mage Circle Representative. As you may know, we work for the crown to develop new magic systems to answer the crown and citizen needs. But recently, some member of the Mage Circle started to wish study our island, on more a scientifical aspect than creating new magical object. Of course, we cannot decide to stop our work on our own. So here I am to ask you if we can leave aside our usual work to focus ourselves on the study of the island.",
+    "picture": "",
+    "buttons": ["Agree and give gold (7)", "Agree and give food every week (3)", "Agree and give men (7)", "Agree and give gold (5), food every week (2) and men (5)", "Agree", "Refuse and ask for new long distance communication device", "Refuse and ask for better means of transport", "Refuse and ask for more powerful weapons", "Refuse and ask to develop new harvesting tools", "Postpone"],
+    "requirements": ["thief_flee"],
+    "happiness_requirement": {
+      "traders": {
+        "min": 0,
+        "max": 40
+      },
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 0,
+        "max": 40
+      }
+    },
+    "week_no": 3,
+    "buttons_effects": [{
+      "set_flags": ["mage_ok", "normal_expedition"],
+      "unset_flags": [],
+      "gold": -7,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": ["mage_ok", "normal_expedition"],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": -3,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": ["mage_ok", "normal_expedition"],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": -7,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": ["mage_very_ok", "normal_expedition"],
+      "unset_flags": [],
+      "gold": -5,
+      "food": 0,
+      "army": -5,
+      "passive_gold": 0,
+      "passive_food": -2,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": ["mage_little_ok", "normal_expedition"],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": ["mage_not_ok", "communication_device", "normal_expedition"],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": ["mage_not_ok", "means_transport"],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 2,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": ["mage_not_ok", "better_weapons", "normal_expedition"],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 2
+    },
+    {
+      "set_flags": ["mage_not_ok", "harvesting_tools", "normal_expedition"],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 2,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    }],
     "expire_time": 2
+  },
+  {
+    "title": "Can't go to the mountain lake",
+    "description": "Your Highness, I understand it is not really your problem, but it is a big one for me. See, each years I travel from east to west with my sheeps and I always stop by Trysam on the way. But this year, the Church men prevent me to approach the city. I don't understand, since when is it prohibited to go out there? Help me to access the city, the travel is too long otherwise.",
+    "picture": "",
+    "buttons": ["Agree and send men (10)", "Agree and go on person", "Refuse to help", "Postpone"],
+    "requirements": [],
+    "happiness_requirement": {
+      "traders": {
+        "min": 0,
+        "max": 40
+      },
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 0,
+        "max": 40
+      }
+    },
+    "week_no": 3,
+    "buttons_effects": [{
+      "set_flags": ["problem_eglise_half_solved"],
+      "unset_flags": ["problem_eglise"],
+      "gold": 0,
+      "food": 0,
+      "army": -10,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 1,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": ["problem_eglise_solved", "problem_eglise_half_solved"],
+      "unset_flags": ["problem_eglise"],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 1,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": -1,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    }],
+    "expire_time": 2
+  },
+  {
+    "title": "More roads!",
+    "description": "Hello. I know you are a kind sovereign, and you wish the best for your people and the development of Arim. With this idea in mind, allow me to express an idea: what about construction a road to the little village of Nasir? They are so isolated, I am sure a road will benefit to everyone, faster development for them, more client for me, some gold for you.",
+    "picture": "",
+    "buttons": ["Send men to construct (6)", "Give gold to construct (10)", "Refuse", "Postpone"],
+    "requirements": [""],
+    "happiness_requirement": {
+      "traders": {
+        "min": 0,
+        "max": 40
+      },
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 0,
+        "max": 40
+      }
+    },
+    "week_no": 4,
+    "buttons_effects": [{
+      "set_flags": ["road_to_nasir"],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": -6,
+      "passive_gold": 2,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": ["road_to_nasir"],
+      "unset_flags": [],
+      "gold": -10,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 2,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    }],
+    "expire_time": 40
+  },
+  {
+    "title": "Strange bones in my field",
+    "description": "Your Highness, I’ve found something strange in my field while working the land last week. I don’t know what it is, never something so big. Looks like a bone. Maybe some giant, but never knew there was some here before.  I don’t know what I should do about it, bones don’t burn well so I thought maybe you would be interested.",
+    "picture": "",
+    "buttons": ["Keep the bone as decoration for the castle", "Give the bones to the nobles", "Give the bones to the merchant", "Let him do as he want"],
+    "requirements": [""],
+    "happiness_requirement": {
+      "traders": {
+        "min": 0,
+        "max": 40
+      },
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 0,
+        "max": 40
+      }
+    },
+    "week_no": 4,
+    "buttons_effects": [{
+      "set_flags": ["strange_bones"],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 1,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 1
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 1,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 1,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    }],
+    "expire_time": 1
+  },
+  {
+    "title": "Gift merchant",
+    "description": "Hello Your Highness, I am a merchant from Nasir! Thank you for creating the road. I sell some goods from my village, would you like to buy some?",
+    "picture": "",
+    "buttons": ["Buy some ornamental bones (3)", "Buy a strange stone (4)", "Buy a gift (5)", "Not this time"],
+    "requirements": ["road_to_nasir"],
+    "happiness_requirement": {
+      "traders": {
+        "min": 15,
+        "max": 40
+      },
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 0,
+        "max": 40
+      }
+    },
+    "week_no": 5,
+    "buttons_effects": [{
+      "set_flags": ["ornamental_bones"],
+      "unset_flags": [],
+      "gold": -3,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": ["strange_stone"],
+      "unset_flags": [],
+      "gold": -4,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": ["gift"],
+      "unset_flags": [],
+      "gold": -5,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    }],
+    "expire_time": 10
+  },
+  {
+    "title": "Expedition to the island",
+    "description": "Your Highness, let me introduce myself. I am Sir Foliram from the merchant guild. I have recently set my eyes on the island on the North-east of our magnificent land. I am sure there is people living out there, and, for sure, potential client. I have sent some of my ship out there, but they only are fish boat, they cannot travel so long distance. I realized my mistake after they are departure from the port and are now lost to the sea. But I am sure than, with your assistance, we can set an expedition and contact the island inhabitant. Can I hope receive your help?",
+    "picture": "",
+    "buttons": ["Agree and provide food for the travel (7)", "Agree and give gold to build one boat (5)", "Agree and give gold to build several boats (12)", "Refuse but give gold for the lost boats (5)", "Refuse", "Postpone"],
+    "requirements": ["normal_expedition"],
+    "happiness_requirement": {
+      "traders": {
+        "min": 0,
+        "max": 40
+      },
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 0,
+        "max": 40
+      }
+    },
+    "week_no": 5,
+    "buttons_effects": [
+    {
+      "set_flags": ["expedition_launched"],
+      "unset_flags": [],
+      "gold": 0,
+      "food": -7,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 4,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": ["expedition_launched", "one_boat"],
+      "unset_flags": [],
+      "gold": -5,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 4,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": ["expediton_launched", "several_boat"],
+      "unset_flags": [],
+      "gold": -12,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 7,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": -5,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 1,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": -2,
+      "nobility_happiness": 0
+    }],
+    "expire_time": 2
+  },
+  {
+    "title": "Expedition to the island",
+    "description": "Your Highness, let me introduce myself. I am Sir Foliram from the merchant guild. I have recently set my eyes on the island on the North-east of our magnificent land. I am sure there is people living out there, and, for sure, potential client. I have sent some of my ship out there, but they only are fish boat, they cannot travel so long distance. I realized my mistake after they are departure from the port and are now lost to the sea. But I am sure than, with your assistance, we can set an expedition and contact the island inhabitant. Can I hope receive your help?",
+    "picture": "",
+    "buttons": ["Agree and provide food for the travel (7)", "Agree and give gold to build one boat (1)", "Agree and give gold to build several boats (5)", "Refuse but give gold for the lost boats (1)", "Refuse", "Postpone"],
+    "requirements": ["means_transport"],
+    "happiness_requirement": {
+      "traders": {
+        "min": 0,
+        "max": 40
+      },
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 0,
+        "max": 40
+      }
+    },
+    "week_no": 5,
+    "buttons_effects": [
+    {
+      "set_flags": ["expedition_launched"],
+      "unset_flags": [],
+      "gold": 0,
+      "food": -7,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 4,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": ["expedition_launched", "one_boat"],
+      "unset_flags": [],
+      "gold": -1,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 4,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": ["expediton_launched", "several_boat"],
+      "unset_flags": [],
+      "gold": -5,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 7,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": -1,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 1,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": -2,
+      "nobility_happiness": 0
+    }],
+    "expire_time": 2
+  },
+  {
+    "title": "Protection for my daughter",
+    "description": "Hello Your Highness.\nHere is your humble servant Farstan.\nI know it must seems abrupt, but I need your assistance on a little thing.\nMy daughter must go to one of here friend feast next week.\nUnfortunately, she has no one to accompany her and I fear something could happen to her on the way. Would I dare to ask you to provide some men to protect her?",
+    "picture": "",
+    "buttons": ["Agree and send men (3)", "Refuse to help"],
+    "requirements": ["problem_eglise_half_solved"],
+    "happiness_requirement": {
+      "traders": {
+        "min": 0,
+        "max": 40
+      },
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 0,
+        "max": 40
+      }
+    },
+    "week_no": 6,
+    "buttons_effects": [{
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": -3,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 1,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": ["mariage_none"],
+      "unset_flags": ["mariage_farstan_daughter"],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": -1,
+      "nobility_happiness": 0
+    }],
+    "expire_time": 1
+  },
+  {
+    "title": "Road to Trysam closed",
+    "description": "Your Highness. One of my employee come back yesterday with a strange new : all the road to Trysam seems to be closed. It is quite an infortunate news as some of my most important clients live there. Would I dare to ask your assistance to reopen the way to Trysam?",
+    "picture": "",
+    "buttons": ["Agree and send men (10)", "Agree and go on person", "Refuse to help", "Postpone"],
+    "requirements": ["problem_eglise", "player_f"],
+    "happiness_requirement": {
+      "traders": {
+        "min": 0,
+        "max": 40
+      },
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 0,
+        "max": 40
+      }
+    },
+    "week_no": 6,
+    "buttons_effects": [{
+      "set_flags": ["problem_eglise_half_solved"],
+      "unset_flags": ["problem_eglise"],
+      "gold": 0,
+      "food": 0,
+      "army": -10,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 2,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": ["killed_church_sacrifice"],
+      "unset_flags": ["problem_eglise"],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 2,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": -2,
+      "nobility_happiness": 0
+    }],
+    "expire_time": 2
+  },
+  {
+    "title": "Road to Trysam closed",
+    "description": "Your Highness. One of my employee come back yesterday with a strange new : all the road to Trysam seems to be closed. It is quite an infortunate news as some of my most important clients live there. Would I dare to ask your assistance to reopen the way to Trysam?",
+    "picture": "",
+    "buttons": ["Agree and send men (10)", "Agree and go on person", "Refuse to help", "Postpone"],
+    "requirements": ["problem_eglise", "player_m"],
+    "happiness_requirement": {
+      "traders": {
+        "min": 0,
+        "max": 40
+      },
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 0,
+        "max": 40
+      }
+    },
+    "week_no": 6,
+    "buttons_effects": [{
+      "set_flags": ["problem_eglise_half_solved"],
+      "unset_flags": ["problem_eglise"],
+      "gold": 0,
+      "food": 0,
+      "army": -10,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 2,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": ["problem_eglise_solved", "problem_eglise_half_solved"],
+      "unset_flags": ["problem_eglise"],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 2,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": -2,
+      "nobility_happiness": 0
+    }],
+    "expire_time": 2
+  },
+  {
+    "title": "My daughter mariage",
+    "description": "Hello Your Highness. This weekend I celebrate my dear daughter mariage. I would like for you to come to celebrate with us. Will you make us the honor of your presence?",
+    "picture": "",
+    "buttons": ["Come and bring food (10)", "Come and bring a gift", "Come and bring gold (10)", "Send some food (10)", "Send a gift", "Send gold (10)", "Refuse"],
+    "requirements": ["gift"],
+    "happiness_requirement": {
+      "traders": {
+        "min": 0,
+        "max": 40
+      },
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 10,
+        "max": 40
+      }
+    },
+    "week_no": 6,
+    "buttons_effects": [
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": -10,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 3
+    },
+    {
+      "set_flags": ["no_gift"],
+      "unset_flags": ["gift"],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 3
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": -10,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 3
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": -10,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": -1
+    },
+    {
+      "set_flags": ["no_gift"],
+      "unset_flags": ["gift"],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 1
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": -10,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 1
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": -3
+    }],
+    "expire_time": 1
+  },
+  {
+    "title": "My daughter mariage",
+    "description": "Hello Your Highness. This weekend I celebrate my dear daughter mariage. I would like for you to come to celebrate with us. Will you make us the honor of your presence?",
+    "picture": "",
+    "buttons": ["Come and bring food (10)", "Come and bring gold (10)", "Send some food (10)", "Send gold (10)", "Refuse"],
+    "requirements": ["gift"],
+    "happiness_requirement": {
+      "traders": {
+        "min": 0,
+        "max": 40
+      },
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 10,
+        "max": 40
+      }
+    },
+    "week_no": 6,
+    "buttons_effects": [
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": -10,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 3
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": -10,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 3
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": -10,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": -1
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": -10,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 1
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": -3
+    }],
+    "expire_time": 1
+  },
+  {
+    "title": "My daughter mariage",
+    "description": "Hello Your Highness. This weekend I celebrate my dear daughter mariage. I would like for you to come to celebrate with us. Will you make us the honor of your presence?",
+    "picture": "",
+    "buttons": ["Come and bring food (10)", "Come and bring gold (10)", "Send some food (10)", "Send gold (10)", "Refuse"],
+    "requirements": ["no_gift"],
+    "happiness_requirement": {
+      "traders": {
+        "min": 0,
+        "max": 40
+      },
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 0,
+        "max": 10
+      }
+    },
+    "week_no": 6,
+    "buttons_effects": [{
+      "set_flags": ["killed_MARIAGE"],
+      "unset_flags": [""],
+      "gold": 0,
+      "food": -10,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 3
+    },
+    {
+      "set_flags": ["killed_MARIAGE"],
+      "unset_flags": [],
+      "gold": -10,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 3
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": -10,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": -1
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": -10,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": -1
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": -3
+    }],
+    "expire_time": 1
+  },
+  {
+    "title": "My daughter mariage",
+    "description": "Hello Your Highness. This weekend I celebrate my dear daughter mariage. I would like for you to come to celebrate with us. Will you make us the honor of your presence?",
+    "picture": "",
+    "buttons": ["Come and bring food (10)", "Come and bring a gift", "Come and bring gold (10)", "Send some food (10)", "Send a gift", "Send gold (10)", "Refuse"],
+    "requirements": ["gift"],
+    "happiness_requirement": {
+      "traders": {
+        "min": 0,
+        "max": 40
+      },
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 0,
+        "max": 10
+      }
+    },
+    "week_no": 6,
+    "buttons_effects": [{
+      "set_flags": ["killed_MARIAGE"],
+      "unset_flags": [""],
+      "gold": 0,
+      "food": -10,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 3
+    },
+    {
+      "set_flags": ["killed_MARIAGE"],
+      "unset_flags": ["gift"],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 3
+    },
+    {
+      "set_flags": ["killed_MARIAGE"],
+      "unset_flags": [],
+      "gold": -10,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 3
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": -10,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": -1
+    },
+    {
+      "set_flags": ["no_gift"],
+      "unset_flags": ["gift"],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": -1
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": -10,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": -1
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": -3
+    }],
+    "expire_time": 1
+  },
+  {
+    "title": "Start War",
+    "description": "As your command, we start to chartering the vessels to launch an attack on the island. Thanks to the ",
+    "picture": "",
+    "buttons": ["Agree", "Disagree"],
+    "requirements": ["hydra_war", "ship"],
+    "happiness_requirement": {
+      "traders": {
+        "min": 0,
+        "max": 40
+      },
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 0,
+        "max": 40
+      }
+    },
+    "week_no": 8,
+    "buttons_effects": [{
+      "set_flags": [],
+      "unset_flags": ["hydra"],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 3,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": ["keep_hydra_p"],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    }],
+    "expire_time": 1
   },
   {
     "title": "Hydra - Victory",
     "description": "We successfully killed the Hydra your Highness! Your people seem quite pleased by the new. How about hosting a feast to celebrate this victory? We could eat the hydra at the occasion.",
-    "picture": "icon",
+    "picture": "",
     "buttons": ["Agree", "Disagree"],
     "requirements": ["hydra"],
-    "week_no": 0,
     "happiness_requirement": {
       "traders": {
-        "min": -2147483648,
-        "max": 2147483647
+        "min": 0,
+        "max": 40
       },
       "peasants": {
-        "min": -2147483648,
-        "max": 2147483647
+        "min": 0,
+        "max": 40
       },
       "nobility": {
-        "min": -2147483648,
-        "max": 2147483647
+        "min": 0,
+        "max": 40
       }
     },
-    "buttons_effects": [
-      {
-        "set_flags": [],
-        "unset_flags": ["hydra"],
-        "gold": 0,
-        "food": 0,
-        "army": 0,
-        "passive_gold": 0,
-        "passive_food": 0,
-        "passive_army": 0,
-        "peasants_happiness": 0,
-        "traders_happiness": 0,
-        "nobility_happiness": 0
-      },
-      {
-        "set_flags": ["keep_hydra_p"],
-        "unset_flags": [],
-        "gold": 0,
-        "food": 0,
-        "army": 0,
-        "passive_gold": 0,
-        "passive_food": 0,
-        "passive_army": 0,
-        "peasants_happiness": 0,
-        "traders_happiness": 0,
-        "nobility_happiness": 0
-      }
-    ],
+    "week_no": 8,
+    "buttons_effects": [{
+      "set_flags": [],
+      "unset_flags": ["hydra"],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 3,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": ["keep_hydra_p"],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    }],
     "expire_time": 1
   },
   {
     "title": "Hydra - trophy",
     "description": "Your Highness, I heard you killed a Hydra recently. I would love to have it to expose it in my hall. Of course, I will give you some gold in exchange of such a lovely trophy. Best regard, Lord Loniriss",
-    "picture": "icon",
+    "picture": "",
     "buttons": ["Agree", "Disagree"],
     "requirements": ["hydra"],
-    "week_no": 0,
     "happiness_requirement": {
       "traders": {
-        "min": -2147483648,
-        "max": 2147483647
+        "min": 0,
+        "max": 40
       },
       "peasants": {
-        "min": -2147483648,
-        "max": 2147483647
+        "min": 0,
+        "max": 40
       },
       "nobility": {
-        "min": -2147483648,
-        "max": 2147483647
+        "min": 0,
+        "max": 40
       }
     },
-    "buttons_effects": [
-      {
-        "set_flags": [],
-        "unset_flags": ["hydra"],
-        "gold": 0,
-        "food": 0,
-        "army": 0,
-        "passive_gold": 0,
-        "passive_food": 0,
-        "passive_army": 0,
-        "peasants_happiness": 0,
-        "traders_happiness": 0,
-        "nobility_happiness": 0
-      },
-      {
-        "set_flags": ["keep_hydra_n"],
-        "unset_flags": [],
-        "gold": 0,
-        "food": 0,
-        "army": 0,
-        "passive_gold": 0,
-        "passive_food": 0,
-        "passive_army": 0,
-        "peasants_happiness": 0,
-        "traders_happiness": 0,
-        "nobility_happiness": 0
-      }
-    ],
+    "week_no": 8,
+    "buttons_effects": [{
+      "set_flags": [],
+      "unset_flags": ["hydra"],
+      "gold": 5,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 3
+    },
+    {
+      "set_flags": ["keep_hydra_n"],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    }],
     "expire_time": 1
   },
   {
     "title": "Hydra - to sell",
     "description": "My salutations your Highness, I hope this letter find you well. The word about you killing a hydra reach my ears. For a mutual profit, I offer to you to give me the body, I will sell it and, of course, we will share the money I could get from it.",
-    "picture": "icon",
+    "picture": "",
     "buttons": ["Agree", "Disagree"],
     "requirements": ["hydra"],
-    "week_no": 0,
     "happiness_requirement": {
       "traders": {
-        "min": -2147483648,
-        "max": 2147483647
+        "min": 0,
+        "max": 40
       },
       "peasants": {
-        "min": -2147483648,
-        "max": 2147483647
+        "min": 0,
+        "max": 40
       },
       "nobility": {
-        "min": -2147483648,
-        "max": 2147483647
+        "min": 0,
+        "max": 40
       }
     },
-    "buttons_effects": [
-      {
-        "set_flags": [],
-        "unset_flags": ["hydra"],
-        "gold": 0,
-        "food": 0,
-        "army": 0,
-        "passive_gold": 0,
-        "passive_food": 0,
-        "passive_army": 0,
-        "peasants_happiness": 0,
-        "traders_happiness": 0,
-        "nobility_happiness": 0
+    "week_no": 8,
+    "buttons_effects": [{
+      "set_flags": [],
+      "unset_flags": ["hydra"],
+      "gold": 7,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 3,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": ["keep_hydra_m"],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    }],
+    "expire_time": 1
+  },
+  {
+    "title": "The hydra eat everything!",
+    "description": "Your Highness. I have a big problem. I tried to ask some soldiers to repeal a hydra, but I was told YOU decided to invite it to stay in our sea. Now it is eating all the fish around the eastern seaboard. Please, do something.",
+    "picture": "",
+    "buttons": ["Send soldiers to ask the hydra to leave", "Refuse the plea"],
+    "requirements": ["hydra_helped"],
+    "happiness_requirement": {
+      "traders": {
+        "min": 0,
+        "max": 40
       },
-      {
-        "set_flags": ["keep_hydra_m"],
-        "unset_flags": [],
-        "gold": 0,
-        "food": 0,
-        "army": 0,
-        "passive_gold": 0,
-        "passive_food": 0,
-        "passive_army": 0,
-        "peasants_happiness": 0,
-        "traders_happiness": 0,
-        "nobility_happiness": 0
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 0,
+        "max": 40
       }
-    ],
+    },
+    "week_no": 8,
+    "buttons_effects": [{
+      "set_flags": [],
+      "unset_flags": ["hydra_helped"],
+      "gold": 7,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 3,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": -2,
+      "passive_army": 0,
+      "peasants_happiness": -4,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    }],
+    "expire_time": 1
+  },
+  {
+    "title": "Invitation to the Loniriss feast",
+    "description": "Your Highness, it is my ulmost pleasure to invite you to my annual feast. As you know, all the noblemen of Arim will be there and we all sincerily hope for your presence.",
+    "picture": "",
+    "buttons": ["Go to the feast", "Send gift and apologize for not being able to come", "Send gold(7) and apologize for not being able to come", "Ignore"],
+    "requirements": ["problem_eglise_solved", "gift"],
+    "happiness_requirement": {
+      "traders": {
+        "min": 0,
+        "max": 40
+      },
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 10,
+        "max": 40
+      }
+    },
+    "week_no": 9,
+    "buttons_effects": [{
+      "set_flags": ["loniriss_saw"],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 5
+    },
+    {
+      "set_flags": ["no_gift"],
+      "unset_flags": ["gift"],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": -7,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": -1
+    },
+    {
+      "set_flags": ["loniriss_ignored"],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": -5
+    }],
+    "expire_time": 1
+  },
+  {
+    "title": "Invitation to the Loniriss feast",
+    "description": "Your Highness, it is my ulmost pleasure to invite you to my annual feast. As you know, all the noblemen of Arim will be there and we all sincerily hope for your presence.",
+    "picture": "",
+    "buttons": ["Go to the feast", "Send gold(7) and apologize for not being able to come", "Ignore"],
+    "requirements": ["problem_eglise_solved", "no_gift"],
+    "happiness_requirement": {
+      "traders": {
+        "min": 0,
+        "max": 40
+      },
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 10,
+        "max": 40
+      }
+    },
+    "week_no": 9,
+    "buttons_effects": [{
+      "set_flags": ["loniriss_saw"],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 5
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": -7,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": -1
+    },
+    {
+      "set_flags": ["loniriss_ignored"],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": -5
+    }],
+    "expire_time": 1
+  },
+  {
+    "title": "Invitation to the Loniriss feast",
+    "description": "Your Highness, it is my ulmost pleasure to invite you to my annual feast. As you know, all the noblemen of Arim will be there and we all sincerily hope for your presence.",
+    "picture": "",
+    "buttons": ["Go to the feast", "Send gift and apologize for not being able to come", "Send gold(7) and apologize for not being able to come", "Ignore"],
+    "requirements": ["problem_eglise_solved", "gift"],
+    "happiness_requirement": {
+      "traders": {
+        "min": 0,
+        "max": 40
+      },
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 0,
+        "max": 10
+      }
+    },
+    "week_no": 9,
+    "buttons_effects": [{
+      "set_flags": ["killed_loniriss_feast"],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 5
+    },
+    {
+      "set_flags": ["no_gift"],
+      "unset_flags": ["gift"],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": -1
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": -7,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": -3
+    },
+    {
+      "set_flags": ["loniriss_ignored"],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": -7
+    }],
+    "expire_time": 1
+  },
+  {
+    "title": "Invitation to the Loniriss feast",
+    "description": "Your Highness, it is my ulmost pleasure to invite you to my annual feast. As you know, all the noblemen of Arim will be there and we all sincerily hope for your presence.",
+    "picture": "",
+    "buttons": ["Go to the feast", "Send gold(7) and apologize for not being able to come", "Ignore"],
+    "requirements": ["problem_eglise_solved", "no_gift"],
+    "happiness_requirement": {
+      "traders": {
+        "min": 0,
+        "max": 40
+      },
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 0,
+        "max": 10
+      }
+    },
+    "week_no": 9,
+    "buttons_effects": [{
+      "set_flags": ["killed_loniriss_feast"],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 5
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": -7,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": -3
+    },
+    {
+      "set_flags": ["loniriss_ignored"],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": -7
+    }],
+    "expire_time": 1
+  },
+  {
+    "title": "Feast at the Loniriss manor",
+    "description": "A feast is to be given in Trysam for the most famous noble family of the area, but the Church prevents any outside visitors, who even know what they may have done to our friends the Loniriss. Help us bring them back to reason! (And open the way for us for this celebration, it is an event that you should A-BSO-LU-TLY not miss)!",
+    "picture": "",
+    "buttons": ["Agree and send men (12)", "Agree and go on person", "Refuse to help", "Postpone"],
+    "requirements": ["problem_eglise"],
+    "happiness_requirement": {
+      "traders": {
+        "min": 0,
+        "max": 40
+      },
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 0,
+        "max": 40
+      }
+    },
+    "week_no": 9,
+    "buttons_effects": [{
+      "set_flags": ["problem_eglise_half_solved"],
+      "unset_flags": ["problem_eglise"],
+      "gold": 0,
+      "food": 0,
+      "army": -12,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 3
+    },
+    {
+      "set_flags": ["killed_church"],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 3
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": -2
+    }],
+    "expire_time": 2
+  },
+  {
+    "title": "Your mariage",
+    "description": "Hello your Highness.\nIt may seems too soon for you, but I think the time as come for you to think about your mariage.\nSome options offer to you. The most logical would be to marry a noble. But you can still marry a merchant child to bring gold to our kingdom. Of course, nothing prevent you from marrying a farmer or no one. Do not forget the island chief was interested by you, I am sure you can propose to him.",
+    "picture": "",
+    "buttons": ["Marry a noble", "Marry island chief", "Marry a merchant", "Marry a farmer", "Marry no one", "Postpone"],
+    "requirements": ["mariage_island_chief", "player_f", "no_farstan"],
+    "happiness_requirement": {
+      "traders": {
+        "min": 0,
+        "max": 40
+      },
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 0,
+        "max": 40
+      }
+    },
+    "week_no": 10,
+    "buttons_effects": [
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 1,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 1
+    },    
+    {
+      "set_flags": ["married_island_chief"],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 1,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 1,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 1,
+      "passive_army": 0,
+      "peasants_happiness": 1,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    }],
+    "expire_time": 3
+  },
+  {
+    "title": "Your mariage",
+    "description": "Hello your Highness.\nIt may seems too soon for you, but I think the time as come for you to think about your mariage.\nSome options offer to you. The most logical would be to marry a noble. But you can still marry a merchant child to bring gold to our kingdom and I think sir Farstan son was interrested by you. Of course, nothing prevent you from marrying a farmer or no one. Do not forget the island chief was interested by you, I am sure you can propose to him.",
+    "picture": "",
+    "buttons": ["Marry a noble", "Marry island chief", "Marry a merchant", "Marry Farstan son", "Marry a farmer", "Marry no one", "Postpone"],
+    "requirements": ["mariage_farstan_son", "mariage_island_chief", "player_f"],
+    "happiness_requirement": {
+      "traders": {
+        "min": 0,
+        "max": 40
+      },
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 0,
+        "max": 40
+      }
+    },
+    "week_no": 10,
+    "buttons_effects": [
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 1,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 1
+    },    
+    {
+      "set_flags": ["married_island_chief"],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 1,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 1,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 2,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 1,
+      "nobility_happiness": 0
+    },    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 1,
+      "passive_army": 0,
+      "peasants_happiness": 1,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    }],
+    "expire_time": 3
+  },
+  {
+    "title": "Your mariage",
+    "description": "Hello your Highness.\nIt may seems too soon for you, but I think the time as come for you to think about your mariage.\nSome options offer to you. The most logical would be to marry a noble. But you can still marry a merchant child to bring gold to our kingdom and I think sir Farstan son was interrested by you. Of course, nothing prevent you from marrying a farmer or no one.",
+    "picture": "",
+    "buttons": ["Marry a noble", "Marry a merchant", "Marry Farstan son", "Marry a farmer", "Marry no one", "Postpone"],
+    "requirements": ["mariage_farstan_son", "player_f"],
+    "happiness_requirement": {
+      "traders": {
+        "min": 0,
+        "max": 40
+      },
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 0,
+        "max": 40
+      }
+    },
+    "week_no": 10,
+    "buttons_effects": [
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 1,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 1
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 1,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 1,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 2,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 1,
+      "nobility_happiness": 0
+    },    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 1,
+      "passive_army": 0,
+      "peasants_happiness": 1,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    }],
+    "expire_time": 3
+  },
+  {
+    "title": "Your mariage",
+    "description": "Hello your Highness.\nIt may seems too soon for you, but I think the time as come for you to think about your mariage.\nSome options offer to you. The most logical would be to marry a noble. But you can still marry a merchant child to bring gold to our kingdom and I think sir Farstan would be happy to propose to you his daugther. Of course, nothing prevent you from marrying a farmer or no one.",
+    "picture": "",
+    "buttons": ["Marry a noble", "Marry a merchant", "Marry Farstan daughter", "Marry a farmer", "Marry no one", "Postpone"],
+    "requirements": ["mariage_farstan_daughter", "player_m"],
+    "happiness_requirement": {
+      "traders": {
+        "min": 0,
+        "max": 40
+      },
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 0,
+        "max": 40
+      }
+    },
+    "week_no": 10,
+    "buttons_effects": [
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 1,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 1
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 1,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 1,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 2,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 1,
+      "nobility_happiness": 0
+    },    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 1,
+      "passive_army": 0,
+      "peasants_happiness": 1,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    }],
+    "expire_time": 3
+  },
+  {
+    "title": "Your mariage",
+    "description": "Hello your Highness.\nIt may seems too soon for you, but I think the time as come for you to think about your mariage. Some options offer to you. The most logical would be to marry a noble. But you can still marry a merchant child to bring gold to our kingdom. Of course, nothing prevent you from marrying a farmer or no one.",
+    "picture": "",
+    "buttons": ["Marry a noble", "Marry a merchant", "Marry a farmer", "Marry no one", "Postpone"],
+    "requirements": ["mariage_none"],
+    "happiness_requirement": {
+      "traders": {
+        "min": 0,
+        "max": 40
+      },
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 0,
+        "max": 40
+      }
+    },
+    "week_no": 10,
+    "buttons_effects": [
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 1,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 1
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 1,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 1,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 1,
+      "passive_army": 0,
+      "peasants_happiness": 1,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    }],
+    "expire_time": 3
+  },
+  {
+    "title": "Monster attack on the roads",
+    "description": "Hello Your Highness, I hope you are well.\nI wrote to you regarding the last events.\nWith the agitation of the monsters, some are on the roads and attack the merchants. The latter now refuse to use the forest roads unless they have an escort, did you want to give them one?",
+    "picture": "",
+    "buttons": ["Send some guards as escort (5)", "Send guard securise the roads (8)", "Ignore the plea", "Postpone"],
+    "requirements": [],
+    "happiness_requirement": {
+      "traders": {
+        "min": 0,
+        "max": 40
+      },
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 0,
+        "max": 40
+      }
+    },
+    "week_no": 12,
+    "buttons_effects": [{
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": -5,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 3,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": -8,
+      "passive_gold": 2,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 5,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": -2,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": -4,
+      "nobility_happiness": 0
+    }],
+    "expire_time": 2
+  },
+  {
+    "title": "It's outrageous!",
+    "description": "Your Highness! I just saw something absolutely outrageous! I was walking down the street, looking at the goods sold by the merchant when I saw it. My brother ring, on the merchant stall! And he tries to sell it to me! My brother dies during the monster attack, this merchant must have thief it from my brother body, or from his house. I am sure all his abject merchandise are stolen objects from people dead or which flee their house. You surely not can let him be?",
+    "picture": "",
+    "buttons": ["Send guard to arrest the merchant (5)", "Send guard to confiscate the goods to give them back to the familly (2)", "Ignore the plea", "Postpone"],
+    "requirements": [],
+    "happiness_requirement": {
+      "traders": {
+        "min": 0,
+        "max": 40
+      },
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 0,
+        "max": 40
+      }
+    },
+    "week_no": 12,
+    "buttons_effects": [{
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": -5,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": -5,
+      "nobility_happiness": 3
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": -2,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": -2,
+      "nobility_happiness": 3
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": -5
+    }],
+    "expire_time": 2
+  },
+  {
+    "title": "Blockade on the capital city!",
+    "description": "Your Highness, it's an emergency! The merchant of the island made a blockade on our city. They prevent everyone to enter or leave. We didn't receive the food supply from the peasants this week and it looks like we won't get it this month. And we can't count on the gold too",
+    "picture": "",
+    "buttons": ["Send men to stop the blockade (10)", "Go talk to the merchant on person", "Ignore them"],
+    "requirements": [],
+    "happiness_requirement": {
+      "traders": {
+        "min": 0,
+        "max": 10
+      },
+      "peasants": {
+        "min": 0,
+        "max": 40
+      },
+      "nobility": {
+        "min": 0,
+        "max": 40
+      }
+    },
+    "week_no": 13,
+    "buttons_effects": [{
+      "set_flags": ["no_gold"],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": -10,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 0
+    },
+    {
+      "set_flags": [],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": 3
+    },
+    {
+      "set_flags": ["no_gold", "no_food"],
+      "unset_flags": [],
+      "gold": 0,
+      "food": 0,
+      "army": 0,
+      "passive_gold": 0,
+      "passive_food": 0,
+      "passive_army": 0,
+      "peasants_happiness": 0,
+      "traders_happiness": 0,
+      "nobility_happiness": -2
+    }],
     "expire_time": 1
   }
 ]
+

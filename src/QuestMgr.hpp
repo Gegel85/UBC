@@ -68,6 +68,7 @@ namespace UntilBeingCrowned
 		std::vector<Quest> _newQuests;
 		std::vector<Quest> _unlockedQuests;
 		unsigned _selected;
+		std::vector<tgui::Button::Ptr> _buttons;
 		tgui::ScrollablePanel::Ptr _panel;
 		std::vector<bool> _usedQuests;
 		std::vector<Quest> _quests;

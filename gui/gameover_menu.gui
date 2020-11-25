@@ -1,10 +1,10 @@
 Label.EndId {
     HorizontalAlignment = Center;
-    Position = (0, 50);
+    Position = (0, 170);
     ScrollbarPolicy = Never;
     Size = (1360, 68);
     Text = Label;
-    TextSize = 60;
+    TextSize = 50;
 
     Renderer {
         backgroundcolor = transparent;
@@ -17,11 +17,11 @@ Label.EndId {
 }
 
 Label.Label1 {
-    AutoSize = true;
-    Position = (480, 270);
+    HorizontalAlignment = Center;
+    Position = (0, 310);
     ScrollbarPolicy = Never;
-    Size = (378, 34);
-    Text = "Thanks for playing";
+    Size = (1360, 124);
+    Text = "Unfortunately, it looks like\nyour choices lead you to your own death...\nMaybe you should try another way ?";
     TextSize = 30;
 
     Renderer {
@@ -35,7 +35,7 @@ Label.Label1 {
 }
 
 Button.menu {
-    Position = (440, 560);
+    Position = (460, 580);
     Text = "Go back to main menu";
     TextSize = 35;
 
@@ -59,5 +59,23 @@ Button.menu {
         texturedown = None;
         texturefocused = None;
         texturehover = None;
+    }
+}
+
+Label.Label2 {
+    HorizontalAlignment = Center;
+    Position = (0, 30);
+    ScrollbarPolicy = Never;
+    Size = (1360, 68);
+    Text = "You died";
+    TextSize = 60;
+
+    Renderer {
+        backgroundcolor = transparent;
+        bordercolor = #3C3C3C;
+        borders = (0, 0, 0, 0);
+        font = "assets/kenpixel.ttf";
+        textcolor = white;
+        texturebackground = None;
     }
 }

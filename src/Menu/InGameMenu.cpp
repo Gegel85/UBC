@@ -5,19 +5,21 @@
 #include "InGameMenu.hpp"
 #include "../Resources/State.hpp"
 
-#define INCREMENT_VAR(var)                                      \
-        if (                                                    \
-        	std::find(                                      \
-        		this->_state.flags.begin(),             \
-        		this->_state.flags.end(),               \
-        		"no_"#var                               \
-		) == this->_state.flags.end()                   \
-	)                                                       \
-                this->_state.var += this->_state.var##Passive;  \
-	this->_state.flags.erase(std::remove(                   \
-		this->_state.flags.begin(),                     \
-		this->_state.flags.end(),                       \
-		"no_"#var), this->_state.flags.end()            \
+#define INCREMENT_VAR(var)                                                 \
+        if (                                                               \
+        	std::find(                                                 \
+        		this->_state.flags.begin(),                        \
+        		this->_state.flags.end(),                          \
+        		"no_"#var                                          \
+		) == this->_state.flags.end()                              \
+	) {                                                                \
+                this->_state.var += this->_state.var##Passive;             \
+                this->_state.var += (this->_state.var##Happiness + 1) / 2; \
+        }                                                                  \
+	this->_state.flags.erase(std::remove(                              \
+		this->_state.flags.begin(),                                \
+		this->_state.flags.end(),                                  \
+		"no_"#var), this->_state.flags.end()                       \
 	)
 
 static const std::array<std::string, 12> _monthsNames{
@@ -89,11 +91,13 @@ namespace UntilBeingCrowned
 			return str.substr(0, strlen("killed_")) == "killed_";
 		});
 		auto newQuestsList = this->_gui.get<tgui::Button>("NewQuests");
+		auto nextWeek = this->_gui.get<tgui::Button>("Next");
 
 		if (itgo != this->_state.flags.end())
 			this->_mgr.changeMenu("game over");
 		if (itv != this->_state.flags.end())
 			this->_mgr.changeMenu("victory");
+		nextWeek->setVisible(this->_questsMgr.getNewQuests().empty());
 		newQuestsList->setVisible(!this->_questsMgr.getNewQuests().empty());
 		this->_goldsLabel->setText(std::to_string(this->_state.gold));
 		this->_armyLabel->setText(std::to_string(this->_state.army));

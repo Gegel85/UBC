@@ -3,16 +3,17 @@
 //
 
 #include "GenderMenu.hpp"
+#include "../Exceptions.hpp"
 
 
 namespace UntilBeingCrowned
 {
-	GenderMenu::GenderMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, GameState &state) :
+	GenderMenu::GenderMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, GameState &state, QuestMgr &quests) :
 		_res(res),
 		_gui(gui),
 		_mgr(mgr),
 		_state(state),
-		_nexLevel("dialog")
+		_quests(quests)
 	{
 	}
 
@@ -36,9 +37,50 @@ namespace UntilBeingCrowned
 	void GenderMenu::handleEvent(const Input::Event &) {
 
 	}
+
 	void GenderMenu::_runGame(const std::string &flag)
 	{
+		std::ifstream stream{"assets/baseValues.txt"};
+		size_t nb;
+		std::string token;
+
+		logger.debug("Loading state init file.");
+		if (stream.fail())
+			throw InvalidStateException("Cannot open the state init file: " + std::string(strerror(errno)) + ".");
+		this->_state.flags.clear();
+		stream >> this->_state.gold;
+		stream >> this->_state.army;
+		stream >> this->_state.food;
+		stream >> this->_state.goldPassive;
+		stream >> this->_state.armyPassive;
+		stream >> this->_state.foodPassive;
+		stream >> this->_state.goldHappiness;
+		stream >> this->_state.foodHappiness;
+		stream >> this->_state.armyHappiness;
+		stream >> nb;
+		logger.debug(std::to_string(this->_state.gold) + " gold");
+		logger.debug(std::to_string(this->_state.army) + " army");
+		logger.debug(std::to_string(this->_state.food) + " food");
+		logger.debug(std::to_string(this->_state.goldPassive) + " goldPassive");
+		logger.debug(std::to_string(this->_state.armyPassive) + " armyPassive");
+		logger.debug(std::to_string(this->_state.foodPassive) + " foodPassive");
+		logger.debug(std::to_string(this->_state.goldHappiness) + " goldHappiness");
+		logger.debug(std::to_string(this->_state.foodHappiness) + " foodHappiness");
+		logger.debug(std::to_string(this->_state.armyHappiness) + " armyHappiness");
+		logger.debug(std::to_string(nb) + " base flags");
+		this->_state.flags.reserve(nb + 1);
+		std::getline(stream, token);
+		for (; nb; nb--) {
+			std::getline(stream, token);
+			logger.debug("Added flag '" + token + "'");
+			this->_state.flags.push_back(token);
+		}
+		if (stream.fail())
+			throw InvalidStateException("The state init file is invalid.");
+		stream.close();
 		this->_state.flags.push_back(flag);
-		this->_mgr.changeMenu(_nexLevel);
+		this->_state.week = 0;
+		this->_quests.reset();
+		this->_mgr.changeMenu("dialog");
 	}
 }
