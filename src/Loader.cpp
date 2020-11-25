@@ -70,7 +70,7 @@ namespace UntilBeingCrowned
 	}
 
 
-	void Loader::saveProgression(GameState &gs, const std::string &name)
+	void Loader::saveProgression(GameState &gs, QuestMgr &mg, const std::string &name)
 	{
 		std::filesystem::create_directories("saves");
 
@@ -89,6 +89,10 @@ namespace UntilBeingCrowned
 		for (auto &flag : gs.flags) {
 			stream << flag << std::endl;
 		}
+		stream << "//" << std::endl;
+		stream << mg.serializedUsedQuests();
+		stream << "//" << std::endl;
+		stream << mg.serializedUnlockedQuests();
 		stream.close();
 	}
 
@@ -115,8 +119,28 @@ namespace UntilBeingCrowned
 			std::string str;
 			getline(stream,str);
 			while(getline(stream,str)) {
+				if (str == "//")
+					break;
 				tmp.flags.push_back(str);
 			}
+			std::vector<bool> tmpB;
+			while(getline(stream,str)) {
+				if (str == "//")
+					break;
+				tmpB.push_back(!(str == "0"));
+			}
+			std::vector<QuestMgr::Quest> tmpQ;
+			std::vector<QuestMgr::Quest> const &allQuests = game.state.questMgr.getQuests();
+			for (auto q : allQuests) {
+				std::cout << q.getId() << std::endl;
+			}
+			std::cout << allQuests.size() << std::endl;
+			while(getline(stream,str)) {
+				if (str == "//")
+					break;
+				tmpB.push_back(!(str == "0"));
+			}
+
 
 			game.state.game = tmp;
 		}

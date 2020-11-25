@@ -86,6 +86,9 @@ namespace UntilBeingCrowned
 		void nextWeek();
 		void reset();
 		void showDialog(unsigned id, tgui::Gui &gui);
+		std::string serializedUsedQuests();
+		std::string serializedUnlockedQuests();
+		std::vector<Quest> const &getQuests() const;
 	};
 }
 
