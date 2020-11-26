@@ -30,16 +30,22 @@
 		}
 	},
 	"sfx": {
-		"clic_button": "select_sound.ogg",
-		"encrier": "glass_sound.ogg",
-		"paper": "paper_sound.ogg",
-		"tampon": "tampon_sound.ogg"
+		"clic_button": "sfx/select_sound.ogg",
+		"encrier": "sfx/glass_sound.ogg",
+		"paper": "sfx/paper_sound.ogg",
+		"tampon": "sfx/tampon_sound.ogg"
 	},
 	"sprites": {
 		"list_bg": "list_bg.jpg",
-		"idle_prince": "Idle_prince.png",
-		"idle_princess": "princess_idle.png",
-		"guard": "Captain_guard_idle.png",
+		"idle_prince": "characters/Idle_prince.png",
+		"idle_princess": "characters/princess_idle.png",
+		"guard": "characters/Captain_guard_idle.png",
+		"icon_prince" : "characters/prince.png",
+		"icon_princess" : "characters/princess.png",
+		"icon_guard_captain" : "characters/Captain_guard.png",
+		"icon_peasant" : "characters/Peasant.png",
+		"icon_trader" : "characters/Trader.png",
+		"icon_noble" : "characters/Noble.png",
 		"icon": "icon.png"
 	},
 	"icon": "icon.png"
