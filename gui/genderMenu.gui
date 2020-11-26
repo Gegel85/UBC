@@ -32,21 +32,19 @@ Renderer.2 {
 }
 
 BitmapButton.maleButton {
-    Image = None;
-    ImageScaling = 0;
+    Image = "assets/Idle_prince.png" Part(0, 0, 64, 64);
+    ImageScaling = 1;
     Position = (240, 250);
     Size = (345, 378);
-    Text = male;
     TextSize = 13;
     renderer = &1;
 }
 
 BitmapButton.femaleButton {
-    Image = None;
-    ImageScaling = 0;
+    Image = "assets/princess_idle.png" Part(0, 0, 64, 64);
+    ImageScaling = 1;
     Position = (790, 250);
     Size = (345, 378);
-    Text = female;
     TextSize = 13;
     renderer = &1;
 }
