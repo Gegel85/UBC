@@ -50,7 +50,7 @@ namespace UntilBeingCrowned
 
 		//! @brief Save Progression.
 		//! @param Progression to save.
-		static void saveProgression(GameState &gs, std::string const &name);
+		static void saveProgression(GameState &gs, QuestMgr &mg, std::string const &name);
 
 		//! @brief Load all game assets.
 		//! @param game Game state and resources.
