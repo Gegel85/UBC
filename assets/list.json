@@ -29,7 +29,12 @@
 			"description": "Theme for the animation of a new game: Such Is Time from Kingdom Classic"
 		}
 	},
-	"sfx": {},
+	"sfx": {
+		"clic_button": "select_sound.ogg",
+		"encrier": "glass_sound.ogg",
+		"paper": "paper_sound.ogg",
+		"tampon": "tampon_sound.ogg"
+	},
 	"sprites": {
 		"list_bg": "list_bg.jpg",
 		"idle_prince": "Idle_prince.png",
