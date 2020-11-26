@@ -5,6 +5,7 @@
 #include <filesystem>
 #include <iostream>
 #include <TGUI/Widgets/TextBox.hpp>
+#include <utility>
 #include "QuestMgr.hpp"
 #include "Exceptions.hpp"
 #include "Resources/Game.hpp"
@@ -378,7 +379,7 @@ namespace UntilBeingCrowned
 
 	std::string QuestMgr::serializedUnlockedQuests() {
 		std::string str;
-		for (auto quest : this->_unlockedQuests) {
+		for (auto const &quest : this->_unlockedQuests) {
 			if (std::find(this->_newQuests.begin(),this->_newQuests.end(), quest) != this->_newQuests.end()) {
 				str += std::to_string(quest.getId()) + '\n';
 			}
@@ -389,4 +390,13 @@ namespace UntilBeingCrowned
 	std::vector<QuestMgr::Quest> const & QuestMgr::getQuests() const {
 		return this->_quests;
 	}
+
+	void QuestMgr::setUsedQuests(std::vector<bool> q) {
+		this->_usedQuests = std::move(q);
+	}
+
+	void QuestMgr::setUnlockedQuests(std::vector<QuestMgr::Quest> q) {
+			this->_unlockedQuests = std::move(q);
+	}
+
 }

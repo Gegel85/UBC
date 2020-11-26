@@ -90,6 +90,8 @@ namespace UntilBeingCrowned
 		std::string serializedUsedQuests();
 		std::string serializedUnlockedQuests();
 		std::vector<Quest> const &getQuests() const;
+		void setUsedQuests(std::vector<bool>);
+		void setUnlockedQuests(std::vector<Quest>);
 	};
 }
 

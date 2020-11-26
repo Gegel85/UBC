@@ -123,26 +123,30 @@ namespace UntilBeingCrowned
 					break;
 				tmp.flags.push_back(str);
 			}
+			game.state.game = tmp;
+
 			std::vector<bool> tmpB;
 			while(getline(stream,str)) {
 				if (str == "//")
 					break;
 				tmpB.push_back(!(str == "0"));
 			}
+			game.state.questMgr.setUsedQuests(tmpB);
+
 			std::vector<QuestMgr::Quest> tmpQ;
 			std::vector<QuestMgr::Quest> const &allQuests = game.state.questMgr.getQuests();
-			for (auto q : allQuests) {
-				std::cout << q.getId() << std::endl;
-			}
-			std::cout << allQuests.size() << std::endl;
 			while(getline(stream,str)) {
 				if (str == "//")
 					break;
-				tmpB.push_back(!(str == "0"));
+				unsigned int id = static_cast<unsigned int>(std::stoul(str));
+				for (auto const quest : allQuests) {
+					if (quest.getId() == id) {
+						tmpQ.push_back(quest);
+						break;
+					}
+				}
 			}
-
-
-			game.state.game = tmp;
+			game.state.questMgr.setUnlockedQuests(tmpQ);
 		}
 	}
 
