@@ -5,6 +5,7 @@
 #include <filesystem>
 #include <iostream>
 #include <TGUI/Widgets/TextBox.hpp>
+#include <utility>
 #include "QuestMgr.hpp"
 #include "Exceptions.hpp"
 #include "Resources/Game.hpp"
@@ -44,8 +45,9 @@ namespace UntilBeingCrowned
 
 		stream >> val;
 		this->_checkJsonValidity(val);
-		for (const auto &v : val)
+		for (const auto &v : val) {
 			this->_quests.emplace_back(this->_quests.size(), v, resources.textures);
+		}
 		stream.close();
 		this->_usedQuests.resize(this->_quests.size(), false);
 		this->_addNewUnlockedQuests();
@@ -366,4 +368,35 @@ namespace UntilBeingCrowned
 		for (auto &flag : this->unsetFlags)
 			state.flags.erase(std::remove(state.flags.begin(), state.flags.end(), flag), state.flags.end());
 	}
+
+	std::string QuestMgr::serializedUsedQuests() {
+		std::string str;
+		for (auto b : this->_usedQuests) {
+			str += (b ? "1\n" : "0\n");
+		}
+		return str;
+	}
+
+	std::string QuestMgr::serializedUnlockedQuests() {
+		std::string str;
+		for (auto const &quest : this->_unlockedQuests) {
+			if (std::find(this->_newQuests.begin(),this->_newQuests.end(), quest) != this->_newQuests.end()) {
+				str += std::to_string(quest.getId()) + '\n';
+			}
+		}
+		return str;
+	}
+
+	std::vector<QuestMgr::Quest> const & QuestMgr::getQuests() const {
+		return this->_quests;
+	}
+
+	void QuestMgr::setUsedQuests(std::vector<bool> q) {
+		this->_usedQuests = std::move(q);
+	}
+
+	void QuestMgr::setUnlockedQuests(std::vector<QuestMgr::Quest> q) {
+			this->_unlockedQuests = std::move(q);
+	}
+
 }
