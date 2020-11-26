@@ -6,21 +6,42 @@
 #include "../Resources/State.hpp"
 
 #define INCREMENT_VAR(var)                                                 \
-        if (                                                               \
-        	std::find(                                                 \
-        		this->_state.flags.begin(),                        \
-        		this->_state.flags.end(),                          \
-        		"no_"#var                                          \
+	if (                                                               \
+		std::find(                                                 \
+			this->_state.flags.begin(),                        \
+			this->_state.flags.end(),                          \
+			"no_"#var                                          \
 		) == this->_state.flags.end()                              \
 	) {                                                                \
-                this->_state.var += this->_state.var##Passive;             \
-                this->_state.var += (this->_state.var##Happiness + 1) / 2; \
-        }                                                                  \
+		this->_state.var += this->_state.var##Passive;             \
+		this->_state.var += (this->_state.var##Happiness + 1) / 2; \
+	}                                                                  \
 	this->_state.flags.erase(std::remove(                              \
 		this->_state.flags.begin(),                                \
 		this->_state.flags.end(),                                  \
 		"no_"#var), this->_state.flags.end()                       \
 	)
+
+#define UPDATE_LABEL(var)                                                                                                                     \
+	if (                                                                                                                                  \
+		std::find(                                                                                                                    \
+			this->_state.flags.begin(),                                                                                           \
+			this->_state.flags.end(),                                                                                             \
+			"no_"#var                                                                                                             \
+		) != this->_state.flags.end()                                                                                                 \
+	) {                                                                                                                                   \
+		this->_##var##PassiveLabel->setText("+/-0");                                                                                  \
+		this->_##var##PassiveLabel->getRenderer()->setTextColor("#FF8800");                                                           \
+	} else if (this->_state.var##Passive + (this->_state.var##Happiness + 1) / 2 < 0) {                                                   \
+		this->_##var##PassiveLabel->setText(std::to_string(this->_state.var##Passive + (this->_state.var##Happiness + 1) / 2));       \
+		this->_##var##PassiveLabel->getRenderer()->setTextColor("red");                                                               \
+	} else if (this->_state.var##Passive + (this->_state.var##Happiness + 1) / 2 > 0) {                                                   \
+		this->_##var##PassiveLabel->getRenderer()->setTextColor("green");                                                             \
+		this->_##var##PassiveLabel->setText("+" + std::to_string(this->_state.var##Passive + (this->_state.var##Happiness + 1) / 2)); \
+	} else {                                                                                                                              \
+		this->_##var##PassiveLabel->getRenderer()->setTextColor("#FF8800");                                                           \
+		this->_##var##PassiveLabel->setText("+/-0");                                                                                  \
+	}
 
 static const std::array<std::string, 12> _monthsNames{
 	"January",
@@ -64,9 +85,9 @@ namespace UntilBeingCrowned
 		this->_goldsLabel = this->_gui.get<tgui::Label>("Gold");
 		this->_armyLabel = this->_gui.get<tgui::Label>("Army");
 		this->_foodLabel = this->_gui.get<tgui::Label>("Food");
-		this->_passiveGoldsLabel = this->_gui.get<tgui::Label>("PassiveGold");
-		this->_passiveArmyLabel = this->_gui.get<tgui::Label>("PassiveArmy");
-		this->_passiveFoodLabel = this->_gui.get<tgui::Label>("PassiveFood");
+		this->_goldPassiveLabel = this->_gui.get<tgui::Label>("PassiveGold");
+		this->_armyPassiveLabel = this->_gui.get<tgui::Label>("PassiveArmy");
+		this->_foodPassiveLabel = this->_gui.get<tgui::Label>("PassiveFood");
 
 		auto newQuestsList = this->_gui.get<tgui::Button>("NewQuests");
 
@@ -75,9 +96,10 @@ namespace UntilBeingCrowned
 		this->_goldsLabel->setText(std::to_string(this->_state.gold));
 		this->_armyLabel->setText(std::to_string(this->_state.army));
 		this->_foodLabel->setText(std::to_string(this->_state.food));
-		this->_passiveGoldsLabel->setText("+" + std::to_string(this->_state.goldPassive));
-		this->_passiveArmyLabel->setText("+" + std::to_string(this->_state.armyPassive));
-		this->_passiveFoodLabel->setText("+" + std::to_string(this->_state.foodPassive));
+
+		UPDATE_LABEL(gold);
+		UPDATE_LABEL(army);
+		UPDATE_LABEL(food);
 		this->_hookHandlers();
 		this->_questsMgr.nextWeek();
 	}
@@ -102,9 +124,9 @@ namespace UntilBeingCrowned
 		this->_goldsLabel->setText(std::to_string(this->_state.gold));
 		this->_armyLabel->setText(std::to_string(this->_state.army));
 		this->_foodLabel->setText(std::to_string(this->_state.food));
-		this->_passiveGoldsLabel->setText("+" + std::to_string(this->_state.goldPassive));
-		this->_passiveArmyLabel->setText("+" + std::to_string(this->_state.armyPassive));
-		this->_passiveFoodLabel->setText("+" + std::to_string(this->_state.foodPassive));
+		UPDATE_LABEL(gold);
+		UPDATE_LABEL(army);
+		UPDATE_LABEL(food);
 	}
 
 	void InGameMenu::handleEvent(const Input::Event &)
