@@ -1,5 +1,5 @@
 Renderer.1 {
-    borders = (1, 1, 1, 1);
+    borders = (0, 0, 0, 0);
     font = "assets/kenpixel.ttf";
     textcolor = white;
     textcolordisabled = #7D7D7D;
@@ -12,6 +12,15 @@ Renderer.1 {
     texturedown = "assets/RPG_GUI_v1.png" Part(15, 204, 285, 55);
     texturefocused = "assets/RPG_GUI_v1.png" Part(15, 283, 285, 55);
     texturehover = "assets/RPG_GUI_v1.png" Part(15, 283, 285, 55);
+}
+
+Picture.Picture1 {
+    Size = (1360, 768);
+
+    Renderer {
+        texture = "assets/mainMenuBackground.png";
+        transparenttexture = false;
+    }
 }
 
 Label.title {
@@ -45,7 +54,7 @@ Label.title {
     }
 }
 
-Group.butonGroup {
+Group.buttonGroup {
     Position = (410, 100);
     Size = (550, 650);
 
@@ -79,7 +88,7 @@ Group.butonGroup {
     Button.exit {
         Position = (170, 460);
         Size = (196, 66.6385);
-        Text = exit;
+        Text = Exit;
         TextSize = 20;
         renderer = &1;
     }

@@ -1,6 +1,15 @@
 Renderer.1 {
 }
 
+Picture.Picture1 {
+    Size = (1360, 768);
+
+    Renderer {
+        texture = "assets/mainMenuBackground.png";
+        transparenttexture = false;
+    }
+}
+
 Renderer.2 {
     backgroundcolor = transparent;
     bordercolor = #3C3C3C;
@@ -13,7 +22,7 @@ Renderer.2 {
 }
 
 Renderer.3 {
-    borders = (1, 1, 1, 1);
+    borders = (0, 0, 0, 0);
     font = "assets/kenpixel.ttf";
     textcolor = white;
     textcolordisabled = #7D7D7D;
@@ -73,7 +82,7 @@ Group.optionGroup {
             Renderer {
                 bordercolor = #3C3C3C;
                 bordercolorhover = black;
-                borders = (1, 1, 1, 1);
+                borders = (0, 0, 0, 0);
                 texturethumb = "assets/RPG_GUI_v1.png" Part(812, 20, 20, 40);
                 texturethumbhover = "assets/RPG_GUI_v1.png" Part(812, 20, 20, 40);
                 texturetrack = "assets/RPG_GUI_v1.png" Part(795, 74, 210, 20);
@@ -117,7 +126,7 @@ Group.optionGroup {
             Renderer {
                 bordercolor = #3C3C3C;
                 bordercolorhover = black;
-                borders = (1, 1, 1, 1);
+                borders = (0, 0, 0, 0);
                 texturethumb = "assets/RPG_GUI_v1.png" Part(812, 20, 20, 40);
                 texturethumbhover = "assets/RPG_GUI_v1.png" Part(812, 20, 20, 40);
                 texturetrack = "assets/RPG_GUI_v1.png" Part(795, 74, 210, 20);
@@ -160,7 +169,7 @@ Group.optionGroup {
                 bordercolordisabled = #7D7D7D;
                 bordercolorfocused = #1E1EB4;
                 bordercolorhover = black;
-                borders = (1, 1, 1, 1);
+                borders = (0, 0, 0, 0);
                 checkcolor = #3C3C3C;
                 checkcolordisabled = #7D7D7D;
                 checkcolorhover = black;

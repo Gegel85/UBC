@@ -18,7 +18,7 @@ Picture.Picture2 {
     Size = (242, 484);
 
     Renderer {
-        texture = "assets/Idle_prince.png" Part(16, 0, 1, 1);
+        texture = "assets/characters/Idle_prince.png" Part(16, 0, 1, 1);
         transparenttexture = false;
     }
 }
@@ -28,7 +28,7 @@ Picture.Picture3 {
     Size = (242, 484);
 
     Renderer {
-        texture = "assets/Captain_guard_idle.png" Part(20, 0, 1, 64);
+        texture = "assets/characters/Captain_guard_idle.png" Part(20, 0, 1, 64);
         transparenttexture = false;
     }
 }
@@ -94,7 +94,7 @@ Panel.myPanel {
 Button.Next {
     Size = (1360, 768);
     Text = Button;
-    TextSize = 13;
+    TextSize = 17;
 
     Renderer {
         backgroundcolor = transparent;
@@ -126,7 +126,7 @@ Button.Button0 {
     Position = (660, 300);
     Size = (628, 34.1379);
     Text = Button;
-    TextSize = 13;
+    TextSize = 17;
 
     Renderer {
         backgroundcolor = #F5F5F5;
@@ -156,7 +156,7 @@ Button.Button1 {
     Position = (button0.x, button0.y + 40);
     Size = (button0.w, 34.1379);
     Text = Button;
-    TextSize = 13;
+    TextSize = 17;
 
     Renderer {
         backgroundcolor = #F5F5F5;
@@ -186,7 +186,7 @@ Button.Button2 {
     Position = (button0.x, button1.y + 40);
     Size = (button0.w, 34.1379);
     Text = Button;
-    TextSize = 13;
+    TextSize = 17;
 
     Renderer {
         backgroundcolor = #F5F5F5;
@@ -216,7 +216,7 @@ Button.Button3 {
     Position = (button0.x, button2.y + 40);
     Size = (button0.w, 34.1379);
     Text = Button;
-    TextSize = 13;
+    TextSize = 17;
 
     Renderer {
         backgroundcolor = #F5F5F5;
@@ -246,7 +246,7 @@ Button.Button4 {
     Position = (button0.x, button3.y + 40);
     Size = (button0.w, 34.1379);
     Text = Button;
-    TextSize = 13;
+    TextSize = 17;
 
     Renderer {
         backgroundcolor = #F5F5F5;
