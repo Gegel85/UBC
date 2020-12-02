@@ -1,14 +1,14 @@
 Renderer.1 {
-    backgroundcolor = #F5F5F5;
-    backgroundcolordisabled = #E6E6E6;
-    backgroundcolordown = #EBEBEB;
-    backgroundcolorhover = white;
+    backgroundcolor = transparent;
+    backgroundcolordisabled = transparent;
+    backgroundcolordown = #FFFFFFAA;
+    backgroundcolorhover = #FFFFFF44;
     bordercolor = #3C3C3C;
     bordercolordisabled = #7D7D7D;
     bordercolordown = black;
     bordercolorfocused = #1E1EB4;
     bordercolorhover = black;
-    borders = (1, 1, 1, 1);
+    borders = (0, 0, 0, 0);
     textcolor = #3C3C3C;
     textcolordisabled = #7D7D7D;
     textcolordown = black;
@@ -18,6 +18,15 @@ Renderer.1 {
     texturedown = None;
     texturefocused = None;
     texturehover = None;
+}
+
+Picture.Picture1 {
+    Size = (1360, 768);
+
+    Renderer {
+        texture = "assets/mainMenuBackground.png";
+        transparenttexture = false;
+    }
 }
 
 Renderer.2 {
@@ -32,7 +41,7 @@ Renderer.2 {
 }
 
 BitmapButton.maleButton {
-    Image = "assets/Idle_prince.png" Part(0, 0, 64, 64);
+    Image = "assets/characters/Idle_prince.png" Part(0, 0, 64, 64);
     ImageScaling = 1;
     Position = (240, 250);
     Size = (345, 378);
@@ -41,7 +50,7 @@ BitmapButton.maleButton {
 }
 
 BitmapButton.femaleButton {
-    Image = "assets/princess_idle.png" Part(0, 0, 64, 64);
+    Image = "assets/characters/princess_idle.png" Part(0, 0, 64, 64);
     ImageScaling = 1;
     Position = (790, 250);
     Size = (345, 378);

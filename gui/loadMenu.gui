@@ -1,6 +1,15 @@
 Renderer.1 {
 }
 
+Picture.Picture1 {
+    Size = (1360, 768);
+
+    Renderer {
+        texture = "assets/mainMenuBackground.png";
+        transparenttexture = false;
+    }
+}
+
 Renderer.2 {
     backgroundcolor = transparent;
     bordercolor = #3C3C3C;
@@ -13,7 +22,7 @@ Renderer.2 {
 }
 
 Renderer.3 {
-    borders = (1, 1, 1, 1);
+    borders = (0, 0, 0, 0);
     font = "assets/kenpixel.ttf";
     textcolor = white;
     textcolordisabled = #7D7D7D;

@@ -27,7 +27,7 @@
 
 namespace UntilBeingCrowned
 {
-	DialogMgr::DialogMgr(tgui::Gui &gui, const Resources &resources, GameState &state) :
+	DialogMgr::DialogMgr(tgui::Gui &gui, Resources &resources, GameState &state) :
 		_gui(gui),
 		_resources(resources),
 		_state(state)
@@ -35,26 +35,47 @@ namespace UntilBeingCrowned
 	}
 
 	const std::map<std::string, std::string (DialogMgr::*)(const std::vector<std::string> &)> DialogMgr::_commands{
-		{"",              &DialogMgr::_dispPercent},
-		{"skip",          &DialogMgr::_skipCmd},
-		{"setMusic",      &DialogMgr::_notImplemented},
-		{"playSfx",       &DialogMgr::_notImplemented},
-		{"setSprite",     &DialogMgr::_setSpriteCmd},
-		{"finish",        &DialogMgr::_finishCmd},
-		{"choices",       &DialogMgr::_choicesCmd},
-		{"setFlag",       &DialogMgr::_setFlagCmd},
-		{"unsetFlag",     &DialogMgr::_unsetFlagCmd},
-		{"wait",          &DialogMgr::_notImplemented},
-		{"hide",          &DialogMgr::_hideCmd},
-		{"unhide",        &DialogMgr::_unhideCmd},
-		{"buttons",       &DialogMgr::_buttonsPlaceCmd},
-		{"skipWeek",      &DialogMgr::_skipWeekCmd},
+		{"",                   &DialogMgr::_dispPercent},
+		{"skip",               &DialogMgr::_skipCmd},
+		{"setMusic",           &DialogMgr::_setMusic},
+		{"playSfx",            &DialogMgr::_playSfx},
+		{"setSprite",          &DialogMgr::_setSpriteCmd},
+		{"finish",             &DialogMgr::_finishCmd},
+		{"choices",            &DialogMgr::_choicesCmd},
+		{"setFlag",            &DialogMgr::_setFlagCmd},
+		{"unsetFlag",          &DialogMgr::_unsetFlagCmd},
+		{"wait",               &DialogMgr::_wait},
+		{"hide",               &DialogMgr::_hideCmd},
+		{"unhide",             &DialogMgr::_unhideCmd},
+		{"buttons",            &DialogMgr::_buttonsPlaceCmd},
+		{"skipWeek",           &DialogMgr::_skipWeekCmd},
+		{"changeRelationship", &DialogMgr::_changeHappiness},
+		{"moveSprite",         &DialogMgr::_moveSprite},
+		{"setBackground",      &DialogMgr::_setBackground},
 	};
 
 	void DialogMgr::update()
 	{
 		if (this->isDone() || this->_lineEnded || this->_onHold)
 			return;
+
+		if (!this->_newBackground.empty()) {
+			auto pic = this->_gui.get<tgui::Picture>("Picture1");
+
+			if (this->_waitingTime > 30)
+				pic->getRenderer()->setOpacity((this->_waitingTime - 30) / 30.f);
+			else if (this->_waitingTime == 30)
+				pic->getRenderer()->setTexture(this->_resources.textures.at(this->_newBackground));
+			else if (!this->_waitingTime)
+				this->_newBackground.clear();
+			else
+				pic->getRenderer()->setOpacity((30 - this->_waitingTime) / 30.f);
+		}
+
+		if (this->_waitingTime) {
+			this->_waitingTime--;
+			return;
+		}
 
 		this->_processTextCharacter();
 	}
@@ -415,5 +436,73 @@ namespace UntilBeingCrowned
 	bool DialogMgr::hasSkippedWeek() const
 	{
 		return this->_skippedWeek;
+	}
+
+	std::string DialogMgr::_setMusic(const std::vector<std::string> &args)
+	{
+		if (args.size() != 1)
+			throw InvalidArgumentsException("Expected a single argument.");
+		this->_resources.playMusic(args[0]);
+		return {};
+	}
+
+	std::string DialogMgr::_playSfx(const std::vector<std::string> &args)
+	{
+		if (args.size() != 1)
+			throw InvalidArgumentsException("Expected a single argument.");
+		this->_resources.playSound(args[0]);
+		return {};
+	}
+
+	std::string DialogMgr::_wait(const std::vector<std::string> &args)
+	{
+		if (args.size() != 1)
+			throw InvalidArgumentsException("Expected a single argument.");
+		this->_waitingTime = std::stoul(args[0]);
+		return {};
+	}
+
+	std::string DialogMgr::_changeHappiness(const std::vector<std::string> &args)
+	{
+		if (args.size() != 2)
+			throw InvalidArgumentsException("Expected exactly 2 arguments.");
+		switch (args[0][0]) {
+		case 't':
+			this->_state.goldHappiness += std::stoi(args[1]);
+			break;
+		case 'p':
+			this->_state.foodHappiness += std::stoi(args[1]);
+			break;
+		case 'n':
+			this->_state.armyHappiness += std::stoi(args[1]);
+			break;
+		}
+		return {};
+	}
+
+	std::string DialogMgr::_moveSprite(const std::vector<std::string> &args)
+	{
+		if (args.size() != 2)
+			throw InvalidArgumentsException("Expected exactly 2 arguments.");
+
+		tgui::Picture::Ptr pic;
+
+		if (this->_left)
+			pic = this->_gui.get<tgui::Picture>("Picture3");
+		else
+			pic = this->_gui.get<tgui::Picture>("Picture2");
+
+		pic->setPosition(args[0], args[1]);
+		return {};
+	}
+
+	std::string DialogMgr::_setBackground(const std::vector<std::string> &args)
+	{
+		if (args.size() != 1)
+			throw InvalidArgumentsException("Expected a single argument.");
+		this->_newBackground = args[0];
+		this->_waitingTime = 60;
+		this->_resources.textures.at(this->_newBackground);
+		return {};
 	}
 }

@@ -28,7 +28,8 @@ namespace UntilBeingCrowned
 		bool _skippedWeek = false;
 		bool _lineEnded = false;
 		std::string _text;
-		const Resources &_resources;
+		std::string _newBackground;
+		Resources &_resources;
 		GameState &_state;
 
 		void _processTextCharacter();
@@ -43,12 +44,18 @@ namespace UntilBeingCrowned
 		std::string _choicesCmd(const std::vector<std::string> &args);
 		std::string _skipCmd(const std::vector<std::string> &args);
 		std::string _setSpriteCmd(const std::vector<std::string> &args);
+		std::string _setMusic(const std::vector<std::string> &args);
+		std::string _playSfx(const std::vector<std::string> &args);
+		std::string _wait(const std::vector<std::string> &args);
+		std::string _changeHappiness(const std::vector<std::string> &args);
+		std::string _moveSprite(const std::vector<std::string> &args);
+		std::string _setBackground(const std::vector<std::string> &args);
 		std::string _notImplemented(const std::vector<std::string> &args);
 		void _nextLine();
 		static std::pair<std::string, std::vector<std::string>> _parseCommand(size_t &pos, const std::string &cmdStart);
 
 	public:
-		DialogMgr(tgui::Gui &gui, const Resources &resources, GameState &state);
+		DialogMgr(tgui::Gui &gui, Resources &resources, GameState &state);
 		void clicked();
 		bool isDone() const;
 		bool hasSkippedWeek() const;
