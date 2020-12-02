@@ -45,7 +45,7 @@ namespace UntilBeingCrowned
 
 		//! @brief Load Progression.
 		//! @param game Game state and resources.
-		static void loadProgression(Game &game, std::string const &name);
+		static bool loadProgression(Game &game, std::string const &name);
 
 
 		//! @brief Save Progression.

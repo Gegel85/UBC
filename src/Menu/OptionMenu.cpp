@@ -99,7 +99,10 @@ namespace UntilBeingCrowned
 		Settings s;
 		s.musicVolume = _initMusicVolume;
 		s.sfxVolume = _initSoundVolume;
+		s.fullscreen = _initFullscreen;
 		s.input = nullptr;
 		Loader::saveSettings(s);
+		//Loader::saveProgression(_game.state.game, _game.state.questMgr, "yolo");
+		//Loader::loadProgression(_game, "yolo");
 	}
 }

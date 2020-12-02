@@ -17,6 +17,9 @@ namespace UntilBeingCrowned
 		//! @brief The current sound effect volume
 		float sfxVolume;
 
+		//! @brief The current state of fullscreen of the window
+		bool fullscreen;
+
 		//! @brief The current input
 		std::unique_ptr<Input> input;
 	};

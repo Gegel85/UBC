@@ -33,6 +33,7 @@ namespace UntilBeingCrowned
 		void _nextWeek();
 		void _hookHandlers();
 		void _showQuestList(const std::vector<QuestMgr::Quest> &quests, const std::string &name);
+		void _saveAndQuit();
 
 	public:
 		InGameMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, QuestMgr &dialogs, GameState &state);

@@ -19,9 +19,12 @@ namespace UntilBeingCrowned
 		Resources &_res;
 		tgui::Gui &_gui;
 		MenuMgr &_mgr;
+		Game &_game;
+
+		void _loadGame();
 
 	public:
-		MainMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res);
+		MainMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, Game &game);
 		void switched(bool isActive) override;
 		void render() override;
 		void handleEvent(const Input::Event &event) override;

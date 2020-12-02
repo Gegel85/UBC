@@ -28,7 +28,7 @@ namespace UntilBeingCrowned
 		game.state.menuMgr.addMenu<GameoverMenu>("game over", game.resources, game.state.gui, game.state.game);
 		game.state.menuMgr.addMenu<InGameMenu>("in_game", game.state.gui, game.resources, game.state.questMgr, game.state.game);
 		game.state.menuMgr.addMenu<DialogMenu>("dialog", game.resources, game.state.gui, game.state.dialogMgr, game.state.game);
-		game.state.menuMgr.addMenu<MainMenu>("main", game.state.gui, game.resources);
+		game.state.menuMgr.addMenu<MainMenu>("main", game.state.gui, game.resources, game);
 		game.state.menuMgr.addMenu<OptionMenu>("option", game.state.gui, game.resources, game);
 		game.state.menuMgr.addMenu<LoadingMenu>("load", game.state.gui);
 		game.state.menuMgr.addMenu<GenderMenu>("gender", game.state.gui, game.resources, game.state.game, game.state.questMgr);

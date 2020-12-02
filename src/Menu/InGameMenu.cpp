@@ -4,6 +4,7 @@
 
 #include "InGameMenu.hpp"
 #include "../Resources/State.hpp"
+#include "../Loader.hpp"
 
 #define INCREMENT_VAR(var)                                                 \
         if (                                                               \
@@ -80,6 +81,8 @@ namespace UntilBeingCrowned
 		this->_passiveFoodLabel->setText("+" + std::to_string(this->_state.foodPassive));
 		this->_hookHandlers();
 		this->_questsMgr.nextWeek();
+
+		this->_gui.get<tgui::Button>("Back")->connect(tgui::Signals::Button::Pressed, &InGameMenu::_saveAndQuit, this);
 	}
 
 	void InGameMenu::render()
@@ -180,5 +183,10 @@ namespace UntilBeingCrowned
 		INCREMENT_VAR(food);
 		this->_state.week++;
 		this->_mgr.changeMenu("dialog");
+	}
+
+	void InGameMenu::_saveAndQuit() {
+		Loader::saveProgression(this->_state, this->_questsMgr, "progression");
+		this->_mgr.changeMenu("main");
 	}
 }
