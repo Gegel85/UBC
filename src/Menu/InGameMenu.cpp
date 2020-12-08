@@ -127,6 +127,9 @@ namespace UntilBeingCrowned
 		this->_goldsLabel->setText(std::to_string(this->_state.gold));
 		this->_armyLabel->setText(std::to_string(this->_state.army));
 		this->_foodLabel->setText(std::to_string(this->_state.food));
+		this->_state.foodHappiness = std::min(this->_state.foodHappiness, 40);
+		this->_state.armyHappiness = std::min(this->_state.armyHappiness, 40);
+		this->_state.goldHappiness = std::min(this->_state.goldHappiness, 40);
 		UPDATE_LABEL(gold);
 		UPDATE_LABEL(army);
 		UPDATE_LABEL(food);

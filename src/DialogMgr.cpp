@@ -52,6 +52,7 @@ namespace UntilBeingCrowned
 		{"changeRelationship", &DialogMgr::_changeHappiness},
 		{"moveSprite",         &DialogMgr::_moveSprite},
 		{"setBackground",      &DialogMgr::_setBackground},
+		{"if",                 &DialogMgr::_if},
 	};
 
 	void DialogMgr::update()
@@ -82,6 +83,7 @@ namespace UntilBeingCrowned
 
 	void DialogMgr::startDialog(const std::string &id)
 	{
+		logger.debug("Starting new dialog " + id);
 		this->_done = this->_dialogsString[id].empty();
 		if (this->_done)
 			return;
@@ -503,6 +505,17 @@ namespace UntilBeingCrowned
 		this->_newBackground = args[0];
 		this->_waitingTime = 60;
 		this->_resources.textures.at(this->_newBackground);
+		return {};
+	}
+
+	std::string DialogMgr::_if(const std::vector<std::string> &args)
+	{
+		if (args.size() != 2)
+			throw InvalidArgumentsException("Expected exactly 2 arguments.");
+		if (std::find(this->_state.flags.begin(), this->_state.flags.end(), args[0]) != this->_state.flags.end()) {
+			this->startDialog(args[1]);
+			std::get<2>(this->_currentDialog) = 0;
+		}
 		return {};
 	}
 }

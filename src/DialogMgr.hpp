@@ -41,6 +41,7 @@ namespace UntilBeingCrowned
 		std::string _hideCmd(const std::vector<std::string> &args);
 		std::string _unhideCmd(const std::vector<std::string> &args);
 		std::string _dispPercent(const std::vector<std::string> &);
+		std::string _if(const std::vector<std::string> &);
 		std::string _choicesCmd(const std::vector<std::string> &args);
 		std::string _skipCmd(const std::vector<std::string> &args);
 		std::string _setSpriteCmd(const std::vector<std::string> &args);
