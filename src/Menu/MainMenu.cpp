@@ -3,12 +3,14 @@
 //
 
 #include "MainMenu.hpp"
+#include "../Loader.hpp"
 
 namespace UntilBeingCrowned {
-	MainMenu::MainMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res) :
+	MainMenu::MainMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, Game &game) :
 		_res(res),
 		_gui(gui),
-		_mgr(mgr)
+		_mgr(mgr),
+		_game(game)
 	{
 	}
 
@@ -31,10 +33,9 @@ namespace UntilBeingCrowned {
 		);
 
 		this->_gui.get<tgui::Button>("loadGame")->connect(
-			tgui::Signals::Button::Pressed,
-			&MenuMgr::changeMenu,
-			&this->_mgr,
-			"load"
+				tgui::Signals::Button::Pressed,
+				&MainMenu::_loadGame,
+				this
 		);
 
 		this->_gui.get<tgui::Button>("options")->connect(
@@ -59,6 +60,12 @@ namespace UntilBeingCrowned {
 
 	void MainMenu::handleEvent(const Input::Event &)
 	{
+
+	}
+
+	void MainMenu::_loadGame() {
+		if (Loader::loadProgression(_game, "progression"))
+			this->_mgr.changeMenu("in_game");
 
 	}
 }

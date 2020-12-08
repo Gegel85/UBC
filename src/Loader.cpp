@@ -47,7 +47,7 @@ namespace UntilBeingCrowned
 		if (settings.input) {
 			settings.input->serialize(stream);
 		}
-		stream << std::endl << settings.musicVolume << std::endl << settings.sfxVolume;
+		stream << std::endl << settings.musicVolume << std::endl << settings.sfxVolume << std::endl << settings.fullscreen;
 		stream.close();
 	}
 
@@ -63,10 +63,17 @@ namespace UntilBeingCrowned
 			game.state.settings.sfxVolume = 100;
 		} else {
 			game.state.settings.input->unserialize(stream);
-			stream >> game.state.settings.musicVolume >> game.state.settings.sfxVolume;
+			stream >> game.state.settings.musicVolume >> game.state.settings.sfxVolume >> game.state.settings.fullscreen;
 		}
 		game.resources.setMusicVolume(game.state.settings.musicVolume);
 		game.resources.setSoundVolume(game.state.settings.sfxVolume);
+		game.resources.screen.reOpen(
+				game.resources.screen.getTitle(),
+				1360,
+				768,
+				game.state.settings.fullscreen
+		);
+
 	}
 
 
@@ -96,7 +103,7 @@ namespace UntilBeingCrowned
 		stream.close();
 	}
 
-	void Loader::loadProgression(Game &game, std::string const &name)
+	bool Loader::loadProgression(Game &game, std::string const &name)
 	{
 		std::ifstream stream("saves/"+ name + ".sav");
 
@@ -104,6 +111,7 @@ namespace UntilBeingCrowned
 		if (stream.fail()) {
 			logger.error("Cannot open file save/saves/"+ name + ".sav" + std::string(strerror(errno)));
 			game.state.game = GameState{};
+			return false;
 		} else {
 			GameState tmp;
 			stream >> tmp.gold
@@ -147,6 +155,7 @@ namespace UntilBeingCrowned
 				}
 			}
 			game.state.questMgr.setUnlockedQuests(tmpQ);
+			return true;
 		}
 	}
 

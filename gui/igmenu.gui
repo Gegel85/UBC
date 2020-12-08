@@ -208,3 +208,39 @@ Label.Month {
         texturebackground = None;
     }
 }
+
+BitmapButton.Back {
+    Image = None;
+    ImageScaling = 0;
+    Position = (500, 10);
+    Size = (460, 200);
+    TextSize = 13;
+
+    Image = None;
+    ImageScaling = 0;
+    Position = (1250, 20);
+    Size = (85, 82);
+    TextSize = 13;
+
+    Renderer {
+        backgroundcolor = None;
+        backgroundcolordisabled = None;
+        backgroundcolordown = None;
+        backgroundcolorhover = None;
+        bordercolor = None;
+        bordercolordisabled = None;
+        bordercolordown = None;
+        bordercolorfocused = None;
+        bordercolorhover = None;
+        borders = (0, 0, 0, 0);
+        textcolor = #3C3C3C;
+        textcolordisabled = #7D7D7D;
+        textcolordown = black;
+        textcolorhover = black;
+        texture = "assets/backButton.png" Part(0, 0, 400, 400);
+        texturedisabled = None;
+        texturedown = "assets/backButton.png" Part(800, 0, 400, 400);
+        texturefocused = None;
+        texturehover = "assets/backButton.png" Part(400, 0, 400, 400);
+    }
+}

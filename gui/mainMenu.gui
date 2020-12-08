@@ -72,7 +72,7 @@ Group.buttonGroup {
     Button.loadGame {
         Position = (170, 200);
         Size = (196, 66.6385);
-        Text = "Load Game";
+        Text = "Continue";
         TextSize = 20;
         renderer = &1;
     }
