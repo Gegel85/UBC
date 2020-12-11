@@ -37,6 +37,8 @@
 	},
 	"sprites": {
 		"list_bg": "list_bg.jpg",
+		"first_cut_scene": "first_cut_scene.png",
+		"port": "port",
 		"icon_prince_right" : "characters/Prince_iconRight.png",
 		"icon_prince_left" : "characters/Prince_iconLeft.png",
 		"icon_princess_right" : "characters/Princess_iconRight.png",
