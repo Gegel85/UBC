@@ -30,7 +30,8 @@ namespace UntilBeingCrowned
 	QuestMgr::QuestMgr(GameState &state) :
 		_state(state)
 	{
-		this->_panel = tgui::ScrollablePanel::create({600, 700});
+		this->_panel = tgui::ScrollablePanel::create({1300, 700});
+		this->_panel->getRenderer()->setBackgroundColor("transparent");
 		this->_panel->setPosition("&.w / 2 - w / 2", "&.h / 2 - h / 2");
 		this->_panel->loadWidgetsFromFile("gui/quest.gui");
 	}
@@ -56,11 +57,9 @@ namespace UntilBeingCrowned
 	void QuestMgr::showDialog(unsigned int id, tgui::Gui &gui)
 	{
 		auto panel = tgui::Panel::create({"100%", "100%"});
-		unsigned y = 0;
 		unsigned index = 0;
 		auto &val = this->_quests.at(id);
 		int size = val.buttons.size();
-		double ysize = (60 - (size - 1) / NB_BUTTONS * 10) / ((size - 1) / NB_BUTTONS + 1.);
 		auto title = this->_panel->get<tgui::Label>("Title");
 		auto desc = this->_panel->get<tgui::TextBox>("TextBox1");
 		auto fct = [this, &val, id, &gui, panel](unsigned butId) {
@@ -99,31 +98,23 @@ namespace UntilBeingCrowned
 		desc->setText(val.description);
 		desc->setVerticalScrollbarValue(0);
 		this->_panel->add(val.pic);
-		for (int left = size; left > 0; left -= NB_BUTTONS, y++) {
-			auto start = left > NB_BUTTONS ? NB_BUTTONS : left;
-			auto xsize = (500 - (start - 1) * 10.) / start;
+		for (int y = 0; y < size; y++) {
+			auto but = tgui::Button::create(val.buttons[index]);
+			auto *renderer = but->getRenderer();
 
-			for (unsigned i = start; i; i--) {
-				auto but = tgui::Button::create(val.buttons[index]);
-				auto *renderer = but->getRenderer();
+			if (index < val.buttons_effects.size() && !val.buttons_effects[index].canApply(this->_state))
+				but->setEnabled(false);
 
-				if (index < val.buttons_effects.size() && !val.buttons_effects[index].canApply(this->_state))
-					but->setEnabled(false);
-
-				renderer->setBorders({0, 0, 0, 0});
-				renderer->setBackgroundColor("transparent");
-				renderer->setBackgroundColorDisabled("transparent");
-				renderer->setBackgroundColorHover("#FFFFFF1F");
-				renderer->setBackgroundColorDown("#FFFFFF2E");
-				renderer->setFont("assets/kenpixel.ttf");
-				but->setTextSize(16);
-				but->setSize(xsize, ysize);
-				but->setPosition(index % NB_BUTTONS * (xsize + 10) + 50, index / NB_BUTTONS * (ysize + 10) + 580);
-				but->connect("clicked", fct, index);
-				index++;
-				this->_buttons.push_back(but);
-				this->_panel->add(but);
-			}
+			renderer->setBorders({0, 0, 0, 0});
+			renderer->setTexture("assets/answer_text_box.png");
+			renderer->setFont("assets/kenpixel.ttf");
+			but->setTextSize(16);
+			but->setSize(600, 30);
+			but->setPosition(625, 40 * y);
+			but->connect("clicked", fct, index);
+			index++;
+			this->_buttons.push_back(but);
+			this->_panel->add(but);
 		}
 		panel->getRenderer()->setBackgroundColor({0, 0, 0, 175});
 		gui.add(panel);
