@@ -503,11 +503,15 @@ namespace UntilBeingCrowned
 
 	std::string DialogMgr::_setBackground(const std::vector<std::string> &args)
 	{
-		if (args.size() != 1)
-			throw InvalidArgumentsException("Expected a single argument.");
-		this->_newBackground = args[0];
-		this->_waitingTime = 60;
-		this->_resources.textures.at(this->_newBackground);
+		if (args.size() != 1 && args.size() != 2)
+			throw InvalidArgumentsException("Expected 1 or 2 arguments.");
+
+		if (args.size() == 1 || args[1] != "false") {
+			this->_newBackground = args[0];
+			this->_waitingTime = 60;
+			this->_resources.textures.at(this->_newBackground);
+		} else
+			this->_gui.get<tgui::Picture>("Picture1")->getRenderer()->setTexture(this->_resources.textures.at(args[0]));
 		return {};
 	}
 
