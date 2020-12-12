@@ -1,10 +1,6 @@
--0 -1 -2 -3 -4 -5 -6 -7 -8 9
-random flag 1
-random flag 2
-random flag 3
-random flag 4
-random flag 5
-random flag 6
-random flag 7
-random flag 8
-random flag 9
+5 5 5 0 0 0 10 10 10 5
+mariage_none
+no_gift
+normal_expedition
+thief_in_jail
+hydra_no_war
