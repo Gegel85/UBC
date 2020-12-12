@@ -287,7 +287,8 @@ namespace UntilBeingCrowned
 		buttons_effects(json["buttons_effects"].begin(), json["buttons_effects"].end()),
 		tradersHappinessRequirement(json["happiness_requirement"]["traders"]["min"], json["happiness_requirement"]["traders"]["max"]),
 		peasantsHappinessRequirement(json["happiness_requirement"]["peasants"]["min"], json["happiness_requirement"]["peasants"]["max"]),
-		nobilityHappinessRequirement(json["happiness_requirement"]["nobility"]["min"], json["happiness_requirement"]["nobility"]["max"])
+		nobilityHappinessRequirement(json["happiness_requirement"]["nobility"]["min"], json["happiness_requirement"]["nobility"]["max"]),
+		forceOpen(json.contains("force_open") && json["force_open"].get<bool>())
 	{
 		this->weekRange.second += this->weekRange.first;
 		this->pic->setSize(150, 150);

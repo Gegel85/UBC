@@ -51,6 +51,7 @@ namespace UntilBeingCrowned
 			std::pair<int, int> tradersHappinessRequirement;
 			std::pair<int, int> peasantsHappinessRequirement;
 			std::pair<int, int> nobilityHappinessRequirement;
+			bool forceOpen;
 
 			unsigned int getId() const;
 			bool isUnlocked(const GameState &state) const;

@@ -103,6 +103,9 @@ namespace UntilBeingCrowned
 		UPDATE_LABEL(food);
 		this->_hookHandlers();
 		this->_questsMgr.nextWeek();
+		for (auto &quest : this->_questsMgr.getNewQuests())
+			if (quest.forceOpen)
+				this->_questsMgr.showDialog(quest.getId(), this->_gui);
 
 		this->_gui.get<tgui::Button>("Back")->connect(tgui::Signals::Button::Pressed, &InGameMenu::_saveAndQuit, this);
 	}
