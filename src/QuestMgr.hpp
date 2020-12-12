@@ -89,10 +89,10 @@ namespace UntilBeingCrowned
 		void reset();
 		void showDialog(unsigned id, tgui::Gui &gui);
 		std::string serializedUsedQuests();
-		std::string serializedUnlockedQuests();
+		std::string serializedNewQuests();
 		std::vector<Quest> const &getQuests() const;
 		void setUsedQuests(std::vector<bool>);
-		void setUnlockedQuests(std::vector<Quest>);
+		void setNewQuests(std::vector<Quest> q);
 	};
 }
 

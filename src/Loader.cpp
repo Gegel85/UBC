@@ -99,8 +99,8 @@ namespace UntilBeingCrowned
 		stream << "//" << std::endl;
 		stream << mg.serializedUsedQuests();
 		stream << "//" << std::endl;
-		stream << mg.serializedUnlockedQuests();
-		stream.close();
+		stream << mg.serializedNewQuests();
+		stream << "//" << std::endl;
 	}
 
 	bool Loader::loadProgression(Game &game, std::string const &name)
@@ -154,7 +154,7 @@ namespace UntilBeingCrowned
 					}
 				}
 			}
-			game.state.questMgr.setUnlockedQuests(tmpQ);
+			game.state.questMgr.setNewQuests(tmpQ);
 			return true;
 		}
 	}

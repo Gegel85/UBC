@@ -375,12 +375,10 @@ namespace UntilBeingCrowned
 		return str;
 	}
 
-	std::string QuestMgr::serializedUnlockedQuests() {
+	std::string QuestMgr::serializedNewQuests() {
 		std::string str;
-		for (auto const &quest : this->_unlockedQuests) {
-			if (std::find(this->_newQuests.begin(),this->_newQuests.end(), quest) != this->_newQuests.end()) {
-				str += std::to_string(quest.getId()) + '\n';
-			}
+		for (auto const &quest : this->_newQuests) {
+			str += std::to_string(quest.getId()) + '\n';
 		}
 		return str;
 	}
@@ -393,8 +391,8 @@ namespace UntilBeingCrowned
 		this->_usedQuests = std::move(q);
 	}
 
-	void QuestMgr::setUnlockedQuests(std::vector<QuestMgr::Quest> q) {
-			this->_unlockedQuests = std::move(q);
+	void QuestMgr::setNewQuests(std::vector<QuestMgr::Quest> q) {
+		this->_newQuests = std::move(q);
 	}
 
 }
