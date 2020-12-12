@@ -53,6 +53,7 @@ namespace UntilBeingCrowned
 		{"moveSprite",         &DialogMgr::_moveSprite},
 		{"setBackground",      &DialogMgr::_setBackground},
 		{"if",                 &DialogMgr::_if},
+		{"moveBackground",     &DialogMgr::_moveBg},
 	};
 
 	void DialogMgr::update()
@@ -518,6 +519,15 @@ namespace UntilBeingCrowned
 			this->startDialog(args[1]);
 			std::get<2>(this->_currentDialog) = 0;
 		}
+		return {};
+	}
+
+	std::string DialogMgr::_moveBg(const std::vector<std::string> &args)
+	{
+		if (args.size() != 2)
+			throw InvalidArgumentsException("Expected exactly 2 arguments.");
+
+		this->_gui.get<tgui::Picture>("Picture1")->setPosition(args[0], args[1]);
 		return {};
 	}
 }

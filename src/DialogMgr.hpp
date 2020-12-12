@@ -33,6 +33,7 @@ namespace UntilBeingCrowned
 		GameState &_state;
 
 		void _processTextCharacter();
+		std::string _moveBg(const std::vector<std::string> &args);
 		std::string _finishCmd(const std::vector<std::string> &args);
 		std::string _setFlagCmd(const std::vector<std::string> &args);
 		std::string _unsetFlagCmd(const std::vector<std::string> &args);
