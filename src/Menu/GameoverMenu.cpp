@@ -26,7 +26,13 @@ namespace UntilBeingCrowned
 
 		this->_gui.loadWidgetsFromFile("gui/gameover_menu.gui");
 		this->_gui.get<tgui::Label>("EndId")->setText(*it);
-		this->_gui.get<tgui::Button>("menu")->connect("Clicked", &MenuMgr::changeMenu, &this->_mgr, "main");
+		this->_gui.get<tgui::Button>("menu")->connect(
+			"Clicked",
+			[this]{
+				this->_res.playSound("click_button");
+				this->_mgr.changeMenu("main");
+			}
+		);
 	}
 
 	void GameoverMenu::render()

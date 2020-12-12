@@ -24,7 +24,6 @@ namespace UntilBeingCrowned
 		}
 
 		this->_gui.loadWidgetsFromFile("gui/genderMenu.gui");
-		//TODO :  set real picture for the buttons
 		this->_gui.get<tgui::Button>("femaleButton")->connect(tgui::Signals::Button::Pressed, &GenderMenu::_runGame, this, "player_f");
 		this->_gui.get<tgui::Button>("maleButton")->connect(tgui::Signals::Button::Pressed, &GenderMenu::_runGame, this, "player_m");
 
@@ -44,6 +43,7 @@ namespace UntilBeingCrowned
 		size_t nb;
 		std::string token;
 
+		this->_res.playSound("click_button");
 		logger.debug("Loading state init file.");
 		if (stream.fail())
 			throw InvalidStateException("Cannot open the state init file: " + std::string(strerror(errno)) + ".");

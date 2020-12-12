@@ -20,10 +20,12 @@ namespace UntilBeingCrowned
 		_initSoundVolume(100),
 		_newSoundVolume(100),
 		_initFullscreen(false),
-		_newFullScreen(false) {
+		_newFullScreen(false)
+	{
 	}
 
-	void OptionMenu::switched(bool isActive) {
+	void OptionMenu::switched(bool isActive)
+	{
 		if (!isActive) {
 			this->_gui.removeAllWidgets();
 			return;
@@ -56,53 +58,58 @@ namespace UntilBeingCrowned
 		this->_newFullScreen = this->_initFullscreen;
 	}
 
-	void OptionMenu::render() {
+	void OptionMenu::render()
+	{
 
 	}
 
-	void OptionMenu::handleEvent(const Input::Event &) {
+	void OptionMenu::handleEvent(const Input::Event &)
+	{
 
 	}
 
-	void OptionMenu::back() {
+	void OptionMenu::back()
+	{
 		this->_res.setMusicVolume(this->_initMusicVolume);
 		this->_res.setSoundVolume(this->_initSoundVolume);
 		if (this->_initFullscreen != this->_newFullScreen)
 			this->setFullscreen(this->_initFullscreen);
+		this->_res.playSound("click_button");
 		this->_mgr.changeMenu("main");
 	}
 
-	void OptionMenu::setMusicVolume() {
+	void OptionMenu::setMusicVolume()
+	{
 		this->_newMusicVolume = this->_sliderMusic->getValue();
 		this->_res.setMusicVolume(_newMusicVolume);
 	}
 
-	void OptionMenu::setSoundVolume() {
+	void OptionMenu::setSoundVolume()
+	{
 		this->_newSoundVolume = this->_sliderSfx->getValue();
 		this->_res.setSoundVolume(_newSoundVolume);
+		this->_res.playSound("click_button");
 	}
 
-	void OptionMenu::setFullscreen(bool b) {
+	void OptionMenu::setFullscreen(bool b)
+	{
+		this->_res.playSound("click_button");
 		this->_newFullScreen = b;
-		this->_res.screen.reOpen(
-			this->_res.screen.getTitle(),
-			1360,
-			768,
-			b
-		);
+		if (this->_res.screen.isFullscreen() != b)
+			this->_res.screen.reOpen(
+				this->_res.screen.getTitle(),
+				1360,
+				768,
+				b
+			);
 	}
 
-	void OptionMenu::save() {
-		this->_initMusicVolume = this->_newMusicVolume;
-		this->_initSoundVolume = this->_newSoundVolume;
-		this->_initFullscreen = this->_newFullScreen;
-		Settings s;
-		s.musicVolume = _initMusicVolume;
-		s.sfxVolume = _initSoundVolume;
-		s.fullscreen = _initFullscreen;
-		s.input = nullptr;
-		Loader::saveSettings(s);
-		//Loader::saveProgression(_game.state.game, _game.state.questMgr, "yolo");
-		//Loader::loadProgression(_game, "yolo");
+	void OptionMenu::save()
+	{
+		this->_res.playSound("click_button");
+		this->_game.state.settings.musicVolume = this->_initMusicVolume = this->_newMusicVolume;
+		this->_game.state.settings.sfxVolume   = this->_initSoundVolume = this->_newSoundVolume;
+		this->_game.state.settings.fullscreen  = this->_initFullscreen  = this->_newFullScreen;
+		Loader::saveSettings(this->_game.state.settings);
 	}
 }

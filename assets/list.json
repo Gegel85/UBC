@@ -30,8 +30,8 @@
 		}
 	},
 	"sfx": {
-		"clic_button": "sfx/select_sound.ogg",
-		"encrier": "sfx/glass_sound.ogg",
+		"click_button": "sfx/select_sound.ogg",
+		"inkwell": "sfx/glass_sound.ogg",
 		"paper": "sfx/paper_sound.ogg",
 		"tampon": "sfx/tampon_sound.ogg"
 	},

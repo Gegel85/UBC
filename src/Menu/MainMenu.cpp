@@ -5,7 +5,8 @@
 #include "MainMenu.hpp"
 #include "../Loader.hpp"
 
-namespace UntilBeingCrowned {
+namespace UntilBeingCrowned
+{
 	MainMenu::MainMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res, Game &game) :
 		_res(res),
 		_gui(gui),
@@ -27,22 +28,26 @@ namespace UntilBeingCrowned {
 
 		this->_gui.get<tgui::Button>("newGame")->connect(
 			tgui::Signals::Button::Pressed,
-			&MenuMgr::changeMenu,
-			&this->_mgr,
-			"gender"
+			[this]{
+				this->_res.playSound("click_button");
+				this->_mgr.changeMenu("gender");
+			}
 		);
 
 		this->_gui.get<tgui::Button>("loadGame")->connect(
-				tgui::Signals::Button::Pressed,
-				&MainMenu::_loadGame,
-				this
+			tgui::Signals::Button::Pressed,
+			[this]{
+				this->_res.playSound("click_button");
+				this->_loadGame();
+			}
 		);
 
 		this->_gui.get<tgui::Button>("options")->connect(
 			tgui::Signals::Button::Pressed,
-			&MenuMgr::changeMenu,
-			&this->_mgr,
-			"option"
+			[this]{
+				this->_res.playSound("click_button");
+				this->_mgr.changeMenu("option");
+			}
 		);
 
 		this->_gui.get<tgui::Button>("exit")->connect(
@@ -63,7 +68,8 @@ namespace UntilBeingCrowned {
 
 	}
 
-	void MainMenu::_loadGame() {
+	void MainMenu::_loadGame()
+	{
 		if (Loader::loadProgression(_game, "progression"))
 			this->_mgr.changeMenu("in_game");
 

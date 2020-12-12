@@ -7,9 +7,10 @@
 
 namespace UntilBeingCrowned
 {
-    LoadingMenu::LoadingMenu(MenuMgr &mgr, tgui::Gui &gui) :
+    LoadingMenu::LoadingMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res) :
         _gui(gui),
-        _mgr(mgr)
+        _mgr(mgr),
+        _res(res)
     {
     }
 
@@ -35,6 +36,7 @@ namespace UntilBeingCrowned
     }
 
     void LoadingMenu::_backButton() {
+        this->_res.playSound("click_button");
         this->_mgr.changeMenu("main");
     }
 }

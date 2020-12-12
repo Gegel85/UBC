@@ -13,7 +13,6 @@ namespace UntilBeingCrowned::Rendering
 		_title(title),
 		_fps(60),
 		_isFullscreen(fullscreen)
-
 	{
 		UntilBeingCrowned::logger.info("Opening window \"" + title + "\"");
 		this->setFramerateLimit(60);
@@ -151,14 +150,20 @@ namespace UntilBeingCrowned::Rendering
 		return _isFullscreen;
 	}
 
-	void Screen::reOpen(const std::string &title, unsigned int width, unsigned int height, bool fullscreen) {
+	void Screen::reOpen(const std::string &title, unsigned int width, unsigned int height, bool fullscreen)
+	{
 		std::vector<sf::VideoMode> modes = sf::VideoMode::getFullscreenModes();
+		sf::View view{
+			{width / 2.f, height / 2.f},
+			{width * 1.f, height * 1.f}
+		};
 
 		this->create(
-		fullscreen ? modes[0] : sf::VideoMode(width, height),
+			fullscreen ? modes[0] : sf::VideoMode(width, height),
 			title,
 			fullscreen ? sf::Style::Fullscreen : sf::Style::Default
 		);
-		_isFullscreen = fullscreen;
+		this->setView(view);
+		this->_isFullscreen = fullscreen;
 	}
 }

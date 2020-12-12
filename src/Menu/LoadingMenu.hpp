@@ -19,11 +19,12 @@ namespace UntilBeingCrowned
 	private:
 		tgui::Gui &_gui;
 		MenuMgr &_mgr;
+		Resources &_res;
 
 		void _backButton();
 
 	public:
-		LoadingMenu(MenuMgr &mgr, tgui::Gui &gui);
+		LoadingMenu(MenuMgr &mgr, tgui::Gui &gui, Resources &res);
 		void switched(bool isActive) override;
 		void render() override;
 		void handleEvent(const Input::Event &event) override;

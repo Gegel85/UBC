@@ -197,9 +197,11 @@ namespace UntilBeingCrowned
 
 		nextWeek->connect("Clicked", &InGameMenu::_nextWeek, this);
 		newQuestsList->onClick.connect([this]{
+			this->_res.playSound("paper");
 			this->_showQuestList(this->_questsMgr.getNewQuests(), "New quests");
 		});
 		unlockedQuestsList->onClick.connect([this]{
+			this->_res.playSound("tampon");
 			this->_showQuestList(this->_questsMgr.getUnlockedQuests(), "Unlocked Quests");
 		});
 	}
@@ -210,10 +212,12 @@ namespace UntilBeingCrowned
 		INCREMENT_VAR(army);
 		INCREMENT_VAR(food);
 		this->_state.week++;
+		this->_res.playSound("inkwell");
 		this->_mgr.changeMenu("dialog");
 	}
 
 	void InGameMenu::_saveAndQuit() {
+		this->_res.playSound("click_button");
 		Loader::saveProgression(this->_state, this->_questsMgr, "progression");
 		this->_mgr.changeMenu("main");
 	}

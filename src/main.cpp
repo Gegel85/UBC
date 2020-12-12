@@ -22,15 +22,20 @@ namespace UntilBeingCrowned
 	void init(Game &game)
 	{
 		UntilBeingCrowned::Loader::loadAssets(game);
+		sf::View view{
+			{680, 384},
+			{1360, 768}
+		};
 
 		game.state.gui.setTarget(game.resources.screen);
+		game.state.gui.setView(view);
 		game.state.menuMgr.addMenu<VictoryMenu>("victory", game.resources, game.state.gui, game.state.game);
 		game.state.menuMgr.addMenu<GameoverMenu>("game over", game.resources, game.state.gui, game.state.game);
 		game.state.menuMgr.addMenu<InGameMenu>("in_game", game.state.gui, game.resources, game.state.questMgr, game.state.game);
 		game.state.menuMgr.addMenu<DialogMenu>("dialog", game.resources, game.state.gui, game.state.dialogMgr, game.state.game);
 		game.state.menuMgr.addMenu<MainMenu>("main", game.state.gui, game.resources, game);
 		game.state.menuMgr.addMenu<OptionMenu>("option", game.state.gui, game.resources, game);
-		game.state.menuMgr.addMenu<LoadingMenu>("load", game.state.gui);
+		game.state.menuMgr.addMenu<LoadingMenu>("load", game.state.gui, game.resources);
 		game.state.menuMgr.addMenu<GenderMenu>("gender", game.state.gui, game.resources, game.state.game, game.state.questMgr);
 		game.state.menuMgr.changeMenu("main");
 	}
