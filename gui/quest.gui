@@ -66,3 +66,85 @@ Label.Title {
         texturebackground = None;
     }
 }
+
+Label.Army {
+    AutoSize = true;
+    Position = (610, 660);
+    ScrollbarPolicy = Never;
+    Size = (64.8, 27);
+    Text = "Army: 0";
+    TextSize = 20;
+
+    Renderer {
+        backgroundcolor = transparent;
+        bordercolor = #3C3C3C;
+        borders = (0, 0, 0, 0);
+        font = "assets/kenpixel.ttf";
+        textcolor = white;
+        texturebackground = None;
+    }
+}
+
+Label.Food {
+    AutoSize = true;
+    Position = (710, 660);
+    ScrollbarPolicy = Never;
+    Size = (60.8, 27);
+    Text = "Food: 0";
+    TextSize = 20;
+
+    Renderer {
+        backgroundcolor = transparent;
+        bordercolor = #3C3C3C;
+        borders = (0, 0, 0, 0);
+        font = "assets/kenpixel.ttf";
+        textcolor = white;
+        texturebackground = None;
+    }
+}
+
+Label.Gold {
+    AutoSize = true;
+    Position = (810, 660);
+    ScrollbarPolicy = Never;
+    Size = (56.8, 27);
+    Text = "Gold: 0";
+    TextSize = 20;
+
+    Renderer {
+        backgroundcolor = transparent;
+        bordercolor = #3C3C3C;
+        borders = (0, 0, 0, 0);
+        font = "assets/kenpixel.ttf";
+        textcolor = white;
+        texturebackground = None;
+    }
+}
+
+Button.Back {
+    Position = (1230, 0);
+    Size = (60, 60);
+    TextSize = 13;
+
+    Renderer {
+        backgroundcolor = None;
+        backgroundcolordisabled = None;
+        backgroundcolordown = None;
+        backgroundcolorhover = None;
+        bordercolor = None;
+        bordercolordisabled = None;
+        bordercolordown = None;
+        bordercolorfocused = None;
+        bordercolorhover = None;
+        borders = (0, 0, 0, 0);
+        textcolor = #3C3C3C;
+        textcolordisabled = #7D7D7D;
+        textcolordown = black;
+        textcolorhover = black;
+        texture = "assets/backButton.png" Part(50, 50, 300, 300);
+        texturedisabled = None;
+        texturedown = "assets/backButton.png" Part(850, 50, 300, 300);
+        texturefocused = None;
+        texturehover = "assets/backButton.png" Part(450, 50, 300, 300);
+    }
+}

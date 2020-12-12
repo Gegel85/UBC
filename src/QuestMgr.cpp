@@ -91,13 +91,19 @@ namespace UntilBeingCrowned
 			gui.remove(this->_panel);
 			gui.remove(panel);
 		};
-
 		this->_buttons.clear();
 		this->_selected = id;
 		title->setText(val.title);
 		desc->setText(val.description);
 		desc->setVerticalScrollbarValue(0);
 		this->_panel->add(val.pic);
+		this->_panel->get<tgui::Label>("Gold")->setText("Gold: " + std::to_string(this->_state.gold));
+		this->_panel->get<tgui::Label>("Army")->setText("Army: " + std::to_string(this->_state.army));
+		this->_panel->get<tgui::Label>("Food")->setText("Food: " + std::to_string(this->_state.food));
+		this->_panel->get<tgui::Button>("Back")->connect("Clicked", [&gui, panel, this]{
+			gui.remove(this->_panel);
+			gui.remove(panel);
+		});
 		for (int y = 0; y < size; y++) {
 			auto but = tgui::Button::create(val.buttons[index]);
 			auto *renderer = but->getRenderer();
