@@ -68,10 +68,10 @@ namespace UntilBeingCrowned
 		game.resources.setMusicVolume(game.state.settings.musicVolume);
 		game.resources.setSoundVolume(game.state.settings.sfxVolume);
 		game.resources.screen.reOpen(
-				game.resources.screen.getTitle(),
-				1360,
-				768,
-				game.state.settings.fullscreen
+			game.resources.screen.getTitle(),
+			1360,
+			768,
+			game.state.settings.fullscreen
 		);
 
 	}

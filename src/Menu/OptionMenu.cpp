@@ -30,7 +30,6 @@ namespace UntilBeingCrowned
 			this->_gui.removeAllWidgets();
 			return;
 		}
-		Loader::loadSettings(_game);
 		this->_gui.loadWidgetsFromFile("gui/optionMenu.gui");
 
 		_initFullscreen = this->_res.screen.isFullscreen();
