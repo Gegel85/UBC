@@ -36,15 +36,15 @@
 		"tampon": "sfx/tampon_sound.ogg"
 	},
 	"sprites": {
+		"port": "port.png",
 		"list_bg": "list_bg.jpg",
 		"first_cut_scene": "first_cut_scene.png",
-		"port": "port",
 		"icon_prince_right" : "characters/Prince_iconRight.png",
 		"icon_prince_left" : "characters/Prince_iconLeft.png",
 		"icon_princess_right" : "characters/Princess_iconRight.png",
 		"icon_princess_left" : "characters/Princess_iconLeft.png",
-		"icon_guard_captain_right" : "characters/Captain_guard_iconRight.png",
-		"icon_guard_captain_left" : "characters/Captain_guard_iconLeft.png",
+		"icon_captain_guard_right" : "characters/Captain_guard_iconRight.png",
+		"icon_captain_guard_left" : "characters/Captain_guard_iconLeft.png",
 		"icon_archer_guard_right" : "characters/Archer_iconRight.png",
 		"icon_archer_guard_left" : "characters/Archer_iconLeft.png",
 		"icon_shield_guard_right" : "characters/Shield_iconRight.png",

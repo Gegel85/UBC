@@ -313,6 +313,8 @@ namespace UntilBeingCrowned
 				}
 				this->_text += std::string(") : ") + e.what();
 				this->_onHold = true;
+				this->_gui.get<tgui::Panel>("otherPanel")->setVisible(true);
+				this->_gui.get<tgui::Panel>("myPanel")->setVisible(true);
 			}
 		} else
 			this->_text += c;

@@ -12,8 +12,8 @@
     "r%skipWeek%"
   ],
   "week0": [
-    "r%hide r%%setSprite idle_player 16 0 32 64%%skip%",
-    "l%setSprite guard 24 0 32 64%Your highness! You cannot flee the hall, all your guests wish to see you!",
+    "r%hide r%%setSprite icon_player_left 16 0 32 64%%skip%",
+    "l%setSprite icon_captain_guard_right 24 0 32 64%Your highness! You cannot flee the hall, all your guests wish to see you!",
     "l%hide l%%skip%",
     "r%unhide r%There are here to mourn my father, not to see me. Who care where I am?",
     "r%hide r%%skip%",
@@ -31,7 +31,7 @@
     "r%unhide r%(Choose your answer): %choices \"I don't care about what they think!\" wantToBeAlone \"I just need some time alone; I am sure they can understand\" wantToBeAlone \"Maybe I should go back then...\" goBackToTheFuneral%"
   ],
   "week7": [
-    "r%hide r%%setSprite idle_player 16 0 32 64%%skip%",
+    "r%hide r%%setSprite icon_player_left 16 0 32 64%%skip%",
     "l%setSprite guard 24 0 32 64%Your Highness! It's an emergency!",
     "l%hide l%%skip%",
     "r%unhide r%*sigh* Have you never learned to knock at a door?",

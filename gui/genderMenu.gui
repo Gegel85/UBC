@@ -41,7 +41,7 @@ Renderer.2 {
 }
 
 BitmapButton.maleButton {
-    Image = "assets/characters/Idle_prince.png" Part(0, 0, 64, 64);
+    Image = "assets/characters/Prince_iconRight.png" Part(0, 0, 64, 64);
     ImageScaling = 1;
     Position = (240, 250);
     Size = (345, 378);
@@ -50,7 +50,7 @@ BitmapButton.maleButton {
 }
 
 BitmapButton.femaleButton {
-    Image = "assets/characters/princess_idle.png" Part(0, 0, 64, 64);
+    Image = "assets/characters/Princess_iconRight.png" Part(0, 0, 64, 64);
     ImageScaling = 1;
     Position = (790, 250);
     Size = (345, 378);
