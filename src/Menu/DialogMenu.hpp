@@ -14,6 +14,8 @@
 
 namespace UntilBeingCrowned
 {
+	extern const std::vector<std::string> in_game_musics;
+
 	class DialogMenu : public Menu {
 	private:
 		MenuMgr &_mgr;

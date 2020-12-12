@@ -4,6 +4,7 @@
 
 #include "MainMenu.hpp"
 #include "../Loader.hpp"
+#include "DialogMenu.hpp"
 
 namespace UntilBeingCrowned
 {
@@ -38,6 +39,7 @@ namespace UntilBeingCrowned
 			tgui::Signals::Button::Pressed,
 			[this]{
 				this->_res.playSound("click_button");
+				this->_res.playMusic(in_game_musics[this->_res.random() % in_game_musics.size()]);
 				this->_loadGame();
 			}
 		);
@@ -72,7 +74,6 @@ namespace UntilBeingCrowned
 	{
 		if (Loader::loadProgression(_game, "progression"))
 			this->_mgr.changeMenu("in_game");
-
 	}
 }
 

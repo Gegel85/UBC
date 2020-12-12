@@ -6,7 +6,7 @@
 
 namespace UntilBeingCrowned
 {
-	static const std::vector<std::string> musics{
+	const std::vector<std::string> in_game_musics{
 		"in_game_0",
 		"in_game_1",
 		"in_game_2",
@@ -30,10 +30,10 @@ namespace UntilBeingCrowned
 		if (isActive) {
 			this->_gui.loadWidgetsFromFile("gui/dialogMenu.gui");
 			this->_dialogMgr.startDialog("week" + std::to_string(this->_state.week));
-			for (auto &mus : musics)
+			for (auto &mus : in_game_musics)
 				if (this->_res.musics[mus].first.getStatus() == sf::Music::Playing)
 					return;
-			this->_res.playMusic(musics[this->_res.random() % musics.size()]);
+			this->_res.playMusic(in_game_musics[this->_res.random() % in_game_musics.size()]);
 		} else
 			this->_gui.removeAllWidgets();
 	}
