@@ -32,7 +32,7 @@
   ],
   "week7": [
     "r%hide r%%setSprite icon_player_left 16 0 32 64%%skip%",
-    "l%setSprite guard 24 0 32 64%Your Highness! It's an emergency!",
+    "l%setSprite icon_captain_guard_right 24 0 32 64%Your Highness! It's an emergency!",
     "l%hide l%%skip%",
     "r%unhide r%*sigh* Have you never learned to knock at a door?",
     "r%hide r%%skip%",
