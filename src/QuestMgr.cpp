@@ -45,10 +45,9 @@ namespace UntilBeingCrowned
 			throw InvalidQuestFileException("Cannot open " + path + ": " + strerror(errno));
 
 		stream >> val;
-		this->_checkJsonValidity(val);
-		for (const auto &v : val) {
-			this->_quests.emplace_back(this->_quests.size(), v, resources.textures);
-		}
+		this->_checkJsonValidity(val, resources.textures);
+		for (const auto &v : val)
+			this->_quests.push_back(std::make_shared<Quest>(this->_quests.size(), v, resources.textures));
 		stream.close();
 		this->_usedQuests.resize(this->_quests.size(), false);
 		this->_addNewUnlockedQuests();
@@ -58,13 +57,13 @@ namespace UntilBeingCrowned
 	{
 		auto panel = tgui::Panel::create({"100%", "100%"});
 		unsigned index = 0;
-		auto &val = this->_quests.at(id);
-		int size = val.buttons.size();
+		auto val = this->_quests.at(id);
+		int size = val->buttons.size();
 		auto title = this->_panel->get<tgui::Label>("Title");
 		auto desc = this->_panel->get<tgui::TextBox>("TextBox1");
-		auto fct = [this, &val, id, &gui, panel](unsigned butId) {
+		auto fct = [this, val, id, &gui, panel](unsigned butId) {
 			if (this->_onClickButton)
-				this->_onClickButton({val, butId, id});
+				this->_onClickButton({*val, butId, id});
 
 			this->_newQuests.erase(
 				std::remove(
@@ -74,8 +73,8 @@ namespace UntilBeingCrowned
 				),
 				this->_newQuests.end()
 			);
-			if (butId < val.buttons_effects.size()) {
-				val.buttons_effects[butId].apply(this->_state);
+			if (butId < val->buttons_effects.size()) {
+				val->buttons_effects[butId].apply(this->_state);
 				this->_unlockedQuests.erase(
 					std::remove(
 						this->_unlockedQuests.begin(),
@@ -84,7 +83,7 @@ namespace UntilBeingCrowned
 					),
 					this->_unlockedQuests.end()
 				);
-				this->_usedQuests[val.getId()] = true;
+				this->_usedQuests[val->getId()] = true;
 			}
 			for (auto &but : this->_buttons)
 				this->_panel->remove(but);
@@ -93,10 +92,10 @@ namespace UntilBeingCrowned
 		};
 		this->_buttons.clear();
 		this->_selected = id;
-		title->setText(val.title);
-		desc->setText(val.description);
+		title->setText(val->title);
+		desc->setText(val->description);
 		desc->setVerticalScrollbarValue(0);
-		this->_panel->add(val.pic);
+		this->_panel->get<tgui::Picture>("Picture1")->getRenderer()->setTexture(val->pic);
 		this->_panel->get<tgui::Label>("Gold")->setText("Gold: " + std::to_string(this->_state.gold));
 		this->_panel->get<tgui::Label>("Army")->setText("Army: " + std::to_string(this->_state.army));
 		this->_panel->get<tgui::Label>("Food")->setText("Food: " + std::to_string(this->_state.food));
@@ -105,10 +104,10 @@ namespace UntilBeingCrowned
 			gui.remove(panel);
 		});
 		for (int y = 0; y < size; y++) {
-			auto but = tgui::Button::create(val.buttons[index]);
+			auto but = tgui::Button::create(val->buttons[index]);
 			auto *renderer = but->getRenderer();
 
-			if (index < val.buttons_effects.size() && !val.buttons_effects[index].canApply(this->_state))
+			if (index < val->buttons_effects.size() && !val->buttons_effects[index].canApply(this->_state))
 				but->setEnabled(false);
 
 			renderer->setBorders({0, 0, 0, 0});
@@ -132,33 +131,44 @@ namespace UntilBeingCrowned
 		this->_onClickButton = handler;
 	}
 
-	std::vector<QuestMgr::Quest> QuestMgr::getUnlockedQuests()
+	std::vector<std::shared_ptr<QuestMgr::Quest>> QuestMgr::getUnlockedQuests()
 	{
 		return this->_unlockedQuests;
 	}
 
-	std::vector<QuestMgr::Quest> QuestMgr::getNewQuests()
+	std::vector<std::shared_ptr<QuestMgr::Quest>> QuestMgr::getNewQuests()
 	{
 		return this->_newQuests;
 	}
 
 	void QuestMgr::nextWeek()
 	{
-		this->_newQuests.clear();
-		this->_unlockedQuests.erase(
-			std::remove_if(
-				this->_unlockedQuests.begin(),
-				this->_unlockedQuests.end(),
-				[this](const Quest &quest) {
-					return !quest.isUnlocked(this->_state);
-				}
-			),
-			this->_unlockedQuests.end()
-		);
-		this->_addNewUnlockedQuests();
+		if (!this->_continued) {
+			this->_newQuests.clear();
+			this->_unlockedQuests.erase(
+				std::remove_if(
+					this->_unlockedQuests.begin(),
+					this->_unlockedQuests.end(),
+					[this](const std::shared_ptr<Quest> &quest) {
+						return !quest->isUnlocked(this->_state);
+					}
+				),
+				this->_unlockedQuests.end()
+			);
+			this->_addNewUnlockedQuests();
+		} else
+			for (auto &quest : this->_quests) {
+				if (
+					quest->isUnlocked(this->_state) &&
+					!this->_usedQuests[quest->getId()] &&
+					std::find(this->_unlockedQuests.begin(), this->_unlockedQuests.end(), quest) == this->_unlockedQuests.end()
+				)
+					this->_unlockedQuests.push_back(quest);
+			}
+		this->_continued = false;
 	}
 
-	void QuestMgr::_checkJsonValidity(const nlohmann::json &val)
+	void QuestMgr::_checkJsonValidity(const nlohmann::json &val, const std::map<std::string, sf::Texture> &textures)
 	{
 		if (!val.is_array())
 			throw InvalidQuestFileException("File is expected to contain an array of objects (Value " + val.dump() + " is not an array)");
@@ -175,6 +185,8 @@ namespace UntilBeingCrowned
 				throw InvalidQuestFileException(i, "description field is not a string (Value " + jsonToString(v, "description") + " is not a string)");
 			if (!v.contains("picture") || !v["picture"].is_string())
 				throw InvalidQuestFileException(i, "picture field is not a string (Value " + jsonToString(v, "picture") + " is not a string)");
+			if (textures.find(v["picture"]) == textures.end())
+				throw InvalidQuestFileException(i, "no texture with id \"" + v["picture"].get<std::string>() + "\" has been loaded");
 			if (!v.contains("buttons") || !v["buttons"].is_array())
 				throw InvalidQuestFileException(i, "button field is not an array (Value " + jsonToString(v, "buttons") + " is not an array)");
 			for (const auto &k : v["buttons"])
@@ -261,8 +273,8 @@ namespace UntilBeingCrowned
 	{
 		for (auto &quest : this->_quests) {
 			if (
-				quest.isUnlocked(this->_state) &&
-				!this->_usedQuests[quest.getId()] &&
+				quest->isUnlocked(this->_state) &&
+				!this->_usedQuests[quest->getId()] &&
 				std::find(this->_unlockedQuests.begin(), this->_unlockedQuests.end(), quest) == this->_unlockedQuests.end()
 			) {
 				this->_unlockedQuests.push_back(quest);
@@ -276,9 +288,9 @@ namespace UntilBeingCrowned
 		std::fill(this->_usedQuests.begin(), this->_usedQuests.end(), false);
 	}
 
-	QuestMgr::Quest::Quest(unsigned id, const nlohmann::json &json, std::map<std::string, sf::Texture> &textures) :
+	QuestMgr::Quest::Quest(unsigned id, const nlohmann::json &json, const std::map<std::string, sf::Texture> &textures) :
 		_id(id),
-		pic(tgui::Picture::create(textures[json["picture"]])),
+		pic(textures.at(json["picture"])),
 		title(json["title"]),
 		description(json["description"]),
 		buttons(json["buttons"].get<std::vector<std::string>>()),
@@ -291,8 +303,6 @@ namespace UntilBeingCrowned
 		forceOpen(json.contains("force_open") && json["force_open"].get<bool>())
 	{
 		this->weekRange.second += this->weekRange.first;
-		this->pic->setSize(150, 150);
-		this->pic->setPosition(390, 50);
 	}
 
 	bool QuestMgr::Quest::isUnlocked(const GameState &state) const
@@ -378,12 +388,12 @@ namespace UntilBeingCrowned
 	std::string QuestMgr::serializedNewQuests() {
 		std::string str;
 		for (auto const &quest : this->_newQuests) {
-			str += std::to_string(quest.getId()) + '\n';
+			str += std::to_string(quest->getId()) + '\n';
 		}
 		return str;
 	}
 
-	std::vector<QuestMgr::Quest> const & QuestMgr::getQuests() const {
+	std::vector<std::shared_ptr<QuestMgr::Quest>> const & QuestMgr::getQuests() const {
 		return this->_quests;
 	}
 
@@ -391,8 +401,8 @@ namespace UntilBeingCrowned
 		this->_usedQuests = std::move(q);
 	}
 
-	void QuestMgr::setNewQuests(std::vector<QuestMgr::Quest> q) {
+	void QuestMgr::setNewQuests(std::vector<std::shared_ptr<QuestMgr::Quest>> q) {
+		this->_continued = true;
 		this->_newQuests = std::move(q);
 	}
-
 }
