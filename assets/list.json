@@ -36,6 +36,9 @@
 		"tampon": "sfx/tampon_sound.ogg"
 	},
 	"sprites": {
+		"funerals_with_prince": "funerals_with_prince.png",
+		"funerals_with_princesse": "funerals_with_princesse.png",
+		"dialog_scene": "dialogScene.png",
 		"port_part1": "port_part1.png",
 		"port_part2": "port_part2.png",
 		"forest": "forest.png",
