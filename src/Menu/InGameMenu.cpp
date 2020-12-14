@@ -104,8 +104,8 @@ namespace UntilBeingCrowned
 		this->_hookHandlers();
 		this->_questsMgr.nextWeek();
 		for (auto &quest : this->_questsMgr.getNewQuests())
-			if (quest.forceOpen)
-				this->_questsMgr.showDialog(quest.getId(), this->_gui);
+			if (quest->forceOpen)
+				this->_questsMgr.showDialog(quest->getId(), this->_gui);
 
 		this->_gui.get<tgui::Button>("Back")->connect(tgui::Signals::Button::Pressed, &InGameMenu::_saveAndQuit, this);
 	}
@@ -143,7 +143,7 @@ namespace UntilBeingCrowned
 
 	}
 
-	void InGameMenu::_showQuestList(const std::vector<QuestMgr::Quest> &quests, const std::string &name)
+	void InGameMenu::_showQuestList(const std::vector<std::shared_ptr<QuestMgr::Quest>> &quests, const std::string &name)
 	{
 		auto label = tgui::Label::create(name);
 		auto picture = tgui::Panel::create({600, 700});
@@ -176,14 +176,14 @@ namespace UntilBeingCrowned
 		this->_gui.add(picture, "Panel");
 		for (size_t i = 0; i < quests.size(); i++) {
 			const auto &quest = quests[i];
-			auto button = tgui::Button::create(quest.title);
+			auto button = tgui::Button::create(quest->title);
 
 			button->getRenderer()->setFont("assets/kenpixel.ttf");
 			button->setPosition(10, i * 30 + 10);
 			button->setSize("&.w - 20", 20);
 			button->onClick.connect([this, quest, close]{
 				close();
-				this->_questsMgr.showDialog(quest.getId(), this->_gui);
+				this->_questsMgr.showDialog(quest->getId(), this->_gui);
 			});
 			panel->add(button);
 		}
