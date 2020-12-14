@@ -1,7 +1,9 @@
-5 5 5 0 0 0 10 10 10 6
+5 5 5 0 0 0 10 10 10 8
 mariage_none
 no_gift
 normal_expedition
 thief_in_jail
 hydra_no_war
 dialog
+no_mariage_chief
+problem_eglise
