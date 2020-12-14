@@ -22,6 +22,7 @@ namespace UntilBeingCrowned
 		std::map<std::string, std::vector<std::string>> _dialogsString;
 		std::tuple<std::string, unsigned, size_t> _currentDialog = {"", 0, 0};
 		unsigned _waitingTime = 0;
+		bool _clickEnabled = false;
 		bool _left = false;
 		bool _onHold = false;
 		bool _done = true;
@@ -55,6 +56,7 @@ namespace UntilBeingCrowned
 		std::string _moveSprite(const std::vector<std::string> &args);
 		std::string _setBackground(const std::vector<std::string> &args);
 		std::string _notImplemented(const std::vector<std::string> &args);
+		std::string _click(const std::vector<std::string> &args);
 		void _nextLine();
 		static std::pair<std::string, std::vector<std::string>> _parseCommand(size_t &pos, const std::string &cmdStart);
 
