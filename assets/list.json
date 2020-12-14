@@ -36,7 +36,8 @@
 		"tampon": "sfx/tampon_sound.ogg"
 	},
 	"sprites": {
-		"port": "port.png",
+		"port_part1": "port_part1.png",
+		"port_part2": "port_part2.png",
 		"forest": "forest.png",
 		"list_bg": "list_bg.jpg",
 		"first_cut_scene": "first_cut_scene.png",
