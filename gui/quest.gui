@@ -154,7 +154,7 @@ Picture.Picture1 {
     Size = (150, 150);
 
     Renderer {
-        texture = "assets/port.png";
+        texture = "assets/desk.png";
         transparenttexture = false;
     }
 }

@@ -56,6 +56,7 @@ namespace UntilBeingCrowned
 		{"setBackgroundSize",  &DialogMgr::_setBackgroundSize},
 		{"if",                 &DialogMgr::_if},
 		{"moveBackground",     &DialogMgr::_moveBg},
+		{"toggleClick",        &DialogMgr::_click},
 	};
 
 	void DialogMgr::update()
@@ -234,8 +235,15 @@ namespace UntilBeingCrowned
 			return;
 		if (this->_lineEnded)
 			this->_nextLine();
-		else while (!this->_lineEnded)
+		else while (!this->_lineEnded) {
 			this->_processTextCharacter();
+			if (!this->_newBackground.empty()) {
+				auto pic = this->_gui.get<tgui::Picture>("Picture1");
+
+				pic->getRenderer()->setTexture(this->_resources.textures.at(this->_newBackground));
+				this->_newBackground.clear();
+			}
+		}
 	}
 
 	bool DialogMgr::hasDialog(const std::string &id)
@@ -584,5 +592,10 @@ namespace UntilBeingCrowned
 
 		this->_gui.get<tgui::Picture>("Picture1")->setSize(args[0], args[1]);
 		return {};
+	}
+
+	std::string DialogMgr::_click(const std::vector<std::string> &)
+	{
+		throw NotImplementedException();
 	}
 }
