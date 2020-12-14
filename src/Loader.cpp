@@ -76,7 +76,6 @@ namespace UntilBeingCrowned
 
 	}
 
-
 	void Loader::saveProgression(GameState &gs, QuestMgr &mg, const std::string &name)
 	{
 		std::filesystem::create_directories("saves");
@@ -212,5 +211,20 @@ namespace UntilBeingCrowned
 
 		logger.debug("Loading quests");
 		game.state.questMgr.loadFile("assets/quests.json", game.resources);
+
+		logger.debug("Opening file assets/endMessages.json");
+		stream.open("assets/endMessages.json");
+		if (stream.fail())
+			throw CorruptedAssetsListException("Cannot open assets list from assets/endMessages.json");
+		try {
+			logger.debug("Parsing json");
+			stream >> data;
+			stream.close();
+			game.resources.endMessages = data.get<std::map<std::string, std::string>>();
+		} catch (nlohmann::detail::parse_error &e) {
+			throw CorruptedAssetsListException("The JSON file has an invalid format: " + std::string(e.what()));
+		} catch (nlohmann::detail::type_error &e) {
+			throw CorruptedAssetsListException("The JSON values are invalid: " + std::string(e.what()));
+		}
 	}
 }

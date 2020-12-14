@@ -1,41 +1,6 @@
-Label.EndId {
-    HorizontalAlignment = Center;
-    Position = (0, 170);
-    ScrollbarPolicy = Never;
-    Size = (1360, 68);
-    Text = Label;
-    TextSize = 50;
-
-    Renderer {
-        backgroundcolor = transparent;
-        bordercolor = #3C3C3C;
-        borders = (0, 0, 0, 0);
-        font = "assets/kenpixel.ttf";
-        textcolor = white;
-        texturebackground = None;
-    }
-}
-
-Label.Label1 {
-    HorizontalAlignment = Center;
-    Position = (0, 310);
-    ScrollbarPolicy = Never;
-    Size = (1360, 124);
-    Text = "Unfortunately, it looks like\nyour choices lead you to your own death...\nMaybe you should try another way ?";
-    TextSize = 30;
-
-    Renderer {
-        backgroundcolor = transparent;
-        bordercolor = #3C3C3C;
-        borders = (0, 0, 0, 0);
-        font = "assets/kenpixel.ttf";
-        textcolor = white;
-        texturebackground = None;
-    }
-}
-
 Button.menu {
-    Position = (460, 580);
+    Position = ((&.w / 2) - (w / 2), 580);
+    Size = (349, 55);
     Text = "Go back to main menu";
     TextSize = 35;
 
@@ -50,6 +15,7 @@ Button.menu {
         bordercolorfocused = #1E1EB4;
         bordercolorhover = black;
         borders = (1, 1, 1, 1);
+        font = "assets/kenpixel.ttf";
         textcolor = white;
         textcolordisabled = #7D7D7D;
         textcolordown = black;
@@ -63,11 +29,12 @@ Button.menu {
 }
 
 Label.Label2 {
+    AutoSize = true;
     HorizontalAlignment = Center;
-    Position = (0, 30);
+    Position = ((&.w / 2) - (w / 2), 30);
     ScrollbarPolicy = Never;
-    Size = (1360, 68);
-    Text = "You died";
+    Size = (241.4, 80);
+    Text = "You died...";
     TextSize = 60;
 
     Renderer {
@@ -75,6 +42,30 @@ Label.Label2 {
         bordercolor = #3C3C3C;
         borders = (0, 0, 0, 0);
         font = "assets/kenpixel.ttf";
+        textcolor = white;
+        texturebackground = None;
+    }
+}
+
+TextBox.TextBox {
+    DefaultText = Oui;
+    HorizontalScrollbarPolicy = Never;
+    MaximumCharacters = 0;
+    Position = (120, 110);
+    Size = (1068, 456.389);
+    Text = Oui;
+    TextSize = 30;
+
+    Renderer {
+        backgroundcolor = transparent;
+        bordercolor = black;
+        borders = (0, 0, 0, 0);
+        caretcolor = white;
+        caretwidth = 1;
+        font = "assets/kenpixel.ttf";
+        padding = (0, 0, 0, 0);
+        selectedtextbackgroundcolor = #006EFF;
+        selectedtextcolor = white;
         textcolor = white;
         texturebackground = None;
     }

@@ -33,6 +33,13 @@ namespace UntilBeingCrowned
 		{};
 	};
 
+	class InvalidEndException : public BaseException {
+	public:
+		explicit InvalidEndException(const std::string &&msg) :
+			BaseException(static_cast<const std::string &&>(msg))
+		{};
+	};
+
 	//! @brief The card tree given is corrupted or invalid.
 	class CorruptedCardTreeException : public BaseException {
 	public:
