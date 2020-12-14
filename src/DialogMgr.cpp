@@ -40,6 +40,7 @@ namespace UntilBeingCrowned
 		{"setMusic",           &DialogMgr::_setMusic},
 		{"playSfx",            &DialogMgr::_playSfx},
 		{"setSprite",          &DialogMgr::_setSpriteCmd},
+		{"setSpriteSize",      &DialogMgr::_setSpriteSize},
 		{"finish",             &DialogMgr::_finishCmd},
 		{"choices",            &DialogMgr::_choicesCmd},
 		{"setFlag",            &DialogMgr::_setFlagCmd},
@@ -556,6 +557,22 @@ namespace UntilBeingCrowned
 			throw InvalidArgumentsException("Expected exactly 2 arguments.");
 
 		this->_gui.get<tgui::Picture>("Picture1")->setPosition(args[0], args[1]);
+		return {};
+	}
+
+	std::string DialogMgr::_setSpriteSize(const std::vector<std::string> &args)
+	{
+		if (args.size() != 2)
+			throw InvalidArgumentsException("Expected exactly 2 arguments.");
+
+		tgui::Picture::Ptr pic;
+
+		if (this->_left)
+			pic = this->_gui.get<tgui::Picture>("Picture3");
+		else
+			pic = this->_gui.get<tgui::Picture>("Picture2");
+
+		pic->setSize(args[0], args[1]);
 		return {};
 	}
 }

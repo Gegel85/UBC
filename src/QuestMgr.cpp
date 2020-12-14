@@ -87,6 +87,7 @@ namespace UntilBeingCrowned
 			}
 			for (auto &but : this->_buttons)
 				this->_panel->remove(but);
+			this->_buttons.clear();
 			gui.remove(this->_panel);
 			gui.remove(panel);
 		};
@@ -100,6 +101,9 @@ namespace UntilBeingCrowned
 		this->_panel->get<tgui::Label>("Army")->setText("Army: " + std::to_string(this->_state.army));
 		this->_panel->get<tgui::Label>("Food")->setText("Food: " + std::to_string(this->_state.food));
 		this->_panel->get<tgui::Button>("Back")->connect("Clicked", [&gui, panel, this]{
+			for (auto &but : this->_buttons)
+				this->_panel->remove(but);
+			this->_buttons.clear();
 			gui.remove(this->_panel);
 			gui.remove(panel);
 		});
@@ -353,22 +357,19 @@ namespace UntilBeingCrowned
 	{
 		return state.gold + this->goldChange >= 0 &&
 		       state.army + this->armyChange >= 0 &&
-		       state.food + this->foodChange >= 0 &&
-		       state.goldPassive + this->passiveGoldChange >= 0 &&
-		       state.armyPassive + this->passiveArmyChange >= 0 &&
-		       state.foodPassive + this->passiveFoodChange >= 0;
+		       state.food + this->foodChange >= 0;
 	}
 
 	void QuestMgr::Effect::apply(GameState &state) const
 	{
-		state.gold              += this->goldChange;
-		state.army              += this->armyChange;
-		state.food              += this->foodChange;
-		state.goldPassive       += this->passiveGoldChange;
-		state.armyPassive       += this->passiveArmyChange;
-		state.foodPassive       += this->passiveFoodChange;
+		state.gold          += this->goldChange;
+		state.army          += this->armyChange;
+		state.food          += this->foodChange;
+		state.goldPassive   += this->passiveGoldChange;
+		state.armyPassive   += this->passiveArmyChange;
+		state.foodPassive   += this->passiveFoodChange;
 		state.foodHappiness += this->peasantsHappiness;
-		state.goldHappiness  += this->tradersHappiness;
+		state.goldHappiness += this->tradersHappiness;
 		state.armyHappiness += this->nobilityHappiness;
 
 		for (auto &flag : this->setFlags)
