@@ -47,6 +47,7 @@ namespace UntilBeingCrowned
 		std::string _skipCmd(const std::vector<std::string> &args);
 		std::string _setSpriteCmd(const std::vector<std::string> &args);
 		std::string _setSpriteSize(const std::vector<std::string> &args);
+		std::string _setBackgroundSize(const std::vector<std::string> &args);
 		std::string _setMusic(const std::vector<std::string> &args);
 		std::string _playSfx(const std::vector<std::string> &args);
 		std::string _wait(const std::vector<std::string> &args);

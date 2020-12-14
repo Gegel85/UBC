@@ -53,6 +53,7 @@ namespace UntilBeingCrowned
 		{"changeRelationship", &DialogMgr::_changeHappiness},
 		{"moveSprite",         &DialogMgr::_moveSprite},
 		{"setBackground",      &DialogMgr::_setBackground},
+		{"setBackgroundSize",  &DialogMgr::_setBackgroundSize},
 		{"if",                 &DialogMgr::_if},
 		{"moveBackground",     &DialogMgr::_moveBg},
 	};
@@ -573,6 +574,15 @@ namespace UntilBeingCrowned
 			pic = this->_gui.get<tgui::Picture>("Picture2");
 
 		pic->setSize(args[0], args[1]);
+		return {};
+	}
+
+	std::string DialogMgr::_setBackgroundSize(const std::vector<std::string> &args)
+	{
+		if (args.size() != 2)
+			throw InvalidArgumentsException("Expected exactly 2 arguments.");
+
+		this->_gui.get<tgui::Picture>("Picture1")->setSize(args[0], args[1]);
 		return {};
 	}
 }
