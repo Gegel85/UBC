@@ -517,12 +517,36 @@ namespace UntilBeingCrowned
 
 	std::string DialogMgr::_if(const std::vector<std::string> &args)
 	{
-		if (args.size() != 2)
-			throw InvalidArgumentsException("Expected exactly 2 arguments.");
-		if (std::find(this->_state.flags.begin(), this->_state.flags.end(), args[0]) != this->_state.flags.end()) {
-			this->startDialog(args[1]);
-			std::get<2>(this->_currentDialog) = 0;
-		}
+		if (args.size() == 2) {
+			if (std::find(this->_state.flags.begin(), this->_state.flags.end(), args[0]) != this->_state.flags.end()) {
+				this->startDialog(args[1]);
+				std::get<2>(this->_currentDialog) = 0;
+			}
+		} else if (args.size() == 4) {
+			auto val = 0;
+
+			if (args[0] == "gold")
+				val = this->_state.gold;
+			else if (args[0] == "food")
+				val = this->_state.food;
+			else if (args[0] == "army")
+				val = this->_state.army;
+			else
+				throw InvalidArgumentsException("Unknown resource name \"" + args[0] + "\"");
+			if (args[1] == "<") {
+				if (val < std::stol(args[2])) {
+					this->startDialog(args[1]);
+					std::get<2>(this->_currentDialog) = 0;
+				}
+			} else if (args[1] == ">") {
+				if (val > std::stol(args[2])) {
+					this->startDialog(args[1]);
+					std::get<2>(this->_currentDialog) = 0;
+				}
+			} else
+				throw InvalidArgumentsException("Unknown resource name \"" + args[0] + "\"");
+		} else
+			throw InvalidArgumentsException("Expected exactly 2 or 4 arguments.");
 		return {};
 	}
 

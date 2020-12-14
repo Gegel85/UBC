@@ -32,7 +32,7 @@ namespace UntilBeingCrowned
 
 		void _nextWeek();
 		void _hookHandlers();
-		void _showQuestList(const std::vector<QuestMgr::Quest> &quests, const std::string &name);
+		void _showQuestList(const std::vector<std::shared_ptr<QuestMgr::Quest>> &quests, const std::string &name);
 		void _saveAndQuit();
 
 	public:

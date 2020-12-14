@@ -3,6 +3,7 @@
 //
 
 #include "VictoryMenu.hpp"
+#include "Exceptions.hpp"
 
 namespace UntilBeingCrowned
 {
@@ -23,9 +24,17 @@ namespace UntilBeingCrowned
 		auto it = std::find_if(this->_state.flags.begin(), this->_state.flags.end(), [](const std::string &str){
 			return str.substr(0, strlen("victory_")) == "victory_";
 		});
+		auto it2 = this->_res.endMessages.find(*it);
+
+		if (it2 == this->_res.endMessages.end())
+			throw InvalidEndException("No end exists with id " + *it);
 
 		this->_gui.loadWidgetsFromFile("gui/victory_menu.gui");
-		this->_gui.get<tgui::Label>("EndId")->setText(*it);
+
+		auto box = this->_gui.get<tgui::TextBox>("TextBox");
+
+		box->setText(it2->second);
+		box->setVerticalScrollbarValue(0);
 		this->_gui.get<tgui::Button>("menu")->connect(
 			"Clicked",
 			[this]{

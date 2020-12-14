@@ -76,7 +76,6 @@ namespace UntilBeingCrowned
 
 	}
 
-
 	void Loader::saveProgression(GameState &gs, QuestMgr &mg, const std::string &name)
 	{
 		std::filesystem::create_directories("saves");
@@ -141,18 +140,20 @@ namespace UntilBeingCrowned
 			}
 			game.state.questMgr.setUsedQuests(tmpB);
 
-			std::vector<QuestMgr::Quest> tmpQ;
-			std::vector<QuestMgr::Quest> const &allQuests = game.state.questMgr.getQuests();
+			std::vector<std::shared_ptr<QuestMgr::Quest>> tmpQ;
+			std::vector<std::shared_ptr<QuestMgr::Quest>> const &allQuests = game.state.questMgr.getQuests();
 			while(getline(stream,str)) {
 				if (str == "//")
 					break;
-				unsigned int id = static_cast<unsigned int>(std::stoul(str));
-				for (auto const quest : allQuests) {
-					if (quest.getId() == id) {
-						tmpQ.push_back(quest);
-						break;
-					}
-				}
+
+				auto id = static_cast<unsigned int>(std::stoul(str));
+				auto it = std::find_if(allQuests.begin(), allQuests.end(), [id](const std::shared_ptr<QuestMgr::Quest> &quest){
+					return quest->getId() == id;
+				});
+
+				if (it == allQuests.end())
+					throw InvalidSavedMap("The saved quest map is invalid");
+				tmpQ.push_back(*it);
 			}
 			game.state.questMgr.setNewQuests(tmpQ);
 			return true;
@@ -210,5 +211,20 @@ namespace UntilBeingCrowned
 
 		logger.debug("Loading quests");
 		game.state.questMgr.loadFile("assets/quests.json", game.resources);
+
+		logger.debug("Opening file assets/endMessages.json");
+		stream.open("assets/endMessages.json");
+		if (stream.fail())
+			throw CorruptedAssetsListException("Cannot open assets list from assets/endMessages.json");
+		try {
+			logger.debug("Parsing json");
+			stream >> data;
+			stream.close();
+			game.resources.endMessages = data.get<std::map<std::string, std::string>>();
+		} catch (nlohmann::detail::parse_error &e) {
+			throw CorruptedAssetsListException("The JSON file has an invalid format: " + std::string(e.what()));
+		} catch (nlohmann::detail::type_error &e) {
+			throw CorruptedAssetsListException("The JSON values are invalid: " + std::string(e.what()));
+		}
 	}
 }

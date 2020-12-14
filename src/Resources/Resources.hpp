@@ -49,6 +49,9 @@ namespace UntilBeingCrowned
 		//! @brief The global font
 		sf::Font font;
 
+		//! @brief The end messages
+		std::map<std::string, std::string> endMessages;
+
 		//! @brief Plays a sound effect
 		//! @param id The id of the sound effect to play
 		//! @return The sound index assigned to this sfx
