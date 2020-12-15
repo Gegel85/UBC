@@ -1,7 +1,7 @@
 [
   {
     "title": "A thief in jail",
-    "description": "Hello your Highness,\nThis your captain guard speaking.\nWe have a thief in our jail for two weeks.\nIt would be great if you could state your judgment, should we hang him?\nOh, yes, I almost forgot.\nHe stole some food from a market stall\nsupposedly for his sick family.\nAh! He stole right in front of my guys! What an idiot!\nOh... well, my apologize for my vocabulary your Highness.\nWell then, hang or not hang?",
+    "description": "Hello your Highness,\nYour captain guard speaking.\nWe have had a thief in our jail for two weeks.\nIt would be great if you could state your judgment, should we hang him?\nOh, yes, I almost forgot.\nHe stole some food from a market stall\nsupposedly for his sick family.\nAh! He stole right in front of my guys! What an idiot!\nOh... well, my apologize for my vocabulary your Highness.\nWell then, hang or not hang?",
     "picture": "icon_captain_guard_left",
     "buttons": ["Hang him", "Release him", "Postpone"],
     "requirements": [],
@@ -63,7 +63,7 @@
   },
   {
     "title": "A thief no more in jail",
-    "description": "Hello Highness, remember the thief from last week? Well, we have another kind of problem with him. He kind of flee. I immediately send five men after him, but maybe I shouldn't have.",
+    "description": "Hello Highness, remember the thief from last week? Well, we have another kind of problem with him. He kind of fleed. I immediately sent five men after him, but maybe I shouldn't have.",
     "picture": "icon_captain_guard_left",
     "buttons": ["Send men to kill him (5M)", "Send men to bring him back (5M)", "Call back your men", "You did well"],
     "requirements": ["thief_flee"],
@@ -138,7 +138,7 @@
   },
   {
     "title": "Ball with Farstan son",
-    "description": "Hello your Highness.\nHere is your humble servant Farstan, let me express you all my condolence for your father.\nA ball will be hold next week between some of my friends.\nLet me offer to you to go to this ball with my dear son, without any thoughts of course, just to allow you to forget your sorrow for a couple of hours",
+    "description": "Hello your Highness.\nHere is your humble servant Farstan, let me express you all my condolence for your father.\nA ball will be held next week between some of my friends.\nI invite you to go to this ball with my dear son, without any thoughts of course, just to allow you to forget your sorrow for a couple of hours",
     "picture": "icon_trader_left",
     "buttons": ["Agree to come", "Refuse to go"],
     "requirements": ["player_f"],
@@ -158,8 +158,8 @@
     },
     "week_no": 1,
     "buttons_effects": [{
-      "set_flags": ["mariage_farstan_son"],
-      "unset_flags": ["mariage_none"],
+      "set_flags": ["wedding_farstan_son"],
+      "unset_flags": ["wedding_none"],
       "gold": 0,
       "food": 0,
       "army": 0,
@@ -207,8 +207,8 @@
     },
     "week_no": 1,
     "buttons_effects": [{
-      "set_flags": ["mariage_farstan_daughter"],
-      "unset_flags": ["mariage_none"],
+      "set_flags": ["wedding_farstan_daughter"],
+      "unset_flags": ["wedding_none"],
       "gold": 0,
       "food": 0,
       "army": 0,
@@ -236,7 +236,7 @@
   },
   {
     "title": "No harvest this month",
-    "description": "Your Highness, my most sincere condolence for your father death. I hope you are doing well. I send you this letter for an urgent matter. Last month, the cold destroyed our harvest. Your father promised us he will pay as if our harvest were done without a problem to allow us to have money to buy food for our family despite this unfortunate event. I am sure you share his values and would agree to fulfill his promise.",
+    "description": "Your Highness, my most sincere condolence for your father death. I hope you are doing well. I send you this letter for an urgent matter. Last month, the cold destroyed our harvests. Your father promised us he will pay as if our harvest were done without a problem to allow us to have money to buy food for our family despite this unfortunate event. I am sure you share his values and would agree to fulfill his promise.",
     "picture": "icon_peasant_left",
     "buttons": ["Fulfill promise (5G)", "Ignore: ask food anyway", "Ingore the plea"],
     "requirements": [],
@@ -298,7 +298,7 @@
   },
   {
     "title": "My own cook steals from me!",
-    "description": "Hello your Highness.\nI send you all my condolence for your lose.\nAnd I send you this letter about a crime of the most abject nature.\nNo later than yesterday, I saw one of my cook steals my wife necklace.\nHe stole it just in front of chamberlain eyes!\nOf course, I execute him this morning.\nBut now his familly say it was a lie and claims compensation.\nWould you please provide me some soldier to teach them how to respect the noblemen from your country?",
+    "description": "Hello your Highness.\nI send you all my condolence for your loss.\nI send you this letter about a crime of the most abject nature.\nNo later than yesterday, I saw one of my cook steals my wife necklace.\nHe stole it just in front of chamberlain eyes!\nOf course, I execute him this morning.\nBut now his familly say it was a lie and claims compensation.\nWould you please provide me some soldier to teach them how to respect the noblemen from your country?",
     "picture": "icon_noble_left",
     "buttons": ["Subdue the peasants (5M)", "Investigate the case (5M)", "Ignore", "Postpone"],
     "requirements": [],
@@ -360,7 +360,7 @@
   },
   {
     "title": "Mage Circle Wish",
-    "description": "Hello, your Highness. I am the Mage Circle Representative. As you may know, we work for the crown to develop new magic systems to answer the crown and citizen needs. But recently, some member of the Mage Circle started to wish study our island, on more a scientifical aspect than creating new magical object. Of course, we cannot decide to stop our work on our own. So here I am to ask you if we can leave aside our usual work to focus ourselves on the study of the island. But if you want us to work on something, just tell it",
+    "description": "Hello, your Highness. I am the Mage Circle Representative. As you may know, we work for the crown to develop new magic systems to answer the crown and citizen needs. But recently, some member of the Mage Circle started to wish to study our island, on more a scientifical aspect than creating new magical object. Of course, we cannot decide to stop our work on our own. So here I am to ask you if we can leave aside our usual work to focus ourselves on the study of the island. But if you want us to work on something, just tell it",
     "picture": "icon_advisor_left",
     "buttons": ["Fine (7G)", "Fine (3F every week)", "Fine (7M)", "Fine (5G, 2F every week, 5M)", "Agree", "Ask communication device", "Ask new means of transport", "Ask more powerful weapons", "Ask new harvesting tools"],
     "requirements": [],
@@ -501,7 +501,7 @@
   },
   {
     "title": "More roads!",
-    "description": "Hello. I know you are a kind sovereign, and you wish the best for your people and the development of Arim. With this idea in mind, allow me to express an idea: what about construction a road to the little village of Nasir? They are so isolated, I am sure a road will benefit to everyone, faster development for them, more client for me, some gold for you.",
+    "description": "Hello. I know you are a kind sovereign, and you wish the best for your people and the development of Arim. With this idea in mind, allow me to express an idea: what about constructing a road to the little village of Nasir? They are so isolated, I am sure a road will benefit to everyone, faster development for them, more clients for me, some gold for you.",
     "picture": "icon_trader_left",
     "buttons": ["Send men to construct (6M)", "Give gold to construct (10G)", "Refuse", "Postpone"],
     "requirements": [],
@@ -687,7 +687,7 @@
   },
   {
     "title": "Expedition to the island",
-    "description": "Your Highness, let me introduce myself. I am Sir Foliram from the merchant guild. I have recently set my eyes on the island on the North-east of our magnificent land. I am sure there is people living out there, and, for sure, potential client. I have sent some of my ship out there, but they only are fish boat, they cannot travel so long distance. I realized my mistake after they are departure from the port and are now lost to the sea. But I am sure than, with your assistance, we can set an expedition and contact the island inhabitant. Can I hope receive your help?",
+    "description": "Your Highness, let me introduce myself. I am Sir Foliram from the merchant guild. I have recently set my eyes on the island on the North-east of our magnificent land. I am sure there is people living out there, and, for sure, potential client. I sent some of my ship out there, but they only are fish boat, they cannot travel so long distance. I realized my mistake only after their departure from the port and are now lost to the sea. But I am sure that, with your assistance, we can set an expedition and contact the island inhabitants. Can I hope to receive your help?",
     "picture": "icon_trader_left",
     "buttons": ["Agree: provide food (7F)", "Agree: build one boat (5G)", "Agree: build several boats (12G)", "Refuse: give gold for lost boats (5)", "Refuse", "Postpone"],
     "requirements": ["normal_expedition"],
@@ -776,7 +776,7 @@
   },
   {
     "title": "Expedition to the island",
-    "description": "Your Highness, let me introduce myself. I am Sir Foliram from the merchant guild. I have recently set my eyes on the island on the North-east of our magnificent land. I am sure there is people living out there, and, for sure, potential client. I have sent some of my ship out there, but they only are fish boat, they cannot travel so long distance. I realized my mistake after they are departure from the port and are now lost to the sea. But I am sure than, with your assistance, we can set an expedition and contact the island inhabitant. Can I hope receive your help?",
+    "description": "Your Highness, let me introduce myself. I am Sir Foliram from the merchant guild. I have recently set my eyes on the island on the North-east of our magnificent land. I am sure there is people living out there, and, for sure, potential client. I have sent some of my ship out there, but they only are fish boat, they cannot travel so long distance. I realized my mistake only after their departure from the port and are now lost to the sea. But I am sure than, with your assistance, we can set an expedition and contact the island inhabitants. Can I hope to receive your help?",
     "picture": "icon_trader_left",
     "buttons": ["Agree: provide food (7F)", "Agree: build one boat (1G)", "Agree: build several boats (5G)", "Refuse: give gold for lost boats (1)", "Refuse", "Postpone"],
     "requirements": ["means_transport"],
@@ -864,8 +864,8 @@
     "expire_time": 2
   },
   {
-    "title": "My daughter mariage",
-    "description": "Hello Your Highness. This weekend I celebrate my dear daughter mariage. I would like for you to come to celebrate with us. Will you make us the honor of your presence?",
+    "title": "My daughter wedding",
+    "description": "Hello Your Highness. This weekend I celebrate my dear daughter wedding. I would like you to come to celebrate with us. Will you make us the honor of your presence?",
     "picture": "icon_noble_left",
     "buttons": ["Bring food (10F)", "Bring gold (10G)", "Send food (10F)", "Send gold (10G)", "Refuse"],
     "requirements": ["no_gift"],
@@ -953,8 +953,8 @@
     "expire_time": 1
   },
   {
-    "title": "My daughter mariage",
-    "description": "Hello Your Highness. This weekend I celebrate my dear daughter mariage. I would like for you to come to celebrate with us. Will you make us the honor of your presence?",
+    "title": "My daughter wedding",
+    "description": "Hello Your Highness. This weekend I celebrate my dear daughter wedding. I would like you to come to celebrate with us. Will you make us the honor of your presence?",
     "picture": "icon_noble_left",
     "buttons": ["Bring food (10F)", "Bring gold (10G)", "Send food (10F)", "Send gold (10G)", "Refuse"],
     "requirements": ["no_gift"],
@@ -1041,8 +1041,8 @@
     "expire_time": 1
   },
   {
-    "title": "My daughter mariage",
-    "description": "Hello Your Highness. This weekend I celebrate my dear daughter mariage. I would like for you to come to celebrate with us. Will you make us the honor of your presence?",
+    "title": "My daughter wedding",
+    "description": "Hello Your Highness. This weekend I celebrate my dear daughter wedding. I would like you to come to celebrate with us. Will you make us the honor of your presence?",
     "picture": "icon_noble_left",
     "buttons": ["Bring food (10F)", "Bring a gift", "Bring gold (10G)", "Send food (10F)", "Send a gift", "Send gold (10G)", "Refuse"],
     "requirements": ["gift"],
@@ -1155,8 +1155,8 @@
     "expire_time": 1
   },
   {
-    "title": "My daughter mariage",
-    "description": "Hello Your Highness. This weekend I celebrate my dear daughter mariage. I would like for you to come to celebrate with us. Will you make us the honor of your presence?",
+    "title": "My daughter wedding",
+    "description": "Hello Your Highness. This weekend I celebrate my dear daughter wedding. I would like you to come to celebrate with us. Will you make us the honor of your presence?",
     "picture": "icon_noble_left",
     "buttons": ["Bring food (10F)", "Bring a gift", "Bring gold (10G)", "Send food (10F)", "Send a gift", "Send gold (10G)", "Refuse"],
     "requirements": ["gift"],
@@ -1271,7 +1271,7 @@
   },
   {
     "title": "Hunt at the wrong place",
-    "description": "Hello Your Highness.\nI am no more than one of your peasant. I wished to bring some fresh meat for my engrossed woman so I start hunting in the forest near my house. But suddenly a man just go out of nowhere, claiming this land is his. I have always learned the earth belong to everyone, but now he says I have to pay a compensation for using his land. I am too poor to pay him, please your Highness, help me!",
+    "description": "Hello Your Highness.\nI am no more than one of your peasant. I wished to bring some fresh meat for my pregnant woman so I start hunting in the forest near my house. But suddenly a man just go out of nowhere, claiming this land is his. I have always learned the earth belong to everyone, but now he says I have to pay a compensation for using his land. I am too poor to pay him, please your Highness, help me!",
     "picture": "icon_peasant_left",
     "buttons": ["Pay for the peasant (10G)", "Send men to \"explain\" yourself with the noble (9M)", "Let the peasant cope on his own", "Postpone"],
     "requirements": [],
@@ -1333,7 +1333,7 @@
   },
   {
     "title": "Strange bones in my field",
-    "description": "Your Highness, I've found something strange in my field while working the land last week. I don't know what it is, never something so big. Looks like a bone. Maybe some giant, but never knew there was some here before.  I don't know what I should do about it, bones don't burn well so I thought maybe you would be interested.",
+    "description": "Your Highness, I've found something strange in my field while working the land last week. I don't know what it is, never saw something so big. Looks like a bone. Maybe some giant, but never knew there was some here before. I don't know what I should do about it, bones don't burn well so I thought maybe you would be interested.",
     "picture": "icon_peasant_left",
     "buttons": ["Keep bones for the castle", "Give bones to the nobles", "Give bones to the merchant", "Let him do as he want"],
     "requirements": [],
@@ -1408,7 +1408,7 @@
   },
   {
     "title": "Protection for my daughter",
-    "description": "Hello Your Highness.\nHere is your humble servant Farstan.\nI know it must seems abrupt, but I need your assistance on a little thing.\nMy daughter must go to one of here friend feast next week.\nUnfortunately, she has no one to accompany her and I fear something could happen to her on the way. Would I dare to ask you to provide some men to protect her?",
+    "description": "Hello Your Highness.\nHere is your humble servant Farstan.\nI know it must seems abrupt, but I need your assistance on a little thing.\nMy daughter must go to one of her friend feast next week.\nUnfortunately, she has no one to accompany her and I fear something could happen to her on the way. Would I dare to ask you to provide some men to protect her?",
     "picture": "icon_trader_left",
     "buttons": ["Agree: send men (7M)", "Refuse to help"],
     "requirements": ["problem_eglise_half_solved"],
@@ -1441,8 +1441,8 @@
       "nobility_happiness": 0
     },
     {
-      "set_flags": ["mariage_none"],
-      "unset_flags": ["mariage_farstan_daughter"],
+      "set_flags": ["wedding_none"],
+      "unset_flags": ["wedding_farstan_daughter"],
       "gold": 0,
       "food": 0,
       "army": 0,
@@ -1457,7 +1457,7 @@
   },
   {
     "title": "Road to Trysam closed",
-    "description": "Your Highness. One of my employee come back yesterday with a strange new : all the road to Trysam seems to be closed. It is quite an infortunate news as some of my most important clients live there. Would I dare to ask your assistance to reopen the way to Trysam?",
+    "description": "Your Highness. One of my employee come back yesterday with a strange news : all the road to Trysam seems to be closed. It is quite an unfortunate news as some of my most important clients live there. Would I dare to ask your assistance to reopen the way to Trysam?",
     "picture": "icon_trader_left",
     "buttons": ["Agree: send men (14M)", "Go on person", "Refuse to help", "Postpone"],
     "requirements": ["problem_eglise", "player_f"],
@@ -1519,7 +1519,7 @@
   },
   {
     "title": "Road to Trysam closed",
-    "description": "Your Highness. One of my employee come back yesterday with a strange new : all the road to Trysam seems to be closed. It is quite an infortunate news as some of my most important clients live there. Would I dare to ask your assistance to reopen the way to Trysam?",
+    "description": "Your Highness. One of my employee come back yesterday with a strange news : all the road to Trysam seems to be closed. It is quite an unfortunate news as some of my most important clients live there. Would I dare to ask your assistance to reopen the way to Trysam?",
     "picture": "icon_trader_left",
     "buttons": ["Agree: send men (14M)", "Go on person", "Refuse to help", "Postpone"],
     "requirements": ["problem_eglise", "player_m"],
@@ -1581,7 +1581,7 @@
   },
   {
     "title": "The thief family",
-    "description": "Hello your Highness. I am the wife of Ratrem. He was caught eight month ago for a thief. I will not say he is innocent and I do not condone his action. But it's been more than half a year he is missing in his daughter life. Maybe you could release him, or at least proceed to his judgment?",
+    "description": "Hello your Highness. I am the wife of Ratrem. He was caught eight month ago as a thief. I will not say he is innocent and I do not condone his action. But it's been more than half a year he is missing in his daughter life. Maybe you could release him, or at least proceed to his judgment?",
     "picture": "icon_peasant_left",
     "buttons": ["Decide to kill him", "Decide to release him", "Ignore"],
     "requirements": ["thief_in_jail"],
@@ -1643,7 +1643,7 @@
   },
   {
     "title": "The thief family",
-    "description": "Hello your Highness. I am the wife of Ratrem. He was caught eight month ago for a thief and you killed him afterwise. I will not say he was innocent and I did not condone his action. But it's been more than half a year since his death, we were already poor. I tried to do my best to rise our daughter, but it became impossible for me, it's been a week I did not eat to allow my daughter to get enough food but I am now too weak. You are now my last hope to survive.",
+    "description": "Hello your Highness. I am the wife of Ratrem. He was caught eight month ago qw a thief and you killed him afterwise. I will not say he was innocent and I did not condone his action. But it's been more than half a year since his death, we were already poor. I tried to do my best to rise our daughter, but it became impossible for me, it's been a week I did not eat to allow my daughter to get enough food but I am now too weak. You are now my last hope to survive.",
     "picture": "icon_peasant_left",
     "buttons": ["Send her money (14G)", "Give her a job (3M)", "Adopt her child and let her die (7F)", "Ignore the plea"],
     "requirements": ["thief_killed"],
@@ -1718,7 +1718,7 @@
   },
   {
     "title": "The thief family",
-    "description": "Hello your Highness. My name his Ratrem. I was caught eight month ago for a thief and you decided to release me. Thank you your Highness. I found a job and do not need to steal anymore. I would like to send some gold to express my gratitude.",
+    "description": "Hello your Highness. My name is Ratrem. I was caught eight month ago as a thief and you decided to release me. Thank you your Highness. I found a job and do not need to steal anymore. I would like to send some gold to express my gratitude.",
     "picture": "icon_peasant_left",
     "buttons": ["Accept his money", "Refuse"],
     "requirements": ["thief_free"],
@@ -1767,7 +1767,7 @@
   },
   {
     "title": "The thief family",
-    "description": "Hello your Highness. My name his Ratrem. I was caught eight month ago for a thief. I managed to flee and I think you did not send your men after me otherwise I would have been caught. Thank you your Highness. I found a job and do not need to steal anymore. I would like to send some gold to express my gratitude.",
+    "description": "Hello your Highness. My name is Ratrem. I was caught eight month ago as a thief. I managed to flee and I think you did not send your men after me otherwise I would have been caught. Thank you your Highness. I found a job and do not need to steal anymore. I would like to send some gold to express my gratitude.",
     "picture": "icon_peasant_left",
     "buttons": ["Accept his money", "Refuse"],
     "requirements": ["thief_flee"],
@@ -1816,7 +1816,7 @@
   },
   {
     "title": "Start War",
-    "description": "As your command, we start to chartering the vessels to launch an attack on the island. Thanks to the mage circle we already have some vessels, so I think we should focus our attention on the production of weapons or recruting more men.",
+    "description": "As your command, we started chartering the vessels to launch an attack on the island. Thanks to the mage circle we already have some vessels, so I think we should focus our attention on the production of weapons or recruiting more men.",
     "picture": "icon_advisor_right",
     "buttons": ["Produce weapons (15G)", "Recruit more men (10F)", "Wait for the next month", "Try to stop the war"],
     "requirements": ["hydra_war", "means_transport"],
@@ -1892,7 +1892,7 @@
   },
   {
     "title": "Start War",
-    "description": "As your command, we start to chartering the vessels to launch an attack on the island. Thanks to the mage circle we are sure to have efficient weapons for the fight, so I think we should focus our attention on producing more vessels to be sure to be able to transport everyone, but we can also recruting more men.",
+    "description": "As your command, we started chartering the vessels to launch an attack on the island. Thanks to the mage circle we are sure to have efficient weapons for the fight, so I think we should focus our attention on producing more vessels to be sure to be able to transport everyone, but we can also recruiting more men.",
     "picture": "icon_advisor_left",
     "buttons": ["Recruit more men (10F)", "Produce new vessels (15G)", "Wait for the next month", "Try to stop the war"],
     "requirements": ["hydra_war", "better_weapons"],
@@ -1968,7 +1968,7 @@
   },
   {
     "title": "Start War",
-    "description": "As your command, we start to chartering the vessels to launch an attack on the island. To finish the preparations for the war, you can choose on which points we should focus our attention, we can either produce vessels to be sure to be able to transport everyone, produce weapons adapted for this situation or try to recruit more men.",
+    "description": "As your command, we started chartering the vessels to launch an attack on the island. To finish the preparations for the war, you can choose on which points we should focus our attention, we can either produce vessels to be sure to be able to transport everyone, produce weapons adapted for this situation or try to recruit more men.",
     "picture": "icon_advisor_left",
     "buttons": ["Produce vessels (15G)", "Produce weapons (15G)", "Recruit more men (10F)", "Wait for the next month", "Try to stop the war"],
     "requirements": ["hydra_war", "war_nothing"],
@@ -2057,7 +2057,7 @@
   },
   {
     "title": "Hydra - Victory",
-    "description": "We successfully killed the Hydra your Highness! Your people seem quite pleased by the new. How about hosting a feast to celebrate this victory? We could eat some part of the hydra at the occasion.",
+    "description": "We successfully killed the Hydra your Highness! Your people seem quite pleased by the news. How about hosting a feast to celebrate this victory? We could eat some part of the hydra at the occasion.",
     "picture": "icon_captain_guard_left",
     "buttons": ["Agree", "Disagree"],
     "requirements": ["hydra"],
@@ -2155,7 +2155,7 @@
   },
   {
     "title": "Hydra - to sell",
-    "description": "My salutations your Highness, I hope this letter find you well. The word about you killing a hydra reach my ears. For a mutual profit, I offer to you to give me the body, I will sell it and, of course, we will share the money I could get from it.",
+    "description": "My salutations your Highness, I hope this letter finds you well. The word about you killing a hydra reached my ears. For a mutual profit, I offer to you to give me the body, I will sell it and, of course, will share the money I could get from it.",
     "picture": "icon_trader_left",
     "buttons": ["Agree", "Disagree"],
     "requirements": ["hydra"],
@@ -2253,7 +2253,7 @@
   },
   {
     "title": "Dreadful gift",
-    "description": "Your Highness. I come with some news. Our vessels departed for the island and should reached it within the week, but the islander did not see with a good eyes this much vessels approaching them. We received something from them this morning... The head of the merchant you helped to launch his expedition.",
+    "description": "Your Highness. I come with some news. Our vessels departed for the island and should have reached it within the week, but the islander did not see with a good eyes this much vessels approaching them. We received something from them this morning... The head of the merchant you helped to launch his expedition.",
     "picture": "icon_advisor_left",
     "buttons": ["Send condolence to the merchant family", "Pay for funerals (7G)", "Ignore it"],
     "requirements": ["hydra_war", "expedition_launched"],
@@ -2315,7 +2315,7 @@
   },
   {
     "title": "Expedition result",
-    "description": "Hello Your Highness! I don't know if you remember me, you helped me to launch an expedition to the island near our island. I have encounter the islander and made some trade with them. They are enchanted by this encounter and seems realy interested to know us better. We could pursue the exchange, but I will need men and food to assure the transport.",
+    "description": "Hello Your Highness! I don't know if you remember me, you helped me to launch an expedition to the island near our island. I have encounter the islander and made some trade with them. They are enchanted by this encounter and seem really interested in knowing us better. We could pursue the exchange, but I would need men and food to assure the transport.",
     "picture": "icon_trader_left",
     "buttons": ["Agree to provide men and food every week (5M, 5F)", "Refuse to establish a commercial road", "Postpone"],
     "requirements": ["hydra_no_war", "expedition_launched"],
@@ -2335,8 +2335,8 @@
     },
     "week_no": 9,
     "buttons_effects": [{
-      "set_flags": ["mariage_island_chief"],
-      "unset_flags": ["no_mariage_chief", "mariage_none"],
+      "set_flags": ["wedding_island_chief"],
+      "unset_flags": ["no_wedding_chief", "wedding_none"],
       "gold": 0,
       "food": 0,
       "army": 0,
@@ -2348,8 +2348,8 @@
       "nobility_happiness": 0
     },
     {
-      "set_flags": ["mariage_island_chief"],
-      "unset_flags": ["no_mariage_chief", "mariage_none"],
+      "set_flags": ["wedding_island_chief"],
+      "unset_flags": ["no_wedding_chief", "wedding_none"],
       "gold": 0,
       "food": 0,
       "army": 0,
@@ -2364,7 +2364,7 @@
   },
   {
     "title": "Invitation to the Loniriss feast",
-    "description": "Your Highness, it is my ulmost pleasure to invite you to my annual feast. As you know, all the noblemen of Arim will be there and we all sincerily hope for your presence.",
+    "description": "Your Highness, it is my utmost pleasure to invite you to my annual feast. As you know, all the noblemen of Arim will be there and we all sincerely hope for your presence.",
     "picture": "icon_noble_left",
     "buttons": ["Go to the feast", "Send gift and apologize", "Send gold(10G) and apologize", "Ignore"],
     "requirements": ["problem_eglise_solved", "gift"],
@@ -2439,7 +2439,7 @@
   },
   {
     "title": "Invitation to the Loniriss feast",
-    "description": "Your Highness, it is my ulmost pleasure to invite you to my annual feast. As you know, all the noblemen of Arim will be there and we all sincerily hope for your presence.",
+    "description": "Your Highness, it is my utmost pleasure to invite you to my annual feast. As you know, all the noblemen of Arim will be there and we all sincerely hope for your presence.",
     "picture": "icon_noble_left",
     "buttons": ["Go to the feast", "Send gold(10) and apologize", "Ignore"],
     "requirements": ["problem_eglise_solved", "no_gift"],
@@ -2501,7 +2501,7 @@
   },
   {
     "title": "Invitation to the Loniriss feast",
-    "description": "Your Highness, it is my ulmost pleasure to invite you to my annual feast. As you know, all the noblemen of Arim will be there and we all sincerily hope for your presence.",
+    "description": "Your Highness, it is my utmost pleasure to invite you to my annual feast. As you know, all the noblemen of Arim will be there and we all sincerely hope for your presence.",
     "picture": "icon_noble_left",
     "buttons": ["Go to the feast", "Send gift and apologize", "Send gold(10) and apologize", "Ignore"],
     "requirements": ["problem_eglise_solved", "gift"],
@@ -2576,7 +2576,7 @@
   },
   {
     "title": "Invitation to the Loniriss feast",
-    "description": "Your Highness, it is my ulmost pleasure to invite you to my annual feast. As you know, all the noblemen of Arim will be there and we all sincerily hope for your presence.",
+    "description": "Your Highness, it is my utmost pleasure to invite you to my annual feast. As you know, all the noblemen of Arim will be there and we all sincerely hope for your presence.",
     "picture": "icon_noble_left",
     "buttons": ["Go to the feast", "Send gold(10) and apologize", "Ignore"],
     "requirements": ["problem_eglise_solved", "no_gift"],
@@ -2699,7 +2699,6 @@
     "expire_time": 2
   },
   {
-  
     "title": "Irrigation system",
     "description": "Hello your Highness, I heard 'bout some kind of system used by the mage to transport water in their tower. Just thought, wouldn't it be great if we had the same thing to bring water to our plantation? But I've no idea on how it must work, but I'm sure someone as you must know and help us to implement it? It will truly help us to work.",
     "picture": "icon_peasant_left",
@@ -2849,7 +2848,7 @@
   },
   {
     "title": "Monster come down from the mountain",
-    "description": "Hello Your Highness, here is a priest from Trysam. I wrote to you to notify you of a changment in the surrounding monsters behaviors. They look more nervous than usual and start to go down the mountain to go in the forest. I fear they may attack some cities and felt I had to inform you.",
+    "description": "Hello Your Highness, here is a priest from Trysam. I wrote to you to notify you of a change in the surrounding monsters behaviors. They look more nervous than usual and start to go down the mountain to go in the forest. I fear they may attack some cities and felt I had to inform you.",
     "picture": "icon_priest_left",
     "buttons": ["Send men to protect the cities (10M)", "Offer to the villagers to take refuge in the capital (12F)", "Ignore the letter"],
     "requirements": ["problem_eglise_solved"],
@@ -2910,11 +2909,11 @@
     "expire_time": 1
   },
   {
-    "title": "Your mariage",
-    "description": "Hello your Highness.\nIt may seems too soon for you, but I think the time as come for you to think about your mariage.\nSome options offer to you. The most logical would be to marry a noble. But you can still marry a merchant child to bring gold to our kingdom. Of course, nothing prevent you from marrying a farmer or no one. Do not forget the island chief was interested by you, I am sure you can propose to him.",
+    "title": "Your wedding",
+    "description": "Hello your Highness.\nIt may seems too soon for you, but I think the time as come for you to think about your wedding.\nSome options offer to you. The most logical would be to marry a noble. But you can still marry a merchant child to bring gold to our kingdom. Of course, nothing prevent you from marrying a farmer or no one. Do not forget the island chief was interested by you, I am sure you can propose to him.",
     "picture": "icon_advisor_left",
     "buttons": ["Marry a noble", "Marry island chief", "Marry a merchant", "Marry a farmer", "Marry no one", "Postpone"],
-    "requirements": ["mariage_island_chief", "player_f", "no_farstan"],
+    "requirements": ["wedding_island_chief", "player_f", "no_farstan"],
     "happiness_requirement": {
       "traders": {
         "min": -100,
@@ -2999,11 +2998,11 @@
     "expire_time": 3
   },
   {
-    "title": "Your mariage",
-    "description": "Hello your Highness.\nIt may seems too soon for you, but I think the time as come for you to think about your mariage.\nSome options offer to you. The most logical would be to marry a noble. But you can still marry a merchant child to bring gold to our kingdom and I think sir Farstan son was interrested by you. Of course, nothing prevent you from marrying a farmer or no one. Do not forget the island chief was interested by you, I am sure you can propose to him.",
+    "title": "Your wedding",
+    "description": "Hello your Highness.\nIt may seems too soon for you, but I think the time as come for you to think about your wedding.\nSome options offer to you. The most logical would be to marry a noble. But you can still marry a merchant child to bring gold to our kingdom and I think sir Farstan son was interrested by you. Of course, nothing prevent you from marrying a farmer or no one. Do not forget the island chief was interested by you, I am sure you can propose to him.",
     "picture": "icon_advisor_left",
     "buttons": ["Marry a noble", "Marry island chief", "Marry a merchant", "Marry Farstan son", "Marry a farmer", "Marry no one", "Postpone"],
-    "requirements": ["mariage_farstan_son", "mariage_island_chief", "player_f"],
+    "requirements": ["wedding_farstan_son", "wedding_island_chief", "player_f"],
     "happiness_requirement": {
       "traders": {
         "min": -100,
@@ -3100,11 +3099,11 @@
     "expire_time": 3
   },
   {
-    "title": "Your mariage",
-    "description": "Hello your Highness.\nIt may seems too soon for you, but I think the time as come for you to think about your mariage.\nSome options offer to you. The most logical would be to marry a noble. But you can still marry a merchant child to bring gold to our kingdom and I think sir Farstan son was interrested by you. Of course, nothing prevent you from marrying a farmer or no one.",
+    "title": "Your wedding",
+    "description": "Hello your Highness.\nIt may seems too soon for you, but I think the time as come for you to think about your wedding.\nSome options offer to you. The most logical would be to marry a noble. But you can still marry a merchant child to bring gold to our kingdom and I think sir Farstan son was interrested by you. Of course, nothing prevent you from marrying a farmer or no one.",
     "picture": "icon_advisor_left",
     "buttons": ["Marry a noble", "Marry a merchant", "Marry Farstan son", "Marry a farmer", "Marry no one", "Postpone"],
-    "requirements": ["mariage_farstan_son", "player_f", "no_mariage_chief"],
+    "requirements": ["wedding_farstan_son", "player_f", "no_wedding_chief"],
     "happiness_requirement": {
       "traders": {
         "min": -100,
@@ -3188,11 +3187,11 @@
     "expire_time": 3
   },
   {
-    "title": "Your mariage",
-    "description": "Hello your Highness.\nIt may seems too soon for you, but I think the time as come for you to think about your mariage.\nSome options offer to you. The most logical would be to marry a noble. But you can still marry a merchant child to bring gold to our kingdom and I think sir Farstan would be happy to propose to you his daugther. Of course, nothing prevent you from marrying a farmer or no one.",
+    "title": "Your wedding",
+    "description": "Hello your Highness.\nIt may seems too soon for you, but I think the time as come for you to think about your wedding.\nSome options offer to you. The most logical would be to marry a noble. But you can still marry a merchant child to bring gold to our kingdom and I think sir Farstan would be happy to propose to you his daugther. Of course, nothing prevent you from marrying a farmer or no one.",
     "picture": "icon_advisor_left",
     "buttons": ["Marry a noble", "Marry a merchant", "Marry Farstan daughter", "Marry a farmer", "Marry no one", "Postpone"],
-    "requirements": ["mariage_farstan_daughter", "player_m"],
+    "requirements": ["wedding_farstan_daughter", "player_m"],
     "happiness_requirement": {
       "traders": {
         "min": -100,
@@ -3276,11 +3275,11 @@
     "expire_time": 3
   },
   {
-    "title": "Your mariage",
-    "description": "Hello your Highness.\nIt may seems too soon for you, but I think the time as come for you to think about your mariage. Some options offer to you. The most logical would be to marry a noble. But you can still marry a merchant child to bring gold to our kingdom. Of course, nothing prevent you from marrying a farmer or no one.",
+    "title": "Your wedding",
+    "description": "Hello your Highness.\nIt may seems too soon for you, but I think the time as come for you to think about your wedding. Some options offer to you. The most logical would be to marry a noble. But you can still marry a merchant child to bring gold to our kingdom. Of course, nothing prevent you from marrying a farmer or no one.",
     "picture": "icon_advisor_left",
     "buttons": ["Marry a noble", "Marry a merchant", "Marry a farmer", "Marry no one", "Postpone"],
-    "requirements": ["mariage_none"],
+    "requirements": ["wedding_none"],
     "happiness_requirement": {
       "traders": {
         "min": -100,
@@ -3353,7 +3352,7 @@
   },
   {
     "title": "Festival!",
-    "description": "Hello, Your Highness. As you must know, this month will be held our annual festival for the foundation day of our country. As the queen to be, it is your place to lead the parade. But it may be dangerous, and the guard could not be able to protect you during it because of the crowd. So it may be a better idea to not participate, even if it may disapoint your people.",
+    "description": "Hello, Your Highness. As you must know, this month will be held our annual festival for the foundation day of our country. As the queen to be, it is your place to lead the parade. But it may be dangerous, and the guard could not be able to protect you during it because of the crowd. So it may be a better idea to not participate, even if it may disappoint your people.",
     "picture": "icon_advisor_left",
     "buttons": ["Lead the parade as planned", "Go to the parade with guards", "Stay in the castle"],
     "requirements": ["player_f"],
@@ -3637,7 +3636,7 @@
   },
   {
     "title": "Problem with the mountain",
-    "description": "Hello Your Highness, here is the mage circle. Thank you again for letting us study our island. Our research allow us to reveal some strange activity coming from the mountain. I am sure it is link to the change in the monsters behavior. The earth seems to abnomarlly shakes and to eat up under the pick of the mountains. Furthermore, the water of the mountain lake seems full of sulfur. We have no idea for now of what does this imply, but we fear the worst.",
+    "description": "Hello Your Highness, here is the mage circle. Thank you again for letting us study our island. Our research allow us to reveal some strange activity coming from the mountain. I am sure it is link to the change in the monsters behavior. The earth seems to abnormally shakes and to eat up under the pick of the mountains. Furthermore, the water of the mountain lake seems full of sulfur. We have no idea for now of what does this imply, but we fear the worst.",
     "picture": "icon_advisor_right",
     "buttons": ["Require an emergency meeting next month"],
     "requirements": ["get_mountain_problem"],
@@ -3709,8 +3708,8 @@
     "expire_time": 1
   },
   {
-    "title": "Exeptional harvest",
-    "description": "Hello Your Highness, we have a good new! The harvest was exeptional this year, what should we do about the extra?",
+    "title": "Exceptional harvest",
+    "description": "Hello Your Highness, we have a good new! The harvest was exceptional this year, what should we do about the extra?",
     "picture": "icon_peasant_left",
     "buttons": ["Let it to the peasant", "Hold a feast and invite the noble", "Keep it in the granary"],
     "requirements": [],
@@ -3821,7 +3820,7 @@
   },
   {
     "title": "A thief!",
-    "description": "Your Highness, there was a thief! A thief! Here, in the capital! It's horrible, terrible, inacceptable. You must send men to catch the culprit! And bring me back my goods!",
+    "description": "Your Highness, there was a thief! A thief! Here, in the capital! It's horrible, terrible, unacceptable. You must send men to catch the culprit! And bring me back my goods!",
     "picture": "icon_trader_left",
     "buttons": ["Send men (7M)", "Refuse"],
     "requirements": [],
